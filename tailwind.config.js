@@ -7,19 +7,19 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontSize: {
-      'xs': "10px",
-      'sm': "11px",
-      'base': "12px",
-      'lg': "14px",
-      'xl': "16px",
-      '2xl': "18px",
-      '3xl': "20px",
-      '4xl': "24px",
-      '5xl': "30px",
-      '6xl': "36px",
-      '7xl': "48px",
-      '8xl': "60px",
-      '9xl': "72px",
+      '10px': "10px",
+      '11px': "11px",
+      '12px': "12px",
+      '14px': "14px",
+      '16px': "16px",
+      '18px': "18px",
+      '20px': "20px",
+      '24px': "24px",
+      '30px': "30px",
+      '36px': "36px",
+      '48px': "48px",
+      '60px': "60px",
+      '72px': "72px",
     },
     colors: {
       /* Colors: */
