@@ -20,8 +20,12 @@ export class AuthentificationService {
     return this.http.post<User>('/api/login', {email, password}).pipe(
       shareReplay()
     )
-
   }
+
+  register(email: string, firstname: string, lastname: string, password: string) {
+    return this.http.post<User>('/api/register', {email, firstname, lastname, password})
+  }
+
 
   private setSession(authResult: { expiresIn: any; idToken: string; }) {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
