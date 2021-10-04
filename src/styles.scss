@@ -2,3 +2,44 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+* {
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  transition: all ease-in-out .3s;
+  font-family: hero-new, sans-serif;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw
+}
+
+body {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100vw;
+  max-width: 100vw;
+  clear: both;
+  overflow-x: hidden
+}
+
+nav a {
+  text-decoration: none
+}
+
+html {
+  scroll-behavior: smooth
+}
+
+h1, h1 *, h2, h3, h4, h5, h6, nav * {
+  font-family: chennai, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase
+}
+
+a:focus, a:hover, button:focus, button:hover {
+  filter: saturate(120%) brightness(120%);
+  transition: all ease-in-out .2s
+}
