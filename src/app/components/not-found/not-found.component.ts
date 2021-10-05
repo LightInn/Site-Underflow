@@ -8,7 +8,7 @@ import {IBase} from "../../interfaces/base";
 })
 export class NotFoundComponent implements OnInit {
   public base: IBase = {
-    baseTitle: "404 not found",
+    baseTitle: "404 Не Найдено",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu es perdu ?",
     baseDescriptionSecondPart: "",

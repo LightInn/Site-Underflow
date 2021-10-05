@@ -2,20 +2,23 @@
 <ng-template #landingBlock>
   <div class="flex justify-around items-center w-full gap-10 mt-60px">
     <app-button-routeur
-      path="/courses-registrations"
+      path="/les-cours"
+      [asset]="true"
       assetPath="./assets/images/svg/courses.svg"
       alt="Logo inscription aux cours"
       content="Les cours"
     ></app-button-routeur>
     <app-button-routeur
-      path="/courses-creates"
+      path="/donner-un-cours"
+      [asset]="true"
       assetPath="./assets/images/svg/handshake.svg"
       alt="Logo proposition de cours"
       content="Donner un cours"
       [alternative]="true"
     ></app-button-routeur>
     <app-button-routeur
-      path="/courses-suggests"
+      path="/suggerer-un-cours"
+      [asset]="true"
       assetPath="./assets/images/svg/question.svg"
       alt="Logo suggestion de cours"
       content="Proposer un cours"
