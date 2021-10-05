@@ -14,8 +14,6 @@ import { LandingComponent } from './components/landing/landing.component';
 import {CoursesCreatesComponent} from "./components/courses/courses-creates/courses-creates.component";
 import { CoursesSuggestsComponent } from './components/courses/courses-suggests/courses-suggests.component';
 import { ButtonRouteurComponent } from './components/core/button-routeur/button-routeur.component';
-import { LandingComponent } from './components/landing/landing.component';
-import { ProfileComponent } from './components/profile/profile/profile.component';
 import { FilesCreatesComponent } from './components/files/files-creates/files-creates.component';
 import { FilesDownloadComponent } from './components/files/files-download/files-download.component';
 
