@@ -1,0 +1,31 @@
+import { Component, OnInit } from '@angular/core';
+import {IBase} from "../../../interfaces/base";
+
+@Component({
+  selector: 'app-files-creates',
+  templateUrl: './files-creates.component.html',
+  styleUrls: ['./files-creates.component.scss']
+})
+export class FilesCreatesComponent implements OnInit {
+  public base: IBase = {
+    baseTitle: "Créer une fiche",
+    baseLandingMode: false,
+    baseDescriptionFirstPart: "Tu veux partager tes connaissances ?",
+    baseDescriptionSecondPart: "C'est ici que ça se passe !",
+    baseAdditionalCitation: false,
+    baseAdditionalButton: false,
+    basePath: "",
+    baseAssetPath: "",
+    baseAlt: "",
+    baseContent: "",
+    baseAlternative: false,
+    baseAdditionnalSentence: "",
+    baseCitation: ""
+  }
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
