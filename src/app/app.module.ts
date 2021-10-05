@@ -8,6 +8,7 @@ import {BaseComponent} from './components/core/base/base.component';
 import {LoginComponent} from './components/authentification/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { RegisterComponent } from './components/authentification/register/register.component';
+import { ProfileComponent } from './components/authentification/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RegisterComponent } from './components/authentification/register/regist
     BaseComponent,
     LoginComponent,
     RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
