@@ -20,6 +20,7 @@ import {FilesDownloadComponent} from './components/files/files-download/files-do
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/core/header/header.component';
 import { FooterComponent } from './components/core/footer/footer.component';
+import { ToastComponent } from './components/core/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,10 @@ import { FooterComponent } from './components/core/footer/footer.component';
     NotFoundComponent,
     HeaderComponent,
     FooterComponent,
+    CoursesRegistrationsComponent,
+    ToastComponent
+
+
   ],
   imports: [
     BrowserModule,
