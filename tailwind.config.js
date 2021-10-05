@@ -1,11 +1,30 @@
 module.exports = {
   mode: 'jit',
   purge: {
-    enabled: true,
-    content: ['./src/**/*.{html,ts}']
+    // enabled: true,
+    content: ['./src/**/*.{html,ts}'],
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      'chennai' : "chennai,sans-serif",
+      'hero' : "hero-new,sans-serif",
+    },
+    fontSize: {
+      '10px': "10px",
+      '11px': "11px",
+      '12px': "12px",
+      '14px': "14px",
+      '16px': "16px",
+      '18px': "18px",
+      '20px': "20px",
+      '24px': "24px",
+      '30px': "30px",
+      '36px': "36px",
+      '48px': "48px",
+      '60px': "60px",
+      '72px': "72px",
+    },
     colors: {
       /* Colors: */
       underflow_grey: {
@@ -57,7 +76,23 @@ module.exports = {
         50: '#F7EDE3',
       }
     },
-    extend: {},
+    extend: {
+      spacing: {
+        "10px": "10px",
+        "20px": "20px",
+        "30px": "30px",
+        "60px": "60px",
+        "100px": "100px",
+        "200px": "200px",
+        "220px": "220px",
+        "230px": "230px",
+        "250px": "250px",
+        "300px": "300px",
+        "400px": "400px",
+        "500px": "500px",
+
+      }
+    },
   },
   variants: {
     extend: {},

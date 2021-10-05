@@ -1,0 +1,10 @@
+<div [attr.class]="alternative==true?'inline-block w-220px bg-underflow_blue-300 text-underflow_grey-900 border border-underflow_blue-300 rounded'
+:'inline-block w-220px bg-transparent text-underflow_blue-300 border border-underflow_blue-300 rounded'">
+  <a routerLink={{path}}
+     routerLinkActive="active">
+    <div class="flex flex-row justify-center text-14px font-bold">
+      <img class="w-30px my-10px" src={{assetPath}} alt={{alt}}>
+      <span class="flex justify-start items-center pl-10px">{{content}}</span>
+    </div>
+  </a>
+</div>

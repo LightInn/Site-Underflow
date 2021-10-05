@@ -1,0 +1,27 @@
+<form [formGroup]="form"
+      class="text-underflow_blue-300 flex flex-col justify-center align-center w-100%">
+  <fieldset>
+    <div class="form-field flex flex-col">
+      <label class="text-12px">EMAIL </label>
+      <input name="email" formControlName="email" class="w-1/2 h-1/6">
+    </div>
+    <div class="form-field flex flex-col">
+      <label class="text-12px">NOM </label>
+      <input name="firstname" formControlName="firstname" class="w-1/2 h-1/6">
+    </div>
+    <div class="form-field flex flex-col">
+      <label class="text-12px">PRENOM </label>
+      <input name="lastname" formControlName="lastname" class="w-1/2 h-1/6">
+    </div>
+    <div class="form-field flex flex-col">
+      <label class="text-12px">MOT DE PASSE</label>
+      <input name="password" formControlName="password"
+             type="password" class="w-1/2 h-1/6">
+    </div>
+  </fieldset>
+  <div class="form-buttons">
+    <button class="button button-primary"
+            (click)="login()">Login
+    </button>
+  </div>
+</form>
