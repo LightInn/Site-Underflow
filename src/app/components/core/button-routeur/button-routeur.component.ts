@@ -12,6 +12,7 @@ export class ButtonRouteurComponent implements OnInit {
   @Input() alternative?: boolean;
   @Input() alt?: string;
   @Input() content?: string;
+  @Input() asset?: boolean;
 
   constructor() {
   }

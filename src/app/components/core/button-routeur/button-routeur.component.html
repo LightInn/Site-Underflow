@@ -3,7 +3,7 @@
   <a routerLink={{path}}
      routerLinkActive="active">
     <div class="flex flex-row justify-center text-14px font-bold">
-      <img class="w-30px my-10px" src={{assetPath}} alt={{alt}}>
+      <img *ngIf="asset" class="w-30px my-10px" src={{assetPath}} alt={{alt}}>
       <span class="flex justify-start items-center pl-10px">{{content}}</span>
     </div>
   </a>

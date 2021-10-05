@@ -16,6 +16,7 @@ import { CoursesSuggestsComponent } from './components/courses/courses-suggests/
 import { ButtonRouteurComponent } from './components/core/button-routeur/button-routeur.component';
 import { FilesCreatesComponent } from './components/files/files-creates/files-creates.component';
 import { FilesDownloadComponent } from './components/files/files-download/files-download.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FilesDownloadComponent } from './components/files/files-download/files-
     ProfileComponent,
     FilesCreatesComponent,
     FilesDownloadComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

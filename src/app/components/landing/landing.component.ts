@@ -15,6 +15,7 @@ export class LandingComponent implements OnInit {
     baseAdditionalCitation: false,
     baseAdditionalButton: true,
     basePath: "/courses-registrations",
+    baseAsset:true,
     baseAssetPath: "./assets/images/svg/question.svg",
     baseAlt: "Proposition de cours",
     baseContent: "Proposer un cours",

@@ -18,6 +18,7 @@ export class BaseComponent implements OnInit {
     baseAdditionalButton:false,
     baseAdditionnalSentence:"",
     basePath:"",
+    baseAsset:false,
     baseAssetPath:"",
     baseAlt:"",
     baseContent:"",

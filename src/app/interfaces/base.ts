@@ -1,4 +1,4 @@
-export interface IBase{
+export interface IBase {
   baseTitle: string;
   baseCitation: string;
   baseLandingMode: boolean;
@@ -8,6 +8,7 @@ export interface IBase{
   baseAdditionalButton: boolean;
   baseAdditionnalSentence: string;
   basePath: string;
+  baseAsset: boolean;
   baseAssetPath: string;
   baseAlt: string;
   baseContent: string;

@@ -15,6 +15,7 @@ export class FilesCreatesComponent implements OnInit {
     baseAdditionalCitation: false,
     baseAdditionalButton: false,
     basePath: "",
+    baseAsset:false,
     baseAssetPath: "",
     baseAlt: "",
     baseContent: "",
