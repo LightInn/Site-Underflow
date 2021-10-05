@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IBase} from "../../../interfaces/base";
 
 @Component({
   selector: 'app-courses-suggests',
@@ -6,6 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses-suggests.component.scss']
 })
 export class CoursesSuggestsComponent implements OnInit {
+  // public base: IBase = {
+  //   baseTitle:
+  //   baseLandingMode:,
+  //   baseDescriptionFirstPart:,
+  //   baseDescriptionSecondPart:,
+  //   baseAdditionalCitation:,
+  //   baseAdditionalButton:,
+  //   basePath:,
+  //   baseAssetPath:,
+  //   baseAlt:,
+  //   baseContent:,
+  //   baseAlternative:,
+  //   baseAdditionnalSentence:,
+  //   baseCitation:
+  // }
 
   constructor() { }
 
