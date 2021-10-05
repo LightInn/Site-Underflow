@@ -10,11 +10,23 @@ import {shareReplay} from "rxjs/operators";
 })
 export class AuthentificationService {
   private expiresAt: moment.MomentInput;
+  public static csrfToken: string;
 
 
   constructor(private http: HttpClient) {
 
+
   }
+
+  getCSRF() {
+
+    this.http.get<string>('/api/login').subscribe(csrfToken => {
+      AuthentificationService.csrfToken = csrfToken;
+    })
+
+  }
+
+
 
   login(email: string, password: string) {
     return this.http.post<User>('/api/login', {email, password}).pipe(
