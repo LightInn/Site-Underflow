@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IBase} from "../../../interfaces/base";
 
 @Component({
@@ -7,23 +7,24 @@ import {IBase} from "../../../interfaces/base";
   styleUrls: ['./courses-creates.component.scss']
 })
 export class CoursesCreatesComponent implements OnInit {
-  // public base: IBase = {
-  //   baseTitle:
-  //   baseLandingMode:,
-  //   baseDescriptionFirstPart:,
-  //   baseDescriptionSecondPart:,
-  //   baseAdditionalCitation:,
-  //   baseAdditionalButton:,
-  //   basePath:,
-  //   baseAssetPath:,
-  //   baseAlt:,
-  //   baseContent:,
-  //   baseAlternative:,
-  //   baseAdditionnalSentence:,
-  //   baseCitation:
-  // }
+  public base: IBase = {
+    baseTitle: "Donner un cours",
+    baseLandingMode: false,
+    baseDescriptionFirstPart: "Tu es à l’aise dans un domaine en particulier ?",
+    baseDescriptionSecondPart: "Alors on a besoin de toi.",
+    baseAdditionalCitation: false,
+    baseAdditionalButton: false,
+    basePath: "",
+    baseAssetPath: "",
+    baseAlt: "",
+    baseContent: "",
+    baseAlternative: false,
+    baseAdditionnalSentence: "",
+    baseCitation: ""
+  }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

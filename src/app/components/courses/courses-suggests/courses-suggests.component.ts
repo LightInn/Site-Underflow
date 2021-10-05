@@ -7,21 +7,21 @@ import {IBase} from "../../../interfaces/base";
   styleUrls: ['./courses-suggests.component.scss']
 })
 export class CoursesSuggestsComponent implements OnInit {
-  // public base: IBase = {
-  //   baseTitle:
-  //   baseLandingMode:,
-  //   baseDescriptionFirstPart:,
-  //   baseDescriptionSecondPart:,
-  //   baseAdditionalCitation:,
-  //   baseAdditionalButton:,
-  //   basePath:,
-  //   baseAssetPath:,
-  //   baseAlt:,
-  //   baseContent:,
-  //   baseAlternative:,
-  //   baseAdditionnalSentence:,
-  //   baseCitation:
-  // }
+  public base: IBase = {
+    baseTitle:"Suggérer un cours",
+    baseLandingMode:false,
+    baseDescriptionFirstPart:"Tu as besoin d'aide dans une matière ?",
+    baseDescriptionSecondPart:"Fais ta demande ici !",
+    baseAdditionalCitation:false,
+    baseAdditionalButton:false,
+    basePath:"",
+    baseAssetPath:"",
+    baseAlt:"",
+    baseContent:"",
+    baseAlternative:false,
+    baseAdditionnalSentence:"",
+    baseCitation:""
+  }
 
   constructor() { }
 
