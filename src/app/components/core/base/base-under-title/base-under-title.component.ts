@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-base-under-title',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BaseUnderTitleComponent implements OnInit {
 
-  constructor() { }
+  @Input() landingMode?: boolean;
+  @Input() descriptionFirstPart?: string;
+  @Input() descriptionSecondPart?: string;
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
+
   }
 
 }

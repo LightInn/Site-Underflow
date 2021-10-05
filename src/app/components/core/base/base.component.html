@@ -1,14 +1,53 @@
-<section class="flex justify-between items-center h-full w-full px-100px">
-  <div class="w-3/5 flex flex-col h-full">
+<!-- base template -->
+<section class="flex justify-between h-screen items-center w-full px-100px flex-wrap">
+  <div class="w-1/2 flex flex-col justify-center">
     <div class="w-200px">
       <img src="./assets/images/svg/dotDoubleLine.svg" alt="decoration double lignes de points">
     </div>
     <div>
       <h1 class="text-72px text-center">{{title}}</h1>
     </div>
-    <app-base-under-title></app-base-under-title>
+
+    <div *ngIf="landingMode; then landingChoose else otherChoose"></div>
+<!--    if landing is choosen
+        @input landingMode | pass the choice to the child -->
+    <ng-template #landingChoose>
+      <app-base-under-title [landingMode]="landingMode"></app-base-under-title>
+    </ng-template>
+
+<!--    if landing isn't choosen -> display under the title, a description -->
+<!--    @input landingMode | pass the choice to the child-->
+<!--    @input descriptionFirstPart | correspond to the first sentence
+        then, a line break
+        @input descriptionSecondPart | corespond to the end of the sentence -->
+    <ng-template #otherChoose>
+      <app-base-under-title [landingMode]="landingMode"
+                            [descriptionFirstPart]="descriptionFirstPart"
+                            [descriptionSecondPart]="descriptionSecondPart"
+      ></app-base-under-title>
+    </ng-template>
   </div>
-  <div class="w-2/5 h-full">
-    <img src="./assets/images/svg/underflowLandingIllustration.svg" alt="Illustration Scratch Underflow">
+  <div class="w-1/2 flex justify-center items-center">
+    <img class="w-3/4" src="./assets/images/svg/underflowLandingIllustration.svg" alt="Illustration Scratch Underflow">
+  </div>
+<!--  citation bottom center of the page
+      @input additionalCitation | boolean to display or not the following title -> corresponding to the citation on bottom center
+      @input citation | string corresponding to the sentence to display -->
+  <h2 *ngIf="additionalCitation" class="underflow-citation w-full flex justify-center items-center">"{{citation}}"</h2>
+<!--  additionnal button under the illustration
+      @input additionalButton | boolean to display or not the following button
+      @input additionnalSentence | string to description of the button
+      @input path, assetPath, alt, content | string for all, to describe the button, and made it functional -->
+  <div *ngIf="additionalButton" class="w-full flex justify-end items-center">
+    <p class="font-chennai font-thin pr-30px">
+      {{additionnalSentence}}
+    </p>
+    <app-button-routeur
+      [path]="path"
+      [assetPath]="assetPath"
+      [alt]="alt"
+      [content]="content"
+      [alternative]="alternative"
+    ></app-button-routeur>
   </div>
 </section>

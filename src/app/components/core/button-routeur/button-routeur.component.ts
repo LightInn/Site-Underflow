@@ -9,7 +9,7 @@ export class ButtonRouteurComponent implements OnInit {
 
   @Input() path?: string;
   @Input() assetPath?: string;
-  @Input() alternative?: string;
+  @Input() alternative?: boolean;
   @Input() alt?: string;
   @Input() content?: string;
 

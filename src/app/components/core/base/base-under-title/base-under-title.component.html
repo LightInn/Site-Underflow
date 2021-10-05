@@ -1,23 +1,32 @@
-<div class="flex justify-around items-center w-full gap-10 mt-60px">
-  <app-button-routeur
-    path="/courses-registrations"
-    assetPath="./assets/images/svg/courses.svg"
-    alt="Logo inscription aux cours"
-    content="Les cours"
-  ></app-button-routeur>
-
-  <app-button-routeur
-    path="/courses-creates"
-    assetPath="./assets/images/svg/handshake.svg"
-    alt="Logo proposition de cours"
-    content="Donner un cours"
-    alternative="true"
-  ></app-button-routeur>
-
-  <app-button-routeur
-    path="/courses-suggests"
-    assetPath="./assets/images/svg/question.svg"
-    alt="Logo suggestion de cours"
-    content="Proposer un cours"
-  ></app-button-routeur>
-</div>
+<div *ngIf="landingMode; then landingBlock else descriptionBlock"></div>
+<ng-template #landingBlock>
+  <div class="flex justify-around items-center w-full gap-10 mt-60px">
+    <app-button-routeur
+      path="/courses-registrations"
+      assetPath="./assets/images/svg/courses.svg"
+      alt="Logo inscription aux cours"
+      content="Les cours"
+    ></app-button-routeur>
+    <app-button-routeur
+      path="/courses-creates"
+      assetPath="./assets/images/svg/handshake.svg"
+      alt="Logo proposition de cours"
+      content="Donner un cours"
+      [alternative]="true"
+    ></app-button-routeur>
+    <app-button-routeur
+      path="/courses-suggests"
+      assetPath="./assets/images/svg/question.svg"
+      alt="Logo suggestion de cours"
+      content="Proposer un cours"
+    ></app-button-routeur>
+  </div>
+</ng-template>
+<ng-template #descriptionBlock>
+  <div class="flex justify-end items-center w-full mt-60px">
+    <div class="text-right text-16px">
+      <p class="underflow-citation">{{descriptionFirstPart}}</p>
+      <p class="underflow-citation">{{descriptionSecondPart}}</p>
+    </div>
+  </div>
+</ng-template>
