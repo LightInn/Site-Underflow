@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthentificationService} from "../../../services/authentification/authentification.service";
+import {AuthentificationService} from "../../../services/authentification.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -24,6 +24,11 @@ export class RegisterComponent {
   }
 
   login() {
+
+    this.router.navigateByUrl('/login');
+  }
+
+  register() {
     const val = this.form.value;
 
     if (val.email && val.password && val.firstname && val.lastname) {
@@ -35,5 +40,6 @@ export class RegisterComponent {
           }
         );
     }
+
   }
 }

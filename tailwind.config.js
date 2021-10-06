@@ -7,8 +7,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'chennai' : "chennai,sans-serif",
-      'hero' : "hero-new,sans-serif",
+      'chennai': "chennai,sans-serif",
+      'hero': "hero-new,sans-serif",
     },
     extend: {
       fontSize: {
@@ -93,6 +93,7 @@ module.exports = {
         "300px": "300px",
         "400px": "400px",
         "500px": "500px",
+        "99vh": "99vh",
 
       }
     },
