@@ -20,6 +20,7 @@ import {FilesDownloadComponent} from './components/files/files-download/files-do
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/core/header/header.component';
 import { FooterComponent } from './components/core/footer/footer.component';
+import { CoursesSuggestsFormComponent } from './components/courses/courses-suggests/courses-suggests-form/courses-suggests-form.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FooterComponent } from './components/core/footer/footer.component';
     NotFoundComponent,
     HeaderComponent,
     FooterComponent,
+    CoursesSuggestsFormComponent,
   ],
   imports: [
     BrowserModule,

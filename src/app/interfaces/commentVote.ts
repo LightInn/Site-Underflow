@@ -1,6 +1,6 @@
 export interface CommentVote {
-  id?: bigint
-  vote?: bigint
+  id?: number
+  vote?: number
   created_on?: Date
   comment?: Comment
 }

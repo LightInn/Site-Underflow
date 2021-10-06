@@ -1,7 +1,7 @@
 import {Classe} from "./classe";
 
 export interface User {
-  id?: bigint
+  id?: number
   first_name?: string
   last_name?: string
   email?: string

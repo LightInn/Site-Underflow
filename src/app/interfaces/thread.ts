@@ -1,7 +1,7 @@
 import {User} from "./user";
 
 export interface Thread {
-  id?: bigint
+  id?: number
   title?: string
   owner?: User
 }

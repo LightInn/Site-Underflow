@@ -2,7 +2,7 @@ import {User} from "./user";
 import {Thread} from "./thread";
 
 export interface Comment {
-  id?: bigint
+  id?: number
   text?: string
   created_on?: Date
   owner?: User

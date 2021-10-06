@@ -3,7 +3,7 @@ import {Subject} from "./subject"
 import {Classe} from "./classe"
 
 export interface Courses {
-  id?:bigint
+  id?:number
   title?:string
   date_start?:Date
   duration?:number
