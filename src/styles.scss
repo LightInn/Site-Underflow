@@ -43,7 +43,39 @@ a:focus, a:hover, button:focus, button:hover {
   transition: all ease-in-out .2s
 }
 
-.underflow-citation{
+.underflow-citation {
   font-style: italic;
   font-family: hero-new, sans-serif;
+}
+
+.underflow-fadeInvisible {
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1;
+  height: 0;
+  padding: 0;
+  transition: opacity ease-in-out .2s, z-index ease-in-out .2s, height ease-in-out .5s, padding ease-in-out .5s
+}
+
+.underflow-fadeInvisible a {
+  opacity: 0;
+  z-index: -1;
+  transition: opacity ease-in-out .2s;
+  transition-delay: 0.5s
+}
+
+.underflow-fadeVisible {
+  pointer-events: auto;
+  opacity: 1;
+  z-index: 10;
+  height: 100vh;
+  padding: 200px 0;
+  transition: opacity ease-in-out .2s, z-index ease-in-out .2s, height ease-in-out .5s, padding ease-in-out .5s
+}
+
+.underflow-fadeVisible a {
+  opacity: 1;
+  z-index: 10;
+  transition: opacity ease-in-out .2s;
+  transition-delay: 0.5s
 }

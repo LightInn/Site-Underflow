@@ -16,8 +16,8 @@
           <!-- Heroicon name: outline/menu -->
           <svg id="burger-menu" onclick="
           this.classList.toggle('active');
-          document.getElementById('nav').classList.toggle('hidden');
-          document.getElementById('nav').classList.toggle('flex');" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          document.getElementById('nav').classList.toggle('underflow-fadeInvisible');
+          document.getElementById('nav').classList.toggle('underflow-fadeVisible');" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                aria-hidden="true">
             <g id="top">
               <path class="st0" d="M4,6h16"/>
@@ -34,8 +34,8 @@
           </svg>
         </button>
       </div>
-      <nav id="nav" class="hidden flex-col justify-between items-center py-200px
-      absolute top-0 left-0 z-10 h-screen w-screen bg-underflow_grey-800 lg:h-auto lg:w-auto">
+      <nav id="nav" class="underflow-fadeInvisible flex flex-col justify-between items-center py-200px
+      absolute top-0 left-0 z-10 h-screen w-screen bg-underflow_grey-800 lg:h-auto lg:w-auto lg:p-auto">
         <a href="#" class="text-underflow_grey-50 text-center">
           Les cours
         </a>
