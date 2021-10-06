@@ -6,7 +6,6 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./button-routeur.component.scss']
 })
 export class ButtonRouteurComponent implements OnInit {
-
   @Input() path?: string;
   @Input() assetPath?: string;
   @Input() alternative?: boolean;

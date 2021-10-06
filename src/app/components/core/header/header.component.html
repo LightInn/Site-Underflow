@@ -1,4 +1,4 @@
-<div class="relative bg-white">
+<div class="relative">
   <div class="mx-10px lg:mx-100px px-4 lg:px-6">
     <div class="flex justify-between items-center py-6 lg:justify-start lg:space-x-10">
       <div class="flex justify-start lg:w-0 lg:flex-1 z-20">
@@ -10,14 +10,15 @@
       </div>
       <div class="-mr-2 -my-2 lg:hidden z-20">
         <button type="button"
-                class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-50"
+                class="rounded-md p-2 inline-flex items-center justify-center text-gray-50"
                 aria-expanded="false">
           <span class="sr-only">Open menu</span>
           <!-- Heroicon name: outline/menu -->
           <svg id="burger-menu" onclick="
           this.classList.toggle('active');
           document.getElementById('nav').classList.toggle('underflow-fadeInvisible');
-          document.getElementById('nav').classList.toggle('underflow-fadeVisible');" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          document.getElementById('nav').classList.toggle('underflow-fadeVisible');" class="h-30px w-30px"
+               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                aria-hidden="true">
             <g id="top">
               <path class="st0" d="M4,6h16"/>
@@ -35,7 +36,8 @@
         </button>
       </div>
       <nav id="nav" class="underflow-fadeInvisible flex flex-col justify-between items-center py-200px
-      absolute top-0 left-0 z-10 h-screen w-screen bg-underflow_grey-800 lg:h-auto lg:w-auto lg:p-auto">
+      absolute top-0 left-0 z-10 h-screen w-screen bg-underflow_grey-800 lg:bg-transparent
+      lg:flex-row lg:static lg:h-auto lg:w-auto lg:p-auto lg:py-0 lg:space-x-30px">
         <a href="#" class="text-underflow_grey-50 text-center">
           Les cours
         </a>

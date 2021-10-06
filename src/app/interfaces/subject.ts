@@ -1,4 +1,4 @@
 export interface Subject {
-  id: bigint
-  title: string
+  id?: bigint
+  title?: string
 }
