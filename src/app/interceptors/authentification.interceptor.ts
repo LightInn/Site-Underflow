@@ -14,8 +14,6 @@ import {switchMap} from "rxjs/operators";
 export class AuthentificationInterceptor implements HttpInterceptor {
 
   private static CSRFTokenRun: boolean;
-  private clonecsrf: any;
-  private clonejwt: any;
 
   constructor(private authService: AuthentificationService) {
 

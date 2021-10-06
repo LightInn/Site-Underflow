@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastService} from 'src/app/services/toast.service';
-import {BehaviorSubject} from "rxjs";
+import {MessageToast} from "../../../interfaces/message-toast";
+
 
 @Component({
   selector: 'app-toast',
@@ -10,25 +11,29 @@ import {BehaviorSubject} from "rxjs";
 export class ToastComponent implements OnInit {
 
 
+  public message: MessageToast = new MessageToast();
+
+
   constructor(private toastService: ToastService) {
 
-
   }
-
-  private message: any
-  private toast: BehaviorSubject<string> | undefined;
 
 
   ngOnInit(): void {
 
-    this.toast = this.toastService.getBehaviorSubject();
 
-    this.toast.subscribe(
+    this.toastService.getBehaviorSubject().subscribe(
       message => this.message = message
     )
+  }
 
 
+  closeMessage(): void {
+    if (this.message) {
+      this.message.close = true;
+    }
   }
 
 
 }
+
