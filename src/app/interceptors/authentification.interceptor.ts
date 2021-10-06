@@ -32,16 +32,25 @@ export class AuthentificationInterceptor implements HttpInterceptor {
 
     const idToken = localStorage.getItem("id_token");
 
+
+    let clone;
+
     console.log("call service")
 
     if (AuthentificationInterceptor.CSRFTokenRun) {
 
-      const clone = req.clone(
-        {
-          headers: req.headers.set("Authorization", "Bearer " + (idToken === null ? "" : idToken))
 
-        }
-      );
+      if (idToken != null) {
+        clone = req.clone(
+          {
+            headers: req.headers.set("Authorization", "Bearer " + idToken)
+          }
+        );
+
+      } else {
+        clone = req.clone();
+      }
+
 
       AuthentificationInterceptor.CSRFTokenRun = false;
 
@@ -51,21 +60,23 @@ export class AuthentificationInterceptor implements HttpInterceptor {
 
     } else {
 
-      AuthentificationInterceptor.CSRFTokenRun = true;
+      AuthentificationInterceptor
+        .CSRFTokenRun = true;
       return this.authService.getCSRF().pipe(switchMap(csrfToken => {
-
-        AuthentificationService.csrfToken = csrfToken["X-CSRF-Token"]
-
-
-        const clone = req.clone({
-          headers: req.headers.set("X-CSRFToken", AuthentificationService.csrfToken)
-            .set("Authorization", "Bearer " + (idToken === null ? "" : idToken))
-        })
-
-        return next.handle(clone);
+          AuthentificationService
+            .csrfToken = csrfToken["X-CSRF-Token"]
 
 
-      }));
+          const
+            clone = req.clone({
+              headers: req.headers.set("X-CSRFToken", AuthentificationService.csrfToken)
+                .set("Authorization", "Bearer " + (idToken === null ? "" : idToken))
+            })
+
+          return next.handle(clone);
+
+        }
+      ));
     }
 
   }

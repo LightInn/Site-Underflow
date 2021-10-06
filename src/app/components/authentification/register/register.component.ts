@@ -24,6 +24,11 @@ export class RegisterComponent {
   }
 
   login() {
+
+    this.router.navigateByUrl('/login');
+  }
+
+  register() {
     const val = this.form.value;
 
     if (val.email && val.password && val.firstname && val.lastname) {
@@ -35,5 +40,6 @@ export class RegisterComponent {
           }
         );
     }
+
   }
 }

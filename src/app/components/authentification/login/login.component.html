@@ -1,5 +1,4 @@
 <form [formGroup]="form"
-
       class="text-underflow_blue-300 flex flex-col justify-center items-center h-99vh w-screen ">
   <fieldset>
     <div class="form-field flex flex-col my-8">
@@ -13,7 +12,10 @@
              type="password" class="w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2">
     </div>
   </fieldset>
-  <div class="form-buttons w-500px flex justify-end">
+  <div class="form-buttons w-500px flex justify-between">
+    <button class="button button-primary bg-underflow_grey-800 border-2 border-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_blue-300 text-20px"
+            (click)="register()">Register
+    </button>
     <button class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-800 text-20px"
             (click)="login()">Login
     </button>
