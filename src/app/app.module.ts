@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 
@@ -21,6 +21,7 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/core/header/header.component';
 import { FooterComponent } from './components/core/footer/footer.component';
 import { ToastComponent } from './components/core/toast/toast.component';
+import { AuthentificationInterceptor } from './interceptors/authentification.interceptor'
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { ToastComponent } from './components/core/toast/toast.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

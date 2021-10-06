@@ -7,35 +7,68 @@ import {
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthentificationService} from "../services/authentification.service";
+import {switchMap} from "rxjs/operators";
+
 
 @Injectable()
 export class AuthentificationInterceptor implements HttpInterceptor {
 
-  constructor() {
+  private static CSRFTokenRun: boolean;
+  private clonecsrf: any;
+  private clonejwt: any;
+
+  constructor(private authService: AuthentificationService) {
+
+
+    if (AuthentificationInterceptor.CSRFTokenRun == null) {
+      AuthentificationInterceptor.CSRFTokenRun = false;
+    }
+
+
   }
 
 
   intercept(req: HttpRequest<any>,
             next: HttpHandler): Observable<HttpEvent<any>> {
 
+
     const idToken = localStorage.getItem("id_token");
-    if (AuthentificationService.csrfToken != null) {
-      req.headers.set("X-CSRFToken", AuthentificationService.csrfToken)
-    }
+
+    console.log("call service")
+
+    if (AuthentificationInterceptor.CSRFTokenRun) {
+
+      const clone = req.clone(
+        {
+          headers: req.headers.set("Authorization", "Bearer " + (idToken === null ? "" : idToken))
+
+        }
+      );
+
+      AuthentificationInterceptor.CSRFTokenRun = false;
 
 
-    if (idToken) {
-      const cloned = req.clone({
-        headers: req.headers.set("Authorization",
-          "Bearer " + idToken)
-      });
+      return next.handle(clone);
 
 
-      return next.handle(cloned);
     } else {
-      return next.handle(req);
+
+      AuthentificationInterceptor.CSRFTokenRun = true;
+      return this.authService.getCSRF().pipe(switchMap(csrfToken => {
+
+        AuthentificationService.csrfToken = csrfToken["X-CSRF-Token"]
+
+
+        const clone = req.clone({
+          headers: req.headers.set("X-CSRFToken", AuthentificationService.csrfToken)
+            .set("Authorization", "Bearer " + (idToken === null ? "" : idToken))
+        })
+
+        return next.handle(clone);
+
+
+      }));
     }
+
   }
-
-
 }
