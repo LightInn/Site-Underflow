@@ -1,13 +1,13 @@
 <app-header></app-header>
 
 <!-- base template -->
-<section class="flex justify-between h-screen items-center w-full px-100px flex-wrap">
-  <div class="w-1/2 flex flex-col justify-center">
-    <div class="w-200px">
+<section class="flex justify-between h-screen items-center w-full px-10px lg:px-100px flex-wrap">
+  <div class="w-full lg:w-1/2 flex flex-col justify-center">
+    <div class="absolute top-0 left-0 opacity-25 ml-30px w-200px md:static md:opacity-100">
       <img src="./assets/images/svg/dotDoubleLine.svg" alt="decoration double lignes de points">
     </div>
     <div>
-      <h1 class="text-72px text-center">{{base.baseTitle}}</h1>
+      <h1 class="text-48px lg:text-72px text-center">{{base.baseTitle}}</h1>
     </div>
 
     <div *ngIf="base.baseLandingMode; then landingChoose else otherChoose"></div>
@@ -29,13 +29,13 @@
       ></app-base-under-title>
     </ng-template>
   </div>
-  <div class="w-1/2 flex justify-center items-center">
+  <div class="hidden w-1/2 lg:flex justify-center items-center">
     <img class="w-3/4" src="./assets/images/svg/underflowLandingIllustration.svg" alt="Illustration Scratch Underflow">
   </div>
 <!--  citation bottom center of the page
       @input additionalCitation | boolean to display or not the following title -> corresponding to the citation on bottom center
       @input citation | string corresponding to the sentence to display -->
-  <h2 *ngIf="base.baseAdditionalCitation" class="underflow-citation w-full flex justify-center items-center">"{{base.baseCitation}}"</h2>
+  <h2 *ngIf="base.baseAdditionalCitation" class="pt-30px lg:p-auto underflow-citation w-full flex justify-center items-center">"{{base.baseCitation}}"</h2>
 <!--  additionnal button under the illustration
       @input additionalButton | boolean to display or not the following button
       @input additionnalSentence | string to description of the button

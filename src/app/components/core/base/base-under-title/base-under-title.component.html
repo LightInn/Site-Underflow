@@ -1,6 +1,6 @@
 <div *ngIf="landingMode; then landingBlock else descriptionBlock"></div>
 <ng-template #landingBlock>
-  <div class="flex justify-around items-center w-full gap-10 mt-60px">
+  <div class="flex justify-around items-center w-full gap-10 mt-60px flex-wrap">
     <app-button-routeur
       path="/les-cours"
       [asset]="true"
