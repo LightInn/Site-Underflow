@@ -13,17 +13,13 @@ import {BaseUnderTitleComponent} from "./components/core/base/base-under-title/b
 import {LandingComponent} from './components/landing/landing.component';
 import {CoursesCreatesComponent} from "./components/courses/courses-creates/courses-creates.component";
 import {CoursesSuggestsComponent} from './components/courses/courses-suggests/courses-suggests.component';
-import {CoursesSuggestsComponent} from './components/courses/courses-suggests/courses-suggests.component';
 import {ButtonRouteurComponent} from './components/core/button-routeur/button-routeur.component';
 import {CoursesRegistrationsComponent} from "./components/courses/courses-registrations/courses-registrations.component";
-import {ButtonRouteurComponent} from './components/core/button-routeur/button-routeur.component';
 import {FilesCreatesComponent} from './components/files/files-creates/files-creates.component';
 import {FilesDownloadComponent} from './components/files/files-download/files-download.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
-import { HeaderComponent } from './components/core/header/header.component';
-import { FooterComponent } from './components/core/footer/footer.component';
-import { ToastComponent } from './components/core/toast/toast.component';
-import { AuthentificationInterceptor } from './interceptors/authentification.interceptor'
+import {HeaderComponent} from './components/core/header/header.component';
+import {FooterComponent} from './components/core/footer/footer.component';
 import {ToastComponent} from './components/core/toast/toast.component';
 import {AuthentificationInterceptor} from './interceptors/authentification.interceptor'
 import {ToastService} from "./services/toast.service";
