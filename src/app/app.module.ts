@@ -18,6 +18,8 @@ import {ButtonRouteurComponent} from './components/core/button-routeur/button-ro
 import {FilesCreatesComponent} from './components/files/files-creates/files-creates.component';
 import {FilesDownloadComponent} from './components/files/files-download/files-download.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
+import { HeaderComponent } from './components/core/header/header.component';
+import { FooterComponent } from './components/core/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
     FilesCreatesComponent,
     FilesDownloadComponent,
     NotFoundComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
