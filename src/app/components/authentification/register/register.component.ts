@@ -9,14 +9,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-//
-// email: string
-//   firstname: string
-//   lastname: string
-//   password: string
-//   classe
-
-
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
