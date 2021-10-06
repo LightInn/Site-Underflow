@@ -10,20 +10,20 @@ import {FilesDownloadComponent} from "./components/files/files-download/files-do
 import {CoursesSuggestsComponent} from "./components/courses/courses-suggests/courses-suggests.component";
 import {CoursesCreatesComponent} from "./components/courses/courses-creates/courses-creates.component";
 import {CoursesRegistrationsComponent} from "./components/courses/courses-registrations/courses-registrations.component";
+import {SecurityGuard} from "./guards/security.guard";
 
 const routes: Routes = [
-  {path: '', component: LandingComponent},
-  {path: 'accueil', component: LandingComponent},
-  {path: 'creer-une-fiche', component: FilesCreatesComponent},
-  {path: 'les-fiches', component: FilesDownloadComponent},
-  {path: 'suggerer-un-cours', component: CoursesSuggestsComponent},
-  {path: 'donner-un-cours', component: CoursesCreatesComponent},
-  {path: 'les-cours', component: CoursesRegistrationsComponent},
-
+  {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
+  {path: 'accueil', component: LandingComponent, canActivate: [SecurityGuard]},
+  {path: 'creer-une-fiche', component: FilesCreatesComponent, canActivate: [SecurityGuard]},
+  {path: 'les-fiches', component: FilesDownloadComponent, canActivate: [SecurityGuard]},
+  {path: 'suggerer-un-cours', component: CoursesSuggestsComponent, canActivate: [SecurityGuard]},
+  {path: 'donner-un-cours', component: CoursesCreatesComponent, canActivate: [SecurityGuard]},
+  {path: 'les-cours', component: CoursesRegistrationsComponent, canActivate: [SecurityGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: '**', component: NotFoundComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [SecurityGuard]},
+  {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
 
 
 ];
