@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IBase} from "../../interfaces/base";
+import {Base} from "../../interfaces/base";
 
 @Component({
   selector: 'app-landing',
@@ -7,20 +7,21 @@ import {IBase} from "../../interfaces/base";
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  public base: IBase = {
-    baseTitle: "Les cours",
-    baseLandingMode: false,
-    baseDescriptionFirstPart: "Trouve les cours disponibles,",
-    baseDescriptionSecondPart: "choisis le mieux adapté à tes besoins et inscris-toi !",
-    baseAdditionalCitation: false,
-    baseAdditionalButton: true,
-    basePath: "/courses-registrations",
-    baseAssetPath: "./assets/images/svg/question.svg",
-    baseAlt: "Proposition de cours",
-    baseContent: "Proposer un cours",
+  public base: Base = {
+    baseTitle: "Tutorat Et Entraide",
+    baseLandingMode: true,
+    baseDescriptionFirstPart: "",
+    baseDescriptionSecondPart: "",
+    baseAdditionalCitation: true,
+    baseCitation:"Enseigner, c'est apprendre deux fois.",
+    baseAdditionalButton: false,
+    basePath: "",
+    baseAsset:false,
+    baseAssetPath: "",
+    baseAlt: "",
+    baseContent: "",
     baseAlternative: false,
     baseAdditionnalSentence: "Tu ne trouves pas le cours que tu voulais ?",
-    baseCitation:""
   }
 
   constructor() { }

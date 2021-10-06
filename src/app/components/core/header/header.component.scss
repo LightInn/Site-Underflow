@@ -1,0 +1,19 @@
+#burger-menu * {
+  transform-origin: center center;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+#burger-menu #mid-alt{
+  opacity:0;
+}
+#burger-menu.active #mid-alt{
+  opacity:1;
+  transform: rotate(-45deg);
+}
+#burger-menu.active #mid{
+  transform: rotate(45deg);
+}
+
+#burger-menu.active #top,#burger-menu.active #bot{
+  opacity:0;
+}

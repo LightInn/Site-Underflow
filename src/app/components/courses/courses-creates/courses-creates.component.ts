@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IBase} from "../../../interfaces/base";
+import {Base} from "../../../interfaces/base";
 
 @Component({
   selector: 'app-courses-creates',
@@ -7,7 +7,7 @@ import {IBase} from "../../../interfaces/base";
   styleUrls: ['./courses-creates.component.scss']
 })
 export class CoursesCreatesComponent implements OnInit {
-  public base: IBase = {
+  public base: Base = {
     baseTitle: "Donner un cours",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu es à l’aise dans un domaine en particulier ?",
@@ -15,6 +15,7 @@ export class CoursesCreatesComponent implements OnInit {
     baseAdditionalCitation: false,
     baseAdditionalButton: false,
     basePath: "",
+    baseAsset : false,
     baseAssetPath: "",
     baseAlt: "",
     baseContent: "",

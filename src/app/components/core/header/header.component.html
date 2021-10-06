@@ -1,0 +1,60 @@
+<div class="relative bg-white">
+  <div class="mx-10px lg:mx-100px px-4 lg:px-6">
+    <div class="flex justify-between items-center py-6 lg:justify-start lg:space-x-10">
+      <div class="flex justify-start lg:w-0 lg:flex-1 z-20">
+        <a href="#">
+          <span class="sr-only">Scratch Underflow</span>
+          <img class="h-8 w-auto lg:h-10" src="./assets/images/svg/ecureuil-right.svg"
+               alt="Scratch Underflow - Entraide étudiante">
+        </a>
+      </div>
+      <div class="-mr-2 -my-2 lg:hidden z-20">
+        <button type="button"
+                class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-50"
+                aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg id="burger-menu" onclick="
+          this.classList.toggle('active');
+          document.getElementById('nav').classList.toggle('underflow-fadeInvisible');
+          document.getElementById('nav').classList.toggle('underflow-fadeVisible');" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+               aria-hidden="true">
+            <g id="top">
+              <path class="st0" d="M4,6h16"/>
+            </g>
+            <g id="mid">
+              <line class="st0" x1="4" y1="12" x2="20" y2="12"/>
+            </g>
+            <g id="mid-alt">
+              <line class="st0" x1="4" y1="12" x2="20" y2="12"/>
+            </g>
+            <g id="bot">
+              <line class="st0" x1="4" y1="18" x2="20" y2="18"/>
+            </g>
+          </svg>
+        </button>
+      </div>
+      <nav id="nav" class="underflow-fadeInvisible flex flex-col justify-between items-center py-200px
+      absolute top-0 left-0 z-10 h-screen w-screen bg-underflow_grey-800 lg:h-auto lg:w-auto lg:p-auto">
+        <a href="#" class="text-underflow_grey-50 text-center">
+          Les cours
+        </a>
+        <a href="#" class="text-underflow_grey-50 text-center">
+          Donner un cours
+        </a>
+        <a href="#" class="text-underflow_grey-50 text-center">
+          Suggérer un cours
+        </a>
+        <a href="#" class="text-underflow_grey-50 text-center">
+          Les fiches
+        </a>
+      </nav>
+      <div class="hidden lg:flex items-center justify-end lg:flex-1 lg:w-0">
+        <a href="/profile" rel="noopener">
+          <img class="w-30px h-30px" src="./assets/images/svg/profile-user.svg"
+               alt="Logo ScratchUnderflow - Entraide étudiante">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
