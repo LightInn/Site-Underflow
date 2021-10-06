@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {IBase} from "../../interfaces/base";
+import {Component, OnInit} from '@angular/core';
+import {Base} from "../../interfaces/base";
 
 @Component({
   selector: 'app-not-found',
@@ -7,7 +7,7 @@ import {IBase} from "../../interfaces/base";
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
-  public base: IBase = {
+  public base: Base = {
     baseTitle: "404 Не Найдено",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu es perdu ?",
@@ -15,16 +15,17 @@ export class NotFoundComponent implements OnInit {
     baseAdditionalCitation: false,
     baseAdditionalButton: true,
     basePath: "/landing",
-    baseAsset : false,
+    baseAsset: false,
     baseAssetPath: "",
     baseAlt: "Home",
     baseContent: "Accueil",
     baseAlternative: false,
     baseAdditionnalSentence: "",
-    baseCitation:""
+    baseCitation: ""
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

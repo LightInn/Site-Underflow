@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IBase} from "../../../interfaces/base";
+import {Base} from "../../../interfaces/base";
 
 @Component({
   selector: 'app-files-download',
@@ -7,7 +7,7 @@ import {IBase} from "../../../interfaces/base";
   styleUrls: ['./files-download.component.scss']
 })
 export class FilesDownloadComponent implements OnInit {
-  public base: IBase = {
+  public base: Base = {
     baseTitle: "Les fiches",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu veux trouver une documentation ? Un tuto ?",

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IBase} from "../../../interfaces/base";
+import {Base} from "../../../interfaces/base";
 
 @Component({
   selector: 'app-files-creates',
@@ -7,7 +7,7 @@ import {IBase} from "../../../interfaces/base";
   styleUrls: ['./files-creates.component.scss']
 })
 export class FilesCreatesComponent implements OnInit {
-  public base: IBase = {
+  public base: Base = {
     baseTitle: "Créer une fiche",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu veux partager tes connaissances ?",

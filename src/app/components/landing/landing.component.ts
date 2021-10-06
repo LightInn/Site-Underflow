@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IBase} from "../../interfaces/base";
+import {Base} from "../../interfaces/base";
 
 @Component({
   selector: 'app-landing',
@@ -7,7 +7,7 @@ import {IBase} from "../../interfaces/base";
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  public base: IBase = {
+  public base: Base = {
     baseTitle: "Tutorat Et Entraide",
     baseLandingMode: true,
     baseDescriptionFirstPart: "",

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IBase} from "./interfaces/base"
+import {Base} from "./interfaces/base"
 
 @Component({
   selector: 'app-root',

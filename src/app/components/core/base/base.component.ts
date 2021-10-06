@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IBase} from '../../../interfaces/base'
+import {Base} from '../../../interfaces/base'
 
 @Component({
   selector: 'app-base',
@@ -8,7 +8,7 @@ import {IBase} from '../../../interfaces/base'
 })
 export class BaseComponent implements OnInit {
   // default conf
-  @Input() base:IBase={
+  @Input() base:Base={
     baseTitle:"",
     baseCitation:"",
     baseLandingMode:false,
