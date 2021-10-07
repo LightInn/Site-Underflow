@@ -27,7 +27,8 @@ export class CoursesCreatesFilterComponent implements OnInit {
     // @ts-ignore
     document.forms["formCreate"]["title"].value=suggest.title;
     // @ts-ignore
-    document.forms["formCreate"]["date"].value=this.toFormDateLocaleString(suggest.date_butoir);
+    // document.forms["formCreate"]["date"].value=this.toFormDateLocaleString(suggest.date_butoir);
+    document.forms["formCreate"]["date"].value=this.toFormDateLocaleString(new Date(Date.now()));
     // @ts-ignore
     document.forms["formCreate"]["classes"].value=suggest?.classe?.title;
     // @ts-ignore
@@ -51,7 +52,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
           id: 1,
           title: "premier sujet"
         },
-        date_butoir: new Date(Date.now())
+        date_butoir: (new Date(Date.now())).toDateString()
       },
       {
         id: 2,
@@ -64,7 +65,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
           id: 2,
           title: "deuxième sujet"
         },
-        date_butoir: new Date(Date.now())
+        date_butoir: (new Date(Date.now())).toDateString()
       },
       {
         id: 3,
@@ -77,7 +78,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
           id: 3,
           title: "troisième sujet"
         },
-        date_butoir: new Date(Date.now())
+        date_butoir: (new Date(Date.now())).toDateString()
       },
       {
         id: 4,
@@ -90,7 +91,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
           id: 4,
           title: "quatrième sujet"
         },
-        date_butoir: new Date(Date.now())
+        date_butoir: (new Date(Date.now())).toDateString()
       },
       {
         id: 5,
@@ -103,7 +104,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
           id: 5,
           title: "cinquième sujet"
         },
-        date_butoir: new Date(Date.now())
+        date_butoir: (new Date(Date.now())).toDateString()
       }
     ]
   }
