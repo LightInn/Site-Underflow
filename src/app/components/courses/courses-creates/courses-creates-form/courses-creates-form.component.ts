@@ -29,6 +29,7 @@ export class CoursesCreatesFormComponent implements OnInit {
       date: ['', [Validators.required]],
       subjects: ['', [Validators.required]],
       classes: ['', [Validators.required]],
+      description:['',[Validators.required]]
     });
   }
 
@@ -36,29 +37,29 @@ export class CoursesCreatesFormComponent implements OnInit {
     this.subjectslist = [
       {
         id:1,
-        title:"premier"
+        title:"premier matière"
       },
       {
         id:2,
-        title:"deuxième"
+        title:"deuxième matière"
       },
       {
         id:3,
-        title:"troisième"
+        title:"troisième matière"
       }
     ]
     this.classesList = [
       {
         id:1,
-        title:"premier"
+        title:"B1"
       },
       {
         id:2,
-        title:"deuxième"
+        title:"B2"
       },
       {
         id:3,
-        title:"troisième"
+        title:"B3"
       }
     ]
   }

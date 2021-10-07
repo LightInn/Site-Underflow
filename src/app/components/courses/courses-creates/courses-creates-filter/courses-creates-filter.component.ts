@@ -11,6 +11,12 @@ export class CoursesCreatesFilterComponent implements OnInit {
   status?: boolean = false;
   suggestsList ?: Array<Suggest>;
 
+  toFormDateLocaleString(date:Date){
+    const offset = date.getTimezoneOffset()
+    date = new Date(date.getTime() - (offset*60*1000))
+    return date.toISOString().match(/^.*T[0-9]+:[0-9]+/)
+  }
+
   clickEvent() {
     this.status = !this.status;
     document.getElementById('suggestDropDown')?.classList.toggle('fadeInvisible');
@@ -18,7 +24,15 @@ export class CoursesCreatesFilterComponent implements OnInit {
   }
 
   clickSuggestEvent(suggest: Suggest) {
-
+    // @ts-ignore
+    document.forms["formCreate"]["title"].value=suggest.title;
+    // @ts-ignore
+    document.forms["formCreate"]["date"].value=this.toFormDateLocaleString(suggest.date_butoir);
+    // @ts-ignore
+    document.forms["formCreate"]["classes"].value=suggest?.classe?.title;
+    // @ts-ignore
+    document.forms["formCreate"]["subjects"].value=suggest?.subject?.title;
+    this.clickEvent()
   }
 
   constructor() {
@@ -28,6 +42,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
     this.suggestsList = [
       {
         id: 1,
+        title: "titre",
         classe: {
           id: 1,
           title: "B1"
@@ -40,6 +55,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
       },
       {
         id: 2,
+        title: "titre",
         classe: {
           id: 2,
           title: "B2"
@@ -52,6 +68,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
       },
       {
         id: 3,
+        title: "titre",
         classe: {
           id: 3,
           title: "B3"
@@ -64,6 +81,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
       },
       {
         id: 4,
+        title: "titre",
         classe: {
           id: 4,
           title: "B4"
@@ -76,6 +94,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
       },
       {
         id: 5,
+        title: "titre",
         classe: {
           id: 5,
           title: "B5"
