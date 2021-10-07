@@ -1,7 +1,8 @@
 import {Classe} from "./classe";
 
 export interface User {
-  id?: number
+  id?: string
+  alternative_id?: string
   first_name?: string
   last_name?: string
   email?: string
@@ -9,7 +10,7 @@ export interface User {
   // password: string
   activated?: boolean
   admin?: boolean
-  created_on?: Date
-  last_login?: Date
-  classe?: Classe
+  created_on?: string
+  last_login?: string|null
+  classe?: Classe|null
 }

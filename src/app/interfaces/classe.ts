@@ -1,4 +1,4 @@
 export interface Classe {
   id?: number
-  title?: string
+  title?: string|null
 }

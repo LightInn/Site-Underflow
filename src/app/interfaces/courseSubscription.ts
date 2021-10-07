@@ -3,8 +3,8 @@ import {User} from "./user";
 
 export interface CourseSubscription {
   id?: number
-  confirmed?: boolean
-  date_butoir?: Date
-  participant?: User
-  course?: Courses
+  confirmed?: boolean|null
+  date_butoir?: string|null
+  participant?: User|null
+  course?: Courses|null
 }

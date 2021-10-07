@@ -1,6 +1,6 @@
 export interface CommentVote {
   id?: number
-  vote?: number
-  created_on?: Date
-  comment?: Comment
+  vote?: number|null
+  created_on?: string|null
+  comment?: Comment|null
 }

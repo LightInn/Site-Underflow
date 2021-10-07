@@ -3,8 +3,8 @@ import {Thread} from "./thread";
 
 export interface Comment {
   id?: number
-  text?: string
-  created_on?: Date
-  owner?: User
-  thread?: Thread
+  text?: string|null
+  created_on?: string
+  owner?: User|null
+  thread?: Thread|null
 }
