@@ -24,6 +24,7 @@ import { CoursesSuggestsFormComponent } from './components/courses/courses-sugge
 import { CoursesSuggestsFilterComponent } from './components/courses/courses-suggests/courses-suggests-filter/courses-suggests-filter.component';
 import { CoursesCreatesFilterComponent } from './components/courses/courses-creates/courses-creates-filter/courses-creates-filter.component';
 import { CoursesCreatesFormComponent } from './components/courses/courses-creates/courses-creates-form/courses-creates-form.component';
+import { SuggestTraitedPipe } from './pipe/suggest-traited.pipe';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CoursesCreatesFormComponent } from './components/courses/courses-create
     CoursesSuggestsFilterComponent,
     CoursesCreatesFilterComponent,
     CoursesCreatesFormComponent,
+    SuggestTraitedPipe,
   ],
   imports: [
     BrowserModule,
