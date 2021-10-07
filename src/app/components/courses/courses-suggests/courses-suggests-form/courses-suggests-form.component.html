@@ -21,7 +21,7 @@
         <label class="text-12px">THÈME ABORDÉ SUGGÉRER</label>
         <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
                placeholder="écrire ici pour ajouter un thème / une matière" formControlName="subjects"
-               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg
+               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg hover:rounded-b-none hover:rounded-t-lg
                 px-8 text-14px my-2 text-underflow_grey-50">
 
         <datalist id="subjects_datalist">
@@ -34,7 +34,7 @@
       <div class="flex flex-col justify-center items-center mt-10px lg:mt-0">
         <label class="text-12px">NIVEAU CIBLÉ SUGGÉRER</label>
         <select name="classes" id="classes" formControlName="classes"
-               class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg
+               class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg hover:rounded-b-none hover:rounded-t-lg
                 px-8 text-14px my-2 text-underflow_grey-50">
           <option *ngFor="let classe of classesList;"
                   value="{{classe.title}}">{{classe.title}}</option>
