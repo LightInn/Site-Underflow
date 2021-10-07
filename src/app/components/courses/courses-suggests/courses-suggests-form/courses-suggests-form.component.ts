@@ -62,5 +62,4 @@ export class CoursesSuggestsFormComponent implements OnInit {
       }
     ]
   }
-
 }

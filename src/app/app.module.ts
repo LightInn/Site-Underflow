@@ -21,6 +21,9 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import { HeaderComponent } from './components/core/header/header.component';
 import { FooterComponent } from './components/core/footer/footer.component';
 import { CoursesSuggestsFormComponent } from './components/courses/courses-suggests/courses-suggests-form/courses-suggests-form.component';
+import { CoursesSuggestsFilterComponent } from './components/courses/courses-suggests/courses-suggests-filter/courses-suggests-filter.component';
+import { CoursesCreatesFilterComponent } from './components/courses/courses-creates/courses-creates-filter/courses-creates-filter.component';
+import { CoursesCreatesFormComponent } from './components/courses/courses-creates/courses-creates-form/courses-creates-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { CoursesSuggestsFormComponent } from './components/courses/courses-sugge
     HeaderComponent,
     FooterComponent,
     CoursesSuggestsFormComponent,
+    CoursesSuggestsFilterComponent,
+    CoursesCreatesFilterComponent,
+    CoursesCreatesFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,13 +2,13 @@
       class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap">
   <fieldset>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
-      <div class="flex flex-col justify-center items-center">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
         <label class="text-12px">INTITULÉ DU COURS SUGGÉRER</label>
         <input name="title" formControlName="title" placeholder="Intitulé du cours"
                type="text"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
       </div>
-      <div class="flex flex-col justify-center items-center mt-10px lg:mt-0">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
         <label class="text-12px">DATE BUTOIRE</label>
         <input name="date_butoir" formControlName="date_butoir"
                type="datetime-local"
@@ -17,11 +17,12 @@
     </div>
 <!--    todo form group delaying ngfor ? WTF -->
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
-      <div class="flex flex-col justify-center items-center mt-10px lg:mt-0">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
         <label class="text-12px">THÈME ABORDÉ SUGGÉRER</label>
         <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
                placeholder="écrire ici pour ajouter un thème / une matière" formControlName="subjects"
-               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg hover:rounded-b-none hover:rounded-t-lg
+               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
                 px-8 text-14px my-2 text-underflow_grey-50">
 
         <datalist id="subjects_datalist">
@@ -31,10 +32,11 @@
         </datalist>
       </div>
 
-      <div class="flex flex-col justify-center items-center mt-10px lg:mt-0">
-        <label class="text-12px">NIVEAU CIBLÉ SUGGÉRER</label>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px text-left">NIVEAU CIBLÉ SUGGÉRER</label>
         <select name="classes" id="classes" formControlName="classes"
-               class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg hover:rounded-b-none hover:rounded-t-lg
+               class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
                 px-8 text-14px my-2 text-underflow_grey-50">
           <option *ngFor="let classe of classesList;"
                   value="{{classe.title}}">{{classe.title}}</option>

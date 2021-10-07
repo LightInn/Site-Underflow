@@ -1,0 +1,43 @@
+// Route reception des données de { suggestion }
+[
+  {
+    "title": "",
+    "date_butoire": "",
+    "id_subject": 0,
+    "title_subject": "titre",
+    "id_classe": 0,
+    "title_classe": "titre",
+    "user_id": 1
+  }
+]
+
+--> route de renvoie de proposal complet
+
+
+// -----> Route de récupération de toutes les suggestions
+
+// Route creation de cours - {courses}
+[
+  {
+    "intitule": "",
+    "date": "",
+    "subject_id": "",
+    "subject_title": "",
+    "user_id",
+    "title_classe": "titre",
+    "user_id": 1,
+    "description": ""
+  }
+]
+
+// ---> route récupération de tous les éléments d'un cours
+// -> title // subject.title // description // salle // classe.title // date // duree
+
+// ---> route récupération de toutes les inscriptions d'un utilisateur [ table d'asso entre cours & user ]
+
+
+// ---> route d'inscription à un cours
+[
+  "id_user":1,
+  "id_course":1
+]
