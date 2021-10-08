@@ -2,9 +2,9 @@ name: CI/CD Angular
 
 on:
   push:
-    branches: [ cicd ]
+    branches: [ master ]
   pull_request:
-    branches: [ cicd ]
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
