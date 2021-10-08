@@ -29,7 +29,6 @@ jobs:
     steps:
       - name: MKDIR dir 
       - uses: actions/checkout@v2
-      - run: mkdir ~/distfiles
       - name: Download builded app
       - uses: actions/download-artifact@v2
         with:
@@ -62,7 +61,6 @@ jobs:
     steps:
       - name: MKDIR dir 
       - uses: actions/checkout@v2
-      - run: mkdir ~/distfiles
       - name: Download builded app
       - uses: actions/download-artifact@v2
         with:
