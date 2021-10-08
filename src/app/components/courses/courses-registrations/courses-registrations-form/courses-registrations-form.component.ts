@@ -57,8 +57,8 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     this.coursesList = [
       {
         "classe": {
-          "id": 1,
-          "title": "B1"
+          "id": 3,
+          "title": "B3"
         },
         "date_start": "Fri, 08 Oct 2021 10:19:52 GMT",
         "description": "Révision PHP",
