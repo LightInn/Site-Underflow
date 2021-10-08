@@ -35,7 +35,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: scratchunderflow
-          path: dist/scratchunderflow/*
+          path: dist/scratchunderflow/
       - name: Display structure of downloaded files
         run: ls -R .
       - name: Copy repository contents via scp
@@ -46,7 +46,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: dist/scratchunderflow/*
+          source: dist/scratchunderflow/
           target: .
       - name: Executing remote command
         uses: appleboy/ssh-action@master
