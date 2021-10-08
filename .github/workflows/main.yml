@@ -32,7 +32,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: scratchunderflow
-          path: /tmp/scratchunderflow
+          path: /tmp
           working-directory: /tmp/scratchunderflow
       - name: Display structure of downloaded files
         run: ls /tmp/scratchunderflow
@@ -63,7 +63,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: scratchunderflow
-          path: /tmp/scratchunderflow
+          path: /tmp
           working-directory: /tmp/scratchunderflow
       - name: Display structure of downloaded files
         run: ls /tmp/scratchunderflow
