@@ -33,6 +33,7 @@ jobs:
         with:
           name: scratchunderflow
           path: /tmp/scratchunderflow
+          working-directory: /tmp/scratchunderflow
       - name: Display structure of downloaded files
         run: ls -R
       - uses: actions/checkout@v1
@@ -63,6 +64,7 @@ jobs:
         with:
           name: scratchunderflow
           path: /tmp/scratchunderflow
+          working-directory: /tmp/scratchunderflow
       - name: Display structure of downloaded files
         run: ls -R
       - uses: actions/checkout@v1
