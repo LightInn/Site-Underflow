@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: scratchunderflow
-          path: ./dist/scratchunderflow
+          path: ./dist/scratchunderflow/*
   deploy_andy:
     needs: build
     runs-on: ubuntu-latest
