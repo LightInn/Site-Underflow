@@ -37,7 +37,7 @@ jobs:
           name: scratchunderflow
           path: dist/scratchunderflow/*
       - name: Display structure of downloaded files
-      - run: ls -R .
+        run: ls -R .
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
         env:
@@ -71,7 +71,7 @@ jobs:
           name: scratchunderflow
           path: dist/scratchunderflow
       - name: Display structure of downloaded files
-      - run: ls -R .
+        run: ls -R .
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
         env:
