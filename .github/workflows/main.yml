@@ -34,7 +34,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: scratchunderflow
-          path: ~/distfiles
+          path: ~/distfiles/scratchunderflow/*
       - name: Display structure of downloaded files
         uses: actions/checkout@v2
       - run: ls ~/distfiles
@@ -71,7 +71,7 @@ jobs:
           path: ~/distfiles
       - name: Display structure of downloaded files
         uses: actions/checkout@v2
-      - run: ls ~/distfiles
+      - run: ls ~/distfiles/scratchunderflow/*
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
         env:
