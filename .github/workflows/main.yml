@@ -44,7 +44,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: "."
+          source: "/tmp/scratchunderflow/*"
           target: "."
       - name: Executing remote command
         uses: appleboy/ssh-action@master
@@ -74,7 +74,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: "."
+          source: "/tmp/scratchunderflow/*"
           target: "."
       - name: Executing remote command
         uses: appleboy/ssh-action@master
