@@ -27,18 +27,19 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download builded app
+      - name: MKDIR dir 
       - uses: actions/checkout@v2
+      - run: mkdir ~/distfiles
       - name: Download builded app
       - uses: actions/download-artifact@v2
         with:
           name: scratchunderflow
           path: distfiles
       - name: Display structure of downloaded files
+      - uses: actions/checkout@v2
       - run: ls .
-      - uses: actions/checkout@v1
       - name: Copy repository contents via scp
-      - uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@master
         env:
           HOST: ${{ secrets.REMOTE_HOST1 }}
           USERNAME: ${{ secrets.REMOTE_USER }}
@@ -59,16 +60,17 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download builded app
+      - name: MKDIR dir 
       - uses: actions/checkout@v2
+      - run: mkdir ~/distfiles
       - name: Download builded app
       - uses: actions/download-artifact@v2
         with:
           name: scratchunderflow
           path: distfiles
       - name: Display structure of downloaded files
+      - uses: actions/checkout@v2
       - run: ls .
-      - uses: actions/checkout@v1
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
         env:
