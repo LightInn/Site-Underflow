@@ -29,7 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: MKDIR dir 
-        run: mkdir ./dist/scratchunderflow
+        run: mkdir ./dist
+      - run: mkdir ./dist/scratchunderflow
       - name: Download builded app
         uses: actions/download-artifact@v2
         with:
@@ -63,7 +64,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: MKDIR dir 
-        run: mkdir ./dist/scratchunderflow
+        run: mkdir ./dist
+      - run: mkdir ./dist/scratchunderflow
       - name: Download builded app
         uses: actions/download-artifact@v2
         with:
