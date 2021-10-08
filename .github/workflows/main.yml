@@ -51,7 +51,6 @@ jobs:
       - name: Executing remote command
         uses: appleboy/ssh-action@master
         with:
-          rm: true
           host: ${{ secrets.REMOTE_HOST1 }}
           USERNAME: ${{ secrets.REMOTE_USER }}
           PORT: 22
@@ -85,7 +84,6 @@ jobs:
       - name: Executing remote command
         uses: appleboy/ssh-action@master
         with:
-          rm: true
           host: ${{ secrets.REMOTE_HOST2 }}
           USERNAME: ${{ secrets.REMOTE_USER }}
           PORT: 22
