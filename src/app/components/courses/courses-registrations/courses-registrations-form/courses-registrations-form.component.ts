@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Courses} from "../../../../interfaces/course";
+import {CourseSubscription} from "../../../../interfaces/CourseSubscription";
 
 @Component({
   selector: 'app-courses-registrations-form',
@@ -7,12 +8,30 @@ import {Courses} from "../../../../interfaces/course";
   styleUrls: ['./courses-registrations-form.component.scss']
 })
 export class CoursesRegistrationsFormComponent implements OnInit {
-
   coursesList?: Array<Courses>;
-  constructor() { }
+  courseInscription?: Array<CourseSubscription>;
 
-  ngOnInit(): void {
-    this.coursesList=[
+  elemCheck(id?: number) {
+    console.log("elem check" + id)
+    if (!!id) {
+      console.log("true elem" + id)
+      // @ts-ignore
+      return !!(this.courseInscription.find(({id_course}) => id_course === id));
+    }
+    console.log("false elem" + id)
+    return false
+  }
+
+  constructor() {
+    this.courseInscription = [
+      {
+        "id_user": "981477da-31c3-4887-b98f-6f9cc0f44e40",
+        id_course: 1,
+      }
+    ]
+    console.log("Constructeur")
+    console.log(this.courseInscription)
+    this.coursesList = [
       {
         "classe": {
           "id": 1,
@@ -23,6 +42,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         "duration": null,
         "ended": false,
         "id": 1,
+        "salle": "102",
         "owner": {
           "activated": false,
           "admin": false,
@@ -64,6 +84,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         "duration": null,
         "ended": false,
         "id": 2,
+        "salle": "108",
         "owner": {
           "activated": false,
           "admin": false,
@@ -96,5 +117,19 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         "title": "Cours JS"
       }
     ]
+  }
+
+  clickEvent(id?: number) {
+    console.log("clickEvent")
+    console.log(id)
+    console.log(this.courseInscription)
+    // if (!!(this.courseInscription?.find(({id_course}) => id_course === id))) {
+    //   console.log(this.courseInscription?.splice(this.courseInscription?.findIndex(({id_course}) => id_course === id), id));
+    // }
+    // console.log(this.courseInscription);
+  }
+
+  ngOnInit(): void {
+
   }
 }
