@@ -24,7 +24,7 @@ jobs:
           name: scratchunderflow
           path: ./dist
       
-  deploy1:
+  deploy_andy:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -33,7 +33,6 @@ jobs:
         with:
           name: scratchunderflow
           path: /tmp
-          working-directory: /tmp/scratchunderflow
       - name: Display structure of downloaded files
         run: ls /tmp/scratchunderflow
       - uses: actions/checkout@v1
@@ -45,7 +44,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: "/tmp/scratchunderflow/*"
+          source: "/tmp/scratchunderflow/"
           target: "."
       - name: Executing remote command
         uses: appleboy/ssh-action@master
@@ -55,7 +54,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           script: touch test.txt
-  deploy2:
+  deploy_breval:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -64,7 +63,6 @@ jobs:
         with:
           name: scratchunderflow
           path: /tmp
-          working-directory: /tmp/scratchunderflow
       - name: Display structure of downloaded files
         run: ls /tmp/scratchunderflow
       - uses: actions/checkout@v1
@@ -76,7 +74,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: "/tmp/scratchunderflow/*"
+          source: "/tmp/scratchunderflow/"
           target: "."
       - name: Executing remote command
         uses: appleboy/ssh-action@master
