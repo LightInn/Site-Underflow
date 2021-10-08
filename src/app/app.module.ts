@@ -6,7 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BaseComponent} from './components/core/base/base.component';
 import {LoginComponent} from './components/authentification/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RegisterComponent} from './components/authentification/register/register.component';
 import {ProfileComponent} from './components/authentification/profile/profile.component';
 import {BaseUnderTitleComponent} from "./components/core/base/base-under-title/base-under-title.component";
@@ -61,7 +61,8 @@ import { CoursesRegistrationsFilterComponent } from './components/courses/course
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

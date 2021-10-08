@@ -78,8 +78,10 @@ module.exports = {
         }
       },
       spacing: {
+        "5px": "5px",
         "10px": "10px",
         "20px": "20px",
+        "25px": "25px",
         "30px": "30px",
         "35px": "35px",
         "40px": "40px",

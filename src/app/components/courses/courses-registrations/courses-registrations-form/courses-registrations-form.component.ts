@@ -12,25 +12,48 @@ export class CoursesRegistrationsFormComponent implements OnInit {
   courseInscription?: Array<CourseSubscription>;
 
   elemCheck(id?: number) {
-    console.log("elem check" + id)
+    // console.log("----------------------------")
+    // console.log("elem check" + id)
+    // if id is defined we test it
     if (!!id) {
-      console.log("true elem" + id)
+      // console.log("true elem" + id)
+      // // if the id is present in courseInscription
+      // // @ts-ignore
+      // console.log(!!(this.courseInscription.find(({id_course}) => id_course === id)));
+      // // @ts-ignore
+      // console.log(this.courseInscription.find(({id_course}) => id_course === id));
       // @ts-ignore
       return !!(this.courseInscription.find(({id_course}) => id_course === id));
     }
-    console.log("false elem" + id)
+    // console.log("false elem" + id)
     return false
   }
 
-  constructor() {
+  constructor() {}
+
+  clickEvent(id?: number) {
+    // @ts-ignore
+    if(!!(this.courseInscription.find(({id_course})=>id_course === id))){
+      // call api to subcribe on course
+
+    } else {
+      // call api to unsubcribe on course
+
+    }
+
+  }
+
+  ngOnInit(): void {
     this.courseInscription = [
       {
         "id_user": "981477da-31c3-4887-b98f-6f9cc0f44e40",
         id_course: 1,
+      },
+      {
+        "id_user": "981477da-31c3-4887-b98f-6f9cc0f44e40",
+        id_course: 2,
       }
     ]
-    console.log("Constructeur")
-    console.log(this.courseInscription)
     this.coursesList = [
       {
         "classe": {
@@ -117,19 +140,5 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         "title": "Cours JS"
       }
     ]
-  }
-
-  clickEvent(id?: number) {
-    console.log("clickEvent")
-    console.log(id)
-    console.log(this.courseInscription)
-    // if (!!(this.courseInscription?.find(({id_course}) => id_course === id))) {
-    //   console.log(this.courseInscription?.splice(this.courseInscription?.findIndex(({id_course}) => id_course === id), id));
-    // }
-    // console.log(this.courseInscription);
-  }
-
-  ngOnInit(): void {
-
   }
 }
