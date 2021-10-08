@@ -1,27 +1,43 @@
-name: CI/CD Python
+name: CI/CD Angular
 
 on:
   push:
-    branches: [ cicd ]
+    branches: [ master ]
   pull_request:
-    branches: [ cicd ]
-
+    branches: [ master ]
 jobs:
-  npm:
-    runs-on: ubuntu-lasted
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '15.12.0' ]
+    name: Node ${{ matrix.node }} sample
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - name: Install NPM packages
+      - name: Setup node
+        uses: actions/setup-node@v2
       - run: npm install
-      - name: Build angular app
       - run: npm run build
-  deploy1:
-    needs: npm
+      - name: Upload build
+        uses: actions/upload-artifact@v2
+        with:
+          name: scratchunderflow
+          path: ./dist/scratchunderflow/*
+  deploy_andy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-
+      - uses: actions/checkout@v2
+      - name: MKDIR dir 
+        run: mkdir dist
+      - run: mkdir dist/scratchunderflow
+      - name: Download builded app
+        uses: actions/download-artifact@v2
+        with:
+          name: scratchunderflow
+          path: dist/scratchunderflow/
+      - name: Display structure of downloaded files
+        run: ls -R .
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
         env:
@@ -30,9 +46,8 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: "."
+          source: dist/scratchunderflow/
           target: .
-
       - name: Executing remote command
         uses: appleboy/ssh-action@master
         with:
@@ -40,5 +55,38 @@ jobs:
           USERNAME: ${{ secrets.REMOTE_USER }}
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: touch test.txt
-#           script: cd bot && echo DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} > .env.example && echo OWNER_ID=${{ secrets.OWNER_ID }} >> .env.example && echo URL_EDT="https://api-calendar.calendz.app/v1/" >> .env.example && mv .env.example .env && chmod +x setup.sh && sudo systemctl restart bot.service
+          script: sudo bash setup-cicd.sh
+  deploy_breval:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: MKDIR dir 
+        run: mkdir dist
+      - run: mkdir dist/scratchunderflow
+      - name: Download builded app
+        uses: actions/download-artifact@v2
+        with:
+          name: scratchunderflow
+          path: dist/scratchunderflow/
+      - name: Display structure of downloaded files
+        run: ls -R .
+      - name: Copy repository contents via scp
+        uses: appleboy/scp-action@master
+        env:
+          HOST: ${{ secrets.REMOTE_HOST2 }}
+          USERNAME: ${{ secrets.REMOTE_USER }}
+          PORT: 22
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        with:
+          source: dist/scratchunderflow/
+          target: .
+      - name: Executing remote command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST2 }}
+          USERNAME: ${{ secrets.REMOTE_USER }}
+          PORT: 22
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: sudo bash setup-cicd.sh
+#          script: cd bot && echo DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} > .env.example && echo OWNER_ID=${{ secrets.OWNER_ID }} >> .env.example && echo URL_EDT="https://api-calendar.calendz.app/v1/" >> .env.example && mv .env.example .env && chmod +x setup.sh && sudo systemctl restart bot.service
