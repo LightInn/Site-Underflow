@@ -46,7 +46,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: distfiles/*
+          source: /home/runner/work/Site-Underflow/Site-Underflow/distfiles
           target: "."
       - name: Executing remote command
         uses: appleboy/ssh-action@master
@@ -79,7 +79,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: distfiles/*
+          source: /home/runner/work/Site-Underflow/Site-Underflow/distfiles
           target: "."
       - name: Executing remote command
         uses: appleboy/ssh-action@master
