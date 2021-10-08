@@ -23,7 +23,6 @@ jobs:
         with:
           name: scratchunderflow
           path: ./dist
-      
   deploy_andy:
     needs: build
     runs-on: ubuntu-latest
@@ -36,7 +35,7 @@ jobs:
           name: scratchunderflow
           path: distfiles
       - name: Display structure of downloaded files
-        run: ls .
+      - run: ls .
       - uses: actions/checkout@v1
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
@@ -67,7 +66,7 @@ jobs:
           name: scratchunderflow
           path: distfiles
       - name: Display structure of downloaded files
-        run: ls .
+      - run: ls .
       - uses: actions/checkout@v1
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
