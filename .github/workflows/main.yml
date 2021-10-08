@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: scratchunderflow
-          path: ./dist/scratchunderflow
+          path: ./dist
       
   deploy1:
     needs: build
@@ -61,6 +61,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: scratchunderflow
+      - name: Display structure of downloaded files
+        run: ls -R
       - uses: actions/checkout@v1
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
