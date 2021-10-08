@@ -46,7 +46,7 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          source: ~/distfiles
+          source: ~/distfiles/scratchunderflow
           target: .
       - name: Executing remote command
         uses: appleboy/ssh-action@master
@@ -81,7 +81,7 @@ jobs:
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
           rm: true
-          source: ~/distfiles
+          source: ~/distfiles/scratchunderflow
           target: .
       - name: Executing remote command
         uses: appleboy/ssh-action@master
