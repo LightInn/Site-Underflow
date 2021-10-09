@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Suggest} from "../../../../interfaces/suggest";
-
+import {toFormDateLocaleString} from "../../../../functions/dateFormat"
 @Component({
   selector: 'app-courses-creates-filter',
   templateUrl: './courses-creates-filter.component.html',
@@ -10,12 +10,6 @@ export class CoursesCreatesFilterComponent implements OnInit {
 
   status?: boolean = false;
   suggestsList ?: Array<Suggest>;
-
-  toFormDateLocaleString(date:Date){
-    const offset = date.getTimezoneOffset()
-    date = new Date(date.getTime() - (offset*60*1000))
-    return date.toISOString().match(/^.*T[0-9]+:[0-9]+/)
-  }
 
   clickEvent() {
     this.status = !this.status;

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import {AppComponent} from './app.component';
 import {BaseComponent} from './components/core/base/base.component';
@@ -62,7 +63,8 @@ import { CoursesRegistrationsFilterComponent } from './components/courses/course
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,21 +6,26 @@
     <div class="h-full border border-underflow_grey-700 flex justify-center items-center py-10px px-30px">
       <p class="font-chennai">Filter By</p>
     </div>
-    <select name="classes" id="classes" [ngModel]="selectedClasse" (ngModelChange)="triggerFilter($event)"
+<!--    filter_selectedClasse-->
+<!--    filter_selectedDateStart-->
+<!--    filter_selectedDateEnd-->
+<!--    filter_searchBarText-->
+    <select name="classes" id="classes" [ngModel]="filter_selectedClasse" (ngModelChange)="uploadEventClasse($event)"
             class="filter_select-css-custom w-250px h-full bg-underflow_grey-900 border-underflow_grey-700 border px-8 my-2">
+      <option value=""></option>
       <option *ngFor="let classe of classesList;"
               [value]="classe.title">{{classe.title}}</option>
     </select>
     <div class="relative h-full border border-underflow_grey-700 flex justify-center items-center">
       <label class="absolute top-0 left-0 text-12px transform lg:-translate-y-20px opacity-50 lg:opacity-100 pl-5px pt-5px lg:p-0" for="date_start">date début</label>
-      <input name="date_start" id="date_start"
+      <input name="date_start" id="date_start" [ngModel]="filter_selectedDateStart" (ngModelChange)="uploadEventDateStart($event)"
              type="datetime-local" class="h-full w-full bg-underflow_grey-900
             px-8 text-14px text-underflow_grey-50">
     </div>
     <div class="relative h-full border border-underflow_grey-700 flex justify-center items-center">
       <label class="absolute top-0 left-0 text-12px transform lg:-translate-y-20px opacity-50 lg:opacity-100 pl-5px pt-5px lg:p-0" for="date_end">date fin</label>
-      <input name="date_end" id="date_end"
-             type="datetime-local" class="h-full w-full bg-underflow_grey-900 px-8 text-14px text-underflow_grey-50">
+      <input name="date_end" id="date_end" [ngModel]="filter_selectedDateEnd" (ngModelChange)="uploadEventDateEnd($event)"
+             type="datetime-local" class="h-full w-full bg-underflow_grey-900 px-8 text-14px text-underflow_grey-50" [min]="filter_selectedDateStart">
     </div>
     <div class="flex h-full">
       <div
@@ -31,6 +36,7 @@
         class="h-full border-r border-t border-b border-underflow_grey-700 flex justify-center items-center py-10px pr-30px">
         <input class="text-12px font-chennai bg-underflow_grey-900
         w-300px h-full focus:outline-none focus:border-0" type="text"
+               [ngModel]="filter_searchBarText" (ngModelChange)="uploadEventBarText($event)"
                placeholder="RECHERCHE UN COURS ( PHP, HTML5, CSS3.....)">
       </div>
     </div>

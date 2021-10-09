@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Courses} from "../../../../interfaces/course";
 import {CourseSubscription} from "../../../../interfaces/courseSubscription";
 import {Classe} from "../../../../interfaces/classe";
 import {from} from "rxjs";
 import {filter} from "rxjs/operators";
-import {CardState} from "../../../../interfaces/cardState";
+import {toFormDateLocaleString} from "../../../../functions/dateFormat"
 
 @Component({
   selector: 'app-courses-registrations-form',
@@ -12,10 +12,150 @@ import {CardState} from "../../../../interfaces/cardState";
   styleUrls: ['./courses-registrations-form.component.scss']
 })
 export class CoursesRegistrationsFormComponent implements OnInit {
-  coursesList?: Array<Courses>;
+  coursesList?: Array<Courses> = [];
+  coursesListFiltered?: Array<Courses> = [];
+  coursesListFiltered_1?: Array<Courses> = [];
+  coursesListFiltered_2?: Array<Courses> = [];
+  coursesListFiltered_3?: Array<Courses> = [];
   courseInscription?: Array<CourseSubscription>;
   classesList?: Array<Classe>;
-  displayable?:Array<CardState> = [];
+  filter_selectedClasse: string = "B3";
+  // date of the day
+  filter_selectedDateStart: string = '';
+  // 2 week more
+  filter_selectedDateEnd: string = '';
+  filter_searchBarText: string = "";
+
+  displayable(idToCheck: number) {
+    if (!!this.coursesListFiltered?.find(({id}) => id === idToCheck)) {
+      return true
+    }
+    return false;
+  }
+
+  updateDisplayable(courseToDisplayList: Array<Courses> | undefined) {
+    console.log(courseToDisplayList);
+    this.coursesListFiltered = JSON.parse(JSON.stringify(courseToDisplayList));
+  }
+
+  triggerFilter(event: any, from: string) {
+    this.callFilter(event, from);
+  }
+
+  triggerFilterClasse(event: any) {
+    this.triggerFilter(event, "classe")
+  }
+
+  triggerFilterDateStart(event: any) {
+    this.triggerFilter(event, "dateStart")
+  }
+
+  triggerFilterDateEnd(event: any) {
+    this.triggerFilter(event, "dateEnd")
+  }
+
+  triggerFilterBarText(event: any) {
+    this.triggerFilter(event, "BarText")
+  }
+
+  filterClasse() {
+    // @ts-ignore
+    let courses$ = from(this.coursesList);
+    if (this.filter_selectedClasse === "") {
+      this.coursesListFiltered_1 = JSON.parse(JSON.stringify(this.coursesList));
+
+    } else {
+      let filteredClasses$ = courses$
+        .pipe(filter(course => course["classe"]["title"] === this.filter_selectedClasse));
+      let subscribe = filteredClasses$.subscribe(val => {
+          // @ts-ignore
+          this.coursesListFiltered_1.push(val);
+        }
+      )
+    }
+  }
+
+  filterDate() {
+    // @ts-ignore
+    let courses$ = from(this.coursesListFiltered_1);
+    console.log(this.filter_selectedDateStart)
+    console.log(this.filter_selectedDateEnd)
+    const date = new Date(Date.now());
+    // @ts-ignore
+    if ((this.filter_selectedDateStart) == false) {
+      this.filter_selectedDateStart = toFormDateLocaleString(date);
+    }
+    // @ts-ignore
+    if ((this.filter_selectedDateEnd) == false) {
+      this.filter_selectedDateEnd = toFormDateLocaleString(new Date(date.setDate(date.getDate() + 14)));
+    }
+    // @ts-ignore
+    let filteredClasses$ = courses$
+      .pipe(
+        filter(course => (
+            ((new Date(course["date_start"])).getTime()) >= ((new Date(this.filter_selectedDateStart)).getTime())
+            &&
+            ((new Date(course["date_start"]).getTime()) <= ((new Date(this.filter_selectedDateEnd)).getTime())
+            )
+          )
+        )
+      );
+    let subscribe = filteredClasses$.subscribe(val => {
+        console.log(val);
+        // @ts-ignore
+        this.coursesListFiltered_2.push(val);
+      }
+    )
+  }
+
+  filterBarText(search: string) {
+    // @ts-ignore
+    let courses$ = from(this.coursesListFiltered_2);
+    search = search.toLowerCase();
+    // @ts-ignore
+    let filteredClasses$ = courses$
+      .pipe(
+        filter(course => course.description.toLowerCase().includes(search) || course.title.toLowerCase().includes(search) ||
+          course.subject.title.toLowerCase().includes(search))
+      );
+    let subscribe = filteredClasses$.subscribe(val => {
+        console.log(val);
+        // @ts-ignore
+        this.coursesListFiltered.push(val);
+      }
+    )
+  }
+
+  callFilter(filterString: string, fromFilter: string) {
+    console.log("--- call filter ---")
+    this.coursesListFiltered = [];
+
+    this.coursesListFiltered_1 = [];
+    this.coursesListFiltered_2 = [];
+    this.coursesListFiltered_3 = [];
+    if (fromFilter === "classe") {
+      console.log("classe fromed")
+      this.filter_selectedClasse = filterString;
+    } else if (fromFilter === "dateStart") {
+      console.log("dateStart fromed");
+      this.filter_selectedDateStart = filterString;
+    } else if (fromFilter === "dateEnd") {
+      console.log("dateEnd fromed");
+      this.filter_selectedDateEnd = filterString;
+    } else if (fromFilter === "BarText") {
+      console.log("BarText fromed")
+      this.filter_searchBarText = filterString;
+    }
+    this.filterClasse();
+    this.filterDate();
+    if (!!this.filter_searchBarText) {
+      this.filterBarText(this.filter_searchBarText);
+      this.updateDisplayable(this.coursesListFiltered);
+    } else {
+      this.updateDisplayable(this.coursesListFiltered_2);
+    }
+
+  }
 
   elemCheck(id?: number) {
     // if id is defined we test it
@@ -26,32 +166,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     return false
   }
 
-  callFilter(){
-    console.log(this.classesList);
-    // @ts-ignore
-    const courses$ = from(this.classesList);
-    console.log(courses$)
-    const filteredClasses$ = courses$
-      .pipe(filter(classes => classes.title==="B3"));
-    const subscribe = filteredClasses$.subscribe(val =>console.log(val))
-
-    // console.log(subscribe)
-    // const source = from([
-    //   { name: 'Joe', age: 31 },
-    //   { name: 'Bob', age: 25 }
-    // ]);
-    // //filter out people with age under 30
-    // const example = source.pipe(filter(person => person.age >= 30));
-    // //output: "Over 30: Joe"
-    // const subscribe = example.subscribe(val => console.log(`Over 30: ${val.name}`));
-  }
-  constructor() {
-
-  }
-
   clickEvent(id?: number) {
     // @ts-ignore
-    if(!!(this.courseInscription.find(({id_course})=>id_course === id))){
+    if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
       // call api to subcribe on course
 
     } else {
@@ -60,6 +177,11 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     }
 
   }
+
+  constructor() {
+
+  }
+
 
   ngOnInit(): void {
     this.classesList = [
@@ -92,7 +214,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
           "id": 3,
           "title": "B3"
         },
-        "date_start": "Fri, 08 Oct 2021 10:19:52 GMT",
+        "date_start": "Fri, 14 Oct 2021 10:19:52 GMT",
         "description": "Révision PHP",
         "duration": null,
         "ended": false,
@@ -134,7 +256,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
           "id": 1,
           "title": "B1"
         },
-        "date_start": "Fri, 08 Oct 2021 13:39:42 GMT",
+        "date_start": "Fri, 22 Oct 2021 13:39:42 GMT",
         "description": "Révision JS",
         "duration": null,
         "ended": false,
@@ -172,19 +294,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         "title": "Cours JS"
       }
     ]
-    for (const course of this.coursesList) {
-      // if the course is already push with the state -> then just skip the process
-      console.log("init courses");
-      console.log(course.id);
-      // @ts-ignore
-      console.log(this.displayable.find(id_course=>id_course===course.id))
-      // // @ts-ignore
-      // if(!!(this.displayable.find(id_course=>id_course===course.id)))
-      // {
-      //   // @ts-ignore
-      //   this.displayable.push({id:course.id,state:true})
-      // }
-    }
-    this.callFilter();
+    this.coursesListFiltered = JSON.parse(JSON.stringify(this.coursesList));
+    const date = new Date(Date.now());
+    this.filter_selectedDateStart = toFormDateLocaleString(date);
+    this.filter_selectedDateEnd = toFormDateLocaleString(new Date(date.setDate(date.getDate() + 14)));
   }
 }
