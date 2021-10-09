@@ -12,6 +12,7 @@ import {toFormDateLocaleString} from "../../../../functions/dateFormat"
   styleUrls: ['./courses-registrations-form.component.scss']
 })
 export class CoursesRegistrationsFormComponent implements OnInit {
+  // we init all elements
   coursesList?: Array<Courses> = [];
   coursesListFiltered?: Array<Courses> = [];
   coursesListFiltered_1?: Array<Courses> = [];
@@ -19,13 +20,14 @@ export class CoursesRegistrationsFormComponent implements OnInit {
   coursesListFiltered_3?: Array<Courses> = [];
   courseInscription?: Array<CourseSubscription>;
   classesList?: Array<Classe>;
-  filter_selectedClasse: string = "B3";
+  filter_selectedClasse: string = 'B3';
   // date of the day
   filter_selectedDateStart: string = '';
   // 2 week more
   filter_selectedDateEnd: string = '';
-  filter_searchBarText: string = "";
+  filter_searchBarText: string = '';
 
+  // this function check if the card is in the filtered list -> bind to ngif in template
   displayable(idToCheck: number) {
     if (!!this.coursesListFiltered?.find(({id}) => id === idToCheck)) {
       return true
@@ -33,11 +35,13 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     return false;
   }
 
-  updateDisplayable(courseToDisplayList: Array<Courses> | undefined) {
-    console.log(courseToDisplayList);
+  // Update the coursesListFiltered -> deep copy
+  updateDisplayable(courseToDisplayList: Array<Courses>) {
     this.coursesListFiltered = JSON.parse(JSON.stringify(courseToDisplayList));
   }
 
+
+  // group of functions binded to child ( filter component )
   triggerFilter(event: any, from: string) {
     this.callFilter(event, from);
   }
@@ -58,12 +62,13 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     this.triggerFilter(event, "BarText")
   }
 
+  // function to filter via the classes selections -> use observable , filter from angular
   filterClasse() {
     // @ts-ignore
     let courses$ = from(this.coursesList);
+    // if the selected classe, we skip the filter part
     if (this.filter_selectedClasse === "") {
       this.coursesListFiltered_1 = JSON.parse(JSON.stringify(this.coursesList));
-
     } else {
       let filteredClasses$ = courses$
         .pipe(filter(course => course["classe"]["title"] === this.filter_selectedClasse));
@@ -75,12 +80,14 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     }
   }
 
+  // same function for the date filter
   filterDate() {
     // @ts-ignore
     let courses$ = from(this.coursesListFiltered_1);
     console.log(this.filter_selectedDateStart)
     console.log(this.filter_selectedDateEnd)
     const date = new Date(Date.now());
+    // reset date if it's falsy
     // @ts-ignore
     if ((this.filter_selectedDateStart) == false) {
       this.filter_selectedDateStart = toFormDateLocaleString(date);
@@ -108,6 +115,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     )
   }
 
+  // same function of date & classes
   filterBarText(search: string) {
     // @ts-ignore
     let courses$ = from(this.coursesListFiltered_2);
@@ -126,26 +134,25 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     )
   }
 
+  // After a clic on filter component
   callFilter(filterString: string, fromFilter: string) {
     console.log("--- call filter ---")
+    // We reset all lists
     this.coursesListFiltered = [];
-
     this.coursesListFiltered_1 = [];
     this.coursesListFiltered_2 = [];
     this.coursesListFiltered_3 = [];
+    // we update all variables
     if (fromFilter === "classe") {
-      console.log("classe fromed")
       this.filter_selectedClasse = filterString;
     } else if (fromFilter === "dateStart") {
-      console.log("dateStart fromed");
       this.filter_selectedDateStart = filterString;
     } else if (fromFilter === "dateEnd") {
-      console.log("dateEnd fromed");
       this.filter_selectedDateEnd = filterString;
     } else if (fromFilter === "BarText") {
-      console.log("BarText fromed")
       this.filter_searchBarText = filterString;
     }
+    // Then we trigger filters functions
     this.filterClasse();
     this.filterDate();
     if (!!this.filter_searchBarText) {
@@ -154,9 +161,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     } else {
       this.updateDisplayable(this.coursesListFiltered_2);
     }
-
   }
 
+  // elem check function -> we test if the user is already registred on the course
   elemCheck(id?: number) {
     // if id is defined we test it
     if (!!id) {
@@ -166,6 +173,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     return false
   }
 
+  // If we clic on toggle button -> then toggle the inscription to the course
   clickEvent(id?: number) {
     // @ts-ignore
     if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
@@ -184,6 +192,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // temporary data to test in developpement mode
     this.classesList = [
       {
         id: 1,
@@ -294,9 +303,16 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         "title": "Cours JS"
       }
     ]
+    // We init the default values
     this.coursesListFiltered = JSON.parse(JSON.stringify(this.coursesList));
     const date = new Date(Date.now());
     this.filter_selectedDateStart = toFormDateLocaleString(date);
     this.filter_selectedDateEnd = toFormDateLocaleString(new Date(date.setDate(date.getDate() + 14)));
+
+    // We init the filter with the defaults values
+    this.callFilter(this.filter_selectedClasse,"classe");
+    this.callFilter(this.filter_selectedDateStart,"dateStart");
+    this.callFilter(this.filter_selectedDateEnd,"dateEnd");
+    this.callFilter(this.filter_searchBarText,"BarText");
   }
 }
