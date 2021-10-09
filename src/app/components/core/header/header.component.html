@@ -13,11 +13,9 @@
                 class="rounded-md p-2 inline-flex items-center justify-center text-gray-50"
                 aria-expanded="false">
           <span class="sr-only">Open menu</span>
-          <!-- Heroicon name: outline/menu -->
-          <svg id="burger-menu" onclick="
-          this.classList.toggle('active');
-          document.getElementById('nav').classList.toggle('underflow-fadeInvisible');
-          document.getElementById('nav').classList.toggle('underflow-fadeVisible');" class="h-30px w-30px"
+          <svg id="burger-menu" (click)="clickEvent()"
+               [ngClass]="status ? 'active' : '' "
+               class="h-30px w-30px"
                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                aria-hidden="true">
             <g id="top">

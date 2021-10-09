@@ -3,12 +3,14 @@ import {Subject} from "./subject"
 import {Classe} from "./classe"
 
 export interface Courses {
-  id?:bigint
-  title?:string
-  date_start?:Date
-  duration?:number
-  ended?:boolean
-  user?:User
-  subject?:Subject
-  classe?:Classe
+  id?:number
+  title?:string|null
+  date_start?:string|null
+  duration?:number|null
+  ended?:boolean|null
+  owner?:User|null
+  subject?:Subject|null
+  classe?:Classe|null
+  description?:string|null
+  salle?:string|null
 }

@@ -1,8 +1,8 @@
 import {Thread} from "./thread";
 
 export interface File {
-  id?: bigint
-  title?: string
-  link?: string
-  thread?: Thread
+  id?: number
+  title?: string|null
+  link?: string|null
+  thread?: Thread|null
 }
