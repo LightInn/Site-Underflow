@@ -1,5 +1,6 @@
-<div *ngIf="message && !message.close" class="bg-underflow_blue-500 z-10 absolute bottom-2 right-2 w-1/5 px-4 py-4 rounded-lg flex justify-between ">
-  <div class="bg-red-300 text-red ">
+<div *ngIf="message " class="bg-underflow_green-500 z-10 absolute bottom-2 right-2 w-1/5 px-4 py-4 rounded-lg flex justify-between "
+     [class.bg-underflow_orange-300]="message.error == true"   [@openClose]="message.close ? 'closed' : 'open'" >
+  <div class="">
     {{message.content}}
   </div>
   <button class="delete" (click)="closeMessage()">x</button>

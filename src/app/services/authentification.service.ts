@@ -5,6 +5,7 @@ import * as moment from "moment";
 import {User} from "../interfaces/user";
 import {shareReplay} from "rxjs/operators";
 import {CSRFToken} from "../interfaces/csrfToken";
+import {JwTokenEncoded} from "../interfaces/jw-token";
 
 @Injectable({
   providedIn: 'root'
@@ -25,42 +26,29 @@ export class AuthentificationService {
 
 
   login(email: string, password: string) {
-    return this.http.post<User>('http://127.0.0.1:5000/login/', {email, password}).pipe(
+    return this.http.post<JwTokenEncoded>('http://127.0.0.1:5000/login/', {email, password}).pipe(
       shareReplay()
     )
   }
 
   register(email: string, firstname: string, lastname: string, password: string) {
-    return this.http.post<User>('http://127.0.0.1:5000/register/', {email, firstname, lastname, password})
+    return this.http.post<User>('http://127.0.0.1:5000/register/', {email, firstname, lastname, password}).pipe(
+      shareReplay()
+    )
   }
 
 
-  private setSession(authResult: { expiresIn: any; idToken: string; }) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second');
-
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+  setSession(jwt: JwTokenEncoded) {
+    localStorage.setItem('jwt', JSON.stringify(jwt));
   }
 
   logout() {
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("expires_at");
+    localStorage.removeItem("jwt");
   }
 
   public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+    return localStorage.getItem("jwt") != undefined;
   }
 
-  isLoggedOut() {
-    return !this.isLoggedIn();
-  }
 
-  getExpiration() {
-    const expiration = localStorage.getItem("expires_at");
-
-    if (expiration != null) {
-      this.expiresAt = JSON.parse(expiration);
-    }
-    return moment(this.expiresAt);
-  }
 }

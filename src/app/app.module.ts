@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {BaseComponent} from './components/core/base/base.component';
@@ -23,6 +24,7 @@ import {FooterComponent} from './components/core/footer/footer.component';
 import {ToastComponent} from './components/core/toast/toast.component';
 import {AuthentificationInterceptor} from './interceptors/authentification.interceptor'
 import {ToastService} from "./services/toast.service";
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import {ToastService} from "./services/toast.service";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},
