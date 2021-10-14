@@ -72,7 +72,7 @@ import {ToastService} from "./services/toast.service";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
     FormsModule,
     Ng2SearchPipeModule
   ],
