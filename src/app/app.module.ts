@@ -3,11 +3,14 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import {AppComponent} from './app.component';
+import {HeaderComponent} from './components/core/header/header.component';
+import {FooterComponent} from './components/core/footer/footer.component';
 import {BaseComponent} from './components/core/base/base.component';
 import {LoginComponent} from './components/authentification/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RegisterComponent} from './components/authentification/register/register.component';
 import {ProfileComponent} from './components/authentification/profile/profile.component';
 import {BaseUnderTitleComponent} from "./components/core/base/base-under-title/base-under-title.component";
@@ -19,8 +22,13 @@ import {CoursesRegistrationsComponent} from "./components/courses/courses-regist
 import {FilesCreatesComponent} from './components/files/files-creates/files-creates.component';
 import {FilesDownloadComponent} from './components/files/files-download/files-download.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
-import {HeaderComponent} from './components/core/header/header.component';
-import {FooterComponent} from './components/core/footer/footer.component';
+import { CoursesSuggestsFormComponent } from './components/courses/courses-suggests/courses-suggests-form/courses-suggests-form.component';
+import { CoursesSuggestsFilterComponent } from './components/courses/courses-suggests/courses-suggests-filter/courses-suggests-filter.component';
+import { CoursesCreatesFilterComponent } from './components/courses/courses-creates/courses-creates-filter/courses-creates-filter.component';
+import { CoursesCreatesFormComponent } from './components/courses/courses-creates/courses-creates-form/courses-creates-form.component';
+import { SuggestTraitedPipe } from './pipe/suggest-traited.pipe';
+import { CoursesRegistrationsFormComponent } from './components/courses/courses-registrations/courses-registrations-form/courses-registrations-form.component';
+import { CoursesRegistrationsFilterComponent } from './components/courses/courses-registrations/courses-registrations-filter/courses-registrations-filter.component';
 import {ToastComponent} from './components/core/toast/toast.component';
 import {AuthentificationInterceptor} from './interceptors/authentification.interceptor'
 import {ToastService} from "./services/toast.service";
@@ -47,6 +55,13 @@ import {ToastService} from "./services/toast.service";
     NotFoundComponent,
     HeaderComponent,
     FooterComponent,
+    CoursesSuggestsFormComponent,
+    CoursesSuggestsFilterComponent,
+    CoursesCreatesFilterComponent,
+    CoursesCreatesFormComponent,
+    SuggestTraitedPipe,
+    CoursesRegistrationsFormComponent,
+    CoursesRegistrationsFilterComponent,
     CoursesRegistrationsComponent,
     ToastComponent
 
@@ -57,7 +72,9 @@ import {ToastService} from "./services/toast.service";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},

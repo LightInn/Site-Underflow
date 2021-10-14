@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,29 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  status: boolean = false;
 
-  public cours : any = [
+  public cours: any = [
     {
-      id:1,
-      title:"",
-      description:"",
-      date_start:"",
-      duration:"",
-      ended:false,
-      classe:{
-        id:"",
-        title:""
+      id: 1,
+      title: "",
+      description: "",
+      date_start: "",
+      duration: "",
+      ended: false,
+      classe: {
+        id: "",
+        title: ""
       },
-      subject:{
-
-      },
-      owner:{
-
-      }
+      subject: {},
+      owner: {}
     }
   ]
 
-  constructor() { }
+  clickEvent() {
+    this.status = !this.status;
+    document.getElementById('nav')?.classList.toggle('underflow-fadeInvisible');
+    document.getElementById('nav')?.classList.toggle('underflow-fadeVisible');
+  }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

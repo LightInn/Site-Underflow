@@ -1,4 +1,8 @@
+import {User} from "./user";
+
 export interface Subject {
-  id?: bigint
+  id?: number
   title?: string
+  proposePar?:User
+  validated?:boolean|null
 }

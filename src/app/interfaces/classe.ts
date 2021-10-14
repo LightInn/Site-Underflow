@@ -1,4 +1,4 @@
 export interface Classe {
-  id?: bigint
-  title?: string
+  id?: number
+  title?: string|null
 }
