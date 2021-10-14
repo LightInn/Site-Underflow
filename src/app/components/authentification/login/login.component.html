@@ -1,24 +1,36 @@
-<form [formGroup]="form"
-      class="text-underflow_blue-300 flex flex-col justify-center items-center h-99vh w-screen ">
-  <fieldset>
-    <div class="form-field flex flex-col my-8">
-      <label class="text-12px">IDENTIFIANT </label>
-      <input name="email" formControlName="email" placeholder="EMAIL@SCRATCHUNDERFLOW.FR" oninput="this.value = this.value.toLowerCase()"
-             type="email" class="w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2">
-    </div>
-    <div class="form-field  flex flex-col my-8">
-      <label class="text-12px">MOT DE PASSE</label>
-      <input name="password" formControlName="password" placeholder="●●●●●●●●●●"
-             type="password" class="w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2">
-    </div>
-  </fieldset>
-  <div class="form-buttons w-500px flex justify-between flex flex-row-reverse">
+<div class="h-99vh w-screen flex flex-col justify-center items-center align-center">
 
-    <button class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-800 text-20px"
-            (click)="login()">Login
-    </button>
-    <button class="button button-primary bg-underflow_grey-800 border-2 border-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_blue-300 text-20px"
-            (click)="register()">Register
-    </button>
+  <div class="flex justify-center items-center mt-60px">
+    <img class="h-15 w-auto lg:h-20" src="./assets/images/svg/ecureuil-right.svg"
+         alt="Scratch Underflow - Entraide étudiante">
+
+    <h2 class="text-60px p-10">
+      ScratchUnderflow
+    </h2>
   </div>
-</form>
+
+  <form [formGroup]="form" *ngIf="false">
+        class="text-underflow_blue-300 flex flex-col justify-center items-center h-full  w-screen ">
+    <fieldset>
+      <div class="form-field flex flex-col my-8">
+        <label class="text-12px">IDENTIFIANT </label>
+        <input name="email" formControlName="email" placeholder="EMAIL@SCRATCHUNDERFLOW.FR" oninput="this.value = this.value.toLowerCase()"
+               type="email" class="w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2">
+      </div>
+      <div class="form-field  flex flex-col my-8">
+        <label class="text-12px">MOT DE PASSE</label>
+        <input name="password" formControlName="password" placeholder="●●●●●●●●●●"
+               type="password" class="w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2">
+      </div>
+    </fieldset>
+    <div class="form-buttons w-500px flex justify-between flex flex-row-reverse">
+
+      <button class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-800 text-20px"
+              (click)="login()">Login
+      </button>
+      <button class="button button-primary bg-underflow_grey-800 border-2 border-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_blue-300 text-20px"
+              (click)="register()">Register
+      </button>
+    </div>
+  </form>
+</div>

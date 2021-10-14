@@ -13,6 +13,9 @@ import jwt_decode from 'jwt-decode';
 })
 export class LoginComponent implements OnInit {
 
+
+  test: any;
+
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -48,6 +51,10 @@ export class LoginComponent implements OnInit {
         );
     }
   }
+
+
+
+
 
 
   register() {
