@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import {AppComponent} from './app.component';
@@ -31,6 +32,7 @@ import { CoursesRegistrationsFilterComponent } from './components/courses/course
 import {ToastComponent} from './components/core/toast/toast.component';
 import {AuthentificationInterceptor} from './interceptors/authentification.interceptor'
 import {ToastService} from "./services/toast.service";
+
 
 @NgModule({
   declarations: [
@@ -70,6 +72,7 @@ import {ToastService} from "./services/toast.service";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule
     FormsModule,
     Ng2SearchPipeModule
   ],

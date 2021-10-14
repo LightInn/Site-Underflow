@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthentificationService} from "../../../services/authentification.service";
 import {ToastService} from "../../../services/toast.service";
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,9 @@ import {ToastService} from "../../../services/toast.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+
+  test: any;
 
   form: FormGroup;
 
@@ -30,27 +35,26 @@ export class LoginComponent implements OnInit {
 
   login() {
     const val = this.form.value;
-
+    this.toastService.newToast("Connexion...", true)
     if (val.email && val.password) {
       this.authService.login(val.email, val.password)
         .subscribe(
-          result => {
-            console.log("result: ");
-            console.log(result);
+          jwt => {
+            this.toastService.newToast("Connecter", false)
 
-
+            this.authService.setSession(jwt);
+            this.router.navigateByUrl('/')
           },
           error => {
-
-            console.log("error: ");
-            console.log(error.error.error);
-
             this.toastService.newToast(error.error.error, true)
-
           }
         );
     }
   }
+
+
+
+
 
 
   register() {

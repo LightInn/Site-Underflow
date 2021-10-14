@@ -15,7 +15,7 @@ export class ToastService {
 
     if (ToastService.message === undefined) {
       const message = new MessageToast()
-      message.content = "Bienvenue"
+      message.content = "Re Bonjour !"
       ToastService.message = message
     }
 
@@ -28,6 +28,7 @@ export class ToastService {
   public newToast(message: string, error: boolean) {
     ToastService.message.content = message;
     ToastService.message.error = error;
+    ToastService.message.close = false;
     this.behaviorSubject.next(ToastService.message);
   }
 
