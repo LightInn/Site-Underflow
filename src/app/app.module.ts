@@ -40,7 +40,10 @@ import { AdminCoursesComponent } from './components/administration/views/admin-c
 import { AdminUsersComponent } from './components/administration/views/admin-users/admin-users.component';
 import { AdminSubjectsComponent } from './components/administration/views/admin-subjects/admin-subjects.component';
 import { UserInfosPipe } from './pipe/user-infos.pipe';
-import { UpdateClassesComponent } from './components/administration/updates/update-classes/update-classes.component';
+import { UpdateClasseComponent } from './components/administration/updates/update-classe/update-classe.component';
+import { UpdateCourseComponent } from './components/administration/updates/update-course/update-course.component';
+import { UpdateSubjectComponent } from './components/administration/updates/update-subject/update-subject.component';
+import { UpdateUserComponent } from './components/administration/updates/update-user/update-user.component';
 
 
 @NgModule({
@@ -81,7 +84,10 @@ import { UpdateClassesComponent } from './components/administration/updates/upda
     AdminUsersComponent,
     AdminSubjectsComponent,
     UserInfosPipe,
-    UpdateClassesComponent
+    UpdateClasseComponent,
+    UpdateCourseComponent,
+    UpdateSubjectComponent,
+    UpdateUserComponent
 
 
   ],

@@ -6,10 +6,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-update-classes',
-  templateUrl: './update-classes.component.html',
-  styleUrls: ['./update-classes.component.scss']
+  templateUrl: './update-classe.component.html',
+  styleUrls: ['./update-classe.component.scss']
 })
-export class UpdateClassesComponent implements OnInit {
+export class UpdateClasseComponent implements OnInit {
   form: FormGroup;
   courseId: string | null;
 
