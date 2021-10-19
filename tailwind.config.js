@@ -80,6 +80,7 @@ module.exports = {
       spacing: {
         "5px": "5px",
         "10px": "10px",
+        "15px": "15px",
         "20px": "20px",
         "25px": "25px",
         "30px": "30px",
@@ -94,6 +95,7 @@ module.exports = {
         "230px": "230px",
         "250px": "250px",
         "300px": "300px",
+        "350px": "350px",
         "400px": "400px",
         "500px": "500px",
         "99vh": "99vh",

@@ -5,6 +5,9 @@ import {Classe} from "../../../../interfaces/classe";
 import {from} from "rxjs";
 import {filter} from "rxjs/operators";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat"
+import {AuthentificationService} from "../../../../services/authentification.service";
+import {ToastService} from "../../../../services/toast.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-courses-registrations-form',
@@ -12,6 +15,7 @@ import {toFormDateLocaleString} from "../../../../functions/dateFormat"
   styleUrls: ['./courses-registrations-form.component.scss']
 })
 export class CoursesRegistrationsFormComponent implements OnInit {
+
   // we init all elements
   coursesList?: Array<Courses> = [];
   coursesListFiltered?: Array<Courses> = [];
@@ -27,166 +31,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
   filter_selectedDateEnd: string = '';
   filter_searchBarText: string = '';
 
-  // this function check if the card is in the filtered list -> bind to ngif in template
-  displayable(idToCheck: number) {
-    if (!!this.coursesListFiltered?.find(({id}) => id === idToCheck)) {
-      return true
-    }
-    return false;
-  }
-
-  // Update the coursesListFiltered -> deep copy
-  updateDisplayable(courseToDisplayList: Array<Courses>) {
-    this.coursesListFiltered = JSON.parse(JSON.stringify(courseToDisplayList));
-  }
-
-
-  // group of functions binded to child ( filter component )
-  triggerFilter(event: any, from: string) {
-    this.callFilter(event, from);
-  }
-
-  triggerFilterClasse(event: any) {
-    this.triggerFilter(event, "classe")
-  }
-
-  triggerFilterDateStart(event: any) {
-    this.triggerFilter(event, "dateStart")
-  }
-
-  triggerFilterDateEnd(event: any) {
-    this.triggerFilter(event, "dateEnd")
-  }
-
-  triggerFilterBarText(event: any) {
-    this.triggerFilter(event, "BarText")
-  }
-
-  // function to filter via the classes selections -> use observable , filter from angular
-  filterClasse() {
-    // @ts-ignore
-    let courses$ = from(this.coursesList);
-    // if the selected classe, we skip the filter part
-    if (this.filter_selectedClasse === "") {
-      this.coursesListFiltered_1 = JSON.parse(JSON.stringify(this.coursesList));
-    } else {
-      let filteredClasses$ = courses$
-        .pipe(filter(course => course["classe"]["title"] === this.filter_selectedClasse));
-      let subscribe = filteredClasses$.subscribe(val => {
-          // @ts-ignore
-          this.coursesListFiltered_1.push(val);
-        }
-      )
-    }
-  }
-
-  // same function for the date filter
-  filterDate() {
-    // @ts-ignore
-    let courses$ = from(this.coursesListFiltered_1);
-    console.log(this.filter_selectedDateStart)
-    console.log(this.filter_selectedDateEnd)
-    const date = new Date(Date.now());
-    // reset date if it's falsy
-    // @ts-ignore
-    if ((this.filter_selectedDateStart) == false) {
-      this.filter_selectedDateStart = toFormDateLocaleString(date);
-    }
-    // @ts-ignore
-    if ((this.filter_selectedDateEnd) == false) {
-      this.filter_selectedDateEnd = toFormDateLocaleString(new Date(date.setDate(date.getDate() + 14)));
-    }
-    // @ts-ignore
-    let filteredClasses$ = courses$
-      .pipe(
-        filter(course => (
-            ((new Date(course["date_start"])).getTime()) >= ((new Date(this.filter_selectedDateStart)).getTime())
-            &&
-            ((new Date(course["date_start"]).getTime()) <= ((new Date(this.filter_selectedDateEnd)).getTime())
-            )
-          )
-        )
-      );
-    let subscribe = filteredClasses$.subscribe(val => {
-        console.log(val);
-        // @ts-ignore
-        this.coursesListFiltered_2.push(val);
-      }
-    )
-  }
-
-  // same function of date & classes
-  filterBarText(search: string) {
-    // @ts-ignore
-    let courses$ = from(this.coursesListFiltered_2);
-    search = search.toLowerCase();
-    // @ts-ignore
-    let filteredClasses$ = courses$
-      .pipe(
-        filter(course => course.description.toLowerCase().includes(search) || course.title.toLowerCase().includes(search) ||
-          course.subject.title.toLowerCase().includes(search))
-      );
-    let subscribe = filteredClasses$.subscribe(val => {
-        console.log(val);
-        // @ts-ignore
-        this.coursesListFiltered.push(val);
-      }
-    )
-  }
-
-  // After a clic on filter component
-  callFilter(filterString: string, fromFilter: string) {
-    console.log("--- call filter ---")
-    // We reset all lists
-    this.coursesListFiltered = [];
-    this.coursesListFiltered_1 = [];
-    this.coursesListFiltered_2 = [];
-    this.coursesListFiltered_3 = [];
-    // we update all variables
-    if (fromFilter === "classe") {
-      this.filter_selectedClasse = filterString;
-    } else if (fromFilter === "dateStart") {
-      this.filter_selectedDateStart = filterString;
-    } else if (fromFilter === "dateEnd") {
-      this.filter_selectedDateEnd = filterString;
-    } else if (fromFilter === "BarText") {
-      this.filter_searchBarText = filterString;
-    }
-    // Then we trigger filters functions
-    this.filterClasse();
-    this.filterDate();
-    if (!!this.filter_searchBarText) {
-      this.filterBarText(this.filter_searchBarText);
-      this.updateDisplayable(this.coursesListFiltered);
-    } else {
-      this.updateDisplayable(this.coursesListFiltered_2);
-    }
-  }
-
-  // elem check function -> we test if the user is already registred on the course
-  elemCheck(id?: number) {
-    // if id is defined we test it
-    if (!!id) {
-      // @ts-ignore
-      return !!(this.courseInscription.find(({id_course}) => id_course === id));
-    }
-    return false
-  }
-
-  // If we clic on toggle button -> then toggle the inscription to the course
-  clickEvent(id?: number) {
-    // @ts-ignore
-    if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
-      // call api to subcribe on course
-
-    } else {
-      // call api to unsubcribe on course
-
-    }
-
-  }
-
-  constructor() {
+  constructor(private authService: AuthentificationService,
+              private toastService: ToastService,
+              private router: Router) {
 
   }
 
@@ -310,9 +157,172 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     this.filter_selectedDateEnd = toFormDateLocaleString(new Date(date.setDate(date.getDate() + 14)));
 
     // We init the filter with the defaults values
-    this.callFilter(this.filter_selectedClasse,"classe");
-    this.callFilter(this.filter_selectedDateStart,"dateStart");
-    this.callFilter(this.filter_selectedDateEnd,"dateEnd");
-    this.callFilter(this.filter_searchBarText,"BarText");
+    this.callFilter(this.filter_selectedClasse, "classe");
+    this.callFilter(this.filter_selectedDateStart, "dateStart");
+    this.callFilter(this.filter_selectedDateEnd, "dateEnd");
+    this.callFilter(this.filter_searchBarText, "BarText");
+  }
+
+  checkEmpty():boolean{
+    // @ts-ignore
+    return this.coursesListFiltered.length===0;
+  }
+
+  // this function check if the card is in the filtered list -> bind to ngif in template
+  displayable(idToCheck: number) {
+    if (!!this.coursesListFiltered?.find(({id}) => id === idToCheck)) {
+      return true
+    }
+    return false;
+  }
+
+  // Update the coursesListFiltered -> deep copy
+  updateDisplayable(courseToDisplayList: Array<Courses>) {
+    this.coursesListFiltered = JSON.parse(JSON.stringify(courseToDisplayList));
+  }
+
+
+  // group of functions binded to child ( filter component )
+  triggerFilter(event: any, from: string) {
+    this.callFilter(event, from);
+  }
+
+  triggerFilterClasse(event: any) {
+    this.triggerFilter(event, "classe")
+  }
+
+  triggerFilterDateStart(event: any) {
+    this.triggerFilter(event, "dateStart")
+  }
+
+  triggerFilterDateEnd(event: any) {
+    this.triggerFilter(event, "dateEnd")
+  }
+
+  triggerFilterBarText(event: any) {
+    this.triggerFilter(event, "BarText")
+  }
+
+  // function to filter via the classes selections -> use observable , filter from angular
+  filterClasse() {
+    // @ts-ignore
+    let courses$ = from(this.coursesList);
+    // if the selected classe, we skip the filter part
+    if (this.filter_selectedClasse === "") {
+      this.coursesListFiltered_1 = JSON.parse(JSON.stringify(this.coursesList));
+    } else {
+      let filteredClasses$ = courses$
+        .pipe(filter(course => course["classe"]["title"] === this.filter_selectedClasse));
+      filteredClasses$.subscribe(val => {
+          // @ts-ignore
+          this.coursesListFiltered_1.push(val);
+        }
+      );
+    }
+  }
+
+  // same function for the date filter
+  filterDate() {
+    // @ts-ignore
+    let courses$ = from(this.coursesListFiltered_1);
+    console.log(this.filter_selectedDateStart)
+    console.log(this.filter_selectedDateEnd)
+    const date = new Date(Date.now());
+    // reset date if it's falsy
+    // @ts-ignore
+    if ((this.filter_selectedDateStart) == false) {
+      this.filter_selectedDateStart = toFormDateLocaleString(date);
+    }
+    // @ts-ignore
+    if ((this.filter_selectedDateEnd) == false) {
+      this.filter_selectedDateEnd = toFormDateLocaleString(new Date(date.setDate(date.getDate() + 14)));
+    }
+    // @ts-ignore
+    let filteredClasses$ = courses$
+      .pipe(
+        filter(course => (
+            ((new Date(course["date_start"])).getTime()) >= ((new Date(this.filter_selectedDateStart)).getTime())
+            &&
+            ((new Date(course["date_start"]).getTime()) <= ((new Date(this.filter_selectedDateEnd)).getTime())
+            )
+          )
+        )
+      );
+    filteredClasses$.subscribe(val => {
+        console.log(val);
+        // @ts-ignore
+        this.coursesListFiltered_2.push(val);
+      }
+    );
+  }
+
+  // same function of date & classes
+  filterBarText(search: string) {
+    // @ts-ignore
+    let courses$ = from(this.coursesListFiltered_2);
+    search = search.toLowerCase();
+    // @ts-ignore
+    let filteredClasses$ = courses$
+      .pipe(
+        filter(course => course.description.toLowerCase().includes(search) || course.title.toLowerCase().includes(search) ||
+          course.subject.title.toLowerCase().includes(search))
+      );
+    filteredClasses$.subscribe(val => {
+        console.log(val);
+        // @ts-ignore
+        this.coursesListFiltered.push(val);
+      }
+    );
+  }
+
+  // After a clic on filter component
+  callFilter(filterString: string, fromFilter: string) {
+    console.log("--- call filter ---")
+    // We reset all lists
+    this.coursesListFiltered = [];
+    this.coursesListFiltered_1 = [];
+    this.coursesListFiltered_2 = [];
+    this.coursesListFiltered_3 = [];
+    // we update all variables
+    if (fromFilter === "classe") {
+      this.filter_selectedClasse = filterString;
+    } else if (fromFilter === "dateStart") {
+      this.filter_selectedDateStart = filterString;
+    } else if (fromFilter === "dateEnd") {
+      this.filter_selectedDateEnd = filterString;
+    } else if (fromFilter === "BarText") {
+      this.filter_searchBarText = filterString;
+    }
+    // Then we trigger filters functions
+    this.filterClasse();
+    this.filterDate();
+    if (!!this.filter_searchBarText) {
+      this.filterBarText(this.filter_searchBarText);
+      this.updateDisplayable(this.coursesListFiltered);
+    } else {
+      this.updateDisplayable(this.coursesListFiltered_2);
+    }
+  }
+
+  // elem check function -> we test if the user is already registred on the course
+  elemCheck(id?: number) {
+    // if id is defined we test it
+    if (!!id) {
+      // @ts-ignore
+      return !!(this.courseInscription.find(({id_course}) => id_course === id));
+    }
+    return false
+  }
+
+  // If we clic on toggle button -> then toggle the inscription to the course
+  clickEvent(id?: number) {
+    // @ts-ignore
+    if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
+      // call api to subcribe on course
+      this.toastService.newToast("Inscription à un cours...", true)
+    } else {
+      // call api to unsubcribe on course
+      this.toastService.newToast("Désinscription à un cours...", true)
+    }
   }
 }

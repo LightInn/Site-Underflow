@@ -18,27 +18,6 @@ export class ProfileInscriptionsComponent implements OnInit {
   coursesList?: Array<Courses> = [];
   checked: boolean = true;
 
-  // elem check function -> we test if the user is already registred on the course
-  elemCheck(id?: number) {
-    // if id is defined we test it
-    // if (!!id) {
-    //   // @ts-ignore
-      return (!!(this.courseInscription.find(({id_course}) => id_course === id)));
-    // }
-    // return false
-  }
-
-  // If we clic on toggle button -> then toggle the inscription to the course
-  clickEvent(id?: number) {
-    if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
-      // call api to unsubcribe on course
-      this.courseInscription.splice(this.courseInscription.findIndex(({id_course}) => id_course === id),1);
-    } else {
-      // call api to subcribe on course
-      this.courseInscription.push({id_course:id,id_user:this.currentUser.id})
-    }
-  }
-
   constructor(
     private authService: AuthentificationService,
     private toastService: ToastService,
@@ -46,7 +25,6 @@ export class ProfileInscriptionsComponent implements OnInit {
   ) {
 
   }
-
 
   ngOnInit(): void {
     this.courseInscription = [
@@ -145,5 +123,31 @@ export class ProfileInscriptionsComponent implements OnInit {
         "title": "Cours JS"
       }
     ]
+  }
+
+  // elem check function -> we test if the user is already registred on the course
+  elemCheck(id?: number) {
+    // if id is defined we test it
+    // if (!!id) {
+    //   // @ts-ignore
+    return (!!(this.courseInscription.find(({id_course}) => id_course === id)));
+    // }
+    // return false
+  }
+
+  // If we clic on toggle button -> then toggle the inscription to the course
+  clickEvent(id?: number) {
+    if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
+      // call api to unsubcribe on course
+      this.courseInscription.splice(this.courseInscription.findIndex(({id_course}) => id_course === id),1);
+    } else {
+      // call api to subcribe on course
+      this.courseInscription.push({id_course:id,id_user:this.currentUser.id})
+    }
+  }
+
+  checkEmpty():boolean{
+    // @ts-ignore
+    return this.coursesList.length===0;
   }
 }

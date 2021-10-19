@@ -1,21 +1,20 @@
-<div class="w-full flex justify-start items-center py-100px">
-  <div class="h-80px flex items-center">
-    <div class="h-full border border-underflow_grey-700 flex justify-center items-center py-10px px-30px">
-      <img class="w-25px h-25px" src="./assets/images/svg/book.svg" alt="book logo" >
+<div class="relative block py-100px">
+  <div class="w-full flex justify-start md:justify-center items-center z-20 flex-wrap">
+    <div class="h-80px border border-underflow_grey-700 flex justify-center items-center py-10px px-30px">
+      <img class="w-25px h-25px" src="./assets/images/svg/book.svg" alt="book logo">
     </div>
-    <div class="h-full flex justify-center items-center border border-underflow_grey-700 py-10px px-60px">
-      <p class="text-center uppercase text-10px text-underflow_grey-200">
+    <div class="h-80px flex justify-center items-center border border-underflow_grey-700 py-10px px-60px">
+      <p class="text-center text-underflow_grey-200 font-chennai">
         Mes cours
       </p>
     </div>
   </div>
 </div>
 
-
-<div class="flex justify-evenly px-10px lg:px-100px py-100px flex-wrap">
-  <div *ngFor="let course of coursesList">
+<ul class="flex justify-evenly px-10px lg:px-100px md:py-100px pb-100px flex-wrap">
+  <li *ngFor="let course of coursesList">
     <div class="relative bg-underflow_grey-800 rounded
-    w-500px h-500px p-30px my-10px lg:my-30px flex flex-col">
+    w-250px md:w-500px h-350px md:h-500px p-15px md:p-30px my-10px lg:my-30px flex flex-col">
       <div class="absolute top-0 right-0 p-30px">
         <h2 class="font-light">{{course?.subject?.title}}</h2>
       </div>
@@ -23,7 +22,8 @@
         <h2 class="text-24px font-bold z-20">
           {{course?.title}}
         </h2>
-        <img class="invert absolute top-0 left-0 w-100px h-100px z-10 opacity-10" src="./assets/images/svg/dotGroup.svg"
+        <img class="invert absolute top-0 left-0 w-100px h-100px z-10 opacity-10"
+             src="./assets/images/svg/dotGroup.svg"
              alt="dot group">
       </div>
       <div class="w-full h-3/6 overflow-hidden">
@@ -57,5 +57,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </li>
+  <li *ngIf="checkEmpty()">
+    no item :( !
+  </li>
+</ul>

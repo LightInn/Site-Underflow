@@ -8,7 +8,7 @@ import {Base} from "../../../interfaces/base";
 })
 export class FilesCreatesComponent implements OnInit {
   public base: Base = {
-    baseTitle: "Créer une fiche",
+    baseTitle: "Créer une fiche [Work in progress]",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu veux partager tes connaissances ?",
     baseDescriptionSecondPart: "C'est ici que ça se passe !",
