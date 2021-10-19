@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Base} from "../../../interfaces/base";
+import {AuthentificationService} from "../../../services/authentification.service";
+import {ToastService} from "../../../services/toast.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +27,11 @@ export class ProfileComponent implements OnInit {
     baseCitation: ""
   }
 
-  constructor() { }
+  constructor(
+    private authService: AuthentificationService,
+    private toastService: ToastService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }

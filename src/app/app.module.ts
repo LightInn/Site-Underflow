@@ -32,6 +32,8 @@ import { CoursesRegistrationsFilterComponent } from './components/courses/course
 import {ToastComponent} from './components/core/toast/toast.component';
 import {AuthentificationInterceptor} from './interceptors/authentification.interceptor'
 import {ToastService} from "./services/toast.service";
+import { ProfileFormComponent } from './components/authentification/profile/profile-form/profile-form.component';
+import { ProfileInscriptionsComponent } from './components/authentification/profile/profile-inscriptions/profile-inscriptions.component';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import {ToastService} from "./services/toast.service";
     CoursesRegistrationsFormComponent,
     CoursesRegistrationsFilterComponent,
     CoursesRegistrationsComponent,
-    ToastComponent
+    ToastComponent,
+    ProfileFormComponent,
+    ProfileInscriptionsComponent
 
 
   ],
