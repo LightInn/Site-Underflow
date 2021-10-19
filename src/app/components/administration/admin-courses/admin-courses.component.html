@@ -20,24 +20,29 @@
           class="text-md font-semibold tracking-wide text-left text-underflow_grey-50 bg-underflow_grey-800 uppercase border-b border-underflow-900">
           <th class="px-4 py-3">Id</th>
           <th class="px-4 py-3">Titre</th>
-          <th class="px-4 py-3">description</th>
-          <th class="px-4 py-3">Durée</th>
-          <th class="px-4 py-3">Date début</th>
           <th class="px-4 py-3">Matière</th>
           <th class="px-4 py-3">Prof</th>
           <th class="px-4 py-3">Niveau</th>
+          <th class="px-4 py-3">Date début</th>
+          <th class="px-4 py-3">Durée</th>
+          <th class="px-4 py-3"></th>
         </tr>
         </thead>
         <tbody class="bg-underflow_grey-700">
         <tr class="text-underflow_grey-50 font-semibold" *ngFor="let courses of coursesList">
           <td class="px-4 py-3 text-ms">{{courses.id}}</td>
           <td class="px-4 py-3 text-ms">{{courses.title}}</td>
-          <td class="px-4 py-3 text-ms">{{courses.description}}</td>
-          <td class="px-4 py-3 text-ms">{{courses.duration}}</td>
-          <td class="px-4 py-3 text-ms">{{courses.date_start | date}}</td>
           <td class="px-4 py-3 text-ms">{{courses.subject?.title}}</td>
           <td class="px-4 py-3 text-ms">{{courses.owner | userInfos}}</td>
           <td class="px-4 py-3 text-ms">{{courses.classe?.title}}</td>
+          <td class="px-4 py-3 text-ms">{{courses.date_start | date}}</td>
+          <td class="px-4 py-3 text-ms">{{courses.duration}}</td>
+          <td class="px-4 py-3 text-ms">
+            <div class="flex justify-end space-x-10px items-center">
+              <button (click)="change(courses)"><img src="./assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px"></button>
+              <button (click)="delete(courses)"><img src="./assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px"></button>
+            </div>
+          </td>
         </tr>
         </tbody>
       </table>

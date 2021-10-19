@@ -15,4 +15,11 @@ export class AdminUsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  change(user:User){
+
+  }
+
+  delete(user:User){
+
+  }
 }

@@ -17,4 +17,11 @@ export class AdminSubjectsComponent implements OnInit {
 
   }
 
+  change(subject:Subject){
+
+  }
+
+  delete(subject:Subject){
+
+  }
 }

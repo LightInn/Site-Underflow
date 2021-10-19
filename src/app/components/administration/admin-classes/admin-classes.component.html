@@ -20,12 +20,19 @@
           class="text-md font-semibold tracking-wide text-left text-underflow_grey-50 bg-underflow_grey-800 uppercase border-b border-underflow-900">
           <th class="px-4 py-3">Id</th>
           <th class="px-4 py-3">Title</th>
+          <th class="px-4 py-3"></th>
         </tr>
         </thead>
         <tbody class="bg-underflow_grey-700">
         <tr class="text-underflow_grey-50 font-semibold" *ngFor="let classe of classesList">
           <td class="px-4 py-3 text-ms">{{classe.id}}</td>
           <td class="px-4 py-3 text-ms">{{classe.title}}</td>
+          <td class="px-4 py-3 text-ms">
+            <div class="flex justify-end space-x-10px items-center">
+              <button (click)="change(classe)"><img src="./assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px"></button>
+              <button (click)="delete(classe)"><img src="./assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px"></button>
+            </div>
+          </td>
         </tr>
         </tbody>
       </table>

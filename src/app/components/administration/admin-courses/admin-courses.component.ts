@@ -16,4 +16,12 @@ export class AdminCoursesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  change(course:Courses){
+
+  }
+
+  delete(course:Courses){
+
+  }
+
 }

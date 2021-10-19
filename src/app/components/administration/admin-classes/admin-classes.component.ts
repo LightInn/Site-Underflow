@@ -14,4 +14,11 @@ export class AdminClassesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  change(classe:Classe){
+
+  }
+
+  delete(classe:Classe){
+
+  }
 }
