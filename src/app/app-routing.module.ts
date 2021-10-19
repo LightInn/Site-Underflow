@@ -10,6 +10,7 @@ import {FilesDownloadComponent} from "./components/files/files-download/files-do
 import {CoursesSuggestsComponent} from "./components/courses/courses-suggests/courses-suggests.component";
 import {CoursesCreatesComponent} from "./components/courses/courses-creates/courses-creates.component";
 import {CoursesRegistrationsComponent} from "./components/courses/courses-registrations/courses-registrations.component";
+import {AdministrationComponent} from "./components/administration/administration.component";
 import {SecurityGuard} from "./guards/security.guard";
 
 const routes: Routes = [
@@ -23,9 +24,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [SecurityGuard]},
+  {path: 'admin', component: AdministrationComponent, canActivate: [SecurityGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
-
-
 ];
 
 @NgModule({

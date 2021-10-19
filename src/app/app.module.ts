@@ -35,6 +35,11 @@ import {ToastService} from "./services/toast.service";
 import { ProfileFormComponent } from './components/authentification/profile/profile-form/profile-form.component';
 import { ProfileInscriptionsComponent } from './components/authentification/profile/profile-inscriptions/profile-inscriptions.component';
 import { AdministrationComponent } from './components/administration/administration.component';
+import { AdminClassesComponent } from './components/administration/admin-classes/admin-classes.component';
+import { AdminCoursesComponent } from './components/administration/admin-courses/admin-courses.component';
+import { AdminUsersComponent } from './components/administration/admin-users/admin-users.component';
+import { AdminSubjectsComponent } from './components/administration/admin-subjects/admin-subjects.component';
+import { UserInfosPipe } from './pipe/user-infos.pipe';
 
 
 @NgModule({
@@ -69,7 +74,12 @@ import { AdministrationComponent } from './components/administration/administrat
     ToastComponent,
     ProfileFormComponent,
     ProfileInscriptionsComponent,
-    AdministrationComponent
+    AdministrationComponent,
+    AdminClassesComponent,
+    AdminCoursesComponent,
+    AdminUsersComponent,
+    AdminSubjectsComponent,
+    UserInfosPipe
 
 
   ],
