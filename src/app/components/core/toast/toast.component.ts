@@ -16,7 +16,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       })),
       state('closed', style({
         opacity: 0,
-        transform: 'translateX(800px)'
+        transform: 'translateY(-50px)',
+        display: 'none'
       })),
       transition('open => closed', [
         animate('1s')

@@ -34,6 +34,7 @@ import {AuthentificationInterceptor} from './interceptors/authentification.inter
 import {ToastService} from "./services/toast.service";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import {ToastService} from "./services/toast.service";
     CoursesRegistrationsFormComponent,
     CoursesRegistrationsFilterComponent,
     CoursesRegistrationsComponent,
-    ToastComponent
+    ToastComponent,
+
 
 
   ],
@@ -74,7 +76,8 @@ import {ToastService} from "./services/toast.service";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},
