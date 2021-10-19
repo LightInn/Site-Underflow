@@ -12,7 +12,7 @@
       </button>
     </div>
   </div>
-  <div *ngIf="display" class="w-full mt-30px mb-8 overflow-hidden rounded-lg shadow-lg">
+  <div *ngIf="display else separator;" class="w-full mt-30px mb-8 overflow-hidden rounded-lg shadow-lg">
     <div class="w-full overflow-x-auto">
       <table class="w-full">
         <thead>
@@ -34,3 +34,6 @@
     </div>
   </div>
 </section>
+<ng-template #separator>
+  <div class="w-full h-1px px-100px border border-underflow_blue-50"></div>
+</ng-template>

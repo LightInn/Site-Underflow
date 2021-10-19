@@ -78,6 +78,8 @@ module.exports = {
         }
       },
       spacing: {
+        "1px": "1px",
+        "2px": "2px",
         "5px": "5px",
         "10px": "10px",
         "15px": "15px",

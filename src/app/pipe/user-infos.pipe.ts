@@ -6,7 +6,7 @@ import {User} from "../interfaces/user";
 })
 export class UserInfosPipe implements PipeTransform {
 
-  transform(users: User | undefined): string {
+  transform(users: User | undefined | null): string {
     if (!!users) {
       return `${users.last_name} ${users.first_name} - ${users.classe?.title}`;
     }

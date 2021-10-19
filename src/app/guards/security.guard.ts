@@ -23,8 +23,5 @@ export class SecurityGuard implements CanActivate {
       this.router.navigateByUrl("/login")
       return false;
     }
-
-
   }
-
 }
