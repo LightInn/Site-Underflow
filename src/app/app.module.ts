@@ -36,6 +36,7 @@ import { ProfileFormComponent } from './components/authentification/profile/prof
 import { ProfileInscriptionsComponent } from './components/authentification/profile/profile-inscriptions/profile-inscriptions.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,9 +66,10 @@ import { ProfileInscriptionsComponent } from './components/authentification/prof
     CoursesRegistrationsFormComponent,
     CoursesRegistrationsFilterComponent,
     CoursesRegistrationsComponent,
-    ToastComponent,
     ProfileFormComponent,
     ProfileInscriptionsComponent
+    ToastComponent,
+
 
 
   ],
@@ -78,7 +80,8 @@ import { ProfileInscriptionsComponent } from './components/authentification/prof
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},

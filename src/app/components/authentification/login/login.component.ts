@@ -3,20 +3,40 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthentificationService} from "../../../services/authentification.service";
 import {ToastService} from "../../../services/toast.service";
-import jwt_decode from 'jwt-decode';
-
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('loadPage',
+      [
+        state('load', style(
+          {
+            opacity: 1,
+            // transform: 'translateY(0px)',
+            height: '100%'
+          })),
+        state('unload', style({
+          opacity: 0,
+          // transform: 'translateY(1200px)',
+          height: '0%'
+        })),
+        transition('load => unload', [
+          animate('0.5s')
+        ]),
+        transition('unload => load', [
+          animate('1s')
+        ]),
+      ]),
+  ],
 })
 export class LoginComponent implements OnInit {
 
 
-  test: any;
-
   form: FormGroup;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder,
               private authService: AuthentificationService,
@@ -30,6 +50,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.loading = true;
+      console.log(this.loading)
+    }, 2000)
   }
 
 
@@ -51,10 +75,6 @@ export class LoginComponent implements OnInit {
         );
     }
   }
-
-
-
-
 
 
   register() {
