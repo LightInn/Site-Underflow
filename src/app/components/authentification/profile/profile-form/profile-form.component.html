@@ -1,0 +1,55 @@
+<form [formGroup]="form"
+      class="text-underflow_blue-300 flex justify-center
+      items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap"
+      id="formCreate" name="formCreate">
+  <fieldset>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
+        <label class="text-12px uppercase" for="firstname">prénom</label>
+        <input name="firstname" formControlName="firstname" placeholder="Prénom..."
+               type="text" id="firstname"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+      </div>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px uppercase" for="lastname">nom</label>
+        <input name="lastname" formControlName="lastname" placeholder="Nom..."
+               type="text" id="lastname"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+      </div>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
+        <label class="text-12px uppercase" for="password">Nouveau mot de passe</label>
+        <input name="password" formControlName="password" placeholder="●●●●●●●●●●"
+               type="password" id="password"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+      </div>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px uppercase" for="password_valid">Vadidation du nouveau mot de passe</label>
+        <input name="password_valid" formControlName="password_valid" placeholder="●●●●●●●●●●"
+               type="password" id="password_valid"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+      </div>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px text-left" for="classes">Classe</label>
+        <select name="classes" id="classes" formControlName="classes"
+                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
+                px-8 text-14px my-2 text-underflow_grey-50">
+          <option *ngFor="let classe of classesList;"
+                  value="{{classe.title}}">{{classe.title}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
+      <div class="form-buttons w-full flex justify-end items-end mt-30px">
+        <button
+          class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-20px"
+          (click)="submit()">submit
+        </button>
+      </div>
+    </div>
+  </fieldset>
+</form>
