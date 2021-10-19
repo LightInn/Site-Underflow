@@ -12,6 +12,7 @@ import {CoursesCreatesComponent} from "./components/courses/courses-creates/cour
 import {CoursesRegistrationsComponent} from "./components/courses/courses-registrations/courses-registrations.component";
 import {AdministrationComponent} from "./components/administration/administration.component";
 import {SecurityGuard} from "./guards/security.guard";
+import {UpdateClassesComponent} from "./components/administration/updates/update-classes/update-classes.component";
 
 const routes: Routes = [
   {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
@@ -25,6 +26,10 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [SecurityGuard]},
   {path: 'admin', component: AdministrationComponent, canActivate: [SecurityGuard]},
+  {path: 'admin/classe/:id', component: UpdateClassesComponent, canActivate: [SecurityGuard]},
+  {path: 'admin/course/:id', component: UpdateClassesComponent, canActivate: [SecurityGuard]},
+  {path: 'admin/subject/:id', component: UpdateClassesComponent, canActivate: [SecurityGuard]},
+  {path: 'admin/user/:id', component: UpdateClassesComponent, canActivate: [SecurityGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
 ];
 

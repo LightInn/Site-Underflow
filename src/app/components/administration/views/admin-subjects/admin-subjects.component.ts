@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Subject} from "../../../../interfaces/subject";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-subjects',
@@ -10,7 +11,7 @@ export class AdminSubjectsComponent implements OnInit {
   @Input() subjectsList : Array<Subject> | undefined ;
   display: boolean = true;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -18,10 +19,11 @@ export class AdminSubjectsComponent implements OnInit {
   }
 
   change(subject:Subject){
-
+    this.router.navigateByUrl(`/admin/subject/${subject.id}`);
   }
 
   delete(subject:Subject){
+    // todo call api delete classes
 
   }
 }
