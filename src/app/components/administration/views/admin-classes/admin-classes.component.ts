@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Classe} from "../../../interfaces/classe";
+import {Classe} from "../../../../interfaces/classe";
 
 @Component({
   selector: 'app-admin-classes',

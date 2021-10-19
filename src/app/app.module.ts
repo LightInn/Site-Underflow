@@ -35,11 +35,12 @@ import {ToastService} from "./services/toast.service";
 import { ProfileFormComponent } from './components/authentification/profile/profile-form/profile-form.component';
 import { ProfileInscriptionsComponent } from './components/authentification/profile/profile-inscriptions/profile-inscriptions.component';
 import { AdministrationComponent } from './components/administration/administration.component';
-import { AdminClassesComponent } from './components/administration/admin-classes/admin-classes.component';
-import { AdminCoursesComponent } from './components/administration/admin-courses/admin-courses.component';
-import { AdminUsersComponent } from './components/administration/admin-users/admin-users.component';
-import { AdminSubjectsComponent } from './components/administration/admin-subjects/admin-subjects.component';
+import { AdminClassesComponent } from './components/administration/views/admin-classes/admin-classes.component';
+import { AdminCoursesComponent } from './components/administration/views/admin-courses/admin-courses.component';
+import { AdminUsersComponent } from './components/administration/views/admin-users/admin-users.component';
+import { AdminSubjectsComponent } from './components/administration/views/admin-subjects/admin-subjects.component';
 import { UserInfosPipe } from './pipe/user-infos.pipe';
+import { UpdateClassesComponent } from './components/administration/updates/update-classes/update-classes.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { UserInfosPipe } from './pipe/user-infos.pipe';
     AdminCoursesComponent,
     AdminUsersComponent,
     AdminSubjectsComponent,
-    UserInfosPipe
+    UserInfosPipe,
+    UpdateClassesComponent
 
 
   ],

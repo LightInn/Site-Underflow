@@ -1,13 +1,13 @@
 <section class="container mx-auto p-6 ">
   <div class="grid grid-cols-2 justify-items-start">
     <div class="flex items-center">
-      <img src="./assets/images/svg/ecureuil-right.svg" alt="Scratch"
+      <img src="../../../../../assets/images/svg/ecureuil-right.svg" alt="Scratch"
            class="mr-30px h-35px w-35px">
-      <h2 class="text-36px">Utilisateur</h2>
+      <h2 class="text-36px">Matières</h2>
     </div>
     <div class="justify-self-end">
       <button (click)="display=!display">
-        <img src="./assets/images/svg/hidden.svg" alt="hidden"
+        <img src="../../../../../assets/images/svg/hidden.svg" alt="hidden"
              class="h-35px w-35px">
       </button>
     </div>
@@ -18,23 +18,21 @@
         <thead>
         <tr
           class="text-md font-semibold tracking-wide text-left text-underflow_grey-50 bg-underflow_grey-800 uppercase border-b border-underflow-900">
-          <th class="px-4 py-3">Nom</th>
-          <th class="px-4 py-3">Prénom</th>
-          <th class="px-4 py-3">Classe</th>
-          <th class="px-4 py-3">Email</th>
+          <th class="px-4 py-3">Id</th>
+          <th class="px-4 py-3">Title</th>
+          <th class="px-4 py-3">Proposé par</th>
           <th class="px-4 py-3"></th>
         </tr>
         </thead>
         <tbody class="bg-underflow_grey-700">
-        <tr class="text-underflow_grey-50 font-semibold" *ngFor="let user of usersList">
-          <td class="px-4 py-3 text-ms">{{user.first_name}}</td>
-          <td class="px-4 py-3 text-ms">{{user.last_name}}</td>
-          <td class="px-4 py-3 text-ms">{{user.classe?.title}}</td>
-          <td class="px-4 py-3 text-ms">{{user.email}}</td>
+        <tr class="text-underflow_grey-50 font-semibold" *ngFor="let subject of subjectsList">
+          <td class="px-4 py-3 text-ms">{{subject.id}}</td>
+          <td class="px-4 py-3 text-ms">{{subject.title}}</td>
+          <td class="px-4 py-3 text-ms">{{subject.proposePar | userInfos}}</td>
           <td class="px-4 py-3 text-ms">
             <div class="flex justify-end space-x-10px items-center">
-              <button (click)="change(user)"><img src="./assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px"></button>
-              <button (click)="delete(user)"><img src="./assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px"></button>
+              <button (click)="change(subject)"><img src="../../../../../assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px"></button>
+              <button (click)="delete(subject)"><img src="../../../../../assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px"></button>
             </div>
           </td>
         </tr>

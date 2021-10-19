@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Subject} from "../../../interfaces/subject";
+import {Subject} from "../../../../interfaces/subject";
 
 @Component({
   selector: 'app-admin-subjects',
