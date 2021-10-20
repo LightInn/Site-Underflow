@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Base} from "../../../interfaces/base";
 import {AuthentificationService} from "../../../services/authentification.service";
 import {ToastService} from "../../../services/toast.service";
@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     baseAdditionalCitation: false,
     baseAdditionalButton: false,
     basePath: "",
-    baseAsset : false,
+    baseAsset: false,
     baseAssetPath: "",
     baseAlt: "",
     baseContent: "",
@@ -31,9 +31,19 @@ export class ProfileComponent implements OnInit {
     private authService: AuthentificationService,
     private toastService: ToastService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
+  }
+
+
+  logout(): void {
+
+    this.authService.logout()
+    this.router.navigateByUrl("/login")
+    this.toastService.newToast("Vous avez ete deconecter", false)
+
   }
 
 }
