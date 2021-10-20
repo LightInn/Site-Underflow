@@ -43,9 +43,8 @@ import { UserInfosPipe } from './pipe/user-infos.pipe';
 import { UpdateClasseComponent } from './components/administration/updates/update-classe/update-classe.component';
 import { UpdateCourseComponent } from './components/administration/updates/update-course/update-course.component';
 import { UpdateSubjectComponent } from './components/administration/updates/update-subject/update-subject.component';
-import { UpdateUserComponent } from './components/administration/updates/update-user/update-user.component';
+// import { UpdateUserComponent } from './components/administration/updates/update-user/update-user.component';
 import {StoreService} from "./services/store/store.service";
-
 
 
 @NgModule({
@@ -79,11 +78,17 @@ import {StoreService} from "./services/store/store.service";
     CoursesRegistrationsComponent,
     ProfileFormComponent,
     AdminSubjectsComponent,
-    ProfileInscriptionsComponent
+    ProfileInscriptionsComponent,
     ToastComponent,
-
-
-
+    AdministrationComponent,
+    AdminClassesComponent,
+    AdminCoursesComponent,
+    AdminUsersComponent,
+    UserInfosPipe,
+    UpdateClasseComponent,
+    UpdateCourseComponent,
+    UpdateSubjectComponent,
+    // UpdateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +98,6 @@ import {StoreService} from "./services/store/store.service";
     BrowserAnimationsModule,
     FormsModule,
     Ng2SearchPipeModule,
-
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},

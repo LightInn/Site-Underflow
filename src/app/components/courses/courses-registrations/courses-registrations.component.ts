@@ -21,7 +21,7 @@ export class CoursesRegistrationsComponent implements OnInit {
     baseAlt: "Proposition de cours",
     baseContent: "Proposer un cours",
     baseAlternative: false,
-    baseAdditionnalSentence: "Tu ne trouves pas le cours que tu voulais ?",
+    baseAdditionnalSentence: "Tu ne trouve pas le cours que tu voulais ?",
     baseCitation:""
   }
 
