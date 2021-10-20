@@ -47,6 +47,7 @@ import { UpdateUserComponent } from './components/administration/updates/update-
 import {StoreService} from "./services/store/store.service";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,19 +77,11 @@ import {StoreService} from "./services/store/store.service";
     CoursesRegistrationsFormComponent,
     CoursesRegistrationsFilterComponent,
     CoursesRegistrationsComponent,
-    ToastComponent,
     ProfileFormComponent,
-    ProfileInscriptionsComponent,
-    AdministrationComponent,
-    AdminClassesComponent,
-    AdminCoursesComponent,
-    AdminUsersComponent,
     AdminSubjectsComponent,
-    UserInfosPipe,
-    UpdateClasseComponent,
-    UpdateCourseComponent,
-    UpdateSubjectComponent,
-    UpdateUserComponent
+    ProfileInscriptionsComponent
+    ToastComponent,
+
 
 
   ],
@@ -99,7 +92,8 @@ import {StoreService} from "./services/store/store.service";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},
