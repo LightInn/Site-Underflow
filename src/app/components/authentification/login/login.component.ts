@@ -5,6 +5,7 @@ import {AuthentificationService} from "../../../services/authentification.servic
 import {ToastService} from "../../../services/toast.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
