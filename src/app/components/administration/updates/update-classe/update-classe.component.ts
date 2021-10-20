@@ -11,7 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class UpdateClasseComponent implements OnInit {
   form: FormGroup;
-  courseId: string | null;
+  classeId: string | null;
 
   constructor(private fb: FormBuilder,
               private authService: AuthentificationService,
@@ -23,7 +23,7 @@ export class UpdateClasseComponent implements OnInit {
       id: ['', [Validators.required]],
       title: ['', [Validators.required]],
     });
-    this.courseId = this.route.snapshot.paramMap.get('id');
+    this.classeId = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class UpdateClasseComponent implements OnInit {
     console.log(this.form.status === "INVALID")
     console.log(this.form.value)
 
-    console.log(this.courseId)
+    console.log(this.classeId)
 
     this.toastService.newToast("Update classe...", true)
     //  todo call api

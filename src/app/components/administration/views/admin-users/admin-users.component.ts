@@ -16,12 +16,13 @@ export class AdminUsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  change(user:User){
-    this.router.navigateByUrl(`/admin/user/${user.id}`);
-  }
+  // change(user:User){
+  //   // this.router.navigateByUrl(`/admin/user/${user.id}`);
+  // }
 
   delete(user:User){
     // todo call api delete classes
-
+    console.log("delete ")
+    console.log(user)
   }
 }

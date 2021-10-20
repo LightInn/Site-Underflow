@@ -13,6 +13,8 @@ import {CoursesRegistrationsComponent} from "./components/courses/courses-regist
 import {AdministrationComponent} from "./components/administration/administration.component";
 import {SecurityGuard} from "./guards/security.guard";
 import {UpdateClasseComponent} from "./components/administration/updates/update-classe/update-classe.component";
+import {UpdateCourseComponent} from "./components/administration/updates/update-course/update-course.component";
+import {UpdateSubjectComponent} from "./components/administration/updates/update-subject/update-subject.component";
 
 const routes: Routes = [
   {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
@@ -27,9 +29,10 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [SecurityGuard]},
   {path: 'admin', component: AdministrationComponent, canActivate: [SecurityGuard]},
   {path: 'admin/classe/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
-  {path: 'admin/course/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
-  {path: 'admin/subject/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
-  {path: 'admin/user/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
+  {path: 'admin/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
+  {path: 'admin/subject/:id', component: UpdateSubjectComponent, canActivate: [SecurityGuard]},
+  // todo voir si besoins de géré les utilisateurs depuis le pannel admin ? (droit de touchés aux infos utilisateurs ?)
+  // {path: 'admin/user/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
 ];
 

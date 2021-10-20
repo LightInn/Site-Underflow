@@ -44,6 +44,7 @@ import { UpdateClasseComponent } from './components/administration/updates/updat
 import { UpdateCourseComponent } from './components/administration/updates/update-course/update-course.component';
 import { UpdateSubjectComponent } from './components/administration/updates/update-subject/update-subject.component';
 import { UpdateUserComponent } from './components/administration/updates/update-user/update-user.component';
+import {StoreService} from "./services/store/store.service";
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { UpdateUserComponent } from './components/administration/updates/update-
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},
-    ToastService
+    ToastService,
+    StoreService
   ],
   bootstrap: [AppComponent]
 })
