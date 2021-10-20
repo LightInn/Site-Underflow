@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
-import {templateJitUrl} from "@angular/compiler";
+import {BehaviorSubject} from "rxjs";
 import {MessageToast} from "../interfaces/message-toast";
 
 @Injectable({
@@ -26,10 +25,26 @@ export class ToastService {
 
 
   public newToast(message: string, error: boolean) {
-    ToastService.message.content = message;
-    ToastService.message.error = error;
-    ToastService.message.close = false;
-    this.behaviorSubject.next(ToastService.message);
+
+    if (message != "" && message != undefined) {
+
+      ToastService.message.content = message;
+      ToastService.message.error = error;
+      ToastService.message.close = false;
+
+      console.log(message);
+
+      this.behaviorSubject.next(ToastService.message);
+    } else {
+
+      ToastService.message.content = "Erreur";
+      ToastService.message.error = true;
+      ToastService.message.close = false;
+
+      this.behaviorSubject.next(ToastService.message);
+
+    }
+
   }
 
   public getBehaviorSubject() {
