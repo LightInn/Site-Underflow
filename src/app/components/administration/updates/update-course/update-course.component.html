@@ -2,10 +2,12 @@
   <div class="w-full justify-center flex">
     <div class="h-full flex justify-center items-center">
       <img src="./assets/images/svg/ecureuil-right.svg" alt="Scratch"
-           class="mr-30px h-50px w-50px">
+           class="mr-30px h-50px w-50px"
+           draggable="false">
       <h1 class="text-36px text-center">Admin page</h1>
       <img src="./assets/images/svg/ecureuil.svg" alt="Scratch"
-           class="ml-30px h-50px w-50px">
+           class="ml-30px h-50px w-50px"
+           draggable="false">
     </div>
   </div>
 </div>
@@ -88,10 +90,10 @@
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
         <label class="text-12px" for="closed">terminé ?</label>
-<!--        <input name="closed" formControlName="closed"-->
-<!--               type="checkbox" id="closed"-->
-<!--               class="h-30px bg-underflow_grey-800 border-underflow_blue-300-->
-<!--               border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">-->
+        <!--        <input name="closed" formControlName="closed"-->
+        <!--               type="checkbox" id="closed"-->
+        <!--               class="h-30px bg-underflow_grey-800 border-underflow_blue-300-->
+        <!--               border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">-->
         <!-- Rounded switch -->
         <div class="h-60px flex justify-center items-center my-2">
           <label class="switch">
@@ -118,13 +120,13 @@
   <div class="grid grid-cols-2 justify-items-start">
     <div class="flex items-center">
       <img src="../../../../../assets/images/svg/ecureuil-right.svg" alt="Scratch"
-           class="mr-30px h-35px w-35px">
+           class="mr-30px h-35px w-35px" draggable="false">
       <h2 class="text-36px">Utilisateur inscrits</h2>
     </div>
     <div class="justify-self-end">
       <button (click)="display=!display">
         <img src="../../../../../assets/images/svg/hidden.svg" alt="hidden"
-             class="h-35px w-35px">
+             class="h-35px w-35px" draggable="false">
       </button>
     </div>
   </div>
@@ -150,7 +152,8 @@
           <td class="px-4 py-3 text-ms">
             <div class="flex justify-end space-x-10px items-center">
               <!--              <button (click)="change(user)"><img src="../../../../../assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px"></button>-->
-              <button (click)="delete(userRegistred)"><img src="../../../../../assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px"></button>
+              <button (click)="delete(userRegistred)"><img src="../../../../../assets/images/svg/delete.svg"
+                                                           alt="delete" class="h-20px w-20px" draggable="false"></button>
             </div>
           </td>
         </tr>

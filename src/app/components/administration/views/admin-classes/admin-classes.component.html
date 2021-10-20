@@ -2,13 +2,13 @@
   <div class="grid grid-cols-2 justify-items-start">
     <div class="flex items-center">
       <img src="../../../../../assets/images/svg/ecureuil-right.svg" alt="Scratch"
-           class="mr-30px h-35px w-35px">
+           class="mr-30px h-35px w-35px" draggable="false">
       <h2 class="text-36px">Classes</h2>
     </div>
     <div class="justify-self-end">
       <button (click)="display=!display">
         <img src="../../../../../assets/images/svg/hidden.svg" alt="hidden"
-             class="h-35px w-35px">
+             class="h-35px w-35px" draggable="false">
       </button>
     </div>
   </div>
@@ -29,8 +29,8 @@
           <td class="px-4 py-3 text-ms">{{classe.title}}</td>
           <td class="md:px-4 py-3 text-ms">
             <div class="flex justify-end space-x-10px items-center">
-              <button (click)="change(classe)"><img src="../../../../../assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px"></button>
-              <button (click)="delete(classe)"><img src="../../../../../assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px"></button>
+              <button (click)="change(classe)"><img src="../../../../../assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px" draggable="false"></button>
+              <button (click)="delete(classe)"><img src="../../../../../assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px" draggable="false"></button>
             </div>
           </td>
         </tr>
