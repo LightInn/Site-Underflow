@@ -6,6 +6,8 @@ import {AuthentificationService} from "../../../../services/authentification.ser
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat";
+import {ClassesService} from "../../../../services/callAPI/classes.service";
+import {SubjetsService} from "../../../../services/callAPI/subjets.service";
 
 @Component({
   selector: 'app-courses-suggests-form',
@@ -45,7 +47,9 @@ export class CoursesSuggestsFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private authService: AuthentificationService,
               private toastService: ToastService,
-              private router: Router) {
+              private router: Router,
+              private classeService: ClassesService,
+              private subjectService: SubjetsService) {
     this.form = this.fb.group({
       title: ['', [Validators.required]],
       date_butoir: ['', [Validators.required]],
@@ -63,34 +67,20 @@ export class CoursesSuggestsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subjectslist = [
-      {
-        id: 1,
-        title: "premiere matière"
-      },
-      {
-        id: 2,
-        title: "deuxième matière"
-      },
-      {
-        id: 3,
-        title: "troisième matière"
-      },
-    ]
-    this.classesList = [
-      {
-        id: 1,
-        title: "B1"
-      },
-      {
-        id: 2,
-        title: "B2"
-      },
-      {
-        id: 3,
-        title: "B3"
+    this.classeService.classes.subscribe(
+      classes => {
+        this.classesList = classes;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
       }
-    ]
+    )
+    this.subjectService.subjects.subscribe(
+      subjects => {
+        this.subjectslist = subjects;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
   }
 
   /**
