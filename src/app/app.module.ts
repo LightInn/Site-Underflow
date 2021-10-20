@@ -79,7 +79,6 @@ import {StoreService} from "./services/store/store.service";
     ProfileFormComponent,
     AdminSubjectsComponent,
     ProfileCoursesRegistrationsComponent,
-    ProfileInscriptionsComponent,
     ToastComponent,
     AdministrationComponent,
     AdminClassesComponent,
