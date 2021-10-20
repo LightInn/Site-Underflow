@@ -66,7 +66,6 @@
                class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
                rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
                 px-8 text-14px my-2 text-underflow_grey-50">
-
         <datalist id="users_datalist">
           <option *ngFor="let user of usersList;"
                   value="{{user}}">{{user.last_name}} {{user.first_name}} - {{user.classe?.title}}</option>
