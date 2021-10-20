@@ -67,7 +67,7 @@ import { ProfileInscriptionsComponent } from './components/authentification/prof
     CoursesRegistrationsFilterComponent,
     CoursesRegistrationsComponent,
     ProfileFormComponent,
-    ProfileInscriptionsComponent
+    ProfileInscriptionsComponent,
     ToastComponent,
 
 
