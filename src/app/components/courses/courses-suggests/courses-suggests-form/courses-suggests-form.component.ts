@@ -93,19 +93,11 @@ export class CoursesSuggestsFormComponent implements OnInit {
     ]
   }
 
-  resetError() {
-    this.error_date = false;
-    this.error_classe = false;
-    this.error_subject = false;
-    this.error_title = false;
-  }
-
   /**
    * submit function for the suggestion,
-   * we test here all our fields to validate the form or display message errors
+   * we also test here all our fields to validate the form or display message errors
    */
   submit() {
-    // this.resetError();
     // todo submit
     console.log(this.form.status === "VALID")
     console.log(this.form.status === "INVALID")

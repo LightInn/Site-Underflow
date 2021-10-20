@@ -96,7 +96,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
     document.forms["formCreate"]["title"].value = suggest.title;
     // @ts-ignore
     // document.forms["formCreate"]["date"].value=this.toFormDateLocaleString(suggest.date_butoir);
-    document.forms["formCreate"]["date"].value = this.toFormDateLocaleString(new Date(Date.now()));
+    document.forms["formCreate"]["date"].value = toFormDateLocaleString(new Date(Date.now()));
     // @ts-ignore
     document.forms["formCreate"]["classes"].value = suggest?.classe?.title;
     // @ts-ignore

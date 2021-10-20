@@ -9,10 +9,10 @@ import {User} from "../../../../interfaces/user";
 
 @Component({
   selector: 'app-profile-inscriptions',
-  templateUrl: './profile-inscriptions.component.html',
-  styleUrls: ['./profile-inscriptions.component.scss']
+  templateUrl: './profile-courses-registrations.component.html',
+  styleUrls: ['./profile-courses-registrations.component.scss']
 })
-export class ProfileInscriptionsComponent implements OnInit {
+export class ProfileCoursesRegistrationsComponent implements OnInit {
   // *************** Declaration part ******************* //
   currentUser: User = {id: "981477da-31c3-4887-b98f-6f9cc0f44e40"};
   courseInscription: Array<CourseSubscription> = [];
@@ -24,7 +24,6 @@ export class ProfileInscriptionsComponent implements OnInit {
     private toastService: ToastService,
     private router: Router
   ) {
-
   }
 
   ngOnInit(): void {

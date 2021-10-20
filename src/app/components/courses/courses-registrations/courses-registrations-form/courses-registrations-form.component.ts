@@ -177,7 +177,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         this.coursesListFiltered = JSON.parse(JSON.stringify(courseToDisplayList));
     }
 
-
     // group of functions binded to child ( filter component )
     triggerFilter(event: any, from: string) {
         this.callFilter(event, from);
@@ -226,11 +225,11 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         const date = new Date(Date.now());
         // reset date if it's falsy
         // @ts-ignore
-        if ((this.filter_selectedDateStart) == false) {
+        if ((this.filter_selectedDateStart) === false) {
             this.filter_selectedDateStart = toFormDateLocaleString(date);
         }
         // @ts-ignore
-        if ((this.filter_selectedDateEnd) == false) {
+        if ((this.filter_selectedDateEnd) === false) {
             this.filter_selectedDateEnd = toFormDateLocaleString(new Date(date.setDate(date.getDate() + 14)));
         }
         // @ts-ignore
@@ -315,10 +314,10 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         // @ts-ignore
         if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
             // call api to subcribe on course
-            this.toastService.newToast("Inscription à un cours...", true)
+            this.toastService.newToast("Inscription à un cours...", false)
         } else {
             // call api to unsubcribe on course
-            this.toastService.newToast("Désinscription à un cours...", true)
+            this.toastService.newToast("Désinscription à un cours...", false)
         }
     }
 }

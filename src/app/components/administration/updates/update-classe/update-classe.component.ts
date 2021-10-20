@@ -28,7 +28,6 @@ export class UpdateClasseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   submit() {

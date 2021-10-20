@@ -33,7 +33,7 @@ import {ToastComponent} from './components/core/toast/toast.component';
 import {AuthentificationInterceptor} from './interceptors/authentification.interceptor'
 import {ToastService} from "./services/toast.service";
 import { ProfileFormComponent } from './components/authentification/profile/profile-form/profile-form.component';
-import { ProfileInscriptionsComponent } from './components/authentification/profile/profile-inscriptions/profile-inscriptions.component';
+import { ProfileCoursesRegistrationsComponent } from './components/authentification/profile/profile-courses-registrations/profile-courses-registrations.component';
 import { AdministrationComponent } from './components/administration/administration.component';
 import { AdminClassesComponent } from './components/administration/views/admin-classes/admin-classes.component';
 import { AdminCoursesComponent } from './components/administration/views/admin-courses/admin-courses.component';
@@ -78,7 +78,7 @@ import {StoreService} from "./services/store/store.service";
     CoursesRegistrationsComponent,
     ProfileFormComponent,
     AdminSubjectsComponent,
-    ProfileInscriptionsComponent,
+    ProfileCoursesRegistrationsComponent,
     ToastComponent,
     AdministrationComponent,
     AdminClassesComponent,
