@@ -12,18 +12,16 @@ import {ApiUrl} from "../constants/api.url";
   providedIn: 'root'
 })
 export class AuthentificationService {
+  // *************** Declaration part ******************* //
   private expiresAt: moment.MomentInput;
   public static csrfToken: string;
 
-
   constructor(private http: HttpClient) {
-
   }
 
   getCSRF() {
     return this.http.get<CSRFToken>(ApiUrl + '/csrf-token/')
   }
-
 
   login(email: string, password: string) {
     return this.http.post<JwTokenEncoded>(ApiUrl + '/login/', {email, password}).pipe(
@@ -37,7 +35,6 @@ export class AuthentificationService {
     )
   }
 
-
   setSession(jwt: JwTokenEncoded) {
     localStorage.setItem('jwt', JSON.stringify(jwt));
   }
@@ -49,6 +46,4 @@ export class AuthentificationService {
   public isLoggedIn() {
     return localStorage.getItem("jwt") != undefined;
   }
-
-
 }

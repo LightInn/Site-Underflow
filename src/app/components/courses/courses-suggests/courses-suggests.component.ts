@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Base} from "../../../interfaces/base";
 
 @Component({
@@ -7,26 +7,27 @@ import {Base} from "../../../interfaces/base";
   styleUrls: ['./courses-suggests.component.scss']
 })
 export class CoursesSuggestsComponent implements OnInit {
+  // *************** Declaration part ******************* //
   public base: Base = {
-    baseTitle:"Suggérer un cours",
-    baseLandingMode:false,
-    baseDescriptionFirstPart:"Tu as besoin d'aide dans une matière ?",
-    baseDescriptionSecondPart:"Fais ta demande ici !",
-    baseAdditionalCitation:false,
-    baseAdditionalButton:false,
-    basePath:"",
-    baseAsset : false,
-    baseAssetPath:"",
-    baseAlt:"",
-    baseContent:"",
-    baseAlternative:false,
-    baseAdditionnalSentence:"",
-    baseCitation:""
+    baseTitle: "Suggérer un cours",
+    baseLandingMode: false,
+    baseDescriptionFirstPart: "Tu as besoin d'aide dans une matière ?",
+    baseDescriptionSecondPart: "Fais ta demande ici !",
+    baseAdditionalCitation: false,
+    baseAdditionalButton: false,
+    basePath: "",
+    baseAsset: false,
+    baseAssetPath: "",
+    baseAlt: "",
+    baseContent: "",
+    baseAlternative: false,
+    baseAdditionnalSentence: "",
+    baseCitation: ""
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

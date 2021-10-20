@@ -3,8 +3,8 @@ import {Component, Input, NgModule, OnInit, Output, EventEmitter} from '@angular
 import {CourseSubscription} from "../../../../interfaces/courseSubscription";
 import {Courses} from "../../../../interfaces/course";
 import {Classe} from "../../../../interfaces/classe";
-import { from } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import {from} from 'rxjs';
+import {filter} from 'rxjs/operators';
 import {sanitizeString} from "../../../../functions/sanitizeString";
 import {sanitizeDate} from "../../../../functions/sanitizeDate";
 
@@ -14,7 +14,7 @@ import {sanitizeDate} from "../../../../functions/sanitizeDate";
   styleUrls: ['./courses-registrations-filter.component.scss']
 })
 export class CoursesRegistrationsFilterComponent implements OnInit {
-  // init input elements
+  // *************** Declaration part ******************* //
   @Input() courseInscription?: Array<CourseSubscription>;
   @Input() coursesList?: Array<Courses>;
   @Input() classesList?: Array<Classe>;
@@ -25,38 +25,34 @@ export class CoursesRegistrationsFilterComponent implements OnInit {
   @Input() filter_searchBarText?: string = "";
 
   // emit event to double way data binding, we also sanitize entries
-  @Output()
-  triggeredClasse = new EventEmitter<string>();
-  uploadEventClasse(event:any){
-    event = sanitizeString(event)
-    this.triggeredClasse.emit(event);
-  }
-  @Output()
-  triggeredDateStart = new EventEmitter<string>();
-  uploadEventDateStart(event:any){
-    event = sanitizeDate(event)
-    this.triggeredDateStart.emit(event);
-  }
-  @Output()
-  triggeredDateEnd = new EventEmitter<string>();
-  uploadEventDateEnd(event:any){
-    event = sanitizeDate(event)
-    this.triggeredDateEnd.emit(event);
-  }
-  @Output()
-  triggeredBarText = new EventEmitter<string>();
-  uploadEventBarText(event:any){
-    event = sanitizeString(event)
-    this.triggeredBarText.emit(event);
-  }
-
+  @Output() triggeredClasse = new EventEmitter<string>();
+  @Output() triggeredDateStart = new EventEmitter<string>();
+  @Output() triggeredDateEnd = new EventEmitter<string>();
+  @Output() triggeredBarText = new EventEmitter<string>();
 
   constructor() {
-
   }
 
   ngOnInit(): void {
   }
 
+  uploadEventClasse(event: any) {
+    event = sanitizeString(event)
+    this.triggeredClasse.emit(event);
+  }
 
+  uploadEventDateStart(event: any) {
+    event = sanitizeDate(event)
+    this.triggeredDateStart.emit(event);
+  }
+
+  uploadEventDateEnd(event: any) {
+    event = sanitizeDate(event)
+    this.triggeredDateEnd.emit(event);
+  }
+
+  uploadEventBarText(event: any) {
+    event = sanitizeString(event)
+    this.triggeredBarText.emit(event);
+  }
 }

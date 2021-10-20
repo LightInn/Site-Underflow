@@ -13,6 +13,7 @@ import {User} from "../../../../interfaces/user";
   styleUrls: ['./update-course.component.scss']
 })
 export class UpdateCourseComponent implements OnInit {
+  // *************** Declaration part ******************* //
   form: FormGroup;
   courseId: string | null;
   subjectslist: Array<Subject>;

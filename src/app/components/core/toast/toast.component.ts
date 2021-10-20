@@ -29,17 +29,13 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   ],
 })
 export class ToastComponent implements OnInit {
-
-
+  // *************** Declaration part ******************* //
   public message: MessageToast = new MessageToast();
 
   constructor(private toastService: ToastService) {
-
   }
 
   ngOnInit(): void {
-
-
     this.toastService.getBehaviorSubject().subscribe(
       message => {
         this.message = message
@@ -50,13 +46,9 @@ export class ToastComponent implements OnInit {
       })
   }
 
-
   closeMessage(): void {
     if (this.message) {
       this.message.close = true;
     }
   }
-
-
 }
-

@@ -8,19 +8,17 @@ import {Router} from "@angular/router";
   styleUrls: ['./admin-users.component.scss']
 })
 export class AdminUsersComponent implements OnInit {
+  // *************** Declaration part ******************* //
   @Input() usersList: Array<User> | undefined;
-  display : boolean = true;
+  display: boolean = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
-  // change(user:User){
-  //   // this.router.navigateByUrl(`/admin/user/${user.id}`);
-  // }
-
-  delete(user:User){
+  delete(user: User) {
     // todo call api delete classes
     console.log("delete ")
     console.log(user)

@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./profile-form.component.scss']
 })
 export class ProfileFormComponent implements OnInit {
+  // *************** Declaration part ******************* //
   classesList: Array<Classe> = [];
   form: FormGroup;
   formPassword: FormGroup;

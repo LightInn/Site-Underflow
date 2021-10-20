@@ -31,8 +31,6 @@ const routes: Routes = [
   {path: 'admin/classe/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
   {path: 'admin/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
   {path: 'admin/subject/:id', component: UpdateSubjectComponent, canActivate: [SecurityGuard]},
-  // todo voir si besoins de géré les utilisateurs depuis le pannel admin ? (droit de touchés aux infos utilisateurs ?)
-  // {path: 'admin/user/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
 ];
 
@@ -40,5 +38,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule {
 }

@@ -9,12 +9,12 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  // *************** Declaration part ******************* //
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
               private authService: AuthentificationService,
               private router: Router) {
-
     this.form = this.fb.group({
       email: ['', Validators.required],
       firstname: ['', Validators.required],
@@ -24,13 +24,11 @@ export class RegisterComponent {
   }
 
   login() {
-
     this.router.navigateByUrl('/login');
   }
 
   register() {
     const val = this.form.value;
-
     if (val.email && val.password && val.firstname && val.lastname) {
       this.authService.register(val.email, val.firstname, val.lastname, val.password)
         .subscribe(
@@ -40,6 +38,5 @@ export class RegisterComponent {
           }
         );
     }
-
   }
 }

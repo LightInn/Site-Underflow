@@ -7,6 +7,7 @@ import {Base} from "../../../interfaces/base";
   styleUrls: ['./courses-creates.component.scss']
 })
 export class CoursesCreatesComponent implements OnInit {
+  // *************** Declaration part ******************* //
   public base: Base = {
     baseTitle: "Donner un cours",
     baseLandingMode: false,
@@ -15,7 +16,7 @@ export class CoursesCreatesComponent implements OnInit {
     baseAdditionalCitation: false,
     baseAdditionalButton: false,
     basePath: "",
-    baseAsset : false,
+    baseAsset: false,
     baseAssetPath: "",
     baseAlt: "",
     baseContent: "",
@@ -29,5 +30,4 @@ export class CoursesCreatesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

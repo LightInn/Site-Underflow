@@ -8,21 +8,21 @@ import {Router} from "@angular/router";
   styleUrls: ['./admin-subjects.component.scss']
 })
 export class AdminSubjectsComponent implements OnInit {
-  @Input() subjectsList : Array<Subject> | undefined ;
+  // *************** Declaration part ******************* //
+  @Input() subjectsList: Array<Subject> | undefined;
   display: boolean = true;
 
   constructor(private router: Router) {
   }
 
   ngOnInit(): void {
-
   }
 
-  change(subject:Subject){
+  change(subject: Subject) {
     this.router.navigateByUrl(`/admin/subject/${subject.id}`);
   }
 
-  delete(subject:Subject){
+  delete(subject: Subject) {
     // todo call api delete classes
 
   }
