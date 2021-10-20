@@ -34,6 +34,17 @@ import {AuthentificationInterceptor} from './interceptors/authentification.inter
 import {ToastService} from "./services/toast.service";
 import { ProfileFormComponent } from './components/authentification/profile/profile-form/profile-form.component';
 import { ProfileInscriptionsComponent } from './components/authentification/profile/profile-inscriptions/profile-inscriptions.component';
+import { AdministrationComponent } from './components/administration/administration.component';
+import { AdminClassesComponent } from './components/administration/views/admin-classes/admin-classes.component';
+import { AdminCoursesComponent } from './components/administration/views/admin-courses/admin-courses.component';
+import { AdminUsersComponent } from './components/administration/views/admin-users/admin-users.component';
+import { AdminSubjectsComponent } from './components/administration/views/admin-subjects/admin-subjects.component';
+import { UserInfosPipe } from './pipe/user-infos.pipe';
+import { UpdateClasseComponent } from './components/administration/updates/update-classe/update-classe.component';
+import { UpdateCourseComponent } from './components/administration/updates/update-course/update-course.component';
+import { UpdateSubjectComponent } from './components/administration/updates/update-subject/update-subject.component';
+import { UpdateUserComponent } from './components/administration/updates/update-user/update-user.component';
+import {StoreService} from "./services/store/store.service";
 
 
 @NgModule({
@@ -67,7 +78,17 @@ import { ProfileInscriptionsComponent } from './components/authentification/prof
     CoursesRegistrationsComponent,
     ToastComponent,
     ProfileFormComponent,
-    ProfileInscriptionsComponent
+    ProfileInscriptionsComponent,
+    AdministrationComponent,
+    AdminClassesComponent,
+    AdminCoursesComponent,
+    AdminUsersComponent,
+    AdminSubjectsComponent,
+    UserInfosPipe,
+    UpdateClasseComponent,
+    UpdateCourseComponent,
+    UpdateSubjectComponent,
+    UpdateUserComponent
 
 
   ],
@@ -82,7 +103,8 @@ import { ProfileInscriptionsComponent } from './components/authentification/prof
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},
-    ToastService
+    ToastService,
+    StoreService
   ],
   bootstrap: [AppComponent]
 })

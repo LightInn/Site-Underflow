@@ -1,0 +1,164 @@
+<div class="w-full flex justify-center pt-100px">
+  <div class="w-full justify-center flex">
+    <div class="h-full flex justify-center items-center">
+      <img src="./assets/images/svg/ecureuil-right.svg" alt="Scratch"
+           class="mr-30px h-50px w-50px">
+      <h1 class="text-36px text-center">Admin page</h1>
+      <img src="./assets/images/svg/ecureuil.svg" alt="Scratch"
+           class="ml-30px h-50px w-50px">
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="form"
+      class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap pt-50px">
+  <fieldset>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
+        <label class="text-12px" for="id">ID</label>
+        <input name="id" formControlName="id" placeholder="id"
+               type="number" id="id"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+      </div>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px" for="title">Title</label>
+        <input name="title" formControlName="title"
+               type="text" id="title"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300
+               border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+      </div>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px" for="subjects">Matière</label>
+        <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
+               placeholder="écrire ici..." formControlName="subjects"
+               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
+                px-8 text-14px my-2 text-underflow_grey-50">
+
+        <datalist id="subjects_datalist">
+          <option *ngFor="let subject of subjectslist;"
+                  value="{{subject.title}}">{{subject.title}}</option>
+        </datalist>
+      </div>
+
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px" for="classes">Niveau ciblé</label>
+        <input list="classes_datalist" name="classes" id="classes" autocomplete="off"
+               placeholder="écrire ici..." formControlName="classes"
+               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
+                px-8 text-14px my-2 text-underflow_grey-50">
+
+        <datalist id="classes_datalist">
+          <option *ngFor="let classe of classesList;"
+                  value="{{classe.title}}">{{classe.title}}</option>
+        </datalist>
+      </div>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px" for="user">Prof</label>
+        <input list="users_datalist" name="user" id="user" autocomplete="off"
+               placeholder="écrire ici..." formControlName="user"
+               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
+                px-8 text-14px my-2 text-underflow_grey-50">
+        <datalist id="users_datalist">
+          <option *ngFor="let user of usersList;"
+                  value="{{user}}">{{user.last_name}} {{user.first_name}} - {{user.classe?.title}}</option>
+        </datalist>
+      </div>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px" for="date">DATE DU COURS</label>
+        <input name="date" formControlName="date" id="date"
+               type="datetime-local"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+      </div>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
+        <label class="text-12px" for="duration">durée</label>
+        <input name="duration" formControlName="duration" placeholder="durée (en minutes)"
+               type="number" id="duration"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+      </div>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
+        <label class="text-12px" for="closed">terminé ?</label>
+<!--        <input name="closed" formControlName="closed"-->
+<!--               type="checkbox" id="closed"-->
+<!--               class="h-30px bg-underflow_grey-800 border-underflow_blue-300-->
+<!--               border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">-->
+        <!-- Rounded switch -->
+        <div class="h-60px flex justify-center items-center my-2">
+          <label class="switch">
+            <input type="checkbox"
+                   name="closed" formControlName="closed"
+                   id="closed">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-buttons w-full flex justify-end mt-30px">
+      <button
+        class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-20px"
+        (click)="submit()">submit
+      </button>
+    </div>
+  </fieldset>
+</form>
+
+<section class="container mx-auto px-6 pb-6 pt-100px">
+  <div class="grid grid-cols-2 justify-items-start">
+    <div class="flex items-center">
+      <img src="../../../../../assets/images/svg/ecureuil-right.svg" alt="Scratch"
+           class="mr-30px h-35px w-35px">
+      <h2 class="text-36px">Utilisateur inscrits</h2>
+    </div>
+    <div class="justify-self-end">
+      <button (click)="display=!display">
+        <img src="../../../../../assets/images/svg/hidden.svg" alt="hidden"
+             class="h-35px w-35px">
+      </button>
+    </div>
+  </div>
+  <div *ngIf="display else separator;" class="w-full mt-30px mb-8 overflow-hidden rounded-lg shadow-lg">
+    <div class="w-full overflow-x-auto">
+      <table class="w-full">
+        <thead>
+        <tr
+          class="text-md font-semibold tracking-wide text-left text-underflow_grey-50 bg-underflow_grey-800 uppercase border-b border-underflow-900">
+          <th class="px-4 py-3">Nom</th>
+          <th class="px-4 py-3">Prénom</th>
+          <th class="px-4 py-3">Classe</th>
+          <th class="px-4 py-3">Email</th>
+          <th class="px-4 py-3"></th>
+        </tr>
+        </thead>
+        <tbody class="bg-underflow_grey-700">
+        <tr class="text-underflow_grey-50 font-semibold" *ngFor="let userRegistred of usersListRegistred">
+          <td class="px-4 py-3 text-ms">{{userRegistred.first_name}}</td>
+          <td class="px-4 py-3 text-ms">{{userRegistred.last_name}}</td>
+          <td class="px-4 py-3 text-ms">{{userRegistred.classe?.title}}</td>
+          <td class="px-4 py-3 text-ms">{{userRegistred.email}}</td>
+          <td class="px-4 py-3 text-ms">
+            <div class="flex justify-end space-x-10px items-center">
+              <!--              <button (click)="change(user)"><img src="../../../../../assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px"></button>-->
+              <button (click)="delete(userRegistred)"><img src="../../../../../assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px"></button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<ng-template #separator>
+  <div class="w-full h-1px px-100px border border-underflow_blue-50"></div>
+</ng-template>

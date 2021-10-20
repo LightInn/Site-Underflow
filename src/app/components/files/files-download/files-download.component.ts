@@ -8,7 +8,7 @@ import {Base} from "../../../interfaces/base";
 })
 export class FilesDownloadComponent implements OnInit {
   public base: Base = {
-    baseTitle: "Les fiches",
+    baseTitle: "Les fiches, [Work in progress]",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu veux trouver une documentation ? Un tuto ?",
     baseDescriptionSecondPart: "C'est ici que ça se passe !",

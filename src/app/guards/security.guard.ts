@@ -16,15 +16,12 @@ export class SecurityGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    // return true;
+    return true;
     if (this.authService.isLoggedIn()) {
       return true;
     } else {
       this.router.navigateByUrl("/login")
       return false;
     }
-
-
   }
-
 }

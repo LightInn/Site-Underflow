@@ -6,16 +6,18 @@
         <label class="text-12px" for="title">INTITULÉ DU COURS SUGGÉRER</label>
         <input name="title" formControlName="title" placeholder="Intitulé du cours"
                type="text" id="title"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300
+               border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
         <label class="text-12px" for="date_butoir">DATE BUTOIRE</label>
         <input name="date_butoir" formControlName="date_butoir"
-               type="datetime-local" id="date_butoir"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               type="datetime-local" id="date_butoir" [min]="date_min" [max]="date_max"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800
+               border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
       </div>
     </div>
-<!--    todo form group delaying ngfor ? WTF -->
+
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
         <label class="text-12px" for="subjects">THÈME ABORDÉ SUGGÉRER</label>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Subject} from "../../../../interfaces/subject";
 import {Classe} from "../../../../interfaces/classe";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthentificationService} from "../../../../services/authentification.service";
+import {ToastService} from "../../../../services/toast.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-courses-creates-form',
@@ -19,10 +22,15 @@ export class CoursesCreatesFormComponent implements OnInit {
     console.log(this.form.status==="VALID")
     console.log(this.form.status==="INVALID")
     console.log(this.form.value)
+
+    this.toastService.newToast("Création de cours...", true)
     //  todo call api
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private authService: AuthentificationService,
+              private toastService: ToastService,
+              private router: Router) {
     this.form = this.fb.group({
       // todo validator personalized
       title: ['', [Validators.required]],
