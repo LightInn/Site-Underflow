@@ -11,6 +11,7 @@ import {Courses} from "../../interfaces/course";
   styleUrls: ['./administration.component.scss']
 })
 export class AdministrationComponent implements OnInit {
+  // *************** Declaration part ******************* //
   subjectslist: Array<Subject>;
   classesList: Array<Classe>;
   actualUser: User = {
@@ -159,7 +160,5 @@ export class AdministrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
-
 }

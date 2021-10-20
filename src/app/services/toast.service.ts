@@ -6,23 +6,18 @@ import {MessageToast} from "../interfaces/message-toast";
   providedIn: 'root'
 })
 export class ToastService {
-
+  // *************** Declaration part ******************* //
   private static message: MessageToast
   private behaviorSubject: BehaviorSubject<MessageToast>;
 
   constructor() {
-
     if (ToastService.message === undefined) {
       const message = new MessageToast()
       message.content = "Re Bonjour !"
       ToastService.message = message
     }
-
-
     this.behaviorSubject = new BehaviorSubject(ToastService.message);
-
   }
-
 
   public newToast(message: string, error: boolean) {
 
@@ -50,6 +45,4 @@ export class ToastService {
   public getBehaviorSubject() {
     return this.behaviorSubject;
   }
-
-
 }

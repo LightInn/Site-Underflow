@@ -34,8 +34,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   ],
 })
 export class LoginComponent implements OnInit {
-
-
+  // *************** Declaration part ******************* //
   form: FormGroup;
   loading: boolean = false;
 
@@ -57,7 +56,6 @@ export class LoginComponent implements OnInit {
     }, 2000)
   }
 
-
   login() {
     const val = this.form.value;
     this.toastService.newToast("Connexion...", true)
@@ -76,7 +74,6 @@ export class LoginComponent implements OnInit {
         );
     }
   }
-
 
   register() {
     this.router.navigateByUrl("/register");

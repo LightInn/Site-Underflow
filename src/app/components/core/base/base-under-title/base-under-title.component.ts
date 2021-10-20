@@ -6,17 +6,14 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./base-under-title.component.scss']
 })
 export class BaseUnderTitleComponent implements OnInit {
-
+  // *************** Declaration part ******************* //
   @Input() landingMode?: boolean;
   @Input() descriptionFirstPart?: string;
   @Input() descriptionSecondPart?: string;
 
   constructor() {
-
   }
 
   ngOnInit(): void {
-
   }
-
 }

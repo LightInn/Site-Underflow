@@ -9,11 +9,12 @@ import {User} from "../../../../interfaces/user";
 
 @Component({
   selector: 'app-profile-inscriptions',
-  templateUrl: './profile-inscriptions.component.html',
-  styleUrls: ['./profile-inscriptions.component.scss']
+  templateUrl: './profile-courses-registrations.component.html',
+  styleUrls: ['./profile-courses-registrations.component.scss']
 })
-export class ProfileInscriptionsComponent implements OnInit {
-  currentUser : User = {id:"981477da-31c3-4887-b98f-6f9cc0f44e40"};
+export class ProfileCoursesRegistrationsComponent implements OnInit {
+  // *************** Declaration part ******************* //
+  currentUser: User = {id: "981477da-31c3-4887-b98f-6f9cc0f44e40"};
   courseInscription: Array<CourseSubscription> = [];
   coursesList?: Array<Courses> = [];
   checked: boolean = true;
@@ -23,7 +24,6 @@ export class ProfileInscriptionsComponent implements OnInit {
     private toastService: ToastService,
     private router: Router
   ) {
-
   }
 
   ngOnInit(): void {
@@ -127,27 +127,22 @@ export class ProfileInscriptionsComponent implements OnInit {
 
   // elem check function -> we test if the user is already registred on the course
   elemCheck(id?: number) {
-    // if id is defined we test it
-    // if (!!id) {
-    //   // @ts-ignore
     return (!!(this.courseInscription.find(({id_course}) => id_course === id)));
-    // }
-    // return false
   }
 
   // If we clic on toggle button -> then toggle the inscription to the course
   clickEvent(id?: number) {
     if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
       // call api to unsubcribe on course
-      this.courseInscription.splice(this.courseInscription.findIndex(({id_course}) => id_course === id),1);
+      this.courseInscription.splice(this.courseInscription.findIndex(({id_course}) => id_course === id), 1);
     } else {
       // call api to subcribe on course
-      this.courseInscription.push({id_course:id,id_user:this.currentUser.id})
+      this.courseInscription.push({id_course: id, id_user: this.currentUser.id})
     }
   }
 
-  checkEmpty():boolean{
+  checkEmpty(): boolean {
     // @ts-ignore
-    return this.coursesList.length===0;
+    return this.coursesList.length === 0;
   }
 }

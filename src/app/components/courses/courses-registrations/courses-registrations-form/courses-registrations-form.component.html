@@ -13,10 +13,10 @@
 >
 </app-courses-registrations-filter>
 
-<ul class="flex justify-evenly px-10px lg:px-100px py-100px flex-wrap">
+<ul class="flex justify-center px-10px lg:px-100px py-100px flex-wrap">
     <li *ngFor="let course of coursesList | filter:filter_searchBarText">
       <div *ngIf="displayable(course.id) " class="relative bg-underflow_grey-800 rounded
-    w-250px md:w-500px h-350px md:h-500px p-15px md:p-30px my-10px lg:my-30px flex flex-col">
+    w-250px md:w-500px h-350px md:h-500px p-15px md:p-30px m-10px lg:m-30px flex flex-col">
         <div class="absolute top-0 right-0 p-30px">
           <h2 class="font-light">{{course?.subject?.title}}</h2>
         </div>
@@ -61,6 +61,6 @@
       </div>
     </li>
     <li *ngIf="checkEmpty()">
-      no item :( !
+      Aucun cours disponible ! 😨
     </li>
 </ul>

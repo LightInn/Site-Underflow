@@ -26,6 +26,15 @@ export class CoursesSuggestsFormComponent implements OnInit {
   date_max: string;
 
   /**
+   * We declare all flag for errors
+   */
+  error_title: boolean = false;
+  error_date: boolean = false;
+  error_subject: boolean = false;
+  error_classe: boolean = false;
+  error_flag: boolean = false;
+
+  /**
    * The constructor, take differents parameters, it's automatic in angular,
    * we use differents values with it
    * @param fb -> to create our form, and initialize Validators
@@ -84,17 +93,57 @@ export class CoursesSuggestsFormComponent implements OnInit {
     ]
   }
 
+  /**
+   * submit function for the suggestion,
+   * we also test here all our fields to validate the form or display message errors
+   */
   submit() {
-
     // todo submit
     console.log(this.form.status === "VALID")
     console.log(this.form.status === "INVALID")
     console.log(this.form.value)
+    this.error_flag = false;
+    // Check the form controls
     for (const control in this.form.controls) {
-      console.log(this.form.controls[control].errors)
-    }
+      switch (control) {
+        case 'title':
+          if (!!this.form.controls[control].errors) {
+            this.error_title = true;
+            this.error_flag = true;
+          } else {
+            this.error_title = false;
+          }
 
-    this.toastService.newToast("Suggestion envoyée...", false);
+          break;
+        case 'date_butoir':
+          if (!!this.form.controls[control].errors) {
+            this.error_date = true;
+            this.error_flag = true;
+          } else {
+            this.error_date = false;
+          }
+          break;
+        case 'subjects':
+          if (!!this.form.controls[control].errors) {
+            this.error_subject = true;
+            this.error_flag = true;
+          } else {
+            this.error_subject = false;
+          }
+          break;
+        case 'classes':
+          if (!!this.form.controls[control].errors) {
+            this.error_classe = true;
+            this.error_flag = true;
+          } else {
+            this.error_classe = false;
+          }
+          break;
+      }
+    }
+    // Send error message to the toast service
+    this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Suggestion envoyée...", false);
+
     //  todo call api
   }
 }

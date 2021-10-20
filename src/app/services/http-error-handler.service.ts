@@ -26,7 +26,6 @@ export class HttpErrorHandler {
    * @param result - optional value to return as the observable result
    */
   handleError<T>(serviceName = '', operation = 'operation', result = {} as T) {
-
     return (error: HttpErrorResponse): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.log("cc")

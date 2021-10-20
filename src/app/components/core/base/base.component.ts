@@ -7,7 +7,7 @@ import {Base} from '../../../interfaces/base'
   styleUrls: ['./base.component.scss']
 })
 export class BaseComponent implements OnInit {
-  // default conf
+  // *************** Declaration part ******************* //
   @Input() base:Base={
     baseTitle:"",
     baseCitation:"",
@@ -26,12 +26,8 @@ export class BaseComponent implements OnInit {
   };
 
   constructor() {
-
   }
 
   ngOnInit(): void {
-
   }
-
-
 }

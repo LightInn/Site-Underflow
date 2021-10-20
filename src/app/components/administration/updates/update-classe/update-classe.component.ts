@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./update-classe.component.scss']
 })
 export class UpdateClasseComponent implements OnInit {
+  // *************** Declaration part ******************* //
   form: FormGroup;
   classeId: string | null;
 
@@ -17,7 +18,7 @@ export class UpdateClasseComponent implements OnInit {
               private authService: AuthentificationService,
               private toastService: ToastService,
               private router: Router,
-              private route : ActivatedRoute) {
+              private route: ActivatedRoute) {
     this.form = this.fb.group({
       // todo validator personalized
       id: ['', [Validators.required]],
@@ -27,7 +28,6 @@ export class UpdateClasseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   submit() {

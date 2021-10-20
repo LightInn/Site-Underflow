@@ -7,6 +7,7 @@ import {Base} from "../../interfaces/base";
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
+  // *************** Declaration part ******************* //
   public base: Base = {
     baseTitle: "404 Не Найдено",
     baseLandingMode: false,
@@ -29,5 +30,4 @@ export class NotFoundComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

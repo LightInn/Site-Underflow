@@ -33,7 +33,7 @@ import {ToastComponent} from './components/core/toast/toast.component';
 import {AuthentificationInterceptor} from './interceptors/authentification.interceptor'
 import {ToastService} from "./services/toast.service";
 import { ProfileFormComponent } from './components/authentification/profile/profile-form/profile-form.component';
-import { ProfileInscriptionsComponent } from './components/authentification/profile/profile-inscriptions/profile-inscriptions.component';
+import { ProfileCoursesRegistrationsComponent } from './components/authentification/profile/profile-courses-registrations/profile-courses-registrations.component';
 import { AdministrationComponent } from './components/administration/administration.component';
 import { AdminClassesComponent } from './components/administration/views/admin-classes/admin-classes.component';
 import { AdminCoursesComponent } from './components/administration/views/admin-courses/admin-courses.component';
@@ -43,9 +43,8 @@ import { UserInfosPipe } from './pipe/user-infos.pipe';
 import { UpdateClasseComponent } from './components/administration/updates/update-classe/update-classe.component';
 import { UpdateCourseComponent } from './components/administration/updates/update-course/update-course.component';
 import { UpdateSubjectComponent } from './components/administration/updates/update-subject/update-subject.component';
-import { UpdateUserComponent } from './components/administration/updates/update-user/update-user.component';
+// import { UpdateUserComponent } from './components/administration/updates/update-user/update-user.component';
 import {StoreService} from "./services/store/store.service";
-
 
 
 @NgModule({
@@ -78,11 +77,19 @@ import {StoreService} from "./services/store/store.service";
     CoursesRegistrationsFilterComponent,
     CoursesRegistrationsComponent,
     ProfileFormComponent,
+    AdminSubjectsComponent,
+    ProfileCoursesRegistrationsComponent,
     ProfileInscriptionsComponent,
     ToastComponent,
-
-
-
+    AdministrationComponent,
+    AdminClassesComponent,
+    AdminCoursesComponent,
+    AdminUsersComponent,
+    UserInfosPipe,
+    UpdateClasseComponent,
+    UpdateCourseComponent,
+    UpdateSubjectComponent,
+    // UpdateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +99,6 @@ import {StoreService} from "./services/store/store.service";
     BrowserAnimationsModule,
     FormsModule,
     Ng2SearchPipeModule,
-
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},

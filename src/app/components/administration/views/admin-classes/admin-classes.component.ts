@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./admin-classes.component.scss']
 })
 export class AdminClassesComponent implements OnInit {
+  // *************** Declaration part ******************* //
   @Input() classesList: Array<Classe> | undefined;
   display: boolean = true;
 

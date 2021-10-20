@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthentificationService} from "../../../../services/authentification.service";
 import {ToastService} from "../../../../services/toast.service";
@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./update-subject.component.scss']
 })
 export class UpdateSubjectComponent implements OnInit {
+  // *************** Declaration part ******************* //
   form: FormGroup;
   subjectId: string | null;
 
@@ -17,7 +18,7 @@ export class UpdateSubjectComponent implements OnInit {
               private authService: AuthentificationService,
               private toastService: ToastService,
               private router: Router,
-              private route : ActivatedRoute) {
+              private route: ActivatedRoute) {
     this.form = this.fb.group({
       // todo validator personalized
       id: ['', [Validators.required]],

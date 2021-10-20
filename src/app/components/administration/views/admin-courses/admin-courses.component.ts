@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./admin-courses.component.scss']
 })
 export class AdminCoursesComponent implements OnInit {
+  // *************** Declaration part ******************* //
   @Input() coursesList: Array<Courses> | undefined;
   display: boolean = true;
 
@@ -17,11 +18,11 @@ export class AdminCoursesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  change(course:Courses){
+  change(course: Courses) {
     this.router.navigateByUrl(`/admin/course/${course.id}`);
   }
 
-  delete(course:Courses){
+  delete(course: Courses) {
     // todo call api delete classes
 
   }

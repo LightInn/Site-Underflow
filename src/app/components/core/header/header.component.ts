@@ -6,8 +6,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  // *************** Declaration part ******************* //
   status: boolean = false;
-
   public cours: any = [
     {
       id: 1,
@@ -25,16 +25,15 @@ export class HeaderComponent implements OnInit {
     }
   ]
 
-  clickEvent() {
-    this.status = !this.status;
-    document.getElementById('nav')?.classList.toggle('underflow-fadeInvisible');
-    document.getElementById('nav')?.classList.toggle('underflow-fadeVisible');
-  }
-
   constructor() {
   }
 
   ngOnInit(): void {
   }
 
+  clickEvent() {
+    this.status = !this.status;
+    document.getElementById('nav')?.classList.toggle('underflow-fadeInvisible');
+    document.getElementById('nav')?.classList.toggle('underflow-fadeVisible');
+  }
 }

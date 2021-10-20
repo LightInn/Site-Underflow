@@ -4,6 +4,8 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class StoreService {
+  // *************** Declaration part ******************* //
+
 
   // Define methos to add / set / get / clear data for applications
   // ******************************** Applications *******************************
