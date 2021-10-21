@@ -48,7 +48,6 @@ export class CoursesSuggestsFormComponent implements OnInit {
    * @param subjectService
    */
   constructor(private fb: FormBuilder,
-              private authService: AuthentificationService,
               private toastService: ToastService,
               private router: Router,
               private classeService: ClassesService,
@@ -134,7 +133,7 @@ export class CoursesSuggestsFormComponent implements OnInit {
     // Send error message to the toast service
     this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Suggestion envoyée...", false);
 
-    // Verify if the form is valid or not , and create suggestions / subjects 
+    // Verify if the form is valid or not , and create suggestions / subjects
     if (this.form.status === "VALID") {
       let subject = this.subjectslist?.find(({title}) => title === this.form.value.subject);
       if (!this.error_flag) {

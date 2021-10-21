@@ -37,8 +37,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
   filter_selectedDateEnd: string = '';
   filter_searchBarText: string = '';
 
-  constructor(private authService: AuthentificationService,
-              private toastService: ToastService,
+  constructor(private toastService: ToastService,
               private router: Router,
               private classeService: ClassesService,
               private courseService: CoursesService,

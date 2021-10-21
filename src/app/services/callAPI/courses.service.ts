@@ -31,4 +31,9 @@ export class CoursesService {
     return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
     )
   }
+
+  public addCourse(course: Courses) {
+    return this.http.post<Courses>(ApiUrl + '/course/', course).pipe(
+    )
+  }
 }
