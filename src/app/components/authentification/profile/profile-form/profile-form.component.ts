@@ -89,7 +89,6 @@ export class ProfileFormComponent implements OnInit {
         this.toastService.newToast(error.error.error, true);
       }
     )
-
   }
 
   submit() {

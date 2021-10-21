@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthentificationService} from "../../../../services/authentification.service";
 import {ToastService} from "../../../../services/toast.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ClassesService} from "../../../../services/callAPI/classes.service";
 
 @Component({
   selector: 'app-update-classes',
@@ -12,33 +13,72 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class UpdateClasseComponent implements OnInit {
   // *************** Declaration part ******************* //
   form: FormGroup;
-  classeId: string | null;
+  classeId: string;
+
+  /**
+   * We declare all flag for errors (for profile)
+   */
+  error_title: boolean = false;
+  error_flag: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthentificationService,
               private toastService: ToastService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private classesService: ClassesService) {
     this.form = this.fb.group({
-      // todo validator personalized
       id: ['', [Validators.required]],
       title: ['', [Validators.required]],
     });
-    this.classeId = this.route.snapshot.paramMap.get('id');
+    this.classeId = String(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
+    this.classesService.requestClasseSpecific(Number(this.classeId)).subscribe(
+      response => {
+        this.form.controls['title'].setValue(response.title);
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
   }
 
   submit() {
-    // todo submit
-    console.log(this.form.status === "VALID")
-    console.log(this.form.status === "INVALID")
-    console.log(this.form.value)
+    this.error_flag = false;
+    // Check the form controls
+    for (const control in this.form.controls) {
+      switch (control) {
+        case 'title':
+          if (!!this.form.controls[control].errors) {
+            this.error_title = true;
+            this.error_flag = true;
+          } else {
+            this.error_flag = false;
+          }
+          break;
+      }
+      // Send error message to the toast service
+      if (this.error_flag) {
+        this.toastService.newToast("Erreur...", true)
+      }
 
-    console.log(this.classeId)
-
-    this.toastService.newToast("Update classe...", true)
-    //  todo call api
+      if (this.form.status === "VALID") {
+        if (!this.error_flag) {
+          this.classesService.requestUpdateClasseSpecific(
+            this.form.value.id,
+            {
+              id: this.form.value.id,
+              title: this.form.value.title
+            }
+          ).subscribe(
+            response => {
+              this.toastService.newToast("Classe bien modifié", false);
+            }, error => {
+              this.toastService.newToast(error.error.error, true);
+            }
+          )
+        }
+      }
+    }
   }
 }

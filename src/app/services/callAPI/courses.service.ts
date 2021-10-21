@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {Courses} from "../../interfaces/course";
+import {Classe} from "../../interfaces/classe";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,17 @@ export class CoursesService {
   }
 
   public addCourse(course: Courses) {
-    return this.http.post<Courses>(ApiUrl + '/course/', course).pipe(
+    return this.http.post<Courses>(ApiUrl + '/courses/', course).pipe(
+    )
+  }
+
+  public requestCourseSpecific(id: number) {
+    return this.http.get<Courses>(ApiUrl + '/courses/' + id).pipe(
+    )
+  }
+
+  public requestUpdateCourseSpecific(id: number, course: Courses) {
+    return this.http.patch<Courses>(ApiUrl + '/courses/' + id, course).pipe(
     )
   }
 }

@@ -6,6 +6,13 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Subject} from "../../../../interfaces/subject";
 import {Classe} from "../../../../interfaces/classe";
 import {User} from "../../../../interfaces/user";
+import {SubjetsService} from "../../../../services/callAPI/subjets.service";
+import {ClassesService} from "../../../../services/callAPI/classes.service";
+import {UsersService} from 'src/app/services/callAPI/users.service';
+import {ParticipantsService} from "../../../../services/callAPI/participants.service";
+import {Courses} from "../../../../interfaces/course";
+import {CoursesService} from "../../../../services/callAPI/courses.service";
+import {toFormDateLocaleString} from "../../../../functions/dateFormat";
 
 @Component({
   selector: 'app-update-course',
@@ -16,20 +23,35 @@ export class UpdateCourseComponent implements OnInit {
   // *************** Declaration part ******************* //
   form: FormGroup;
   courseId: string | null;
-  subjectslist: Array<Subject>;
-  classesList: Array<Classe>;
-  usersList: Array<User>;
-
+  subjectslist?: Array<Subject>;
+  classesList?: Array<Classe>;
+  usersList?: Array<User>;
   display: boolean = true;
-  usersListRegistred: Array<User>;
+  usersListRegistred?: Array<User>;
+
+  actualCourse?: Courses;
+  /**
+   * We declare all flag for errors (for profile)
+   */
+  error_title: boolean = false;
+  error_subjects: boolean = false;
+  error_classes: boolean = false;
+  error_user: boolean = false;
+  error_date: boolean = false;
+  error_duration: boolean = false;
+  error_closed: boolean = false;
+  error_flag: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthentificationService,
               private toastService: ToastService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private subjectsService: SubjetsService,
+              private classesService: ClassesService,
+              private usersService: UsersService,
+              private usersRegistredOnCourse: ParticipantsService,
+              private coursesService: CoursesService) {
     this.form = this.fb.group({
-      // todo validator personalized
       id: ['', [Validators.required]],
       title: ['', [Validators.required]],
       subjects: ['', [Validators.required]],
@@ -39,39 +61,150 @@ export class UpdateCourseComponent implements OnInit {
       duration: ['', [Validators.required]],
       closed: ['', [Validators.required]],
     });
-    this.courseId = this.route.snapshot.paramMap.get('id');
-    //  todo recup data from store
-    this.subjectslist = [];
-    this.classesList = [];
-    this.usersList = [];
-    this.usersListRegistred = [
-      {
-        id: "981477da-31c3-4887-b98f-6f9cc0f44e40",
-        first_name: "Andy",
-        last_name: "Cinquin",
-        classe: {id: 3, title: "B3"},
-        email: "andy.cinquin@epsi.fr"
-      }
-    ];
+    this.courseId = String(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
+    this.subjectsService.subjects().subscribe(
+      response => {
+        this.subjectslist = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.classesService.classes().subscribe(
+      response => {
+        this.classesList = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.usersService.users().subscribe(
+      response => {
+        this.usersList = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.usersRegistredOnCourse.participants(Number(this.courseId)).subscribe(
+      response => {
+        this.usersListRegistred = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.coursesService.requestCourseSpecific(Number(this.courseId)).subscribe(
+      response => {
+        this.actualCourse = response;
+        this.form.controls['id'].setValue(this.courseId);
+        this.form.controls['title'].setValue(response.title);
+        this.form.controls['subjects'].setValue(response.subject?.title);
+        this.form.controls['classes'].setValue(response.classe?.title);
+        this.form.controls['user'].setValue(`${response.owner?.last_name} ${response.owner?.first_name} - ${response.owner?.classe?.title}`);
+        this.form.controls['date'].setValue(toFormDateLocaleString(new Date(String(response.date_start))));
+        this.form.controls['duration'].setValue(response.duration);
+        this.form.controls['closed'].setValue(response.ended);
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
   }
 
   submit() {
-    // todo submit
-    console.log(this.form.status === "VALID")
-    console.log(this.form.status === "INVALID")
-    console.log(this.form.value)
+    this.error_flag = false;
+    // Check the form controls
+    for (const control in this.form.controls) {
+      switch (control) {
+        case 'title':
+          if (!!this.form.controls[control].errors) {
+            this.error_title = true;
+            this.error_flag = true;
+          } else {
+            this.error_flag = false;
+          }
+          break;
+        case 'subjects':
+          if (!!this.form.controls[control].errors) {
+            this.error_subjects = true;
+            this.error_flag = true;
+          } else {
+            this.error_flag = false;
+          }
+          break;
+        case 'classes':
+          if (!!this.form.controls[control].errors) {
+            this.error_classes = true;
+            this.error_flag = true;
+          } else {
+            this.error_flag = false;
+          }
+          break;
+        case 'user':
+          if (!!this.form.controls[control].errors) {
+            this.error_user = true;
+            this.error_flag = true;
+          } else {
+            this.error_flag = false;
+          }
+          break;
+        case 'date':
+          if (!!this.form.controls[control].errors) {
+            this.error_date = true;
+            this.error_flag = true;
+          } else {
+            this.error_flag = false;
+          }
+          break;
+        case 'duration':
+          if (!!this.form.controls[control].errors) {
+            this.error_duration = true;
+            this.error_flag = true;
+          } else {
+            this.error_flag = false;
+          }
+          break;
+        case 'closed':
+          if (!!this.form.controls[control].errors) {
+            this.error_closed = true;
+            this.error_flag = true;
+          } else {
+            this.error_flag = false;
+          }
+          break;
+      }
 
-    console.log(this.courseId)
+      // Send error message to the toast service
+      if (this.error_flag) {
+        this.toastService.newToast("Erreur...", true)
+      }
 
-    this.toastService.newToast("Update classe...", true)
-    //  todo call api
+      if (this.form.status === "VALID") {
+        if (!this.error_flag) {
+          this.coursesService.requestUpdateCourseSpecific(
+            this.form.value.id,
+            {
+              title:this.form.value.title,
+              subject:this.form.value.subjects,
+              classe:this.form.value.classes,
+              owner:this.form.value.user,
+              date_start:this.form.value.date,
+              duration:this.form.value.duration,
+              ended:this.form.value.closed
+            }
+          ).subscribe(
+            response => {
+              this.toastService.newToast("Cours bien modifié", false);
+            }, error => {
+              this.toastService.newToast(error.error.error, true);
+            }
+          )
+        }
+      }
+    }
   }
 
   delete(user: User) {
-    // Todo call api delete user
+    // Todo call api delete user registrations from course
 
   }
 }

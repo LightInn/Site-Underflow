@@ -31,4 +31,14 @@ export class ClassesService {
     return this.http.get<Array<Classe>>(ApiUrl + '/classes/').pipe(
     )
   }
+
+  public requestClasseSpecific(id: number) {
+    return this.http.get<Classe>(ApiUrl + '/classes/' + id).pipe(
+    )
+  }
+
+  public requestUpdateClasseSpecific(id: number, classe: Classe) {
+    return this.http.patch<Classe>(ApiUrl + '/classes/' + id, classe).pipe(
+    )
+  }
 }

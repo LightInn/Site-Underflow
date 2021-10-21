@@ -15,7 +15,6 @@ export class UpdateSubjectComponent implements OnInit {
   subjectId: string | null;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthentificationService,
               private toastService: ToastService,
               private router: Router,
               private route: ActivatedRoute) {
