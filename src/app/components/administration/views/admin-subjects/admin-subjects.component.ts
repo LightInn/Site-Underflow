@@ -16,6 +16,11 @@ export class AdminSubjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(!this.subjectsList){
+      this.display = false;
+    } else {
+      this.display = true;
+    }
   }
 
   change(subject: Subject) {
