@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {User} from "../../interfaces/user";
+import {UserPassword} from "../../interfaces/userPassword";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,16 @@ export class UserService {
 
   private requestUser() {
     return this.http.get<User>(ApiUrl + '/user/profile/').pipe(
+    )
+  }
+
+  public update(user: User) {
+    return this.http.patch<User>(ApiUrl + '/user/profile/', user).pipe(
+    )
+  }
+
+  public updatePassword(passwords: UserPassword) {
+    return this.http.patch<UserPassword>(ApiUrl + '/user/profile/', passwords).pipe(
     )
   }
 }
