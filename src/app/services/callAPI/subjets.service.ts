@@ -5,7 +5,6 @@ import {HttpClient} from "@angular/common/http";
 import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +14,11 @@ export class SubjetsService {
   constructor(private http: HttpClient) {
   }
 
-  get subjects() {
+  /**
+   * Get the list of all subjects
+   * @param reset -> true if you want to force the cache reset
+   */
+  subjects(reset: boolean = false) {
     if (!this.cache$) {
       this.cache$ = this.requestSubjects().pipe(
         shareReplay(1)
@@ -26,6 +29,15 @@ export class SubjetsService {
 
   private requestSubjects() {
     return this.http.get<Array<Subject>>(ApiUrl + '/subjects/').pipe(
+    )
+  }
+
+  /**
+   * Request to add a new subject
+   * @param subject -> give a complete subject
+   */
+  public addSubject(subject: Subject) {
+    return this.http.post<Subject>(ApiUrl + '/subject/', subject).pipe(
     )
   }
 }
