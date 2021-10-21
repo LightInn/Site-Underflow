@@ -8,7 +8,7 @@ import {ApiUrl} from "../../constants/api.url";
 @Injectable({
   providedIn: 'root'
 })
-export class SubjetsService {
+export class SubjectsService {
   private cache$: Observable<Array<Subject>> | undefined;
 
   constructor(private http: HttpClient) {
@@ -40,4 +40,15 @@ export class SubjetsService {
     return this.http.post<Subject>(ApiUrl + '/subject/', subject).pipe(
     )
   }
+
+  public requestSubjectSpecific(id: number) {
+    return this.http.get<Subject>(ApiUrl + '/subject/' + id).pipe(
+    )
+  }
+
+  public requestUpdateSubjectSpecific(id: number, subject: Subject) {
+    return this.http.patch<Subject>(ApiUrl + '/subject/' + id, subject).pipe(
+    )
+  }
 }
+

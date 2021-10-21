@@ -7,7 +7,7 @@ import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
-import {SubjetsService} from "../../../../services/callAPI/subjets.service";
+import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {SuggestionsService} from "../../../../services/callAPI/suggestions.service";
 
 @Component({
@@ -51,7 +51,7 @@ export class CoursesSuggestsFormComponent implements OnInit {
               private toastService: ToastService,
               private router: Router,
               private classeService: ClassesService,
-              private subjectService: SubjetsService,
+              private subjectService: SubjectsService,
               private suggestionsService: SuggestionsService) {
     this.form = this.fb.group({
       title: ['', [Validators.required]],

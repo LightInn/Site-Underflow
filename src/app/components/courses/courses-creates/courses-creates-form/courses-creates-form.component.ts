@@ -7,7 +7,7 @@ import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
-import {SubjetsService} from "../../../../services/callAPI/subjets.service";
+import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {CoursesService} from "../../../../services/callAPI/courses.service";
 
 @Component({
@@ -52,7 +52,7 @@ export class CoursesCreatesFormComponent implements OnInit {
               private toastService: ToastService,
               private router: Router,
               private classeService: ClassesService,
-              private subjectService: SubjetsService,
+              private subjectService: SubjectsService,
               private courseService: CoursesService) {
     this.form = this.fb.group({
       // todo validator personalized

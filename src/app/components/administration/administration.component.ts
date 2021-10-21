@@ -7,7 +7,7 @@ import {Courses} from "../../interfaces/course";
 import {ClassesService} from "../../services/callAPI/classes.service";
 import {UserService} from "../../services/callAPI/user.service";
 import {UsersService} from "../../services/callAPI/users.service";
-import {SubjetsService} from "../../services/callAPI/subjets.service";
+import {SubjectsService} from "../../services/callAPI/subjects.service";
 import {CoursesService} from "../../services/callAPI/courses.service";
 import {ToastService} from "../../services/toast.service";
 import {Suggest} from "../../interfaces/suggest";
@@ -30,7 +30,7 @@ export class AdministrationComponent implements OnInit {
 
     constructor(private toastService: ToastService,
                 private classesService: ClassesService,
-                private subjectsService: SubjetsService,
+                private subjectsService: SubjectsService,
                 private userInfoService: UserService,
                 private usersService: UsersService,
                 private coursesService: CoursesService,

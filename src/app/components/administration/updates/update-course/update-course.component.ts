@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Subject} from "../../../../interfaces/subject";
 import {Classe} from "../../../../interfaces/classe";
 import {User} from "../../../../interfaces/user";
-import {SubjetsService} from "../../../../services/callAPI/subjets.service";
+import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
 import {UsersService} from 'src/app/services/callAPI/users.service';
 import {ParticipantsService} from "../../../../services/callAPI/participants.service";
@@ -46,7 +46,7 @@ export class UpdateCourseComponent implements OnInit {
               private toastService: ToastService,
               private router: Router,
               private route: ActivatedRoute,
-              private subjectsService: SubjetsService,
+              private subjectsService: SubjectsService,
               private classesService: ClassesService,
               private usersService: UsersService,
               private usersRegistredOnCourse: ParticipantsService,

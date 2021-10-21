@@ -9,7 +9,7 @@ import {AuthentificationService} from "../../../../services/authentification.ser
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
-import {SubjetsService} from "../../../../services/callAPI/subjets.service";
+import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {RegistrationsCoursesService} from "../../../../services/callAPI/registrations-courses.service";
 import {CoursesService} from "../../../../services/callAPI/courses.service";
 import {UserService} from "../../../../services/callAPI/user.service";
