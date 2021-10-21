@@ -5,6 +5,9 @@ import {AuthentificationService} from "../../../../services/authentification.ser
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {regexMailCreated} from "../../../../constants/authorized.mail"
+import {UserService} from "../../../../services/callAPI/user.service";
+import {ClassesService} from "../../../../services/callAPI/classes.service";
+import {User} from "../../../../interfaces/user";
 
 @Component({
   selector: 'app-profile-form',
@@ -17,6 +20,7 @@ export class ProfileFormComponent implements OnInit {
   form: FormGroup;
   formPassword: FormGroup;
   password: string = '';
+  userinfo?: User;
 
   /**
    * We declare all flag for errors (for profile)
@@ -42,11 +46,15 @@ export class ProfileFormComponent implements OnInit {
    * @param authService -> to use the auth service
    * @param toastService -> to display messages with popup service
    * @param router -> to swap on another page on submit
+   * @param userInfoService
+   * @param classesService
    */
   constructor(private fb: FormBuilder,
               private authService: AuthentificationService,
               private toastService: ToastService,
-              private router: Router) {
+              private router: Router,
+              private userInfoService: UserService,
+              private classesService: ClassesService) {
     // ************** Initialization ******************** //
     this.form = this.fb.group({
       firstname: ['', [Validators.required]],
@@ -63,27 +71,27 @@ export class ProfileFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.classesList = [
-      {
-        id: 1,
-        title: "B1"
-      },
-      {
-        id: 2,
-        title: "B2"
-      },
-      {
-        id: 3,
-        title: "B3"
+    this.userInfoService.user().subscribe(
+      user => {
+        this.userinfo = user;
+        this.form.controls['lastname'].setValue(user.last_name)
+        this.form.controls['email'].setValue(user.email)
+        this.form.controls['classes'].setValue(user.classe?.title)
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
       }
-    ]
+    )
+
+    this.classesService.classes().subscribe(
+      classes => {
+        this.classesList = classes;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
   }
 
   submit() {
-    // todo submit
-    console.log(this.form.status === "VALID")
-    console.log(this.form.status === "INVALID")
-    console.log(this.form.value)
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -123,17 +131,34 @@ export class ProfileFormComponent implements OnInit {
           break;
       }
     }
-    // Send error message to the toast service
-    this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Profil modifié...", false);
 
-    //  todo call api
+    // Send error message to the toast service
+    if (this.error_flag) {
+      this.toastService.newToast("Erreur...", true)
+    }
+
+    if (this.form.status === "VALID") {
+      if (!this.error_flag) {
+        let classe = this.classesList?.find(({title}) => title === this.form.value.classe);
+        this.userInfoService.update(
+          {
+            email: this.form.value.email,
+            last_name: this.form.value.lastname,
+            first_name: this.form.value.firstname,
+            classe: classe,
+          }
+        ).subscribe(
+          response => {
+            this.toastService.newToast("Profil bien modifié", false);
+          }, error => {
+            this.toastService.newToast(error.error.error, true);
+          }
+        )
+      }
+    }
   }
 
   submitPassword() {
-    // todo submit
-    console.log(this.formPassword.status === "VALID")
-    console.log(this.formPassword.status === "INVALID")
-    console.log(this.formPassword.value)
     this.error_flag_password = false;
     // Check the form controls
     for (const control in this.formPassword.controls) {
@@ -171,9 +196,28 @@ export class ProfileFormComponent implements OnInit {
         this.error_flag_password = true;
       }
     }
-    // Send error message to the toast service
-    this.error_flag_password ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Mot de passe modifié...", false);
 
-    //  todo call api
+    // Send error message to the toast service
+    if (this.error_flag_password) {
+      this.toastService.newToast("Erreur...", true)
+    }
+
+    if (this.formPassword.status === "VALID") {
+      if (!this.error_flag_password) {
+        this.userInfoService.updatePassword(
+          {
+            old_password: this.formPassword.value.old_password,
+            new_password: this.formPassword.value.password,
+            new_password_validation: this.formPassword.value.password_valid,
+          }
+        ).subscribe(
+          response => {
+            this.toastService.newToast("Mot de passe bien modifié", false);
+          }, error => {
+            this.toastService.newToast(error.error.error, true);
+          }
+        )
+      }
+    }
   }
 }

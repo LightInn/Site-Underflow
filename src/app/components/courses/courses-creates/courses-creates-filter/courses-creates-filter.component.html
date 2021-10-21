@@ -1,7 +1,7 @@
 <div class="relative w-full flex justify-start items-center py-100px">
   <div class="h-80px flex items-center z-20">
     <div class="h-full border border-underflow_grey-700 flex justify-center items-center py-10px px-30px">
-      <img class="w-25px h-25px" src="./assets/images/svg/idea.svg" alt="suggest logo" >
+      <img class="w-25px h-25px" src="./assets/images/svg/idea.svg" alt="suggest logo" draggable="false">
     </div>
     <button (click)="clickEvent()" [ngClass]="status == true ? 'bg-underflow_grey-800' : 'bg-transparent'"
             class="select-css-custom h-full flex justify-center
@@ -20,6 +20,10 @@
               {{suggest | suggestTraited }}
             </button>
           </div>
+          <div *ngIf="empty" class="w-full h-full flex justify-center items-center">
+            <p class="text-center">Il n'y a pas de suggestions pour le moment 😥</p>
+          </div>
+
         </div>
     </div>
   </div>

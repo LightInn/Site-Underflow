@@ -6,6 +6,8 @@ import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {CourseSubscription} from "../../../../interfaces/courseSubscription";
 import {User} from "../../../../interfaces/user";
+import {CoursesService} from 'src/app/services/callAPI/courses.service';
+import {RegistrationsCoursesService} from "../../../../services/callAPI/registrations-courses.service";
 
 @Component({
   selector: 'app-profile-inscriptions',
@@ -22,107 +24,26 @@ export class ProfileCoursesRegistrationsComponent implements OnInit {
   constructor(
     private authService: AuthentificationService,
     private toastService: ToastService,
-    private router: Router
-  ) {
+    private router: Router,
+    private coursesService: CoursesService,
+    private courseRegistrationService: RegistrationsCoursesService) {
   }
 
   ngOnInit(): void {
-    this.courseInscription = [
-      {
-        "id_user": "981477da-31c3-4887-b98f-6f9cc0f44e40",
-        id_course: 1,
-      },
-      {
-        "id_user": "981477da-31c3-4887-b98f-6f9cc0f44e40",
-        id_course: 2,
+    this.coursesService.courses().subscribe(
+      courses => {
+        this.coursesList = courses;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
       }
-    ]
-    this.coursesList = [
-      {
-        "classe": {
-          "id": 3,
-          "title": "B3"
-        },
-        "date_start": "Fri, 14 Oct 2021 10:19:52 GMT",
-        "description": "Révision PHP",
-        "duration": null,
-        "ended": false,
-        "id": 1,
-        "salle": "102",
-        "owner": {
-          "activated": false,
-          "admin": false,
-          "alternative_id": "983f1a77-d44f-46df-b7e9-1b5a0952e56d",
-          "classe": null,
-          "created_on": "Wed, 06 Oct 2021 17:50:33 GMT",
-          "email": "mathis.gauthier@epsi.fr",
-          "first_name": "Mathis",
-          "id": "981477da-31c3-4887-b98f-6f9cc0f44e40",
-          "last_login": null,
-          "last_name": "Gauthier"
-        },
-        "subject": {
-          "id": 1,
-          "proposePar": {
-            "activated": false,
-            "admin": false,
-            "alternative_id": "983f1a77-d44f-46df-b7e9-1b5a0952e56d",
-            "classe": null,
-            "created_on": "Wed, 06 Oct 2021 17:50:33 GMT",
-            "email": "mathis.gauthier@epsi.fr",
-            "first_name": "Mathis",
-            "id": "981477da-31c3-4887-b98f-6f9cc0f44e40",
-            "last_login": null,
-            "last_name": "Gauthier"
-          },
-          "title": "PHP",
-          "validated": true
-        },
-        "title": "Cours PHP"
-      },
-      {
-        "classe": {
-          "id": 1,
-          "title": "B1"
-        },
-        "date_start": "Fri, 22 Oct 2021 13:39:42 GMT",
-        "description": "Révision JS",
-        "duration": null,
-        "ended": false,
-        "id": 2,
-        "salle": "108",
-        "owner": {
-          "activated": false,
-          "admin": false,
-          "alternative_id": "983f1a77-d44f-46df-b7e9-1b5a0952e56d",
-          "classe": null,
-          "created_on": "Wed, 06 Oct 2021 17:50:33 GMT",
-          "email": "mathis.gauthier@epsi.fr",
-          "first_name": "Mathis",
-          "id": "981477da-31c3-4887-b98f-6f9cc0f44e40",
-          "last_login": null,
-          "last_name": "Gauthier"
-        },
-        "subject": {
-          "id": 2,
-          "proposePar": {
-            "activated": false,
-            "admin": false,
-            "alternative_id": "983f1a77-d44f-46df-b7e9-1b5a0952e56d",
-            "classe": null,
-            "created_on": "Wed, 06 Oct 2021 17:50:33 GMT",
-            "email": "mathis.gauthier@epsi.fr",
-            "first_name": "Mathis",
-            "id": "981477da-31c3-4887-b98f-6f9cc0f44e40",
-            "last_login": null,
-            "last_name": "Gauthier"
-          },
-          "title": "JS",
-          "validated": true
-        },
-        "title": "Cours JS"
+    );
+    this.courseRegistrationService.subscriptions().subscribe(
+      subscriptions => {
+        this.courseInscription = subscriptions;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
       }
-    ]
+    )
   }
 
   // elem check function -> we test if the user is already registred on the course
@@ -138,6 +59,16 @@ export class ProfileCoursesRegistrationsComponent implements OnInit {
     } else {
       // call api to subcribe on course
       this.courseInscription.push({id_course: id, id_user: this.currentUser.id})
+    }
+    if (!!id) {
+      this.courseRegistrationService.requestUserSubscriptions(id).subscribe(
+        elem => {
+          const message = elem ? "Tu es inscrit !" : "Tu es désinscrit !";
+          this.toastService.newToast(message, true);
+        }, error => {
+          this.toastService.newToast(error.error.error, true);
+        }
+      )
     }
   }
 

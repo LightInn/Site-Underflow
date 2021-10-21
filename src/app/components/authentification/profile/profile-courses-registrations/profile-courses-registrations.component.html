@@ -1,7 +1,7 @@
 <div class="relative block py-100px">
   <div class="w-full flex justify-start md:justify-center items-center z-20 flex-wrap">
     <div class="h-80px border border-underflow_grey-700 flex justify-center items-center py-10px px-30px">
-      <img class="w-25px h-25px" src="./assets/images/svg/book.svg" alt="book logo">
+      <img class="w-25px h-25px" src="./assets/images/svg/book.svg" alt="book logo" draggable="false">
     </div>
     <div class="h-80px flex justify-center items-center border border-underflow_grey-700 py-10px px-60px">
       <p class="text-center text-underflow_grey-200 font-chennai">
@@ -23,7 +23,7 @@
           {{course?.title}}
         </h2>
         <img class="invert absolute top-0 left-0 w-100px h-100px z-10 opacity-10"
-             src="./assets/images/svg/dotGroup.svg"
+             src="./assets/images/svg/dotGroup.svg" draggable="false"
              alt="dot group">
       </div>
       <div class="w-full h-3/6 overflow-hidden">
@@ -59,6 +59,6 @@
     </div>
   </li>
   <li *ngIf="checkEmpty()">
-    no item :( !
+      Tu n'es inscris à aucun cours ! 😨
   </li>
 </ul>

@@ -1,31 +1,34 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {Subject} from "../../interfaces/subject";
+import {User} from "../../interfaces/user";
 import {HttpClient} from "@angular/common/http";
 import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class SubjetsService {
-  private cache$: Observable<Array<Subject>> | undefined;
+export class UsersService {
+  private cache$: Observable<Array<User>> | undefined;
 
   constructor(private http: HttpClient) {
   }
 
-  get subjects() {
+  /**
+   * Get list of users
+   * @param reset -> true if you want to force the cache reset
+   */
+  users(reset: boolean = false) {
     if (!this.cache$) {
-      this.cache$ = this.requestSubjects().pipe(
+      this.cache$ = this.requestUsers().pipe(
         shareReplay(1)
       );
     }
     return this.cache$;
   }
 
-  private requestSubjects() {
-    return this.http.get<Array<Subject>>(ApiUrl + '/subjects/').pipe(
+  private requestUsers() {
+    return this.http.get<Array<User>>(ApiUrl + '/users/').pipe(
     )
   }
 }

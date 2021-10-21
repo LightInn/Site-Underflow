@@ -16,6 +16,11 @@ export class AdminClassesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(!this.classesList){
+      this.display = false;
+    } else {
+      this.display = true;
+    }
   }
 
   change(classe: Classe) {
