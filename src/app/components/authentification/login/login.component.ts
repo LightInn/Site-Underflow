@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AuthentificationService} from "../../../services/authentification.service";
 import {ToastService} from "../../../services/toast.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {regexMailCreated} from "../../../constants/authorized.mail";
 
 @Component({
   selector: 'app-login',
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
               private toastService: ToastService,
               private router: Router) {
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email, Validators.pattern(regexMailCreated)],
       password: ['', Validators.required]
     });
   }
@@ -84,22 +85,25 @@ export class LoginComponent implements OnInit {
           break;
       }
     }
-    if (this.error_flag) {
-      const val = this.form.value;
-      this.toastService.newToast("Connexion...", true)
-      if (val.email && val.password) {
-        this.authService.login(val.email, val.password)
-          .subscribe(
-            jwt => {
-              this.toastService.newToast("Connecter", false)
+    console.log(this.form.value);
+    if (this.form.status === "VALID") {
+      if (!this.error_flag) {
+        const val = this.form.value;
+        this.toastService.newToast("Connexion...", true)
+        if (val.email && val.password) {
+          this.authService.login(val.email, val.password)
+            .subscribe(
+              jwt => {
+                this.toastService.newToast("Connecter", false)
 
-              this.authService.setSession(jwt);
-              this.router.navigateByUrl('/')
-            },
-            error => {
-              this.toastService.newToast(error.error.error, true)
-            }
-          );
+                this.authService.setSession(jwt);
+                this.router.navigateByUrl('/')
+              },
+              error => {
+                this.toastService.newToast(error.error.error, true)
+              }
+            );
+        }
       }
     }
   }
