@@ -75,7 +75,7 @@ export class RegisterComponent {
           break;
       }
     }
-    if (this.error_flag) {
+    if (!this.error_flag) {
       const val = this.form.value;
       if (val.email && val.password && val.firstname && val.lastname) {
         this.authService.register(val.email, val.firstname, val.lastname, val.password)
