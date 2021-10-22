@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AuthentificationService} from "../../../services/authentification.service";
 import {ToastService} from "../../../services/toast.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {regexMailCreated} from "../../../constants/authorized.mail";
 
 
 @Component({
@@ -44,8 +45,8 @@ export class LoginComponent implements OnInit {
               private router: Router) {
 
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email, Validators.pattern(regexMailCreated)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)]]
     });
   }
 
