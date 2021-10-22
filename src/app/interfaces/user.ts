@@ -6,8 +6,6 @@ export interface User {
   first_name?: string
   last_name?: string
   email?: string
-  // On l'aura jamais
-  // password: string
   activated?: boolean
   admin?: boolean
   created_on?: string

@@ -47,10 +47,11 @@ a:focus, a:hover, button:focus, button:hover {
   filter: invert(1);
 }
 
-[list]::-webkit-calendar-picker-indicator, [list]:hover::-webkit-calendar-picker-indicator{
+[list]::-webkit-calendar-picker-indicator, [list]:hover::-webkit-calendar-picker-indicator {
   display: none;
   opacity: 0;
 }
+
 .select-css-custom, .select-css-custom select {
   box-sizing: border-box;
   -moz-appearance: none;
@@ -61,9 +62,11 @@ a:focus, a:hover, button:focus, button:hover {
   background-position: right 30px top 50%, 0 0;
   background-size: .65em auto, 100%;
 }
+
 .select-css-custom::-ms-expand {
   display: none;
 }
+
 .select-css-custom:hover {
   border-color: #888;
   -moz-appearance: none;
@@ -71,10 +74,12 @@ a:focus, a:hover, button:focus, button:hover {
   appearance: none;
 
 }
+
 .select-css-custom:focus {
   border-color: #E8E8E9;
   outline: none;
 }
+
 .select-css-custom option {
   font-weight: normal;
 }
@@ -85,6 +90,7 @@ a:focus, a:hover, button:focus, button:hover {
   z-index: -1;
   transition: opacity ease-in-out .2s, z-index ease-in-out .2s, height ease-in-out .5s
 }
+
 .fadeVisible {
   pointer-events: auto;
   opacity: 1;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Base} from "../../../interfaces/base";
 
 @Component({
@@ -7,15 +7,16 @@ import {Base} from "../../../interfaces/base";
   styleUrls: ['./files-creates.component.scss']
 })
 export class FilesCreatesComponent implements OnInit {
+  // *************** Declaration part ******************* //
   public base: Base = {
-    baseTitle: "Créer une fiche",
+    baseTitle: "Créer une fiche [Work in progress]",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu veux partager tes connaissances ?",
     baseDescriptionSecondPart: "C'est ici que ça se passe !",
     baseAdditionalCitation: false,
     baseAdditionalButton: false,
     basePath: "",
-    baseAsset:false,
+    baseAsset: false,
     baseAssetPath: "",
     baseAlt: "",
     baseContent: "",
@@ -24,9 +25,9 @@ export class FilesCreatesComponent implements OnInit {
     baseCitation: ""
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

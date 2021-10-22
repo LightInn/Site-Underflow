@@ -1,0 +1,44 @@
+<section class="container mx-auto p-6 ">
+  <div class="grid grid-cols-2 justify-items-start">
+    <div class="flex items-center">
+      <img src="../../../../../assets/images/svg/ecureuil-right.svg" alt="Scratch"
+           class="mr-30px h-35px w-35px" draggable="false">
+      <h2 class="text-36px">Classes</h2>
+    </div>
+    <div class="justify-self-end">
+      <button (click)="display=!display">
+        <img src="../../../../../assets/images/svg/hidden.svg" alt="hidden"
+             class="h-35px w-35px" draggable="false">
+      </button>
+    </div>
+  </div>
+  <div *ngIf="display else separator;" class="w-full mt-30px mb-8 overflow-hidden rounded-lg shadow-lg">
+    <div class="w-full overflow-x-auto">
+      <table class="w-full">
+        <thead>
+        <tr
+          class="text-md font-semibold tracking-wide text-left text-underflow_grey-50 bg-underflow_grey-800 uppercase border-b border-underflow-900">
+          <th class="px-4 py-3">Id</th>
+          <th class="px-4 py-3">Title</th>
+          <th class="px-4 py-3"></th>
+        </tr>
+        </thead>
+        <tbody class="bg-underflow_grey-700">
+        <tr class="text-underflow_grey-50 font-semibold" *ngFor="let classe of classesList">
+          <td class="px-4 py-3 text-ms">{{classe.id}}</td>
+          <td class="px-4 py-3 text-ms">{{classe.title}}</td>
+          <td class="md:px-4 py-3 text-ms">
+            <div class="flex justify-end space-x-10px items-center">
+              <button (click)="change(classe)"><img src="../../../../../assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px" draggable="false"></button>
+              <button (click)="delete(classe)"><img src="../../../../../assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px" draggable="false"></button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<ng-template #separator>
+  <div class="w-full h-1px px-100px border border-underflow_blue-50"></div>
+</ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Base} from "../../../interfaces/base";
 
 @Component({
@@ -7,15 +7,16 @@ import {Base} from "../../../interfaces/base";
   styleUrls: ['./files-download.component.scss']
 })
 export class FilesDownloadComponent implements OnInit {
+  // *************** Declaration part ******************* //
   public base: Base = {
-    baseTitle: "Les fiches",
+    baseTitle: "Les fiches, [Work in progress]",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu veux trouver une documentation ? Un tuto ?",
     baseDescriptionSecondPart: "C'est ici que ça se passe !",
     baseAdditionalCitation: false,
     baseAdditionalButton: false,
     basePath: "",
-    baseAsset:false,
+    baseAsset: false,
     baseAssetPath: "",
     baseAlt: "",
     baseContent: "",
@@ -24,9 +25,9 @@ export class FilesDownloadComponent implements OnInit {
     baseCitation: ""
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }
