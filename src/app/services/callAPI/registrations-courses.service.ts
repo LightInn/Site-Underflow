@@ -28,7 +28,7 @@ export class RegistrationsCoursesService {
   }
 
   private requestSubscriptions() {
-    return this.http.get<Array<CourseSubscription>>(ApiUrl + '/user/subscription/').pipe(
+    return this.http.get<Array<CourseSubscription>>(ApiUrl + '/user/subscriptions/').pipe(
     )
   }
 

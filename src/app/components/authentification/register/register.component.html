@@ -21,7 +21,7 @@
       <div class="form-field  flex flex-col my-8 relative">
         <label class="text-12px">PRENOM </label>
         <input name="firstname" formControlName="firstname" placeholder="SCRATCH"
-               oninput="this.value = this.value.toLowerCase()"
+               oninput="this.value = this.value[0].toUpperCase() + this.value.toLowerCase().substring(1);"
                class="w-250px h-60px lg:w-500px lg:h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-2 lg:px-8 text-14px my-2">
         <span *ngIf="error_firstname" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">
           X - le prénom saisi n'est pas valide
@@ -30,7 +30,7 @@
       <div class="form-field  flex flex-col my-8 relative">
         <label class="text-12px">NOM </label>
         <input name="lastname" formControlName="lastname" placeholder="UNDERFLOW"
-               oninput="this.value = this.value.toLowerCase()"
+               oninput="this.value = this.value[0].toUpperCase() + this.value.toLowerCase().substring(1);"
                class="w-250px h-60px lg:w-500px lg:h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-2 lg:px-8 text-14px my-2">
         <span *ngIf="error_lastname" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">
           X - le nom saisi n'est pas valide

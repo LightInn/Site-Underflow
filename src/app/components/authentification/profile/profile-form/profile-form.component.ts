@@ -74,6 +74,7 @@ export class ProfileFormComponent implements OnInit {
     this.userInfoService.user().subscribe(
       user => {
         this.userinfo = user;
+        this.form.controls['firstname'].setValue(user.first_name)
         this.form.controls['lastname'].setValue(user.last_name)
         this.form.controls['email'].setValue(user.email)
         this.form.controls['classes'].setValue(user.classe?.title)
