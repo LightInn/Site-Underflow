@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent {
   // *************** Declaration part ******************* //
+  inputvalue = "";
   form: FormGroup;
 
   /**

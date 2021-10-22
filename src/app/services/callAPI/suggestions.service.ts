@@ -28,7 +28,7 @@ export class SuggestionsService {
   }
 
   private requestSuggests() {
-    return this.http.get<Array<Suggest>>(ApiUrl + '/proposals/').pipe(
+    return this.http.get<Array<Suggest>>(ApiUrl + '/propositions/').pipe(
     )
   }
 
@@ -37,7 +37,7 @@ export class SuggestionsService {
    * @param suggest -> give a complete suggestion
    */
   public addSuggestion(suggest: Suggest) {
-    return this.http.post<unknown>(ApiUrl + '/proposal/', suggest).pipe(
+    return this.http.post<unknown>(ApiUrl + '/proposition/', suggest).pipe(
     )
   }
 }

@@ -23,9 +23,11 @@ export class AuthentificationInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>,
             next: HttpHandler): Observable<HttpEvent<any>> {
-    const idToken = localStorage.getItem("id_token");
+    const idToken = String(JSON.parse(String(localStorage.getItem("jwt"))).token);
+    console.log(idToken)
+
     let clone;
-    console.log("call service")
+    // console.log("call service")
     if (AuthentificationInterceptor.CSRFTokenRun) {
       if (idToken != null) {
         clone = req.clone(
@@ -47,8 +49,7 @@ export class AuthentificationInterceptor implements HttpInterceptor {
           const
             clone = req.clone({
               headers: req.headers.set("X-CSRFToken", AuthentificationService.csrfToken)
-                .set("Authorization", "Bearer " + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAzODk2YzM5LTMwZDktNDM1My1iODhkLWY5ZjM4YWFmZDdkYiIsImV4cCI6MTYzNDc2Mjc0MH0.iVDdJUpuWCjtbiBnQ6I0I85t6ji7qBATD4lVf-QA7f8')
-                // .set("Authorization", "Bearer " + (idToken === null ? "" : idToken))
+                .set("Authorization", "Bearer " + (idToken === null ? "" : idToken))
             })
           return next.handle(clone);
         }
