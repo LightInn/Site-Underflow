@@ -82,7 +82,6 @@ export class RegisterComponent {
         this.authService.register(val.email, val.firstname, val.lastname, val.password)
           .subscribe(
             () => {
-              console.log("User is logged in");
               this.router.navigateByUrl('/');
             }
           );
