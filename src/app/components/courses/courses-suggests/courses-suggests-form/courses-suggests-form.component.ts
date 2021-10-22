@@ -6,6 +6,9 @@ import {AuthentificationService} from "../../../../services/authentification.ser
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat";
+import {ClassesService} from "../../../../services/callAPI/classes.service";
+import {SubjectsService} from "../../../../services/callAPI/subjects.service";
+import {SuggestionsService} from "../../../../services/callAPI/suggestions.service";
 
 @Component({
   selector: 'app-courses-suggests-form',
@@ -41,11 +44,15 @@ export class CoursesSuggestsFormComponent implements OnInit {
    * @param authService -> to use the auth service
    * @param toastService -> to display messages with popup service
    * @param router -> to swap on another page on submit
+   * @param classeService
+   * @param subjectService
    */
   constructor(private fb: FormBuilder,
-              private authService: AuthentificationService,
               private toastService: ToastService,
-              private router: Router) {
+              private router: Router,
+              private classeService: ClassesService,
+              private subjectService: SubjectsService,
+              private suggestionsService: SuggestionsService) {
     this.form = this.fb.group({
       title: ['', [Validators.required]],
       date_butoir: ['', [Validators.required]],
@@ -63,34 +70,20 @@ export class CoursesSuggestsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subjectslist = [
-      {
-        id: 1,
-        title: "premiere matière"
-      },
-      {
-        id: 2,
-        title: "deuxième matière"
-      },
-      {
-        id: 3,
-        title: "troisième matière"
-      },
-    ]
-    this.classesList = [
-      {
-        id: 1,
-        title: "B1"
-      },
-      {
-        id: 2,
-        title: "B2"
-      },
-      {
-        id: 3,
-        title: "B3"
+    this.classeService.classes().subscribe(
+      classes => {
+        this.classesList = classes;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
       }
-    ]
+    )
+    this.subjectService.subjects().subscribe(
+      subjects => {
+        this.subjectslist = subjects;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
   }
 
   /**
@@ -98,12 +91,8 @@ export class CoursesSuggestsFormComponent implements OnInit {
    * we also test here all our fields to validate the form or display message errors
    */
   submit() {
-    // todo submit
-    console.log(this.form.status === "VALID")
-    console.log(this.form.status === "INVALID")
-    console.log(this.form.value)
     this.error_flag = false;
-    // Check the form controls
+    // ******************* Validation part ******************** //
     for (const control in this.form.controls) {
       switch (control) {
         case 'title':
@@ -144,6 +133,50 @@ export class CoursesSuggestsFormComponent implements OnInit {
     // Send error message to the toast service
     this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Suggestion envoyée...", false);
 
-    //  todo call api
+    // Verify if the form is valid or not , and create suggestions / subjects
+    if (this.form.status === "VALID") {
+      let subject = this.subjectslist?.find(({title}) => title === this.form.value.subject);
+      if (!this.error_flag) {
+        if (!!subject) {
+          // if the subject is already created, then just create the new suggestion
+          this.suggestionsService.addSuggestion({
+            title: this.form.value.title,
+            subject: subject,
+            date_butoir: this.form.value.date_butoir,
+            classe: this.form.value.classe
+          }).subscribe(
+            response => {
+              this.toastService.newToast("Votre propositon à été créée", true);
+            }, error => {
+              this.toastService.newToast(error.error.error, true);
+            }
+          )
+        } else {
+          // else, we need to create both, suggestion & subject
+          this.subjectService.addSubject({
+            id: 0,
+            title: this.form.value.subject
+          }).subscribe(
+            subject_created => {
+              // when we have the response for the creation of subject, we create the suggestion
+              this.suggestionsService.addSuggestion({
+                title: this.form.value.title,
+                subject: subject_created,
+                date_butoir: this.form.value.date_butoir,
+                classe: this.form.value.classe
+              }).subscribe(
+                response => {
+                  this.toastService.newToast("Votre propositon à été créée", true);
+                }, error => {
+                  this.toastService.newToast(error.error.error, true);
+                }
+              )
+            }, error => {
+              this.toastService.newToast(error.error.error, true);
+            }
+          )
+        }
+      }
+    }
   }
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Suggest} from "../../../../interfaces/suggest";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat"
+import {SuggestionsService} from "../../../../services/callAPI/suggestions.service";
+import {ToastService} from "../../../../services/toast.service";
 
 @Component({
   selector: 'app-courses-creates-filter',
@@ -9,80 +11,25 @@ import {toFormDateLocaleString} from "../../../../functions/dateFormat"
 })
 export class CoursesCreatesFilterComponent implements OnInit {
   // *************** Declaration part ******************* //
-  status?: boolean = false;
+  status: boolean = false;
   suggestsList ?: Array<Suggest>;
+  empty: boolean = true;
 
-  constructor() {
+  constructor(private suggestService: SuggestionsService,
+              private toastService: ToastService) {
   }
 
   ngOnInit(): void {
-    this.suggestsList = [
-      {
-        id: 1,
-        title: "titre",
-        classe: {
-          id: 1,
-          title: "B1"
-        },
-        subject: {
-          id: 1,
-          title: "premier sujet"
-        },
-        date_butoir: (new Date(Date.now())).toDateString()
-      },
-      {
-        id: 2,
-        title: "titre",
-        classe: {
-          id: 2,
-          title: "B2"
-        },
-        subject: {
-          id: 2,
-          title: "deuxième sujet"
-        },
-        date_butoir: (new Date(Date.now())).toDateString()
-      },
-      {
-        id: 3,
-        title: "titre",
-        classe: {
-          id: 3,
-          title: "B3"
-        },
-        subject: {
-          id: 3,
-          title: "troisième sujet"
-        },
-        date_butoir: (new Date(Date.now())).toDateString()
-      },
-      {
-        id: 4,
-        title: "titre",
-        classe: {
-          id: 4,
-          title: "B4"
-        },
-        subject: {
-          id: 4,
-          title: "quatrième sujet"
-        },
-        date_butoir: (new Date(Date.now())).toDateString()
-      },
-      {
-        id: 5,
-        title: "titre",
-        classe: {
-          id: 5,
-          title: "B5"
-        },
-        subject: {
-          id: 5,
-          title: "cinquième sujet"
-        },
-        date_butoir: (new Date(Date.now())).toDateString()
+    this.suggestService.suggests().subscribe(
+      suggests => {
+        this.suggestsList = suggests;
+        if (!!this.suggestsList) {
+          this.empty = false;
+        }
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
       }
-    ]
+    )
   }
 
   clickEvent() {

@@ -1,31 +1,30 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from "../../../../interfaces/user";
 import {Router} from "@angular/router";
+import {Suggest} from "../../../../interfaces/suggest";
 
 @Component({
-  selector: 'app-admin-users',
-  templateUrl: './admin-users.component.html',
-  styleUrls: ['./admin-users.component.scss']
+  selector: 'app-admin-suggestions',
+  templateUrl: './admin-suggestions.component.html',
+  styleUrls: ['./admin-suggestions.component.scss']
 })
-export class AdminUsersComponent implements OnInit {
+export class AdminSuggestionsComponent implements OnInit {
   // *************** Declaration part ******************* //
-  @Input() usersList: Array<User> | undefined;
+  @Input() suggestsList: Array<Suggest> | undefined;
   display: boolean = true;
 
   constructor(private router: Router) {
   }
 
   ngOnInit(): void {
-    if(!this.usersList){
+    if(!this.suggestsList){
       this.display = false;
     } else {
       this.display = true;
     }
   }
 
-  delete(user: User) {
+  delete(suggestions: Suggest) {
     // todo call api delete classes
-    console.log("delete ")
-    console.log(user)
+
   }
 }
