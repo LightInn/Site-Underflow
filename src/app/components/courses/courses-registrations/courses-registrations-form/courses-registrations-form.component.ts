@@ -14,6 +14,10 @@ import {RegistrationsCoursesService} from "../../../../services/callAPI/registra
 import {CoursesService} from "../../../../services/callAPI/courses.service";
 import {UserService} from "../../../../services/callAPI/user.service";
 import {User} from "../../../../interfaces/user";
+import {registerLocaleData} from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'app-courses-registrations-form',
@@ -59,7 +63,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         this.toastService.newToast(error.error.error, true);
       }
     )
-    this.courseService.courses().subscribe(
+    this.courseService.courses(true).subscribe(
       courses => {
         this.coursesList = courses;
         // We init the default values
@@ -68,14 +72,14 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         this.toastService.newToast(error.error.error, true);
       }
     )
-    this.subscriptionsService.subscriptions().subscribe(
+    this.subscriptionsService.subscriptions(true).subscribe(
       subscriptions => {
         this.courseInscription = subscriptions;
       }, error => {
         this.toastService.newToast(error.error.error, true);
       }
     )
-    this.userService.user().subscribe(
+    this.userService.user(true).subscribe(
       user => {
         this.userInfos = user;
         // When all informations from user are ok, we can init filters
@@ -185,7 +189,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         )
       );
     filteredClasses$.subscribe(val => {
-        console.log(val);
         // @ts-ignore
         this.coursesListFiltered_2.push(val);
       }
@@ -207,7 +210,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
           course.subject.title.toLowerCase().includes(search))
       );
     filteredClasses$.subscribe(val => {
-        console.log(val);
         // @ts-ignore
         this.coursesListFiltered.push(val);
       }
@@ -220,7 +222,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
    * @param fromFilter
    */
   callFilter(filterString: string, fromFilter: string) {
-    console.log("--- call filter ---")
     // We reset all lists
     this.coursesListFiltered = [];
     this.coursesListFiltered_1 = [];
@@ -249,13 +250,13 @@ export class CoursesRegistrationsFormComponent implements OnInit {
 
   /**
    * elem check function -> we test if the user is already registred on the course
-   * @param id
+   * @param id_course
    */
-  elemCheck(id?: number) {
+  elemCheck(id_course?: number) {
     // if id is defined we test it
-    if (!!id) {
+    if (!!id_course) {
       // @ts-ignore
-      return !!(this.courseInscription.find(({id_course}) => id_course === id));
+      return !!(this.courseInscription?.find(({id}) => id === id_course));
     }
     return false
   }
@@ -266,10 +267,11 @@ export class CoursesRegistrationsFormComponent implements OnInit {
    */
   clickEvent(id?: number) {
     if (!!id) {
-      this.subscriptionsService.requestUserSubscriptions(id).subscribe(
+      this.subscriptionsService.requestUserSubscriptions({id: id}).subscribe(
         elem => {
-          const message = elem ? "Tu es inscrit !" : "Tu es désinscrit !";
-          this.toastService.newToast(message, true);
+          console.log(elem.subscribed)
+          let message = elem.subscribed ? "Tu es inscrit !" : "Tu es désinscrit !";
+          this.toastService.newToast(message, false);
         }, error => {
           this.toastService.newToast(error.error.error, true);
         }

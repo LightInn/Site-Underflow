@@ -132,10 +132,6 @@ export class CoursesSuggestsFormComponent implements OnInit {
     }
     // Send error message to the toast service
     this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Suggestion envoyée...", false);
-    // let subject = this.subjectslist?.find(({title}) => title === this.form.value.subjects);
-    // console.log(subject)
-    console.log(this.form.value.date_butoir)
-    console.log(this.form.value)
     // Verify if the form is valid or not , and create suggestions / subjects
     if (this.form.status === "VALID") {
       let subjectIndex = this.subjectslist?.findIndex(({title}) => title === this.form.value.subjects);
@@ -143,25 +139,6 @@ export class CoursesSuggestsFormComponent implements OnInit {
       if (!!this.subjectslist) {
         subjectElem = (!!subjectIndex) ? this.subjectslist[subjectIndex] : {};
       }
-
-      console.log(
-        {
-          title: this.form.value.title,
-          subject: (!!subjectElem) ?
-            {
-              id: subjectElem.id,
-              title: this.form.value.subjects
-            }
-            : {
-              id: 0,
-              title: this.form.value.subjects
-            },
-          date_butoir: this.form.value.date_butoir,
-          classe: {
-            id: Number(this.form.value.classes)
-          }
-        }
-      )
       if (!this.error_flag) {
         // if the subject is already created, then just create the new suggestion
         this.suggestionsService.addSuggestion({
@@ -177,11 +154,11 @@ export class CoursesSuggestsFormComponent implements OnInit {
             },
           date_butoir: this.form.value.date_butoir,
           classe: {
-            id: this.form.value.classes
+            id: Number(this.form.value.classes)
           }
         }).subscribe(
           response => {
-            this.toastService.newToast("Votre propositon à été créée", true);
+            this.toastService.newToast("Votre propositon à été créée", false);
           }, error => {
             this.toastService.newToast(error.error.error, true);
           }

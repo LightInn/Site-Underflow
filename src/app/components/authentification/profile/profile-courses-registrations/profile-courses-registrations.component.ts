@@ -8,6 +8,8 @@ import {CourseSubscription} from "../../../../interfaces/courseSubscription";
 import {User} from "../../../../interfaces/user";
 import {CoursesService} from 'src/app/services/callAPI/courses.service';
 import {RegistrationsCoursesService} from "../../../../services/callAPI/registrations-courses.service";
+import {ClassesService} from "../../../../services/callAPI/classes.service";
+import {UserService} from "../../../../services/callAPI/user.service";
 
 @Component({
   selector: 'app-profile-inscriptions',
@@ -21,23 +23,24 @@ export class ProfileCoursesRegistrationsComponent implements OnInit {
   coursesList?: Array<Courses> = [];
   checked: boolean = true;
 
-  constructor(
-    private authService: AuthentificationService,
-    private toastService: ToastService,
-    private router: Router,
-    private coursesService: CoursesService,
-    private courseRegistrationService: RegistrationsCoursesService) {
+  constructor(private toastService: ToastService,
+              private router: Router,
+              private classeService: ClassesService,
+              private courseService: CoursesService,
+              private subscriptionsService: RegistrationsCoursesService,
+              private userService: UserService) {
   }
 
+
   ngOnInit(): void {
-    this.coursesService.courses().subscribe(
+    this.courseService.courses().subscribe(
       courses => {
         this.coursesList = courses;
       }, error => {
         this.toastService.newToast(error.error.error, true);
       }
     );
-    this.courseRegistrationService.subscriptions().subscribe(
+    this.subscriptionsService.subscriptions(true).subscribe(
       subscriptions => {
         this.courseInscription = subscriptions;
       }, error => {
@@ -46,25 +49,25 @@ export class ProfileCoursesRegistrationsComponent implements OnInit {
     )
   }
 
-  // elem check function -> we test if the user is already registred on the course
-  elemCheck(id?: number) {
-    return (!!(this.courseInscription.find(({id_course}) => id_course === id)));
+  /**
+   * elem check function -> we test if the user is already registred on the course
+   * @param idElem
+   */
+  elemCheck(idElem?: number) {
+    return (!!(this.courseInscription.find(({id}) => id === idElem)));
   }
 
-  // If we clic on toggle button -> then toggle the inscription to the course
+  /**
+   * If we clic on toggle button -> then toggle the inscription to the course
+   * @param id
+   */
   clickEvent(id?: number) {
-    if (!!(this.courseInscription.find(({id_course}) => id_course === id))) {
-      // call api to unsubcribe on course
-      this.courseInscription.splice(this.courseInscription.findIndex(({id_course}) => id_course === id), 1);
-    } else {
-      // call api to subcribe on course
-      this.courseInscription.push({id_course: id, id_user: this.currentUser.id})
-    }
     if (!!id) {
-      this.courseRegistrationService.requestUserSubscriptions(id).subscribe(
+      this.subscriptionsService.requestUserSubscriptions({id: id}).subscribe(
         elem => {
-          const message = elem ? "Tu es inscrit !" : "Tu es désinscrit !";
-          this.toastService.newToast(message, true);
+          console.log(elem.subscribed)
+          let message = elem.subscribed ? "Tu es inscrit !" : "Tu es désinscrit !";
+          this.toastService.newToast(message, false);
         }, error => {
           this.toastService.newToast(error.error.error, true);
         }

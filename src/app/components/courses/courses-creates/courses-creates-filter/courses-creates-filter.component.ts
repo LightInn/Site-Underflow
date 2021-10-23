@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Suggest} from "../../../../interfaces/suggest";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat"
 import {SuggestionsService} from "../../../../services/callAPI/suggestions.service";
@@ -15,12 +15,14 @@ export class CoursesCreatesFilterComponent implements OnInit {
   suggestsList ?: Array<Suggest>;
   empty: boolean = true;
 
+  @Output() onSuggestPicked = new EventEmitter<any>();
+
   constructor(private suggestService: SuggestionsService,
               private toastService: ToastService) {
   }
 
   ngOnInit(): void {
-    this.suggestService.suggests().subscribe(
+    this.suggestService.suggests(true).subscribe(
       suggests => {
         this.suggestsList = suggests;
         if (!!this.suggestsList) {
@@ -39,15 +41,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
   }
 
   clickSuggestEvent(suggest: Suggest) {
-    // @ts-ignore
-    document.forms["formCreate"]["title"].value = suggest.title;
-    // @ts-ignore
-    // document.forms["formCreate"]["date"].value=this.toFormDateLocaleString(suggest.date_butoir);
-    document.forms["formCreate"]["date"].value = toFormDateLocaleString(new Date(Date.now()));
-    // @ts-ignore
-    document.forms["formCreate"]["classes"].value = suggest?.classe?.title;
-    // @ts-ignore
-    document.forms["formCreate"]["subjects"].value = suggest?.subject?.title;
+    this.onSuggestPicked.emit(suggest);
     this.clickEvent()
   }
 }

@@ -19,8 +19,8 @@ export class CoursesService {
    * Get the list of all courses
    * @param reset -> true if you want to force the cache reset
    */
-  courses(reset: boolean = false) {
-    if (!this.cache$) {
+  courses(reset: boolean = false ) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestCourses().pipe(
         shareReplay(1)
       );
@@ -34,7 +34,7 @@ export class CoursesService {
   }
 
   public addCourse(course: Courses) {
-    return this.http.post<Courses>(ApiUrl + '/courses/', course).pipe(
+    return this.http.post<Courses>(ApiUrl + '/course/', course).pipe(
     )
   }
 

@@ -19,7 +19,7 @@ export class SuggestionsService {
    * @param reset -> true if you want to force the cache reset
    */
   suggests(reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestSuggests().pipe(
         shareReplay(1)
       );

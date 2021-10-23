@@ -19,7 +19,7 @@ export class SubjectsService {
    * @param reset -> true if you want to force the cache reset
    */
   subjects(reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestSubjects().pipe(
         shareReplay(1)
       );
