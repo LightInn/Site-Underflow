@@ -29,7 +29,7 @@
                 px-8 text-14px my-2 text-underflow_grey-50">
         <datalist id="subjects_datalist">
           <option *ngFor="let subject of subjectslist;"
-                  value="{{subject.title}}">{{subject.title}}</option>
+                  value="{{subject.id}}">{{subject.title}}</option>
         </datalist>
         <span *ngIf="error_subject" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - Le thème saisi n'est pas valide</span>
       </div>

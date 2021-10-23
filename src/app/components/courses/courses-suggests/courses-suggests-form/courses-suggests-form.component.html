@@ -47,7 +47,7 @@
                rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
                 px-8 text-14px my-2 text-underflow_grey-50">
           <option *ngFor="let classe of classesList;"
-                  value="{{classe.title}}">{{classe.title}}</option>
+                  value="{{classe.id}}">{{classe.title}}</option>
         </select>
         <span *ngIf="error_classe" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - Le niveau saisi n'est pas valide</span>
       </div>

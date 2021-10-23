@@ -24,7 +24,6 @@ export class AuthentificationInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>,
             next: HttpHandler): Observable<HttpEvent<any>> {
     const idToken = String(JSON.parse(String(localStorage.getItem("jwt"))).token);
-    console.log(idToken)
 
     let clone;
     // console.log("call service")
