@@ -23,10 +23,23 @@ export class AuthentificationInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>,
             next: HttpHandler): Observable<HttpEvent<any>> {
-    const idToken = String(JSON.parse(String(localStorage.getItem("jwt"))).token);
+    // console.log("test intercept")
+    // console.log(localStorage.getItem("jwt"))
+    // console.log(String(JSON.parse(String(localStorage.getItem("jwt"))).token))
+    // const idToken = ;
+    //
+    // let clone;
+    // console.log("call service")
+    // console.log(idToken)
+    var idToken: any;
+    if (!!localStorage.getItem("jwt")) {
+      idToken = String(JSON.parse(String(localStorage.getItem("jwt"))).token)
+    } else {
+      idToken = localStorage.getItem("jwt")
+    }
 
     let clone;
-    // console.log("call service")
+    console.log("call service")
     if (AuthentificationInterceptor.CSRFTokenRun) {
       if (idToken != null) {
         clone = req.clone(
