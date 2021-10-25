@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {CourseSubscription} from "../../interfaces/courseSubscription";
+import {Courses} from "../../interfaces/course";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class RegistrationsCoursesService {
    * @param reset -> true if you want to force the cache reset
    */
   subscriptions(reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestSubscriptions().pipe(
         shareReplay(1)
       );
@@ -37,8 +38,8 @@ export class RegistrationsCoursesService {
    * it use the token of authentication to change the subcription state on the good user
    * @param courseId > Send the course id if you want to toggle your subscription state
    */
-  public requestUserSubscriptions(courseId: number) {
-    return this.http.post<boolean>(ApiUrl + '/subscriptions/', courseId).pipe(
+  public requestUserSubscriptions(course: Courses) {
+    return this.http.post<{ subscribed:boolean }>(ApiUrl + '/subscription/', course).pipe(
     )
   }
 }

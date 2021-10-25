@@ -20,7 +20,7 @@ export class ParticipantsService {
    * @param reset -> true if you want to force the cache reset
    */
   participants(idCourse: number, reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestParticipants(idCourse).pipe(
         shareReplay(1)
       );

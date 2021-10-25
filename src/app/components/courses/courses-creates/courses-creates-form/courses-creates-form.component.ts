@@ -36,6 +36,7 @@ export class CoursesCreatesFormComponent implements OnInit {
   error_subject: boolean = false;
   error_classe: boolean = false;
   error_description: boolean = false;
+  error_room: boolean = false;
   error_flag: boolean = false;
 
   /**
@@ -60,7 +61,8 @@ export class CoursesCreatesFormComponent implements OnInit {
       date: ['', [Validators.required]],
       subjects: ['', [Validators.required]],
       classes: ['', [Validators.required]],
-      description: ['', [Validators.required]]
+      description: ['', [Validators.required]],
+      room: ['', []],
     });
 
     /**
@@ -89,6 +91,17 @@ export class CoursesCreatesFormComponent implements OnInit {
         this.toastService.newToast(error.error.error, true);
       }
     )
+  }
+
+  /**
+   * Function to set data on the data form from the suggest component
+   * @param suggest
+   */
+  suggestPicked(suggest: any) {
+    this.form.controls['title'].setValue(suggest.title);
+    this.form.controls['date'].setValue(toFormDateLocaleString(new Date(Date.now())));
+    this.form.controls['classes'].setValue(suggest?.classe?.title);
+    this.form.controls['subjects'].setValue(suggest?.subject?.title);
   }
 
   /**
@@ -140,24 +153,73 @@ export class CoursesCreatesFormComponent implements OnInit {
             this.error_description = false;
           }
           break;
+        case 'room':
+          if (!!this.form.controls[control].errors) {
+            this.error_room = true;
+            this.error_flag = true;
+          } else {
+            this.error_description = false;
+          }
+          break;
       }
     }
     // Send error message to the toast service
     this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Cours créé...", false);
 
+    console.log(this.form.value)
     // Verify if the form is valid or not , and create suggestions / subjects
     if (this.form.status === "VALID") {
       if (!this.error_flag) {
-        let subject = this.subjectslist?.find(({title}) => title === this.form.value.subject);
-        let classe = this.classesList?.find(({title}) => title === this.form.value.classe);
+        let subjectIndex = this.subjectslist?.findIndex(({title}) => title === this.form.value.subjects);
+        var subjectElem: Subject = {};
+        if (!!this.subjectslist) {
+          subjectElem = (!!subjectIndex) ? this.subjectslist[subjectIndex] : {};
+        }
+        // let classe = this.classesList?.find(({title}) => title === this.form.value.classe);
+        console.log(
+          {
+            title: this.form.value.title,
+            subject: (!!subjectElem) ?
+              {
+                id: subjectElem.id,
+                title: this.form.value.subjects
+              }
+              : {
+                id: 0,
+                title: this.form.value.subjects
+              },
+            date_start: this.form.value.date,
+            classe: {
+              id: this.form.value.classes
+            },
+            description: this.form.value.description,
+            salle: this.form.value.room
+          }
+        )
         this.courseService.addCourse({
-          title:this.form.value.title,
-          subject:subject,
-          date_start:this.form.value.date_start,
-          classe:classe,
+          title: this.form.value.title,
+          subject: (!!subjectElem) ?
+            {
+              id: subjectElem.id,
+              title: this.form.value.subjects
+            }
+            : {
+              id: 0,
+              title: this.form.value.subjects
+            },
+          date_start: this.form.value.date,
+          classe: {
+            id: Number(this.form.value.classes)
+          },
           description: this.form.value.description,
-          ended:false
-        })
+          room: this.form.value.room
+        }).subscribe(
+          response => {
+            this.toastService.newToast("Votre cours à été créé", false);
+          }, error => {
+            this.toastService.newToast(error.error.error, true);
+          }
+        )
       }
     }
   }

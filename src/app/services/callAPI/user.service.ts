@@ -20,7 +20,7 @@ export class UserService {
    * @param reset -> true if you want to force the cache reset
    */
   user(reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestUser().pipe(
         shareReplay(1)
       );

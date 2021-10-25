@@ -12,5 +12,5 @@ export interface Courses {
   subject?:Subject|null
   classe?:Classe|null
   description?:string|null
-  salle?:string|null
+  room?:string|null
 }
