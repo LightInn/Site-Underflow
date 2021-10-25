@@ -36,7 +36,7 @@ export class UpdateCourseComponent implements OnInit {
   error_title: boolean = false;
   error_subjects: boolean = false;
   error_classes: boolean = false;
-  error_user: boolean = false;
+  error_description: boolean = false;
   error_date: boolean = false;
   error_duration: boolean = false;
   error_closed: boolean = false;
@@ -56,7 +56,7 @@ export class UpdateCourseComponent implements OnInit {
       title: ['', [Validators.required]],
       subjects: ['', [Validators.required]],
       classes: ['', [Validators.required]],
-      user: ['', [Validators.required]],
+      description: ['', [Validators.required]],
       date: ['', [Validators.required]],
       duration: ['', [Validators.required]],
       closed: ['', [Validators.required]],
@@ -139,9 +139,9 @@ export class UpdateCourseComponent implements OnInit {
             this.error_flag = false;
           }
           break;
-        case 'user':
+        case 'description':
           if (!!this.form.controls[control].errors) {
-            this.error_user = true;
+            this.error_description = true;
             this.error_flag = true;
           } else {
             this.error_flag = false;

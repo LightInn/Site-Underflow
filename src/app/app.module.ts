@@ -46,7 +46,6 @@ import {UpdateSubjectComponent} from './components/administration/updates/update
 import {ClassesService} from "./services/callAPI/classes.service";
 import { HeaderAdminComponent } from './components/administration/header-admin/header-admin.component';
 import { AdminSuggestionsComponent } from './components/administration/views/admin-suggestions/admin-suggestions.component';
-import { UpdateCourseUserComponent } from './components/administration/updates/update-course-user/update-course-user.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +90,6 @@ import { UpdateCourseUserComponent } from './components/administration/updates/u
     UpdateSubjectComponent,
     HeaderAdminComponent,
     AdminSuggestionsComponent,
-    UpdateCourseUserComponent,
     // UpdateUserComponent
   ],
   imports: [
