@@ -4,7 +4,6 @@ import {Subject} from "../../interfaces/subject";
 import {HttpClient} from "@angular/common/http";
 import {map, shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
-import {Suggest} from "../../interfaces/suggest";
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +53,11 @@ export class SubjectsService {
 
   public requestUpdateSubjectSpecific(id: number, subject: Subject) {
     return this.http.patch<Subject>(ApiUrl + '/subject/' + id, subject).pipe(
+    )
+  }
+
+  public requestDeleteSubject(subject: Subject) {
+    return this.http.delete<Subject>(ApiUrl + '/admin/delete_subject/', {body: {id: subject.id}}).pipe(
     )
   }
 }

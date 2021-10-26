@@ -38,8 +38,18 @@ export class ClassesService {
     )
   }
 
-  public requestUpdateClasseSpecific(id: number, classe: Classe) {
-    return this.http.patch<Classe>(ApiUrl + '/classes/' + id, classe).pipe(
+  public requestUpdateClasseSpecific(classe: Classe) {
+    return this.http.patch<Classe>(ApiUrl + '/admin/update_classe/', classe).pipe(
+    )
+  }
+
+  public requestDeleteClasse(classe: Classe) {
+    return this.http.delete<Classe>(ApiUrl + '/admin/delete_classe/', {body: {id: classe.id}}).pipe(
+    )
+  }
+
+  public requestAddClasse(classe: Classe) {
+    return this.http.post<Classe>(ApiUrl + '/admin/classe/', classe).pipe(
     )
   }
 }

@@ -69,14 +69,14 @@ export class CoursesSuggestsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.classeService.classes().subscribe(
+    this.classeService.classes(true).subscribe(
       classes => {
         this.classesList = classes;
       }, error => {
         this.toastService.newToast(error.error.error, true);
       }
     )
-    this.subjectService.subjects().subscribe(
+    this.subjectService.subjects(true).subscribe(
       subjects => {
         this.subjectslist = subjects;
       }, error => {

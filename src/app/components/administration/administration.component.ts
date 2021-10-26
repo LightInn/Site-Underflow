@@ -13,72 +13,129 @@ import {Suggest} from "../../interfaces/suggest";
 import {SuggestionsService} from "../../services/callAPI/suggestions.service";
 
 @Component({
-    selector: 'app-administration',
-    templateUrl: './administration.component.html',
-    styleUrls: ['./administration.component.scss']
+  selector: 'app-administration',
+  templateUrl: './administration.component.html',
+  styleUrls: ['./administration.component.scss']
 })
 export class AdministrationComponent implements OnInit {
-    // *************** Declaration part ******************* //
-    classesList?: Array<Classe>;
-    subjectslist?: Array<Subject>;
-    actualUser?: User;
-    userslist?: Array<User>;
-    coursesList?: Array<Courses>;
-    suggestsList?: Array<Suggest>;
+  // *************** Declaration part ******************* //
+  classesList?: Array<Classe>;
+  subjectslist?: Array<Subject>;
+  actualUser?: User;
+  userslist?: Array<User>;
+  coursesList?: Array<Courses>;
+  suggestsList?: Array<Suggest>;
 
 
-    constructor(private toastService: ToastService,
-                private classesService: ClassesService,
-                private subjectsService: SubjectsService,
-                private userInfoService: UserService,
-                private usersService: UsersService,
-                private coursesService: CoursesService,
-                private suggestionsService: SuggestionsService) {
-    }
+  constructor(private toastService: ToastService,
+              private classesService: ClassesService,
+              private subjectsService: SubjectsService,
+              private userInfoService: UserService,
+              private usersService: UsersService,
+              private coursesService: CoursesService,
+              private suggestionsService: SuggestionsService) {
+  }
 
-    ngOnInit(): void {
-        this.classesService.classes().subscribe(
-            response => {
-                this.classesList = response;
-            }, error => {
-                this.toastService.newToast(error.error.error, true);
-            }
-        )
-        this.subjectsService.subjects().subscribe(
-            response => {
-                this.subjectslist = response;
-            }, error => {
-                this.toastService.newToast(error.error.error, true);
-            }
-        )
-        this.userInfoService.user().subscribe(
-            response => {
-                this.actualUser = response;
-            }, error => {
-                this.toastService.newToast(error.error.error, true);
-            }
-        )
-        this.usersService.users().subscribe(
-            response => {
-                this.userslist = response;
-            }, error => {
-                this.toastService.newToast(error.error.error, true);
-            }
-        )
-        this.coursesService.courses().subscribe(
-            response => {
-                this.coursesList = response;
-            }, error => {
-                this.toastService.newToast(error.error.error, true);
-            }
-        )
-        this.suggestionsService.suggests().subscribe(
-            response => {
-                this.suggestsList = response;
-            }, error => {
-                this.toastService.newToast(error.error.error, true);
-            }
-        )
+  ngOnInit(): void {
+    this.classesService.classes(true).subscribe(
+      response => {
+        this.classesList = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.subjectsService.subjects(true).subscribe(
+      response => {
+        this.subjectslist = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.userInfoService.user(true).subscribe(
+      response => {
+        this.actualUser = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.usersService.users(true).subscribe(
+      response => {
+        this.userslist = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.coursesService.courses(true).subscribe(
+      response => {
+        this.coursesList = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.suggestionsService.suggests(true).subscribe(
+      response => {
+        this.suggestsList = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+  }
 
-    }
+  // ******************************* RESET PART ********************************** //
+  resetClasses() {
+    this.classesService.classes(true).subscribe(
+      response => {
+        this.classesList = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+  }
+
+  resetSubjects() {
+    this.subjectsService.subjects(true).subscribe(
+      response => {
+        this.subjectslist = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+    this.userInfoService.user(true).subscribe(
+      response => {
+        this.actualUser = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+  }
+
+  resetUsers() {
+    this.usersService.users(true).subscribe(
+      response => {
+        this.userslist = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+  }
+
+  resetCourses() {
+    this.coursesService.courses(true).subscribe(
+      response => {
+        this.coursesList = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+  }
+
+  resetSuggestions() {
+    this.suggestionsService.suggests(true).subscribe(
+      response => {
+        this.suggestsList = response;
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+  }
 }
