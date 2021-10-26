@@ -24,8 +24,9 @@ export class AuthentificationInterceptor implements HttpInterceptor {
 
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
     //handle your auth error or rethrow
-    if (err.status === 401 || err.status === 403) {
+    if ((err.status === 401 || err.status === 403) && (err.url?.slice(-7) !== "/login/" || err.url?.slice(-7) !== "/register/")) {
       //navigate /delete cookies or whatever
+
       this.authService.logout();
       this.router.navigateByUrl(`/login`);
       this.toastService.newToast("Vous avez été deconecter", true)
