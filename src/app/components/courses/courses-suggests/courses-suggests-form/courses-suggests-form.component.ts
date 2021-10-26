@@ -157,6 +157,7 @@ export class CoursesSuggestsFormComponent implements OnInit {
           }
         }).subscribe(
           response => {
+            this.router.navigate(['/les-cours']);
             this.toastService.newToast("Votre propositon à été créée", false);
           }, error => {
             this.toastService.newToast(error.error.error, true);

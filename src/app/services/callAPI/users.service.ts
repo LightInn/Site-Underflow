@@ -28,7 +28,7 @@ export class UsersService {
   }
 
   private requestUsers() {
-    return this.http.get<Array<User>>(ApiUrl + '/users/').pipe(
+    return this.http.get<Array<User>>(ApiUrl + '/admin/users/').pipe(
     )
   }
 }

@@ -1,24 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ToastService} from "../../../../services/toast.service";
-import {ActivatedRoute, Router} from "@angular/router";
 import {Subject} from "../../../../interfaces/subject";
 import {Classe} from "../../../../interfaces/classe";
 import {User} from "../../../../interfaces/user";
+import {Courses} from "../../../../interfaces/course";
+import {ToastService} from "../../../../services/toast.service";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
-import {UsersService} from 'src/app/services/callAPI/users.service';
+import {UsersService} from "../../../../services/callAPI/users.service";
 import {ParticipantsService} from "../../../../services/callAPI/participants.service";
-import {Courses} from "../../../../interfaces/course";
 import {CoursesService} from "../../../../services/callAPI/courses.service";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat";
 
 @Component({
-  selector: 'app-update-course',
-  templateUrl: './update-course.component.html',
-  styleUrls: ['./update-course.component.scss']
+  selector: 'app-user-update-course',
+  templateUrl: './user-update-course.component.html',
+  styleUrls: ['./user-update-course.component.scss']
 })
-export class UpdateCourseComponent implements OnInit {
+export class UserUpdateCourseComponent implements OnInit {
+
   // *************** Declaration part ******************* //
   form: FormGroup;
   courseId: string | null;

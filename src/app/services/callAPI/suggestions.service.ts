@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {shareReplay} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {Suggest} from "../../interfaces/suggest";
 
@@ -26,6 +26,7 @@ export class SuggestionsService {
     }
     return this.cache$;
   }
+
 
   private requestSuggests() {
     return this.http.get<Array<Suggest>>(ApiUrl + '/propositions/').pipe(
