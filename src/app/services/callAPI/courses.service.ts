@@ -47,4 +47,9 @@ export class CoursesService {
     return this.http.patch<Courses>(ApiUrl + '/courses/' + id, course).pipe(
     )
   }
+
+  public requestDeleteCourse(course: Courses) {
+    return this.http.delete<Courses>(ApiUrl + '/admin/delete_course/', {body: {id: course.id}}).pipe(
+    )
+  }
 }

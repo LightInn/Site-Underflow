@@ -99,7 +99,7 @@ export class CoursesCreatesFormComponent implements OnInit {
   suggestPicked(suggest: any) {
     this.form.controls['title'].setValue(suggest.title);
     this.form.controls['date'].setValue(toFormDateLocaleString(new Date(Date.now())));
-    this.form.controls['classes'].setValue(suggest?.classe?.title);
+    this.form.controls['classes'].setValue(suggest?.classe?.id);
     this.form.controls['subjects'].setValue(suggest?.subject?.title);
   }
 
@@ -215,6 +215,7 @@ export class CoursesCreatesFormComponent implements OnInit {
         }).subscribe(
           response => {
             // todo redirect to /userowner/course/id
+            this.router.navigate(['/profile']);
             this.toastService.newToast("Votre cours à été créé", false);
           }, error => {
             this.toastService.newToast(error.error.error, true);

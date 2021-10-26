@@ -49,6 +49,7 @@ import {ConfirmationComponent} from './components/authentification/confirmation/
 import {ContributeComponent} from './components/contribute/contribute.component';
 import {HeaderAdminComponent} from "./components/administration/header-admin/header-admin.component";
 import {UserUpdateCourseComponent} from "./components/administration/updates/user-update-course/user-update-course.component";
+import { AddClasseComponent } from './components/administration/add/add-classe/add-classe.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import {UserUpdateCourseComponent} from "./components/administration/updates/use
     UserUpdateCourseComponent,
     ConfirmationComponent,
     ContributeComponent,
+    AddClasseComponent,
   ],
   imports: [
     BrowserModule,

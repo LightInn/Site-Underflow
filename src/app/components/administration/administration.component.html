@@ -1,8 +1,7 @@
 <app-header-admin></app-header-admin>
 
-<app-admin-classes [classesList]="classesList"></app-admin-classes>
-<app-admin-subjects [subjectsList]="subjectslist"></app-admin-subjects>
-<app-admin-users [usersList]="userslist"></app-admin-users>
-<app-admin-courses [coursesList]="coursesList"></app-admin-courses>
-<app-admin-suggestions [suggestsList]="suggestsList"></app-admin-suggestions>
-
+<app-admin-classes [classesList]="classesList" (emitResetCallback_classe)="resetClasses()"></app-admin-classes>
+<app-admin-subjects [subjectsList]="subjectslist" (emitResetCallback_subject)="resetSubjects()"></app-admin-subjects>
+<app-admin-users [usersList]="userslist" (emitResetCallback_user)="resetUsers()"></app-admin-users>
+<app-admin-courses [coursesList]="coursesList" (emitResetCallback_course)="resetCourses()"></app-admin-courses>
+<app-admin-suggestions [suggestsList]="suggestsList" (emitResetCallback_suggestion)="resetSuggestions()"></app-admin-suggestions>

@@ -1,18 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastService} from "../../../../services/toast.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
 
 @Component({
-  selector: 'app-update-classes',
-  templateUrl: './update-classe.component.html',
-  styleUrls: ['./update-classe.component.scss']
+  selector: 'app-add-classe',
+  templateUrl: './add-classe.component.html',
+  styleUrls: ['./add-classe.component.scss']
 })
-export class UpdateClasseComponent implements OnInit {
+export class AddClasseComponent implements OnInit {
   // *************** Declaration part ******************* //
   form: FormGroup;
-  classeId: string;
 
   /**
    * We declare all flag for errors (for profile)
@@ -26,26 +25,11 @@ export class UpdateClasseComponent implements OnInit {
               private route: ActivatedRoute,
               private classesService: ClassesService) {
     this.form = this.fb.group({
-      id: ['', [Validators.required]],
       title: ['', [Validators.required]],
     });
-    this.classeId = String(this.route.snapshot.paramMap.get('id'));
   }
 
-  ngOnInit(): void {
-    this.classesService.requestClasseSpecific(Number(this.classeId)).subscribe(
-      response => {
-        if (response.length) {
-          this.form.controls['title'].setValue(response[0].title);
-        } else {
-          this.router.navigate(['not-found'])
-        }
-      }, error => {
-        this.toastService.newToast(error.error.error, true);
-        this.router.navigate(['not-found'])
-      }
-    )
-  }
+  ngOnInit(): void {}
 
   submit() {
     this.error_flag = false;
@@ -68,15 +52,14 @@ export class UpdateClasseComponent implements OnInit {
 
       if (this.form.status === "VALID") {
         if (!this.error_flag) {
-          this.classesService.requestUpdateClasseSpecific(
+          this.classesService.requestAddClasse(
             {
-              id: this.form.value.id,
               title: this.form.value.title
             }
           ).subscribe(
             response => {
               this.router.navigate(['admin'])
-              this.toastService.newToast("Classe bien modifié", false);
+              this.toastService.newToast("Classe bien ajoutée", false);
             }, error => {
               this.toastService.newToast(error.error.error, true);
             }

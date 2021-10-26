@@ -41,4 +41,9 @@ export class SuggestionsService {
     return this.http.post<unknown>(ApiUrl + '/proposition/', suggest).pipe(
     )
   }
+
+  public requestDeleteSuggest(suggest: Suggest) {
+    return this.http.delete<Suggest>(ApiUrl + '/admin/delete_proposition/', {body: {id: suggest.id}}).pipe(
+    )
+  }
 }

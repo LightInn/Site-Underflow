@@ -4,6 +4,7 @@ import {User} from "../../interfaces/user";
 import {HttpClient} from "@angular/common/http";
 import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
+import {Suggest} from "../../interfaces/suggest";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,11 @@ export class UsersService {
 
   private requestUsers() {
     return this.http.get<Array<User>>(ApiUrl + '/admin/users/').pipe(
+    )
+  }
+
+  public requestDeleteUser(user: User) {
+    return this.http.delete<User>(ApiUrl + '/admin/delete_user/', {body: {email: user.email}}).pipe(
     )
   }
 }
