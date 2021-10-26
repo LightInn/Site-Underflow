@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {shareReplay} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {Courses} from "../../interfaces/course";
-import {Classe} from "../../interfaces/classe";
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +38,8 @@ export class CoursesService {
   }
 
   public requestCourseSpecific(id: number) {
-    return this.http.get<Courses>(ApiUrl + '/courses/' + id).pipe(
+    return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
+      map(data=>data.filter(courses => courses.id === id))
     )
   }
 

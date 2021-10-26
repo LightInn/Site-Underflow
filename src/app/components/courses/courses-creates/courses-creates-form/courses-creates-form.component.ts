@@ -77,14 +77,14 @@ export class CoursesCreatesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.classeService.classes().subscribe(
+    this.classeService.classes(true).subscribe(
       classes => {
         this.classesList = classes;
       }, error => {
         this.toastService.newToast(error.error.error, true);
       }
     )
-    this.subjectService.subjects().subscribe(
+    this.subjectService.subjects(true).subscribe(
       subjects => {
         this.subjectslist = subjects;
       }, error => {
@@ -215,6 +215,7 @@ export class CoursesCreatesFormComponent implements OnInit {
           room: this.form.value.room
         }).subscribe(
           response => {
+            // todo redirect to /userowner/course/id
             this.toastService.newToast("Votre cours à été créé", false);
           }, error => {
             this.toastService.newToast(error.error.error, true);

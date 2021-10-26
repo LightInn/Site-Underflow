@@ -15,7 +15,7 @@ export class NotFoundComponent implements OnInit {
     baseDescriptionSecondPart: "",
     baseAdditionalCitation: false,
     baseAdditionalButton: true,
-    basePath: "/landing",
+    basePath: "/",
     baseAsset: false,
     baseAssetPath: "",
     baseAlt: "Home",

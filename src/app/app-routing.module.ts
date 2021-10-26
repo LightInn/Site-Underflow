@@ -31,6 +31,7 @@ const routes: Routes = [
   {path: 'admin/classe/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
   {path: 'admin/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
   {path: 'admin/subject/:id', component: UpdateSubjectComponent, canActivate: [SecurityGuard]},
+  {path: 'userowner/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
 ];
 

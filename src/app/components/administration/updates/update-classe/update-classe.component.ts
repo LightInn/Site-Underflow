@@ -36,9 +36,14 @@ export class UpdateClasseComponent implements OnInit {
   ngOnInit(): void {
     this.classesService.requestClasseSpecific(Number(this.classeId)).subscribe(
       response => {
-        this.form.controls['title'].setValue(response.title);
+        if (response.length) {
+          this.form.controls['title'].setValue(response[0].title);
+        } else {
+          this.router.navigate(['not-found'])
+        }
       }, error => {
         this.toastService.newToast(error.error.error, true);
+        this.router.navigate(['not-found'])
       }
     )
   }

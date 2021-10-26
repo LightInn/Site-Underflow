@@ -35,7 +35,12 @@ export class UpdateSubjectComponent implements OnInit {
   ngOnInit(): void {
     this.subjectsService.requestSubjectSpecific(Number(this.subjectId)).subscribe(
       response => {
-        this.form.controls['title'].setValue(response.title);
+        if (response.length) {
+          this.form.controls['title'].setValue(response[0].title);
+        } else {
+          this.toastService.newToast("La matière n'existe pas !", true);
+          this.router.navigate(['not-found'])
+        }
       }, error => {
         this.toastService.newToast(error.error.error, true);
       }

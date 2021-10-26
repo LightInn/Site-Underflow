@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {Subject} from "../../interfaces/subject";
 import {HttpClient} from "@angular/common/http";
-import {shareReplay} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
+import {Suggest} from "../../interfaces/suggest";
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +42,13 @@ export class SubjectsService {
     )
   }
 
+  /**
+   * Get specific subject
+   * @param id
+   */
   public requestSubjectSpecific(id: number) {
-    return this.http.get<Subject>(ApiUrl + '/subject/' + id).pipe(
+    return this.http.get<Array<Subject>>(ApiUrl + '/subjects/').pipe(
+      map(data=>data.filter(subject=>subject.id === id))
     )
   }
 
