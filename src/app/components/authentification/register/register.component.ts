@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthentificationService} from "../../../services/authentification.service";
 import {Router} from "@angular/router";
+import {regexMailCreated} from "../../../constants/authorized.mail";
 
 @Component({
   selector: 'app-register',
@@ -26,10 +27,10 @@ export class RegisterComponent {
               private authService: AuthentificationService,
               private router: Router) {
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email, Validators.pattern(regexMailCreated)]],
+      firstname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^(?=.*[a-zA-Z]).{3,}$/gm)]],
+      lastname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^(?=.*[a-zA-Z]).{3,}$/gm)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)]]
     });
   }
 
