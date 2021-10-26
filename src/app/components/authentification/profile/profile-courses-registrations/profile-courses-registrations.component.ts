@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Courses} from "../../../../interfaces/course";
-import {Classe} from "../../../../interfaces/classe";
-import {AuthentificationService} from "../../../../services/authentification.service";
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {CourseSubscription} from "../../../../interfaces/courseSubscription";

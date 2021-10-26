@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {Courses} from "../../interfaces/course";
-import {Classe} from "../../interfaces/classe";
 
 @Injectable({
   providedIn: 'root'

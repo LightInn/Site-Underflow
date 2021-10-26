@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Suggest} from "../../../../interfaces/suggest";
-import {toFormDateLocaleString} from "../../../../functions/dateFormat"
 import {SuggestionsService} from "../../../../services/callAPI/suggestions.service";
 import {ToastService} from "../../../../services/toast.service";
 

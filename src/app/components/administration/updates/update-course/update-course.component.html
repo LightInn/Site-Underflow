@@ -54,27 +54,12 @@
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="user">Prof</label>
-        <input list="users_datalist" name="user" id="user" autocomplete="off"
-               placeholder="écrire ici..." formControlName="user"
-               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
-        <datalist id="users_datalist">
-          <option *ngFor="let user of usersList;"
-                  value="{{user}}">{{user.last_name}} {{user.first_name}} - {{user.classe?.title}}</option>
-        </datalist>
-        <span *ngIf="error_user" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - L'utilisateur saisi n'est pas valide</span>
-      </div>
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
         <label class="text-12px" for="date">DATE DU COURS</label>
         <input name="date" formControlName="date" id="date"
                type="datetime-local"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
         <span *ngIf="error_date" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - La date saisie n'est pas valide</span>
       </div>
-    </div>
-    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
       <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
         <label class="text-12px" for="duration">durée</label>
         <input name="duration" formControlName="duration" placeholder="durée (en minutes)"
@@ -82,6 +67,18 @@
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
                rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
         <span *ngIf="error_duration" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - La durée saisie n'est pas valide</span>
+      </div>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
+      <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
+        <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+          <label class="text-12px text-left uppercase" for="description">description</label>
+          <textarea name="description" id="description" cols="30"
+                    rows="10" formControlName="description"
+                    class="w-250px sm:w-500px h-200px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50 pt-10px"
+                    placeholder="décris ton cours et ce que tu comptes faire pour celui-ci !"></textarea>
+          <span *ngIf="error_description" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - La description saisie n'est pas valide</span>
+        </div>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
         <label class="text-12px" for="closed">terminé ?</label>

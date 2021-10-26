@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Subject} from "../../../../interfaces/subject";
 import {Classe} from "../../../../interfaces/classe";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthentificationService} from "../../../../services/authentification.service";
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat";

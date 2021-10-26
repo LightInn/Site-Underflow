@@ -1,15 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Courses} from "../../../../interfaces/course";
 import {CourseSubscription} from "../../../../interfaces/courseSubscription";
 import {Classe} from "../../../../interfaces/classe";
 import {from} from "rxjs";
 import {filter} from "rxjs/operators";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat"
-import {AuthentificationService} from "../../../../services/authentification.service";
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
-import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {RegistrationsCoursesService} from "../../../../services/callAPI/registrations-courses.service";
 import {CoursesService} from "../../../../services/callAPI/courses.service";
 import {UserService} from "../../../../services/callAPI/user.service";

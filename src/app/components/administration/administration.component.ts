@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Subject} from "../../interfaces/subject";
 import {Classe} from "../../interfaces/classe";
 import {User} from "../../interfaces/user";
-import {toFormDateLocaleString} from "../../functions/dateFormat";
 import {Courses} from "../../interfaces/course";
 import {ClassesService} from "../../services/callAPI/classes.service";
 import {UserService} from "../../services/callAPI/user.service";
