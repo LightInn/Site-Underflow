@@ -47,6 +47,7 @@ import {ClassesService} from "./services/callAPI/classes.service";
 import {HeaderAdminComponent} from './components/administration/header-admin/header-admin.component';
 import {AdminSuggestionsComponent} from './components/administration/views/admin-suggestions/admin-suggestions.component';
 import {ConfirmationComponent} from './components/authentification/confirmation/confirmation.component';
+import { ContributeComponent } from './components/contribute/contribute.component';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import {ConfirmationComponent} from './components/authentification/confirmation/
     HeaderAdminComponent,
     AdminSuggestionsComponent,
     ConfirmationComponent,
+    ContributeComponent,
 
     // UpdateUserComponent
   ],

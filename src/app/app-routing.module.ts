@@ -16,6 +16,7 @@ import {UpdateClasseComponent} from "./components/administration/updates/update-
 import {UpdateCourseComponent} from "./components/administration/updates/update-course/update-course.component";
 import {UpdateSubjectComponent} from "./components/administration/updates/update-subject/update-subject.component";
 import {ConfirmationComponent} from './components/authentification/confirmation/confirmation.component';
+import {ContributeComponent} from "./components/contribute/contribute.component";
 
 const routes: Routes = [
   {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'admin/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
   {path: 'admin/subject/:id', component: UpdateSubjectComponent, canActivate: [SecurityGuard]},
   {path: 'nope', component: ConfirmationComponent},
+  {path: 'contribute', component: ContributeComponent},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
 ];
 
