@@ -46,6 +46,7 @@ import {UpdateSubjectComponent} from './components/administration/updates/update
 import {ClassesService} from "./services/callAPI/classes.service";
 import { HeaderAdminComponent } from './components/administration/header-admin/header-admin.component';
 import { AdminSuggestionsComponent } from './components/administration/views/admin-suggestions/admin-suggestions.component';
+import { ConfirmationComponent } from './components/authentification/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { AdminSuggestionsComponent } from './components/administration/views/adm
     UpdateSubjectComponent,
     HeaderAdminComponent,
     AdminSuggestionsComponent,
+    ConfirmationComponent,
     // UpdateUserComponent
   ],
   imports: [
