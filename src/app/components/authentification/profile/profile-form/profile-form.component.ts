@@ -57,8 +57,8 @@ export class ProfileFormComponent implements OnInit {
               private classesService: ClassesService) {
     // ************** Initialization ******************** //
     this.form = this.fb.group({
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+      firstname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\u00C0-\u017F\-\s]+/g)]],
+      lastname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\u00C0-\u017F\-\s]+/g)]],
       classes: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(regexMailCreated)]]
     });

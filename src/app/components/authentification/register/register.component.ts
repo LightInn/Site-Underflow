@@ -28,8 +28,8 @@ export class RegisterComponent {
               private router: Router) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email, Validators.pattern(regexMailCreated)]],
-      firstname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^(?=.*[a-zA-Z]).{3,}$/gm)]],
-      lastname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^(?=.*[a-zA-Z]).{3,}$/gm)]],
+      firstname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\u00C0-\u017F\-\s]+/g)]],
+      lastname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\u00C0-\u017F\-\s]+/g)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)]]
     });
   }

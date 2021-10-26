@@ -44,11 +44,11 @@ import {UpdateClasseComponent} from './components/administration/updates/update-
 import {UpdateCourseComponent} from './components/administration/updates/update-course/update-course.component';
 import {UpdateSubjectComponent} from './components/administration/updates/update-subject/update-subject.component';
 import {ClassesService} from "./services/callAPI/classes.service";
-import { AdminSuggestionsComponent } from './components/administration/views/admin-suggestions/admin-suggestions.component';
+import {AdminSuggestionsComponent} from './components/administration/views/admin-suggestions/admin-suggestions.component';
 import {ConfirmationComponent} from './components/authentification/confirmation/confirmation.component';
-import { ContributeComponent } from './components/contribute/contribute.component';
-import { UserUpdateCourseComponent } from './components/administration/updates/user-update-course/user-update-course.component';
-
+import {ContributeComponent} from './components/contribute/contribute.component';
+import {HeaderAdminComponent} from "./components/administration/header-admin/header-admin.component";
+import {UserUpdateCourseComponent} from "./components/administration/updates/user-update-course/user-update-course.component";
 
 @NgModule({
   declarations: [
@@ -96,8 +96,6 @@ import { UserUpdateCourseComponent } from './components/administration/updates/u
     UserUpdateCourseComponent,
     ConfirmationComponent,
     ContributeComponent,
-
-    // UpdateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +105,6 @@ import { UserUpdateCourseComponent } from './components/administration/updates/u
     BrowserAnimationsModule,
     FormsModule,
     Ng2SearchPipeModule,
-
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true},
