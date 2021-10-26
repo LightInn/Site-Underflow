@@ -17,6 +17,7 @@ import {UpdateCourseComponent} from "./components/administration/updates/update-
 import {UpdateSubjectComponent} from "./components/administration/updates/update-subject/update-subject.component";
 import {ConfirmationComponent} from './components/authentification/confirmation/confirmation.component';
 import {ContributeComponent} from "./components/contribute/contribute.component";
+import {AdminGuard} from './guards/admin.guard';
 
 const routes: Routes = [
   {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
@@ -30,11 +31,10 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'confirmation', component: ConfirmationComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [SecurityGuard]},
-  {path: 'admin', component: AdministrationComponent, canActivate: [SecurityGuard]},
-  {path: 'admin/classe/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
-  {path: 'admin/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
-  {path: 'admin/subject/:id', component: UpdateSubjectComponent, canActivate: [SecurityGuard]},
-  {path: 'nope', component: ConfirmationComponent},
+  {path: 'admin', component: AdministrationComponent, canActivate: [AdminGuard, SecurityGuard]},
+  {path: 'admin/classe/:id', component: UpdateClasseComponent, canActivate: [AdminGuard, SecurityGuard]},
+  {path: 'admin/course/:id', component: UpdateCourseComponent, canActivate: [AdminGuard, SecurityGuard]},
+  {path: 'admin/subject/:id', component: UpdateSubjectComponent, canActivate: [AdminGuard, SecurityGuard]},
   {path: 'contribute', component: ContributeComponent},
   {path: 'userowner/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
