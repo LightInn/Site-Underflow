@@ -1,10 +1,8 @@
-import {Component, Input, NgModule, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 // @ts-ignore
 import {CourseSubscription} from "../../../../interfaces/courseSubscription";
 import {Courses} from "../../../../interfaces/course";
 import {Classe} from "../../../../interfaces/classe";
-import {from} from 'rxjs';
-import {filter} from 'rxjs/operators';
 import {sanitizeString} from "../../../../functions/sanitizeString";
 import {sanitizeDate} from "../../../../functions/sanitizeDate";
 

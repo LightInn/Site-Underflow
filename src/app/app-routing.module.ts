@@ -33,8 +33,8 @@ const routes: Routes = [
   {path: 'admin/classe/:id', component: UpdateClasseComponent, canActivate: [SecurityGuard]},
   {path: 'admin/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
   {path: 'admin/subject/:id', component: UpdateSubjectComponent, canActivate: [SecurityGuard]},
+  {path: 'nope', component: ConfirmationComponent},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
-
 ];
 
 @NgModule({
