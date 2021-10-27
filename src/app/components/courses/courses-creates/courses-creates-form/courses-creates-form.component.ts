@@ -23,6 +23,7 @@ export class CoursesCreatesFormComponent implements OnInit {
   suggestsList ?: Array<Suggest>;
   form: FormGroup;
 
+  suggestId: number = -1;
   /**
    * We limit here & in the constructor the field for date
    * -> 120 day after for the max
@@ -109,24 +110,11 @@ export class CoursesCreatesFormComponent implements OnInit {
    * @param suggest
    */
   suggestPicked(suggest: any) {
+    this.suggestId = suggest.id;
     this.form.controls['title'].setValue(suggest.title);
     this.form.controls['date'].setValue(toFormDateLocaleString(new Date(Date.now())));
     this.form.controls['classes'].setValue(suggest?.classe?.id);
     this.form.controls['subjects'].setValue(suggest?.subject?.title);
-  }
-
-  getSuggest(classeId: number, subjectId: number): number {
-    let suggestSearch: Array<Suggest> = [{}];
-    let elemToReturn: Array<Suggest> = [{}];
-
-    if (this.suggestsList != undefined) {
-      suggestSearch = this.suggestsList.filter(({classe}) => classe?.id === classeId)
-      elemToReturn = (suggestSearch?.filter(({subject}) => subject?.id === subjectId))
-      if (elemToReturn.length != 0) {
-        return Number(elemToReturn[0].id);
-      }
-    }
-    return -1
   }
 
   /**
@@ -197,10 +185,9 @@ export class CoursesCreatesFormComponent implements OnInit {
       if (!this.error_flag) {
         let subjectIndex = this.subjectslist?.findIndex(({title}) => title === this.form.value.subjects);
         var subjectElem: Subject = {};
-        if (!!this.subjectslist) {
-          subjectElem = (!!subjectIndex) ? this.subjectslist[subjectIndex] : {};
+        if (this.subjectslist?.length) {
+          subjectElem = (subjectIndex != undefined && subjectIndex >= 0) ? this.subjectslist[subjectIndex] : {};
         }
-        // let classe = this.classesList?.find(({title}) => title === this.form.value.classe);
         this.courseService.addCourse({
           title: this.form.value.title,
           subject: (!!subjectElem) ?
@@ -218,7 +205,7 @@ export class CoursesCreatesFormComponent implements OnInit {
           },
           description: this.form.value.description,
           room: this.form.value.room,
-          proposition_id: this.getSuggest(Number(this.form.value.classes), Number(subjectElem.id))
+          proposition_id: this.suggestId
         }).subscribe(
           response => {
             // todo redirect to /userowner/course/id

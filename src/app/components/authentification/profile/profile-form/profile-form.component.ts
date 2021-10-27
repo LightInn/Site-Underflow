@@ -140,13 +140,13 @@ export class ProfileFormComponent implements OnInit {
 
     if (this.form.status === "VALID") {
       if (!this.error_flag) {
-        let classe = this.classesList?.find(({title}) => title === this.form.value.classe);
+        let classe = this.classesList?.find(({title}) => title === this.form.value.classes);
         this.userInfoService.update(
           {
             email: this.form.value.email,
             last_name: this.form.value.lastname,
             first_name: this.form.value.firstname,
-            classe: classe,
+            class_id: Number(classe?.id),
           }
         ).subscribe(
           response => {

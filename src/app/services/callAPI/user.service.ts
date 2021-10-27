@@ -5,6 +5,7 @@ import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {User} from "../../interfaces/user";
 import {UserPassword} from "../../interfaces/userPassword";
+import {UserInfo} from "../../interfaces/userInfo";
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,8 @@ export class UserService {
     )
   }
 
-  public update(user: User) {
-    return this.http.patch<User>(ApiUrl + '/user/profile/', user).pipe(
+  public update(user: UserInfo) {
+    return this.http.patch<UserInfo>(ApiUrl + '/user/profile/edit/', user).pipe(
     )
   }
 
