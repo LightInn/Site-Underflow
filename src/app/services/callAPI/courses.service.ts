@@ -37,6 +37,16 @@ export class CoursesService {
     )
   }
 
+  private requestAllCourses() {
+    return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
+    )
+  }
+
+  private requestCoursesCreated() {
+    return this.http.get<Array<Courses>>(ApiUrl + '/user/courses/').pipe(
+    )
+  }
+
   public requestCourseSpecific(id: number) {
     return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
       map(data=>data.filter(courses => courses.id === id))
