@@ -100,8 +100,8 @@ export class UpdateCourseComponent implements OnInit {
           this.form.controls['title'].setValue(response[0].title);
           this.form.controls['subjects'].setValue(response[0].subject?.title);
           this.form.controls['classes'].setValue(response[0].classe?.title);
-          this.form.controls['user'].setValue(`${response[0].owner?.last_name} ${response[0].owner?.first_name} - ${response[0].owner?.classe?.title}`);
           this.form.controls['date'].setValue(toFormDateLocaleString(new Date(String(response[0].date_start))));
+          this.form.controls['description'].setValue(response[0].description);
           this.form.controls['duration'].setValue(response[0].duration);
           this.form.controls['closed'].setValue(response[0].ended);
         } else {

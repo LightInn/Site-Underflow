@@ -19,6 +19,7 @@ import {ConfirmationComponent} from './components/authentification/confirmation/
 import {ContributeComponent} from "./components/contribute/contribute.component";
 import {AdminGuard} from './guards/admin.guard';
 import {AddClasseComponent} from "./components/administration/add/add-classe/add-classe.component";
+import {UserUpdateCourseComponent} from "./components/administration/updates/user-update-course/user-update-course.component";
 
 const routes: Routes = [
   {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
@@ -38,7 +39,7 @@ const routes: Routes = [
   {path: 'admin/subject/:id', component: UpdateSubjectComponent, canActivate: [AdminGuard, SecurityGuard]},
   {path: 'admin/add_classe', component: AddClasseComponent},
   {path: 'contribute', component: ContributeComponent},
-  {path: 'userowner/course/:id', component: UpdateCourseComponent, canActivate: [SecurityGuard]},
+  {path: 'user/course/:id', component: UserUpdateCourseComponent, canActivate: [SecurityGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
 ];
 
