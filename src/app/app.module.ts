@@ -50,6 +50,7 @@ import {ContributeComponent} from './components/contribute/contribute.component'
 import {HeaderAdminComponent} from "./components/administration/header-admin/header-admin.component";
 import {UserUpdateCourseComponent} from "./components/administration/updates/user-update-course/user-update-course.component";
 import {AddClasseComponent} from './components/administration/add/add-classe/add-classe.component';
+import {ProfileCoursesCreatedbymeComponent} from "./components/authentification/profile/profile-courses-createdbyme/profile-courses-createdbyme.component";
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import {AddClasseComponent} from './components/administration/add/add-classe/add
     ConfirmationComponent,
     ContributeComponent,
     AddClasseComponent,
+    ProfileCoursesCreatedbymeComponent,
   ],
   imports: [
     BrowserModule,

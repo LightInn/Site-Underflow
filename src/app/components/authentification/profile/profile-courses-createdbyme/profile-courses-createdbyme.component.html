@@ -1,0 +1,60 @@
+<div class="relative block py-100px">
+  <div class="w-full flex justify-start md:justify-center items-center z-20 flex-wrap">
+    <div class="h-80px border border-underflow_grey-700 flex justify-center items-center py-10px px-30px">
+      <img class="w-25px h-25px" src="./assets/images/svg/book.svg" alt="book logo" draggable="false">
+    </div>
+    <div class="h-80px flex justify-center items-center border border-underflow_grey-700 py-10px px-60px">
+      <p class="text-center text-underflow_grey-200 font-chennai">
+        Mes cours créer
+      </p>
+    </div>
+  </div>
+</div>
+
+<ul class="flex justify-evenly px-10px lg:px-100px md:py-100px pb-100px flex-wrap">
+  <li *ngFor="let course of coursesList">
+    <div class="relative bg-underflow_grey-800 rounded
+    w-250px md:w-500px h-350px md:h-500px p-15px md:p-30px my-10px lg:my-30px flex flex-col">
+      <div class="absolute top-0 right-0 p-30px">
+        <h2 class="font-light">{{course?.subject?.title}}</h2>
+      </div>
+      <div class="w-full relative h-2/6 flex items-center pl-10px lg:pl-60px">
+        <h2 class="text-24px font-bold z-20">
+          {{course?.title}}
+        </h2>
+        <img class="invert absolute top-0 left-0 w-100px h-100px z-10 opacity-10"
+             src="./assets/images/svg/dotGroup.svg" draggable="false"
+             alt="dot group">
+      </div>
+      <div class="w-full h-3/6 overflow-hidden">
+        <p class="text-16px font-light">
+          {{course?.description}}
+        </p>
+      </div>
+      <div class="w-full h-1/6 flex justify-evenly">
+        <div class="w-1/3 h-full flex justify-start items-end">
+          <div class="flex flex-col text-12px">
+            <p>{{course?.room}}</p>
+            <p>{{course?.classe?.title}}</p>
+          </div>
+        </div>
+        <div class="w-1/3 flex justify-center items-end">
+          <div class="flex flex-col font-chennai text-12px text-underflow_blue-50">
+            <p>{{course?.date_start | date:'dd/MM'}}</p>
+            <p>{{course?.date_start | date:'hh:mm'}}</p>
+          </div>
+        </div>
+        <div class="w-1/3 h-full flex justify-end items-end">
+          <div class="flex flex-col text-12px">
+            <button [routerLink]="'/user/course/'+course.id">
+              <img src="./assets/images/svg/edit.svg" alt="parameters" class="w-30px h-30px">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li *ngIf="checkEmpty()">
+    Tu ne possède aucun cours en tant que tutorant ! 😨
+  </li>
+</ul>

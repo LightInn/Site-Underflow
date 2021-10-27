@@ -65,7 +65,7 @@ export class AdministrationComponent implements OnInit {
         this.toastService.newToast(error.error.error, true);
       }
     )
-    this.coursesService.courses(true).subscribe(
+    this.coursesService.requestAllCourses().subscribe(
       response => {
         this.coursesList = response;
       }, error => {
@@ -120,7 +120,7 @@ export class AdministrationComponent implements OnInit {
   }
 
   resetCourses() {
-    this.coursesService.courses(true).subscribe(
+    this.coursesService.requestAllCourses().subscribe(
       response => {
         this.coursesList = response;
       }, error => {

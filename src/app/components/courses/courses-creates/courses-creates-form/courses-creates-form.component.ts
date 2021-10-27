@@ -8,6 +8,8 @@ import {toFormDateLocaleString} from "../../../../functions/dateFormat";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
 import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {CoursesService} from "../../../../services/callAPI/courses.service";
+import {Suggest} from "../../../../interfaces/suggest";
+import {SuggestionsService} from "../../../../services/callAPI/suggestions.service";
 
 @Component({
   selector: 'app-courses-creates-form',
@@ -17,8 +19,10 @@ import {CoursesService} from "../../../../services/callAPI/courses.service";
 export class CoursesCreatesFormComponent implements OnInit {
   // *************** Declaration part ******************* //
   subjectslist ?: Array<Subject>;
-  classesList ?: Array<Classe>
+  classesList ?: Array<Classe>;
+  suggestsList ?: Array<Suggest>;
   form: FormGroup;
+
   /**
    * We limit here & in the constructor the field for date
    * -> 120 day after for the max
@@ -53,7 +57,8 @@ export class CoursesCreatesFormComponent implements OnInit {
               private router: Router,
               private classeService: ClassesService,
               private subjectService: SubjectsService,
-              private courseService: CoursesService) {
+              private courseService: CoursesService,
+              private suggestService: SuggestionsService) {
     this.form = this.fb.group({
       // todo validator personalized
       title: ['', [Validators.required]],
@@ -90,6 +95,13 @@ export class CoursesCreatesFormComponent implements OnInit {
         this.toastService.newToast(error.error.error, true);
       }
     )
+    this.suggestService.suggests(true).subscribe(
+      suggests => {
+        this.suggestsList = suggests
+      }, error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
   }
 
   /**
@@ -101,6 +113,20 @@ export class CoursesCreatesFormComponent implements OnInit {
     this.form.controls['date'].setValue(toFormDateLocaleString(new Date(Date.now())));
     this.form.controls['classes'].setValue(suggest?.classe?.id);
     this.form.controls['subjects'].setValue(suggest?.subject?.title);
+  }
+
+  getSuggest(classeId: number, subjectId: number): number {
+    let suggestSearch: Array<Suggest> = [{}];
+    let elemToReturn: Array<Suggest> = [{}];
+
+    if (this.suggestsList != undefined) {
+      suggestSearch = this.suggestsList.filter(({classe}) => classe?.id === classeId)
+      elemToReturn = (suggestSearch?.filter(({subject}) => subject?.id === subjectId))
+      if (elemToReturn.length != 0) {
+        return Number(elemToReturn[0].id);
+      }
+    }
+    return -1
   }
 
   /**
@@ -175,26 +201,6 @@ export class CoursesCreatesFormComponent implements OnInit {
           subjectElem = (!!subjectIndex) ? this.subjectslist[subjectIndex] : {};
         }
         // let classe = this.classesList?.find(({title}) => title === this.form.value.classe);
-        console.log(
-          {
-            title: this.form.value.title,
-            subject: (!!subjectElem) ?
-              {
-                id: subjectElem.id,
-                title: this.form.value.subjects
-              }
-              : {
-                id: 0,
-                title: this.form.value.subjects
-              },
-            date_start: this.form.value.date,
-            classe: {
-              id: this.form.value.classes
-            },
-            description: this.form.value.description,
-            salle: this.form.value.room
-          }
-        )
         this.courseService.addCourse({
           title: this.form.value.title,
           subject: (!!subjectElem) ?
@@ -211,7 +217,8 @@ export class CoursesCreatesFormComponent implements OnInit {
             id: Number(this.form.value.classes)
           },
           description: this.form.value.description,
-          room: this.form.value.room
+          room: this.form.value.room,
+          proposition_id: this.getSuggest(Number(this.form.value.classes), Number(subjectElem.id))
         }).subscribe(
           response => {
             // todo redirect to /userowner/course/id

@@ -37,12 +37,12 @@ export class CoursesService {
     )
   }
 
-  private requestAllCourses() {
+  public requestAllCourses() {
     return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
     )
   }
 
-  private requestCoursesCreated() {
+  public requestCoursesCreated() {
     return this.http.get<Array<Courses>>(ApiUrl + '/user/courses/').pipe(
     )
   }
