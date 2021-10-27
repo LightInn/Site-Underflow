@@ -28,7 +28,7 @@ export class CoursesService {
   }
 
   private requestCourses() {
-    return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
+    return this.http.get<Array<Courses>>(ApiUrl + '/user/available_courses/').pipe(
     )
   }
 
