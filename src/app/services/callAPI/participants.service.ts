@@ -32,4 +32,10 @@ export class ParticipantsService {
     return this.http.get<Array<User>>(ApiUrl + '/course/' + idCourse + '/participants/').pipe(
     )
   }
+
+// /course/<int:course_id>/user_attendance/
+  public requestToggleUserAttendance(idCourse: number, email: string) {
+    return this.http.patch<{ "present"?: boolean }>(ApiUrl + '/course/' + idCourse + '/user_attendance/', {email: email}).pipe(
+    )
+  }
 }

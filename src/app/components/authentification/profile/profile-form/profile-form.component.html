@@ -10,7 +10,7 @@
                type="text" id="firstname"
                oninput="this.value = this.value[0].toUpperCase() + this.value.toLowerCase().substring(1) ;"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-        <span *ngIf="error_firstname" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - Le prénom saisi n'est pas valide</span>
+        <span *ngIf="error_firstname" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Le prénom saisi n'est pas valide</span>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
         <label class="text-12px uppercase" for="lastname">nom</label>
@@ -18,7 +18,7 @@
                type="text" id="lastname"
                oninput="this.value = this.value[0].toUpperCase() + this.value.toLowerCase().substring(1) ;"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-        <span *ngIf="error_lastname" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - Le nom saisi n'est pas valide</span>
+        <span *ngIf="error_lastname" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Le nom saisi n'est pas valide</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 md:mt-30px">
@@ -28,7 +28,7 @@
                type="email" id="email" readonly
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8
                text-14px my-2 text-underflow_grey-50 opacity-40">
-        <span *ngIf="error_email" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - L'email saisi n'est pas valide</span>
+        <span *ngIf="error_email" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  L'email saisi n'est pas valide</span>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
         <label class="text-12px text-left" for="classes">Classe</label>
@@ -39,7 +39,7 @@
           <option *ngFor="let classe of classesList;"
                   value="{{classe.title}}">{{classe.title}}</option>
         </select>
-        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - Le niveau saisi n'est pas valide</span>
+        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Le niveau saisi n'est pas valide</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
@@ -64,7 +64,7 @@
         <input name="old_password" formControlName="old_password" placeholder="●●●●●●●●●●"
                type="password" id="old_password"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-        <span *ngIf="error_old_password" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - L'ancien mot de passe n'a pas été saisi</span>
+        <span *ngIf="error_old_password" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  L'ancien mot de passe n'a pas été saisi</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 mt-10px md:mt-30px">
@@ -73,14 +73,14 @@
         <input name="password" formControlName="password" placeholder="●●●●●●●●●●"
                type="password" id="password" [(ngModel)]="password"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-        <span *ngIf="error_password" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - Les mots de passes ne sont pas valides</span>
+        <span *ngIf="error_password" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Les mots de passes ne sont pas valides</span>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
         <label class="text-12px uppercase" for="password_valid">Validation du nouveau mot de passe</label>
         <input name="password_valid" formControlName="password_valid" placeholder="●●●●●●●●●●"
                type="password" id="password_valid"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-        <span *ngIf="error_password_valid" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - Les mots de passes ne sont pas valides</span>
+        <span *ngIf="error_password_valid" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Les mots de passes ne sont pas valides</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">

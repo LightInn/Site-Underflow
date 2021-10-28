@@ -9,6 +9,7 @@ export interface User {
   activated?: boolean
   admin?: boolean
   created_on?: string
-  last_login?: string|null
-  classe?: Classe|null
+  last_login?: string | null
+  classe?: Classe | null
+  present?: boolean | null
 }
