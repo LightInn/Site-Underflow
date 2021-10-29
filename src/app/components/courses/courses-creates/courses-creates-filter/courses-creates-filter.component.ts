@@ -24,7 +24,7 @@ export class CoursesCreatesFilterComponent implements OnInit {
     this.suggestService.suggests(true).subscribe(
       suggests => {
         this.suggestsList = suggests;
-        if (!!this.suggestsList) {
+        if (!!this.suggestsList.length) {
           this.empty = false;
         }
       }, error => {

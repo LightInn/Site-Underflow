@@ -90,6 +90,11 @@ export class CoursesSuggestsFormComponent implements OnInit {
    * we also test here all our fields to validate the form or display message errors
    */
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_title = false;
+    this.error_date = false;
+    this.error_subject = false;
+    this.error_classe = false;
     this.error_flag = false;
     // ******************* Validation part ******************** //
     for (const control in this.form.controls) {
@@ -97,45 +102,43 @@ export class CoursesSuggestsFormComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_title = false;
           }
 
           break;
         case 'date_butoir':
           if (!!this.form.controls[control].errors) {
             this.error_date = true;
-            this.error_flag = true;
-          } else {
-            this.error_date = false;
           }
           break;
         case 'subjects':
           if (!!this.form.controls[control].errors) {
             this.error_subject = true;
-            this.error_flag = true;
-          } else {
-            this.error_subject = false;
           }
           break;
         case 'classes':
           if (!!this.form.controls[control].errors) {
             this.error_classe = true;
-            this.error_flag = true;
-          } else {
-            this.error_classe = false;
           }
           break;
       }
     }
     // Send error message to the toast service
-    this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Suggestion envoyée...", false);
+    if (this.error_title ||
+      this.error_date ||
+      this.error_subject ||
+      this.error_classe) {
+      this.error_flag = true
+      this.toastService.newToast("Erreur...", true)
+    } else {
+      this.toastService.newToast("Suggestion envoyée...", false);
+      this.error_flag = false
+    }
+
     // Verify if the form is valid or not , and create suggestions / subjects
     if (this.form.status === "VALID") {
       let subjectIndex = this.subjectslist?.findIndex(({title}) => title === this.form.value.subjects);
       var subjectElem: Subject = {};
-      if (!!this.subjectslist) {
+      if (!!this.subjectslist?.length) {
         subjectElem = (!!subjectIndex) ? this.subjectslist[subjectIndex] : {};
       }
       if (!this.error_flag) {

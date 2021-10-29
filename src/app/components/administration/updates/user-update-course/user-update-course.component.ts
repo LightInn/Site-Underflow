@@ -132,6 +132,15 @@ export class UserUpdateCourseComponent implements OnInit {
   }
 
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_title = false;
+    this.error_subjects = false;
+    this.error_classes = false;
+    this.error_description = false;
+    this.error_date = false;
+    this.error_duration = false;
+    this.error_closed = false;
+    this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
       switch (control) {
@@ -191,7 +200,6 @@ export class UserUpdateCourseComponent implements OnInit {
 
     if (this.form.status === "VALID") {
       if (!this.error_flag) {
-        console.log("coucou")
         if (!this.form.value.closed) {
           this.coursesService.requestUpdateCourseSpecific(
             this.form.value.id,

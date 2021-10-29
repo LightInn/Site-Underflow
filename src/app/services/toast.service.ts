@@ -27,8 +27,6 @@ export class ToastService {
       ToastService.message.error = error;
       ToastService.message.close = false;
 
-      console.log(message);
-
       this.behaviorSubject.next(ToastService.message);
     } else {
 

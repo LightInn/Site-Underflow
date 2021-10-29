@@ -269,7 +269,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     if (!!id) {
       this.subscriptionsService.requestUserSubscriptions({id: id}).subscribe(
         elem => {
-          console.log(elem.subscribed)
           let message = elem.subscribed ? "Tu es inscrit !" : "Tu es désinscrit !";
           this.toastService.newToast(message, false);
         }, error => {

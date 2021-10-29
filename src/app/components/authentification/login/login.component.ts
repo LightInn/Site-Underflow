@@ -5,6 +5,7 @@ import {AuthentificationService} from "../../../services/authentification.servic
 import {ToastService} from "../../../services/toast.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {regexMailCreated} from "../../../constants/authorized.mail";
+import {regexPassword} from "../../../constants/regexValidators";
 
 @Component({
   selector: 'app-login',
@@ -51,18 +52,20 @@ export class LoginComponent implements OnInit {
               private router: Router) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email, Validators.pattern(regexMailCreated)]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)]]
+      password: ['', [Validators.required, Validators.minLength(7), Validators.pattern(regexPassword)]]
     });
   }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.loading = true;
-      console.log(this.loading)
     }, 2000)
   }
 
   login() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_password = false;
+    this.error_email = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -70,22 +73,25 @@ export class LoginComponent implements OnInit {
         case 'email':
           if (!!this.form.controls[control].errors) {
             this.error_email = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'password':
           if (!!this.form.controls[control].errors) {
             this.error_password = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
       }
     }
-    console.log(this.form.value);
+
+    // Send error message to the toast service
+    if (this.error_email ||
+      this.error_password) {
+      this.error_flag = true
+      this.toastService.newToast("Erreur...", true)
+    } else {
+      this.error_flag = false
+    }
+
     if (this.form.status === "VALID") {
       if (!this.error_flag) {
         const val = this.form.value;
@@ -100,7 +106,6 @@ export class LoginComponent implements OnInit {
                 this.router.navigateByUrl('/')
               },
               error => {
-                console.log("error in login");
                 this.toastService.newToast(error.error.error, true)
               }
             );

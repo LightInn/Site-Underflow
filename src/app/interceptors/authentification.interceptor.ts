@@ -48,7 +48,7 @@ export class AuthentificationInterceptor implements HttpInterceptor {
     }
 
     let clone;
-    console.log("call service")
+
     if (AuthentificationInterceptor.CSRFTokenRun) {
       if (idToken != null) {
         clone = req.clone(

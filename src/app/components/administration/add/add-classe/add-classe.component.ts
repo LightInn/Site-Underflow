@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastService} from "../../../../services/toast.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -29,9 +29,12 @@ export class AddClasseComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_title = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -39,15 +42,16 @@ export class AddClasseComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
       }
+
       // Send error message to the toast service
-      if (this.error_flag) {
+      if (this.error_title) {
+        this.error_flag = true
         this.toastService.newToast("Erreur...", true)
+      } else {
+        this.error_flag = false
       }
 
       if (this.form.status === "VALID") {

@@ -61,7 +61,6 @@ export class CoursesCreatesFormComponent implements OnInit {
               private courseService: CoursesService,
               private suggestService: SuggestionsService) {
     this.form = this.fb.group({
-      // todo validator personalized
       title: ['', [Validators.required]],
       date: ['', [Validators.required]],
       subjects: ['', [Validators.required]],
@@ -122,6 +121,14 @@ export class CoursesCreatesFormComponent implements OnInit {
    * we also test here all our fields to validate the form or display message errors
    */
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_flag = false;
+    this.error_title = false;
+    this.error_date = false;
+    this.error_subject = false;
+    this.error_classe = false;
+    this.error_description = false;
+    this.error_room = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -129,57 +136,49 @@ export class CoursesCreatesFormComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_title = false;
           }
           break;
         case 'date':
           if (!!this.form.controls[control].errors) {
             this.error_date = true;
-            this.error_flag = true;
-          } else {
-            this.error_date = false;
           }
           break;
         case 'subjects':
           if (!!this.form.controls[control].errors) {
             this.error_subject = true;
-            this.error_flag = true;
-          } else {
-            this.error_subject = false;
           }
           break;
         case 'classes':
           if (!!this.form.controls[control].errors) {
             this.error_classe = true;
-            this.error_flag = true;
-          } else {
-            this.error_classe = false;
           }
           break;
         case 'description':
           if (!!this.form.controls[control].errors) {
             this.error_description = true;
-            this.error_flag = true;
-          } else {
-            this.error_description = false;
           }
           break;
         case 'room':
           if (!!this.form.controls[control].errors) {
             this.error_room = true;
-            this.error_flag = true;
-          } else {
-            this.error_description = false;
           }
           break;
       }
     }
-    // Send error message to the toast service
-    this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Cours créé...", false);
 
-    console.log(this.form.value)
+    // Send error message to the toast service
+    if (this.error_title ||
+      this.error_date ||
+      this.error_subject ||
+      this.error_classe ||
+      this.error_description ||
+      this.error_room) {
+      this.error_flag = true
+      this.toastService.newToast("Erreur...", true)
+    } else {
+      this.error_flag = false
+    }
+
     // Verify if the form is valid or not , and create suggestions / subjects
     if (this.form.status === "VALID") {
       if (!this.error_flag) {
@@ -208,8 +207,7 @@ export class CoursesCreatesFormComponent implements OnInit {
           proposition_id: this.suggestId
         }).subscribe(
           response => {
-            // todo redirect to /userowner/course/id
-            this.router.navigateByUrl('/user/course/'+response.id);
+            this.router.navigateByUrl('/user/course/' + response.id);
             this.toastService.newToast("Votre cours à été créé", false);
           }, error => {
             this.toastService.newToast(error.error.error, true);

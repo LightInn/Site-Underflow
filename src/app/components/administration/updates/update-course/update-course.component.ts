@@ -116,6 +116,14 @@ export class UpdateCourseComponent implements OnInit {
   }
 
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_title = false;
+    this.error_subjects = false;
+    this.error_classes = false;
+    this.error_description = false;
+    this.error_date = false;
+    this.error_duration = false;
+    this.error_closed = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -123,64 +131,51 @@ export class UpdateCourseComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'subjects':
           if (!!this.form.controls[control].errors) {
             this.error_subjects = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'classes':
           if (!!this.form.controls[control].errors) {
             this.error_classes = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'description':
           if (!!this.form.controls[control].errors) {
             this.error_description = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'date':
           if (!!this.form.controls[control].errors) {
             this.error_date = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'duration':
           if (!!this.form.controls[control].errors) {
             this.error_duration = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'closed':
           if (!!this.form.controls[control].errors) {
             this.error_closed = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
-          break;
       }
 
       // Send error message to the toast service
-      if (this.error_flag) {
+      if (this.error_title ||
+        this.error_subjects ||
+        this.error_classes ||
+        this.error_description ||
+        this.error_date ||
+        this.error_duration ||
+        this.error_closed) {
+        this.error_flag = true
         this.toastService.newToast("Erreur...", true)
+      } else {
+        this.error_flag = false
       }
 
       if (this.form.status === "VALID") {
