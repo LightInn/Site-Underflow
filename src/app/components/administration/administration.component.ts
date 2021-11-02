@@ -36,6 +36,9 @@ export class AdministrationComponent implements OnInit {
               private suggestionsService: SuggestionsService) {
   }
 
+  /**
+   * Initialization of all data
+   */
   ngOnInit(): void {
     this.classesService.classes(true).subscribe(
       response => {

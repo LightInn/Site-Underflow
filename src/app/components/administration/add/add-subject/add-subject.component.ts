@@ -10,6 +10,7 @@ import {SubjectsService} from "../../../../services/callAPI/subjects.service";
   styleUrls: ['./add-subject.component.scss']
 })
 export class AddSubjectComponent implements OnInit {
+  // *************** Declaration part ******************* //
   form: FormGroup;
 
   /**
@@ -31,6 +32,10 @@ export class AddSubjectComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Submit function, we send all data on this function
+   * and we trigger validators to the form
+   */
   submit() {
     // ********************* Reset Validators Flags ************************* //
     this.error_title = false;

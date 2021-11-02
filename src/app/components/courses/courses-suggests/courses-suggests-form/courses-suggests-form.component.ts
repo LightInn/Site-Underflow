@@ -68,6 +68,9 @@ export class CoursesSuggestsFormComponent implements OnInit {
     this.date_max = toFormDateLocaleString(date);
   }
 
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
     this.classeService.classes(true).subscribe(
       classes => {

@@ -47,6 +47,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
               private userService: UserService) {
   }
 
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
     // Init all dates & filters -> default values
     const date = new Date(Date.now());
@@ -93,6 +96,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     )
   }
 
+  /**
+   * Check if empty, then display other message
+   */
   checkEmpty(): boolean {
     // @ts-ignore
     return this.coursesListFiltered.length === 0;

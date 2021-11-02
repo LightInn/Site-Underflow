@@ -31,6 +31,9 @@ export class ForgotMailtoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Submit mail to send reset password link
+   */
   submit() {
     // ********************* Reset Validators Flags ************************* //
     this.error_email = false;

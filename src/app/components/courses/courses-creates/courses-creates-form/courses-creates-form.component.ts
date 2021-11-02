@@ -80,6 +80,9 @@ export class CoursesCreatesFormComponent implements OnInit {
     this.date_max = toFormDateLocaleString(date);
   }
 
+  /**
+   * data initialization
+   */
   ngOnInit(): void {
     this.classeService.classes(true).subscribe(
       classes => {

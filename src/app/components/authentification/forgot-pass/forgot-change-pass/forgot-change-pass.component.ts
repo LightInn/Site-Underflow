@@ -35,6 +35,9 @@ export class ForgotChangePassComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Submit forgot password change , and trigger validators
+   */
   submit() {
     // ********************* Reset Validators Flags ************************* //
     this.error_password = false;

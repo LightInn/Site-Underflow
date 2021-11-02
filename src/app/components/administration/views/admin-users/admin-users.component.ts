@@ -25,6 +25,9 @@ export class AdminUsersComponent implements OnInit {
               private toastService: ToastService) {
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
     if(this.usersList?.length){
       this.display = false;
@@ -33,11 +36,18 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
+  /**
+   * Display validation message on click on delete button
+   * @param user
+   */
   clickDelete(user: User){
     this.validation = true;
     this.userToDelete = user;
   }
 
+  /**
+   * call api to delete user
+   */
   delete() {
     // todo call api delete course
     this.usersService.requestDeleteUser(this.userToDelete).subscribe(

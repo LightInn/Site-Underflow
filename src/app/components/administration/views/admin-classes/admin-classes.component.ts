@@ -22,6 +22,9 @@ export class AdminClassesComponent implements OnInit {
               private toastService: ToastService) {
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
     if (this.classesList?.length) {
       this.display = false;
@@ -30,15 +33,26 @@ export class AdminClassesComponent implements OnInit {
     }
   }
 
+  /**
+   * On change, redirect to the admin classe update page
+   * @param classe
+   */
   change(classe: Classe) {
     this.router.navigateByUrl(`/admin/classe/${classe.id}`);
   }
 
+  /**
+   * On click on delete page -> display validation message
+   * @param classe
+   */
   clickDelete(classe: Classe) {
     this.validation = true;
     this.classeToDelete = classe;
   }
 
+  /**
+   * Trigger delete function and call it to api
+   */
   delete() {
     this.classeService.requestDeleteClasse(this.classeToDelete).subscribe(
       response => {
@@ -52,6 +66,9 @@ export class AdminClassesComponent implements OnInit {
     )
   }
 
+  /**
+   * On click on Add button, redirect to the add classe page
+   */
   clickAdd() {
     this.router.navigateByUrl('/admin/add_classe');
   }

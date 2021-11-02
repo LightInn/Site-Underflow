@@ -62,6 +62,9 @@ export class LoginComponent implements OnInit {
     }, 2000)
   }
 
+  /**
+   * trigger login function, validators and call api
+   */
   login() {
     // ********************* Reset Validators Flags ************************* //
     this.error_password = false;

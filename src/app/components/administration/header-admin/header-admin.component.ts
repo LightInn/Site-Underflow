@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./header-admin.component.scss']
 })
 export class HeaderAdminComponent implements OnInit {
+  // *************** Declaration part ******************* //
   @Input() returnEnable : boolean = true;
 
   constructor(private router: Router) { }
@@ -14,6 +15,9 @@ export class HeaderAdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * redirect to the admin page
+   */
   clickEventBack(){
     this.router.navigateByUrl('/admin')
   }

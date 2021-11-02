@@ -34,6 +34,7 @@ export class CoursesRegistrationsFilterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // ******************** Upload event part ********************** //
   uploadEventClasse(event: any) {
     event = sanitizeString(event)
     this.triggeredClasse.emit(event);

@@ -29,7 +29,9 @@ export class ProfileCoursesRegistrationsComponent implements OnInit {
               private userService: UserService) {
   }
 
-
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
     this.courseService.courses().subscribe(
       courses => {
@@ -72,6 +74,9 @@ export class ProfileCoursesRegistrationsComponent implements OnInit {
     }
   }
 
+  /**
+   * Check if course list is empty, then display other message
+   */
   checkEmpty(): boolean {
     // @ts-ignore
     return this.coursesList.length === 0;

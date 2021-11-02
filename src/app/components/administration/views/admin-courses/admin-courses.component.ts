@@ -23,6 +23,9 @@ export class AdminCoursesComponent implements OnInit {
               private toastService: ToastService) {
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
     if(this.coursesList?.length){
       this.display = false;
@@ -31,15 +34,26 @@ export class AdminCoursesComponent implements OnInit {
     }
   }
 
+  /**
+   * On click on change icon, redirect to update course page
+   * @param course
+   */
   change(course: Courses) {
     this.router.navigateByUrl(`/admin/course/${course.id}`);
   }
 
+  /**
+   * Display validation message on click (from template)
+   * @param course
+   */
   clickDelete(course: Courses) {
     this.validation = true;
     this.courseToDelete = course;
   }
 
+  /**
+   * on click on delete, call to api to delete element
+   */
   delete() {
     // todo call api delete course
     this.courseService.requestDeleteCourse(this.courseToDelete).subscribe(

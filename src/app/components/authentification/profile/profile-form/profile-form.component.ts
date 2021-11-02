@@ -71,6 +71,9 @@ export class ProfileFormComponent implements OnInit {
     })
   }
 
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
     this.userInfoService.user().subscribe(
       user => {
@@ -93,6 +96,9 @@ export class ProfileFormComponent implements OnInit {
     )
   }
 
+  /**
+   * Trigger submit function, trigger validators and call api
+   */
   submit() {
     // ********************* Reset Validators Flags ************************* //
     this.error_firstname = false;

@@ -32,6 +32,9 @@ export class UpdateClasseComponent implements OnInit {
     this.classeId = String(this.route.snapshot.paramMap.get('id'));
   }
 
+  /**
+   * We init the data, get a specific classe :D
+   */
   ngOnInit(): void {
     this.classesService.requestClasseSpecific(Number(this.classeId)).subscribe(
       response => {
@@ -47,6 +50,10 @@ export class UpdateClasseComponent implements OnInit {
     )
   }
 
+  /**
+   * Submit function, we send all data on this function
+   * and we trigger validators to the form
+   */
   submit() {
     // ********************* Reset Validators Flags ************************* //
     this.error_title = false;

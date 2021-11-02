@@ -37,10 +37,16 @@ export class RegisterComponent {
     });
   }
 
+  /**
+   * redirect to login page
+   */
   login() {
     this.router.navigateByUrl('/login');
   }
 
+  /**
+   * Trigger validators and register on API
+   */
   register() {
     // ********************* Reset Validators Flags ************************* //
     this.error_email = false;

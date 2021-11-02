@@ -35,6 +35,9 @@ export class ToastComponent implements OnInit {
   constructor(private toastService: ToastService) {
   }
 
+  /**
+   * Initialization of toast message
+   */
   ngOnInit(): void {
     this.toastService.getBehaviorSubject().subscribe(
       message => {
@@ -46,6 +49,9 @@ export class ToastComponent implements OnInit {
       })
   }
 
+  /**
+   * close toast
+   */
   closeMessage(): void {
     if (this.message) {
       this.message.close = true;

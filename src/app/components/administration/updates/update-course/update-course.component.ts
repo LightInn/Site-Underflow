@@ -63,6 +63,9 @@ export class UpdateCourseComponent implements OnInit {
     this.courseId = String(this.route.snapshot.paramMap.get('id'));
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
     this.subjectsService.subjects().subscribe(
       response => {
@@ -115,6 +118,10 @@ export class UpdateCourseComponent implements OnInit {
     )
   }
 
+  /**
+   * Submit function, we send all data on this function
+   * and we trigger validators to the form
+   */
   submit() {
     // ********************* Reset Validators Flags ************************* //
     this.error_title = false;
