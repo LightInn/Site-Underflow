@@ -1,0 +1,9 @@
+.onhover {
+  transition: all ease-in-out .3s;
+}
+
+.onhover:hover {
+  filter: brightness(120%) saturate(120%);
+  text-decoration: underline;
+  transition: all ease-in-out .3s;
+}

@@ -40,7 +40,6 @@ export class AdminClassesComponent implements OnInit {
   }
 
   delete() {
-    // todo call api delete classe
     this.classeService.requestDeleteClasse(this.classeToDelete).subscribe(
       response => {
         this.validation = false;

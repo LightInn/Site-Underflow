@@ -207,8 +207,8 @@ export class CoursesCreatesFormComponent implements OnInit {
           proposition_id: this.suggestId
         }).subscribe(
           response => {
-            this.router.navigateByUrl('/user/course/' + response.id);
             this.toastService.newToast("Votre cours à été créé", false);
+            this.router.navigateByUrl('/user/course/' + response.id);
           }, error => {
             this.toastService.newToast(error.error.error, true);
           }

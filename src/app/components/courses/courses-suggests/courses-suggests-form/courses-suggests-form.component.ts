@@ -136,10 +136,10 @@ export class CoursesSuggestsFormComponent implements OnInit {
 
     // Verify if the form is valid or not , and create suggestions / subjects
     if (this.form.status === "VALID") {
-      let subjectIndex = this.subjectslist?.findIndex(({title}) => title === this.form.value.subjects);
+      let subjectIndex = this.subjectslist?.findIndex(({title}) => title == this.form.value.subjects);
       var subjectElem: Subject = {};
-      if (!!this.subjectslist?.length) {
-        subjectElem = (!!subjectIndex) ? this.subjectslist[subjectIndex] : {};
+      if (this.subjectslist?.length) {
+        subjectElem = (subjectIndex!= undefined && subjectIndex >= 0) ? this.subjectslist[subjectIndex] : {};
       }
       if (!this.error_flag) {
         // if the subject is already created, then just create the new suggestion

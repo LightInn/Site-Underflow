@@ -51,6 +51,9 @@ import {HeaderAdminComponent} from "./components/administration/header-admin/hea
 import {UserUpdateCourseComponent} from "./components/administration/updates/user-update-course/user-update-course.component";
 import {AddClasseComponent} from './components/administration/add/add-classe/add-classe.component';
 import {ProfileCoursesCreatedbymeComponent} from "./components/authentification/profile/profile-courses-createdbyme/profile-courses-createdbyme.component";
+import { AddSubjectComponent } from './components/administration/add/add-subject/add-subject.component';
+import { ForgotMailtoComponent } from './components/authentification/forgot-pass/forgot-mailto/forgot-mailto.component';
+import { ForgotChangePassComponent } from './components/authentification/forgot-pass/forgot-change-pass/forgot-change-pass.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +103,9 @@ import {ProfileCoursesCreatedbymeComponent} from "./components/authentification/
     ContributeComponent,
     AddClasseComponent,
     ProfileCoursesCreatedbymeComponent,
+    AddSubjectComponent,
+    ForgotMailtoComponent,
+    ForgotChangePassComponent,
   ],
   imports: [
     BrowserModule,

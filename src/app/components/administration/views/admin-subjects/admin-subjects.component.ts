@@ -41,7 +41,6 @@ export class AdminSubjectsComponent implements OnInit {
   }
 
   delete() {
-    // todo call api delete course
     this.subjectService.requestDeleteSubject(this.subjectToDelete).subscribe(
       response => {
         this.validation = false;
@@ -52,5 +51,9 @@ export class AdminSubjectsComponent implements OnInit {
         this.toastService.newToast("La matière possède encore des liens", true);
       }
     )
+  }
+
+  clickAdd() {
+    this.router.navigateByUrl('/admin/add_subject');
   }
 }
