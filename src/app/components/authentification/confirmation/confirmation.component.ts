@@ -16,7 +16,9 @@ export class ConfirmationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  /**
+   * Redirect on login page
+   */
   goLogin() {
     this.router.navigateByUrl("/login")
   }

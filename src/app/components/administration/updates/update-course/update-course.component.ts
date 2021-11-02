@@ -63,6 +63,9 @@ export class UpdateCourseComponent implements OnInit {
     this.courseId = String(this.route.snapshot.paramMap.get('id'));
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
     this.subjectsService.subjects().subscribe(
       response => {
@@ -99,9 +102,9 @@ export class UpdateCourseComponent implements OnInit {
           this.form.controls['id'].setValue(this.courseId);
           this.form.controls['title'].setValue(response[0].title);
           this.form.controls['subjects'].setValue(response[0].subject?.title);
-          this.form.controls['classes'].setValue(response[0].classe?.title);
-          this.form.controls['user'].setValue(`${response[0].owner?.last_name} ${response[0].owner?.first_name} - ${response[0].owner?.classe?.title}`);
+          this.form.controls['classes'].setValue(response[0].classe?.id);
           this.form.controls['date'].setValue(toFormDateLocaleString(new Date(String(response[0].date_start))));
+          this.form.controls['description'].setValue(response[0].description);
           this.form.controls['duration'].setValue(response[0].duration);
           this.form.controls['closed'].setValue(response[0].ended);
         } else {
@@ -115,7 +118,19 @@ export class UpdateCourseComponent implements OnInit {
     )
   }
 
+  /**
+   * Submit function, we send all data on this function
+   * and we trigger validators to the form
+   */
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_title = false;
+    this.error_subjects = false;
+    this.error_classes = false;
+    this.error_description = false;
+    this.error_date = false;
+    this.error_duration = false;
+    this.error_closed = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -123,64 +138,51 @@ export class UpdateCourseComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'subjects':
           if (!!this.form.controls[control].errors) {
             this.error_subjects = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'classes':
           if (!!this.form.controls[control].errors) {
             this.error_classes = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'description':
           if (!!this.form.controls[control].errors) {
             this.error_description = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'date':
           if (!!this.form.controls[control].errors) {
             this.error_date = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'duration':
           if (!!this.form.controls[control].errors) {
             this.error_duration = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'closed':
           if (!!this.form.controls[control].errors) {
             this.error_closed = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
-          break;
       }
 
       // Send error message to the toast service
-      if (this.error_flag) {
+      if (this.error_title ||
+        this.error_subjects ||
+        this.error_classes ||
+        this.error_description ||
+        this.error_date ||
+        this.error_duration ||
+        this.error_closed) {
+        this.error_flag = true
         this.toastService.newToast("Erreur...", true)
+      } else {
+        this.error_flag = false
       }
 
       if (this.form.status === "VALID") {

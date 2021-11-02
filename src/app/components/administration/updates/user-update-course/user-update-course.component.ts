@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subject} from "../../../../interfaces/subject";
 import {Classe} from "../../../../interfaces/classe";
@@ -58,21 +58,24 @@ export class UserUpdateCourseComponent implements OnInit {
       classes: ['', [Validators.required]],
       description: ['', [Validators.required]],
       date: ['', [Validators.required]],
-      duration: ['', [Validators.required]],
+      duration: [''],
       closed: ['', [Validators.required]],
     });
     this.courseId = String(this.route.snapshot.paramMap.get('id'));
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
-    this.subjectsService.subjects().subscribe(
+    this.subjectsService.subjects(true).subscribe(
       response => {
         this.subjectslist = response;
       }, error => {
         this.toastService.newToast(error.error.error, true);
       }
     )
-    this.classesService.classes().subscribe(
+    this.classesService.classes(true).subscribe(
       response => {
         this.classesList = response;
       }, error => {
@@ -93,6 +96,7 @@ export class UserUpdateCourseComponent implements OnInit {
         this.toastService.newToast(error.error.error, true);
       }
     )
+
     this.coursesService.requestCourseSpecific(Number(this.courseId)).subscribe(
       response => {
         if (response.length) {
@@ -100,9 +104,9 @@ export class UserUpdateCourseComponent implements OnInit {
           this.form.controls['id'].setValue(this.courseId);
           this.form.controls['title'].setValue(response[0].title);
           this.form.controls['subjects'].setValue(response[0].subject?.title);
-          this.form.controls['classes'].setValue(response[0].classe?.title);
-          this.form.controls['user'].setValue(`${response[0].owner?.last_name} ${response[0].owner?.first_name} - ${response[0].owner?.classe?.title}`);
+          this.form.controls['classes'].setValue(response[0].classe?.id);
           this.form.controls['date'].setValue(toFormDateLocaleString(new Date(String(response[0].date_start))));
+          this.form.controls['description'].setValue(response[0].description);
           this.form.controls['duration'].setValue(response[0].duration);
           this.form.controls['closed'].setValue(response[0].ended);
         } else {
@@ -116,7 +120,38 @@ export class UserUpdateCourseComponent implements OnInit {
     )
   }
 
+  /**
+   * Change attendance of a people on a course
+   * Display message on change on attendance
+   * @param userEmail
+   */
+  toggle_presence(userEmail: string | undefined) {
+    this.usersRegistredOnCourse.requestToggleUserAttendance(Number(this.courseId) ?? -1, userEmail ?? '').subscribe(
+      response => {
+        if (response.present != undefined) {
+          let message = response.present ? "Tu es inscrit !" : "Tu es désinscrit !";
+          this.toastService.newToast(message, true);
+        }
+      },
+      error => {
+        this.toastService.newToast(error.error.error, true);
+      }
+    )
+  }
+
+  /**
+   * Submit function, we send all data on this function
+   * and we trigger validators to the form
+   */
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_title = false;
+    this.error_subjects = false;
+    this.error_classes = false;
+    this.error_description = false;
+    this.error_date = false;
+    this.error_duration = false;
+    this.error_closed = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -124,82 +159,82 @@ export class UserUpdateCourseComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'subjects':
           if (!!this.form.controls[control].errors) {
             this.error_subjects = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'classes':
           if (!!this.form.controls[control].errors) {
             this.error_classes = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'description':
           if (!!this.form.controls[control].errors) {
             this.error_description = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'date':
           if (!!this.form.controls[control].errors) {
             this.error_date = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
         case 'duration':
-          if (!!this.form.controls[control].errors) {
-            this.error_duration = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
-          }
+          if (!(this.form.controls['closed'].value === false))
+            // the toggle is set to true
+            if (this.form.controls[control].value != '') {
+              this.error_duration = true;
+            }
           break;
         case 'closed':
           if (!!this.form.controls[control].errors) {
             this.error_closed = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
           break;
       }
+    }
 
-      // Send error message to the toast service
-      if (this.error_flag) {
-        this.toastService.newToast("Erreur...", true)
-      }
+    // Send error message to the toast service
+    if (this.error_title ||
+      this.error_subjects ||
+      this.error_classes ||
+      this.error_description ||
+      this.error_date ||
+      this.error_duration ||
+      this.error_closed) {
+      this.error_flag = true
+      this.toastService.newToast("Erreur...", true)
+    } else {
+      this.error_flag = false
+    }
 
-      if (this.form.status === "VALID") {
-        if (!this.error_flag) {
+    if (this.form.status === "VALID") {
+      if (!this.error_flag) {
+        if (!this.form.value.closed) {
           this.coursesService.requestUpdateCourseSpecific(
             this.form.value.id,
             {
-              title:this.form.value.title,
-              subject:this.form.value.subjects,
-              classe:this.form.value.classes,
-              owner:this.form.value.user,
-              date_start:this.form.value.date,
-              duration:this.form.value.duration,
-              ended:this.form.value.closed
+              title: this.form.value.title,
+              subject: this.form.value.subjects,
+              classe: this.form.value.classes,
+              owner: this.form.value.user,
+              date_start: this.form.value.date,
+              duration: this.form.value.duration ?? null,
             }
           ).subscribe(
             response => {
               this.toastService.newToast("Cours bien modifié", false);
+            }, error => {
+              this.toastService.newToast(error.error.error, true);
+            }
+          )
+        } else {
+          this.coursesService.requestClotureCourse(this.form.value.id).subscribe(
+            response => {
+              this.router.navigate(['profile'])
+              this.toastService.newToast("Cours clos, merci !", false);
             }, error => {
               this.toastService.newToast(error.error.error, true);
             }
@@ -211,6 +246,5 @@ export class UserUpdateCourseComponent implements OnInit {
 
   delete(user: User) {
     // Todo call api delete user registrations from course
-
   }
 }

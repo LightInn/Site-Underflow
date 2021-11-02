@@ -16,8 +16,8 @@ export class CoursesRegistrationsFilterComponent implements OnInit {
   @Input() courseInscription?: Array<CourseSubscription>;
   @Input() coursesList?: Array<Courses>;
   @Input() classesList?: Array<Classe>;
-  // todo element dynamic -> depend from the actual user
-  @Input() filter_selectedClasse: string = "B3";
+
+  @Input() filter_selectedClasse: string = "";
   @Input() filter_selectedDateStart?: string;
   @Input() filter_selectedDateEnd?: string;
   @Input() filter_searchBarText?: string = "";
@@ -34,6 +34,7 @@ export class CoursesRegistrationsFilterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // ******************** Upload event part ********************** //
   uploadEventClasse(event: any) {
     event = sanitizeString(event)
     this.triggeredClasse.emit(event);

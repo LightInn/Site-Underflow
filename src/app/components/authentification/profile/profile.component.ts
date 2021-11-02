@@ -36,13 +36,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  /**
+   * Logout and redirect to login page
+   */
   logout(): void {
-
     this.authService.logout()
     this.router.navigateByUrl("/login")
     this.toastService.newToast("Vous avez ete deconecter", false)
-
   }
 
 }

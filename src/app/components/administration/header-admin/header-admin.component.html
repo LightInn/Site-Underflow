@@ -8,7 +8,7 @@
            class="ml-30px h-50px w-50px" draggable="false">
     </div>
   </div>
-  <div class="absolute top-0 left-0 m-30px">
+  <div *ngIf="returnEnable" class="absolute top-0 left-0 m-30px">
     <button (click)="clickEventBack()">
       <img src="../../../../../assets/images/svg/back.svg" alt="hidden"
            class="h-35px w-35px" draggable="false">

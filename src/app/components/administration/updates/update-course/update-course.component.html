@@ -17,7 +17,7 @@
                type="text" id="title"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300
                border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-        <span *ngIf="error_title" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - L'intitulé saisi n'est pas valide</span>
+        <span *ngIf="error_title" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  L'intitulé saisi n'est pas valide</span>
 
       </div>
     </div>
@@ -34,22 +34,19 @@
           <option *ngFor="let subject of subjectslist;"
                   value="{{subject.title}}">{{subject.title}}</option>
         </datalist>
-        <span *ngIf="error_subjects" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - La matière saisie n'est pas valide</span>
+        <span *ngIf="error_subjects" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La matière saisie n'est pas valide</span>
       </div>
 
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="classes">Niveau ciblé</label>
-        <input list="classes_datalist" name="classes" id="classes" autocomplete="off"
-               placeholder="écrire ici..." formControlName="classes"
-               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+        <label class="text-12px text-left" for="classes">NIVEAU CIBLÉ</label>
+        <select name="classes" id="classes" formControlName="classes"
+                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
                rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
                 px-8 text-14px my-2 text-underflow_grey-50">
-
-        <datalist id="classes_datalist">
           <option *ngFor="let classe of classesList;"
-                  value="{{classe.title}}">{{classe.title}}</option>
-        </datalist>
-        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - La classe saisie n'est pas valide</span>
+                  value="{{classe.id}}">{{classe.title}}</option>
+        </select>
+        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisi n'est pas valide</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
@@ -58,7 +55,7 @@
         <input name="date" formControlName="date" id="date"
                type="datetime-local"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-        <span *ngIf="error_date" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - La date saisie n'est pas valide</span>
+        <span *ngIf="error_date" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La date saisie n'est pas valide</span>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
         <label class="text-12px" for="duration">durée</label>
@@ -66,7 +63,7 @@
                type="number" id="duration"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
                rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-        <span *ngIf="error_duration" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - La durée saisie n'est pas valide</span>
+        <span *ngIf="error_duration" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La durée saisie n'est pas valide</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
@@ -77,7 +74,7 @@
                     rows="10" formControlName="description"
                     class="w-250px sm:w-500px h-200px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50 pt-10px"
                     placeholder="décris ton cours et ce que tu comptes faire pour celui-ci !"></textarea>
-          <span *ngIf="error_description" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">X - La description saisie n'est pas valide</span>
+          <span *ngIf="error_description" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La description saisie n'est pas valide</span>
         </div>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">

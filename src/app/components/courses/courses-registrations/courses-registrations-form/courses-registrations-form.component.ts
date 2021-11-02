@@ -24,7 +24,7 @@ registerLocaleData(localeFr, 'fr');
 })
 export class CoursesRegistrationsFormComponent implements OnInit {
   // *************** Declaration part ******************* //
-  coursesList?: Array<Courses>;
+  coursesList?: Array<Courses> = [];
   classesList?: Array<Classe>;
   courseInscription?: Array<CourseSubscription>;
   userInfos?: User;
@@ -47,6 +47,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
               private userService: UserService) {
   }
 
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
     // Init all dates & filters -> default values
     const date = new Date(Date.now());
@@ -93,6 +96,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     )
   }
 
+  /**
+   * Check if empty, then display other message
+   */
   checkEmpty(): boolean {
     // @ts-ignore
     return this.coursesListFiltered.length === 0;
@@ -143,14 +149,16 @@ export class CoursesRegistrationsFormComponent implements OnInit {
    * function to filter via the classes selections -> use observable , filter from angular
    */
   filterClasse() {
-    // @ts-ignore
+    if (this.coursesList == undefined) {
+      this.coursesList = [];
+    }
     let courses$ = from(this.coursesList);
     // if the selected classe, we skip the filter part
     if (this.filter_selectedClasse === "") {
       this.coursesListFiltered_1 = JSON.parse(JSON.stringify(this.coursesList));
     } else {
       let filteredClasses$ = courses$
-        .pipe(filter(course => course["classe"]["title"] === this.filter_selectedClasse));
+        .pipe(filter(course => (course["classe"] != undefined) ? course["classe"]["title"] === this.filter_selectedClasse : false));
       filteredClasses$.subscribe(val => {
           // @ts-ignore
           this.coursesListFiltered_1.push(val);
@@ -267,7 +275,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
     if (!!id) {
       this.subscriptionsService.requestUserSubscriptions({id: id}).subscribe(
         elem => {
-          console.log(elem.subscribed)
           let message = elem.subscribed ? "Tu es inscrit !" : "Tu es désinscrit !";
           this.toastService.newToast(message, false);
         }, error => {

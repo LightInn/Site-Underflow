@@ -32,6 +32,9 @@ export class UpdateSubjectComponent implements OnInit {
     this.subjectId = String(this.route.snapshot.paramMap.get('id'));
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
     this.subjectsService.requestSubjectSpecific(Number(this.subjectId)).subscribe(
       response => {
@@ -47,7 +50,13 @@ export class UpdateSubjectComponent implements OnInit {
     )
   }
 
+  /**
+   * Submit function, we send all data on this function
+   * and we trigger validators to the form
+   */
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_title = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -55,16 +64,17 @@ export class UpdateSubjectComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_flag = false;
           }
-          break;
       }
+
       // Send error message to the toast service
-      if (this.error_flag) {
+      if (this.error_title) {
+        this.error_flag = true
         this.toastService.newToast("Erreur...", true)
+      } else {
+        this.error_flag = false
       }
+
 
       if (this.form.status === "VALID") {
         if (!this.error_flag) {

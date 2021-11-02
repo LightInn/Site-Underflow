@@ -20,11 +20,14 @@ export class CoursesCreatesFilterComponent implements OnInit {
               private toastService: ToastService) {
   }
 
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
     this.suggestService.suggests(true).subscribe(
       suggests => {
         this.suggestsList = suggests;
-        if (!!this.suggestsList) {
+        if (!!this.suggestsList.length) {
           this.empty = false;
         }
       }, error => {
@@ -33,12 +36,19 @@ export class CoursesCreatesFilterComponent implements OnInit {
     )
   }
 
+  /**
+   * On click, toggle dropdown visibility
+   */
   clickEvent() {
     this.status = !this.status;
     document.getElementById('suggestDropDown')?.classList.toggle('fadeInvisible');
     document.getElementById('suggestDropDown')?.classList.toggle('fadeVisible');
   }
 
+  /**
+   * On suggest, emit it and send data to parent component
+   * @param suggest
+   */
   clickSuggestEvent(suggest: Suggest) {
     this.onSuggestPicked.emit(suggest);
     this.clickEvent()

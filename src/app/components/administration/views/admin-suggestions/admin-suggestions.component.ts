@@ -23,6 +23,9 @@ export class AdminSuggestionsComponent implements OnInit {
               private toastService: ToastService) {
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
     if(this.suggestsList?.length){
       this.display = false;
@@ -31,11 +34,18 @@ export class AdminSuggestionsComponent implements OnInit {
     }
   }
 
+  /**
+   * Display validation message on click on delete button
+   * @param suggestion
+   */
   clickDelete(suggestion: Suggest){
     this.validation = true;
     this.suggestionToDelete = suggestion;
   }
 
+  /**
+   * Call api to delete element
+   */
   delete() {
     // todo call api delete course
     this.suggestionsService.requestDeleteSuggest(this.suggestionToDelete).subscribe(

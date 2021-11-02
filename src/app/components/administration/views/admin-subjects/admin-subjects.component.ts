@@ -23,6 +23,9 @@ export class AdminSubjectsComponent implements OnInit {
               private toastService: ToastService) {
   }
 
+  /**
+   * function to trigger the data initializations
+   */
   ngOnInit(): void {
     if(this.subjectsList?.length){
       this.display = false;
@@ -31,17 +34,27 @@ export class AdminSubjectsComponent implements OnInit {
     }
   }
 
+  /**
+   * Redirect on update page
+   * @param subject
+   */
   change(subject: Subject) {
     this.router.navigateByUrl(`/admin/subject/${subject.id}`);
   }
 
+  /**
+   * display validation message
+   * @param subject
+   */
   clickDelete(subject: Subject) {
     this.validation = true;
     this.subjectToDelete = subject;
   }
 
+  /**
+   * call to delete element to API
+   */
   delete() {
-    // todo call api delete course
     this.subjectService.requestDeleteSubject(this.subjectToDelete).subscribe(
       response => {
         this.validation = false;
@@ -52,5 +65,12 @@ export class AdminSubjectsComponent implements OnInit {
         this.toastService.newToast("La matière possède encore des liens", true);
       }
     )
+  }
+
+  /**
+   * Redirect to add subject page
+   */
+  clickAdd() {
+    this.router.navigateByUrl('/admin/add_subject');
   }
 }

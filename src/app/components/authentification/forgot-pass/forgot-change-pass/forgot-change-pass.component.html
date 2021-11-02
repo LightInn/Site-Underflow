@@ -1,0 +1,44 @@
+<div class="flex w-full h-99vh justify-center align-center items-center flex-col">
+
+  <div class="flex flex-col-reverse lg:flex-row justify-center items-center">
+    <img class="h-10 w-auto lg:h-20" src="./assets/images/svg/ecureuil-right.svg"
+         alt="Scratch Underflow - Entraide étudiante" draggable="false">
+  </div>
+  <div class="flex flex-col-reverse lg:flex-row justify-center items-center">
+    <h2 class="text-36px  lg:text-60px lg:p-10">Oubli de mot de passe</h2>
+  </div>
+
+  <form [formGroup]="form"
+        class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap">
+    <fieldset>
+      <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 mt-10px md:mt-30px">
+        <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
+          <label class="text-12px uppercase" for="password">Nouveau mot de passe</label>
+          <input name="password" formControlName="password" placeholder="●●●●●●●●●●"
+                 type="password" id="password" [(ngModel)]="password"
+                 class="w-250px sm:w-400px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+          <span *ngIf="error_password" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Les mots de passes ne sont pas valides</span>
+        </div>
+
+      </div>
+      <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 mt-10px md:mt-30px">
+        <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+          <label class="text-12px uppercase" for="password_valid">Validation du nouveau mot de passe</label>
+          <input name="password_valid" formControlName="password_valid" placeholder="●●●●●●●●●●"
+                 type="password" id="password_valid"
+                 class="w-250px sm:w-400px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+          <span *ngIf="error_password_valid" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Les mots de passes ne sont pas valides</span>
+        </div>
+      </div>
+
+      <div class="form-buttons w-full flex justify-end mt-30px">
+        <button
+          class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
+          (click)="submit()">changer le mot de passe
+        </button>
+      </div>
+    </fieldset>
+  </form>
+
+
+</div>

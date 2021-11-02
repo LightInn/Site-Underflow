@@ -18,7 +18,7 @@ export class CoursesService {
    * Get the list of all courses
    * @param reset -> true if you want to force the cache reset
    */
-  courses(reset: boolean = false ) {
+  courses(reset: boolean = false) {
     if (!this.cache$ || reset) {
       this.cache$ = this.requestCourses().pipe(
         shareReplay(1)
@@ -28,7 +28,7 @@ export class CoursesService {
   }
 
   private requestCourses() {
-    return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
+    return this.http.get<Array<Courses>>(ApiUrl + '/user/available_courses/').pipe(
     )
   }
 
@@ -37,9 +37,19 @@ export class CoursesService {
     )
   }
 
+  public requestAllCourses() {
+    return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
+    )
+  }
+
+  public requestCoursesCreated() {
+    return this.http.get<Array<Courses>>(ApiUrl + '/user/courses/').pipe(
+    )
+  }
+
   public requestCourseSpecific(id: number) {
     return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
-      map(data=>data.filter(courses => courses.id === id))
+      map(data => data.filter(courses => courses.id === id))
     )
   }
 
@@ -50,6 +60,11 @@ export class CoursesService {
 
   public requestDeleteCourse(course: Courses) {
     return this.http.delete<Courses>(ApiUrl + '/admin/delete_course/', {body: {id: course.id}}).pipe(
+    )
+  }
+
+  public requestClotureCourse(course_id: number) {
+    return this.http.post<any>(ApiUrl + '/course/' + course_id + "/cloture/", null).pipe(
     )
   }
 }
