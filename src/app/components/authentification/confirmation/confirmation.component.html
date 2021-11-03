@@ -7,14 +7,23 @@
     <h2 class="text-36px  lg:text-60px lg:p-10">ScratchUnderflow</h2>
   </div>
 
-  <p class="text-24px text-center">Vérifier votre boite de réception pour confirmer votre email.</p>
-  <p class="text-10px text-center">( si vous ne trouvez pas le mail de confirmation, vérifier les courriers indésirables avant de contacter Mathis Gauthier EPSI NANTES B3 G1 DEV)</p>
+  <p class="text-24px text-center">Vérifie ta boîte de réception pour confirmer ton email.</p>
+  <p class="text-24px text-center">[ vérifie les courriers indésirables également ]</p>
+  <p class="text-10px text-center">Tu ne trouves pas le mail de confirmation ? Contacte un des membres de l'équipe de
+    Scratch Underflow !</p>
 
 
-  <button
-    class="button button-primary  bg-underflow_blue-300 w-100px h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_grey-800 text-12px m-30px"
-    (click)="goLogin()">retour
-  </button>
+  <div>
+    <button
+      class="button button-primary  bg-underflow_blue-300 w-100px h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_grey-800 text-12px m-30px font-bold"
+      (click)="goLogin()">Retour
+    </button>
+    <button
+      [ngClass]="disableButton ? 'opacity-25' : 'opacity-100'"
+      class="transition-opacity button button-primary  bg-underflow_orange-300 w-100px h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_grey-800 text-12px m-30px font-bold"
+      (click)="reSendMail()" [disabled]="disableButton">Renvoyer le mail
+    </button>
+  </div>
 
 
 </div>

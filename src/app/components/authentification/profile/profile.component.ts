@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   public base: Base = {
     baseTitle: "Mon profil",
     baseLandingMode: false,
-    baseDescriptionFirstPart: "C'est ici que tu remplis ton profil !",
+    baseDescriptionFirstPart: "C'est ici que tu complètes ton profil !",
     baseDescriptionSecondPart: "",
     baseAdditionalCitation: false,
     baseAdditionalButton: false,

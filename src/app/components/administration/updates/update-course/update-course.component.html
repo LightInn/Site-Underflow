@@ -46,7 +46,7 @@
           <option *ngFor="let classe of classesList;"
                   value="{{classe.id}}">{{classe.title}}</option>
         </select>
-        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisi n'est pas valide</span>
+        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
@@ -58,7 +58,7 @@
         <span *ngIf="error_date" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La date saisie n'est pas valide</span>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
-        <label class="text-12px" for="duration">durée</label>
+        <label class="text-12px" for="duration">Durée</label>
         <input name="duration" formControlName="duration" placeholder="durée (en minutes)"
                type="number" id="duration"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
@@ -78,7 +78,7 @@
         </div>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
-        <label class="text-12px" for="closed">terminé ?</label>
+        <label class="text-12px" for="closed">Session terminée ?</label>
         <!--        <input name="closed" formControlName="closed"-->
         <!--               type="checkbox" id="closed"-->
         <!--               class="h-30px bg-underflow_grey-800 border-underflow_blue-300-->

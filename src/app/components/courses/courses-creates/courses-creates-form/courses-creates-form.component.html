@@ -24,7 +24,7 @@
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
         <label class="text-12px" for="subjects">THÈME ABORDÉ</label>
         <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
-               placeholder="écrire ici pour ajouter un thème / une matière" formControlName="subjects"
+               placeholder="Saisis ou sélectionnes une matière / un thème ici" formControlName="subjects"
                class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
                rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
                 px-8 text-14px my-2 text-underflow_grey-50">
@@ -53,7 +53,7 @@
         <textarea name="description" id="description" cols="30"
                   rows="10" formControlName="description"
                   class="w-250px sm:w-500px h-200px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50 pt-10px"
-                  placeholder="décris ton cours et ce que tu comptes faire pour celui-ci !"></textarea>
+                  placeholder="Décris ton cours et ce que tu comptes faire durant celui-ci !"></textarea>
         <span *ngIf="error_description" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La description saisie n'est pas valide</span>
       </div>
     </div>
@@ -67,8 +67,8 @@
       </div>
       <div class="form-buttons w-full flex justify-end items-end mt-30px">
         <button
-          class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-20px"
-          (click)="submit()">submit
+          class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
+          (click)="submit()">Proposer le cours
         </button>
       </div>
     </div>

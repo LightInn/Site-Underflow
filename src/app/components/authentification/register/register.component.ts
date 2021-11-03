@@ -98,7 +98,12 @@ export class RegisterComponent {
           this.authService.register(val.email, val.firstname, val.lastname, val.password)
             .subscribe(
               () => {
-                this.router.navigateByUrl('/');
+                this.authService.requestConfirmation({email:val.email}).subscribe(
+                  ()=>{
+                    this.toastService.newToast('Lien de confirmation envoyé par email !', false)
+                  }
+                )
+                this.router.navigateByUrl('/confirmation/'+val.email);
               }
             );
         }

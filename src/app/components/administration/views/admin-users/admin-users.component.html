@@ -45,7 +45,7 @@
   <div (click)="validation = !validation" *ngIf="validation"
        class="absolute top-0 left-0 h-full w-full flex justify-center items-center flex-col">
     <div class="w-200px h-200px p-20px rounded-2xl bg-underflow_orange-900 flex flex-col justify-center items-center">
-      <p>Est tu sûr de delete cette utilisateur ? -> {{userToDelete.email}}</p>
+      <p>Es-tu sûr de supprimer cette utilisateur ? -> {{userToDelete.email}}</p>
       <div class="pt-20px">
         <button (click)="delete()">
           <img src="../../../../../assets/images/svg/validation.svg"

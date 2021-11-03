@@ -103,13 +103,15 @@ export class LoginComponent implements OnInit {
           this.authService.login(val.email, val.password)
             .subscribe(
               jwt => {
-                this.toastService.newToast("Connecter", false)
-
+                this.toastService.newToast("Connecté", false)
                 this.authService.setSession(jwt);
                 this.router.navigateByUrl('/')
               },
               error => {
                 this.toastService.newToast(error.error.error, true)
+                if(error.error.activated){
+                  this.router.navigateByUrl('/confirmation')
+                }
               }
             );
         }

@@ -12,7 +12,7 @@ export class CoursesCreatesComponent implements OnInit {
     baseTitle: "Donner un cours",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu es à l’aise dans un domaine en particulier ?",
-    baseDescriptionSecondPart: "Alors on a besoin de toi.",
+    baseDescriptionSecondPart: "Alors on a besoin de toi !",
     baseAdditionalCitation: false,
     baseAdditionalButton: false,
     basePath: "",

@@ -54,6 +54,7 @@ import {ProfileCoursesCreatedbymeComponent} from "./components/authentification/
 import { AddSubjectComponent } from './components/administration/add/add-subject/add-subject.component';
 import { ForgotMailtoComponent } from './components/authentification/forgot-pass/forgot-mailto/forgot-mailto.component';
 import { ForgotChangePassComponent } from './components/authentification/forgot-pass/forgot-change-pass/forgot-change-pass.component';
+import { TokenConfirmComponent } from './components/authentification/confirmation/token-confirm/token-confirm.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { ForgotChangePassComponent } from './components/authentification/forgot-
     AddSubjectComponent,
     ForgotMailtoComponent,
     ForgotChangePassComponent,
+    TokenConfirmComponent,
   ],
   imports: [
     BrowserModule,

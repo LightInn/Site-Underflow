@@ -39,7 +39,7 @@ export class RegistrationsCoursesService {
    * @param courseId > Send the course id if you want to toggle your subscription state
    */
   public requestUserSubscriptions(course: Courses) {
-    return this.http.post<{ subscribed:boolean }>(ApiUrl + '/subscription/', course).pipe(
+    return this.http.post<{ subscribed: boolean }>(ApiUrl + '/subscription/', course).pipe(
     )
   }
 }
