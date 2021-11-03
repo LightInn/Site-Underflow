@@ -20,7 +20,9 @@ export class ConfirmationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.email = String(this.route.snapshot.paramMap.get('email'));
+    if (!!this.router?.getCurrentNavigation()?.extras?.state?.email) {
+      this.email = this.router?.getCurrentNavigation()?.extras?.state?.email;
+    }
     setTimeout(() => {
       this.disableButton = false;
     }, 5000)

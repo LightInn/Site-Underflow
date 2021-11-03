@@ -24,6 +24,7 @@ import {AddSubjectComponent} from "./components/administration/add/add-subject/a
 import {ForgotMailtoComponent} from "./components/authentification/forgot-pass/forgot-mailto/forgot-mailto.component";
 import {ForgotChangePassComponent} from "./components/authentification/forgot-pass/forgot-change-pass/forgot-change-pass.component";
 import {TokenConfirmComponent} from "./components/authentification/confirmation/token-confirm/token-confirm.component";
+import {PreConfirmationComponent} from "./components/authentification/confirmation/pre-confirmation/pre-confirmation.component";
 
 const routes: Routes = [
   {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
@@ -35,7 +36,8 @@ const routes: Routes = [
   {path: 'les-cours', component: CoursesRegistrationsComponent, canActivate: [SecurityGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'confirmation/:email', component: ConfirmationComponent},
+  {path: 'pre-confirmation', component: PreConfirmationComponent},
+  {path: 'confirmation', component: ConfirmationComponent},
   {path: 'confirmation-mail/:token', component: TokenConfirmComponent},
   {path: 'profil', component: ProfileComponent, canActivate: [SecurityGuard]},
   {path: 'admin', component: AdministrationComponent, canActivate: [AdminGuard, SecurityGuard]},

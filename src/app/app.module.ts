@@ -55,6 +55,7 @@ import { AddSubjectComponent } from './components/administration/add/add-subject
 import { ForgotMailtoComponent } from './components/authentification/forgot-pass/forgot-mailto/forgot-mailto.component';
 import { ForgotChangePassComponent } from './components/authentification/forgot-pass/forgot-change-pass/forgot-change-pass.component';
 import { TokenConfirmComponent } from './components/authentification/confirmation/token-confirm/token-confirm.component';
+import { PreConfirmationComponent } from './components/authentification/confirmation/pre-confirmation/pre-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { TokenConfirmComponent } from './components/authentification/confirmatio
     ForgotMailtoComponent,
     ForgotChangePassComponent,
     TokenConfirmComponent,
+    PreConfirmationComponent,
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@ export class TokenConfirmComponent implements OnInit {
       jwt => {
         this.toastService.newToast("Connecté", false)
         this.authentificationService.setSession(jwt);
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/les-cours')
       }, error => {
         this.toastService.newToast(error.error.error, true);
       }

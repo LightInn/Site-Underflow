@@ -109,8 +109,8 @@ export class LoginComponent implements OnInit {
               },
               error => {
                 this.toastService.newToast(error.error.error, true)
-                if(error.error.activated){
-                  this.router.navigateByUrl('/confirmation')
+                if (error.error.activated === false) {
+                  this.router.navigate(['/pre-confirmation'], {state: {email: error.error.email}});
                 }
               }
             );
