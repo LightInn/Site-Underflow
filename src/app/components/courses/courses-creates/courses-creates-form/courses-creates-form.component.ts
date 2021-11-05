@@ -212,7 +212,7 @@ export class CoursesCreatesFormComponent implements OnInit {
           response => {
             this.toastService.newToast("Votre cours à été créé", false);
             console.log(response)
-            this.router.navigateByUrl('/user/course/' + response.id);
+            this.router.navigateByUrl('/profil#mes_cours');
           }, error => {
             this.toastService.newToast(error.error.error, true);
           }
