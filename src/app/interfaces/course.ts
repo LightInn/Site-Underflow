@@ -1,7 +1,6 @@
 import {User} from "./user"
 import {Subject} from "./subject"
 import {Classe} from "./classe"
-import {Suggest} from "./suggest";
 
 export interface Courses {
   id?: number
