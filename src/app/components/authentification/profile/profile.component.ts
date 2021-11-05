@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
   logout(): void {
     this.authService.logout()
     this.router.navigateByUrl("/login")
-    this.toastService.newToast("Vous avez ete deconecter", false)
+    this.toastService.newToast("Vous avez été déconnecté", false)
   }
 
 }
