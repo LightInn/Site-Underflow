@@ -25,6 +25,8 @@ import {ForgotMailtoComponent} from "./components/authentification/forgot-pass/f
 import {ForgotChangePassComponent} from "./components/authentification/forgot-pass/forgot-change-pass/forgot-change-pass.component";
 import {TokenConfirmComponent} from "./components/authentification/confirmation/token-confirm/token-confirm.component";
 import {PreConfirmationComponent} from "./components/authentification/confirmation/pre-confirmation/pre-confirmation.component";
+import { LegalMentionsComponent } from './components/legal-mentions/legal-mentions.component';
+import {RGPDComponent} from "./components/rgpd/rgpd.component";
 
 const routes: Routes = [
   {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
@@ -50,6 +52,8 @@ const routes: Routes = [
   {path: 'user/course/:id', component: UserUpdateCourseComponent, canActivate: [SecurityGuard]},
   // {path: 'forgot/mailto', component: ForgotMailtoComponent},
   // {path: 'forgot/password_change', component: ForgotChangePassComponent},
+  {path: 'mentions-legales', component: LegalMentionsComponent, canActivate: [SecurityGuard]},
+  {path: 'rgpd', component: RGPDComponent, canActivate: [SecurityGuard]},
   {path: '**', component: NotFoundComponent, canActivate: [SecurityGuard]},
 ];
 

@@ -28,11 +28,19 @@ export class UsersService {
     return this.cache$;
   }
 
+  /**
+   * Get all users ( call 'users()' to get this )
+   * @private
+   */
   private requestUsers() {
     return this.http.get<Array<User>>(ApiUrl + '/admin/users/').pipe(
     )
   }
 
+  /**
+   * Delete user
+   * @param user
+   */
   public requestDeleteUser(user: User) {
     return this.http.delete<User>(ApiUrl + '/admin/delete_user/', {body: {email: user.email}}).pipe(
     )

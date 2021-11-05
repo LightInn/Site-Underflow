@@ -19,6 +19,11 @@ export class ToastService {
     this.behaviorSubject = new BehaviorSubject(ToastService.message);
   }
 
+  /**
+   * Create a toast element
+   * @param message
+   * @param error
+   */
   public newToast(message: string, error: boolean) {
 
     if (message != "" && message != undefined) {

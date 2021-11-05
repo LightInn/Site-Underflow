@@ -29,16 +29,28 @@ export class UserService {
     return this.cache$;
   }
 
+  /**
+   * Get user informations ( call 'user()' to get this )
+   * @private
+   */
   private requestUser() {
     return this.http.get<User>(ApiUrl + '/user/profile/').pipe(
     )
   }
 
+  /**
+   * update user informations
+   * @param user
+   */
   public update(user: UserInfo) {
     return this.http.patch<UserInfo>(ApiUrl + '/user/profile/edit/', user).pipe(
     )
   }
 
+  /**
+   * Update password
+   * @param passwords
+   */
   public updatePassword(passwords: UserPassword) {
     return this.http.patch<UserPassword>(ApiUrl + '/user/profile/', passwords).pipe(
     )

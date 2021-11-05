@@ -23,35 +23,7 @@
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="subjects">Matière</label>
-        <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
-               placeholder="écrire ici..." formControlName="subjects"
-               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
-
-        <datalist id="subjects_datalist">
-          <option *ngFor="let subject of subjectslist;"
-                  value="{{subject.title}}">{{subject.title}}</option>
-        </datalist>
-        <span *ngIf="error_subjects" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La matière saisie n'est pas valide</span>
-      </div>
-
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px text-left" for="classes">NIVEAU CIBLÉ</label>
-        <select name="classes" id="classes" formControlName="classes"
-                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
-          <option *ngFor="let classe of classesList;"
-                  value="{{classe.id}}">{{classe.title}}</option>
-        </select>
-        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
-      </div>
-    </div>
-    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="date">DATE DU COURS</label>
+        <label class="text-12px" for="date">Date du cours</label>
         <input name="date" formControlName="date" id="date"
                type="datetime-local"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
@@ -67,6 +39,32 @@
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+        <label class="text-12px text-left" for="subjects">Matière</label>
+        <select name="subjects" id="subjects" formControlName="subjects"
+                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
+                px-8 text-14px my-2 text-underflow_grey-50">
+          <option *ngFor="let subject of subjectslist;"
+                  value="{{subject.id}}">{{subject.title}}</option>
+        </select>
+        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
+      </div>
+
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+        <label class="text-12px text-left" for="classes">Niveau ciblé</label>
+        <select name="classes" id="classes" formControlName="classes"
+                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
+                px-8 text-14px my-2 text-underflow_grey-50">
+          <option *ngFor="let classe of classesList;"
+                  value="{{classe.id}}">{{classe.title}}</option>
+        </select>
+        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
       <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
         <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
           <label class="text-12px text-left uppercase" for="description">Description</label>
