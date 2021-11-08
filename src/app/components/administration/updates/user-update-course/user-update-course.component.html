@@ -3,22 +3,25 @@
 <form [formGroup]="form"
       class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap pt-50px">
   <fieldset>
+    <input name="id" formControlName="id" placeholder="id"
+           type="hidden" id="id"
+           class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+              rounded-lg px-8 text-14px my-2 text-underflow_grey-50 opacity-40" readonly>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
-        <label class="text-12px" for="id">ID</label>
-        <input name="id" formControlName="id" placeholder="id"
-               type="number" id="id"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg px-8 text-14px my-2 text-underflow_grey-50 opacity-40" readonly>
-      </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="title">Title</label>
+        <label class="text-12px" for="title">Intitulé</label>
         <input name="title" formControlName="title"
                type="text" id="title"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300
                border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
         <span *ngIf="error_title" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  L'intitulé saisi n'est pas valide</span>
-
+      </div>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
+        <label class="text-12px" for="room">Salle</label>
+        <input name="room" formControlName="room" placeholder="..."
+               type="text" id="room"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
@@ -50,7 +53,6 @@
         </select>
         <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
       </div>
-
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
         <label class="text-12px text-left" for="classes">Niveau ciblé</label>
         <select name="classes" id="classes" formControlName="classes"
@@ -63,7 +65,6 @@
         <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
       </div>
     </div>
-
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
       <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
         <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
@@ -86,19 +87,17 @@
             <span class="slider round"></span>
           </label>
         </div>
-
       </div>
     </div>
 
     <div class="form-buttons w-full flex justify-end mt-30px">
       <button (click)="submit()"
-        class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-20px">
-        Submit
+        class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-14px">
+        Modifier
       </button>
     </div>
   </fieldset>
 </form>
-
 <section class="container mx-auto px-6 pb-6 pt-100px">
   <div class="grid grid-cols-2 justify-items-start">
     <div class="flex items-center">

@@ -32,7 +32,7 @@ export class SubjectsService {
    * @private
    */
   private requestSubjects() {
-    return this.http.get<Array<Subject>>(ApiUrl + '/subjects/').pipe(
+    return this.http.get<Array<Subject>>(ApiUrl + '/subject/').pipe(
     )
   }
 
@@ -50,7 +50,7 @@ export class SubjectsService {
    * @param id
    */
   public requestSubjectSpecific(id: number) {
-    return this.http.get<Array<Subject>>(ApiUrl + '/subjects/').pipe(
+    return this.http.get<Array<Subject>>(ApiUrl + '/subject/').pipe(
       map(data=>data.filter(subject=>subject.id === id))
     )
   }

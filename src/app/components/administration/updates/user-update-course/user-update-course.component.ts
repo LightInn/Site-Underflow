@@ -19,7 +19,6 @@ import {toFormDateLocaleString} from "../../../../functions/dateFormat";
   styleUrls: ['./user-update-course.component.scss']
 })
 export class UserUpdateCourseComponent implements OnInit {
-
   // *************** Declaration part ******************* //
   form: FormGroup;
   courseId: string | null;
@@ -40,6 +39,7 @@ export class UserUpdateCourseComponent implements OnInit {
   error_date: boolean = false;
   error_duration: boolean = false;
   error_closed: boolean = false;
+  error_room: boolean = false;
   error_flag: boolean = false;
 
   constructor(private fb: FormBuilder,
@@ -59,6 +59,7 @@ export class UserUpdateCourseComponent implements OnInit {
       description: ['', [Validators.required]],
       date: ['', [Validators.required]],
       duration: [''],
+      room: [''],
       closed: ['', [Validators.required]],
     });
     this.courseId = String(this.route.snapshot.paramMap.get('id'));
@@ -109,6 +110,7 @@ export class UserUpdateCourseComponent implements OnInit {
           this.form.controls['description'].setValue(response[0].description);
           this.form.controls['duration'].setValue(response[0].duration);
           this.form.controls['closed'].setValue(response[0].ended);
+          this.form.controls['room'].setValue(response[0].room);
         } else {
           this.toastService.newToast("Le cours n'existe pas !", true);
           this.router.navigate(['not-found'])
@@ -152,6 +154,7 @@ export class UserUpdateCourseComponent implements OnInit {
     this.error_date = false;
     this.error_duration = false;
     this.error_closed = false;
+    this.error_room = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -188,6 +191,11 @@ export class UserUpdateCourseComponent implements OnInit {
               this.error_duration = true;
             }
           break;
+        case 'room':
+          if (!!this.form.controls[control].errors) {
+            this.error_room = true;
+          }
+          break;
         case 'closed':
           if (!!this.form.controls[control].errors) {
             this.error_closed = true;
@@ -203,6 +211,7 @@ export class UserUpdateCourseComponent implements OnInit {
       this.error_description ||
       this.error_date ||
       this.error_duration ||
+      this.error_room ||
       this.error_closed) {
       this.error_flag = true
       this.toastService.newToast("Erreur...", true)
@@ -214,14 +223,16 @@ export class UserUpdateCourseComponent implements OnInit {
       if (!this.error_flag) {
         if (!this.form.value.closed) {
           this.coursesService.requestUpdateCourseSpecific(
-            this.form.value.id,
             {
+              id: Number(this.form.value.id),
               title: this.form.value.title,
-              subject: this.form.value.subjects,
-              classe: this.form.value.classes,
+              subject: {id: this.form.value.subjects},
+              classe: {id: this.form.value.classes},
               owner: this.form.value.user,
               date_start: this.form.value.date,
+              description: this.form.value.description,
               duration: this.form.value.duration ?? null,
+              room: this.form.value.room ?? null,
             }
           ).subscribe(
             response => {
@@ -242,9 +253,5 @@ export class UserUpdateCourseComponent implements OnInit {
         }
       }
     }
-  }
-
-  delete(user: User) {
-    // Todo call api delete user registrations from course
   }
 }

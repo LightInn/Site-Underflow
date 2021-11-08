@@ -1,57 +1,32 @@
-<app-header-admin></app-header-admin>
+<app-header-admin [returnEnable]="false"></app-header-admin>
 
 <form [formGroup]="form"
       class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap pt-50px">
   <fieldset>
+    <input name="id" formControlName="id" placeholder="id"
+           type="hidden" id="id"
+           class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+              rounded-lg px-8 text-14px my-2 text-underflow_grey-50 opacity-40" readonly>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
-        <label class="text-12px" for="id">ID</label>
-        <input name="id" formControlName="id" placeholder="id"
-               type="number" id="id"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg px-8 text-14px my-2 text-underflow_grey-50 opacity-40" readonly>
-      </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="title">Title</label>
+        <label class="text-12px" for="title">Intitulé</label>
         <input name="title" formControlName="title"
                type="text" id="title"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300
                border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
         <span *ngIf="error_title" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  L'intitulé saisi n'est pas valide</span>
-
+      </div>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
+        <label class="text-12px" for="room">Salle</label>
+        <input name="room" formControlName="room" placeholder="..."
+               type="text" id="room"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="subjects">Matière</label>
-        <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
-               placeholder="écrire ici..." formControlName="subjects"
-               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
-
-        <datalist id="subjects_datalist">
-          <option *ngFor="let subject of subjectslist;"
-                  value="{{subject.title}}">{{subject.title}}</option>
-        </datalist>
-        <span *ngIf="error_subjects" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La matière saisie n'est pas valide</span>
-      </div>
-
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px text-left" for="classes">NIVEAU CIBLÉ</label>
-        <select name="classes" id="classes" formControlName="classes"
-                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
-          <option *ngFor="let classe of classesList;"
-                  value="{{classe.id}}">{{classe.title}}</option>
-        </select>
-        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
-      </div>
-    </div>
-    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="date">DATE DU COURS</label>
+        <label class="text-12px" for="date">Date du cours</label>
         <input name="date" formControlName="date" id="date"
                type="datetime-local"
                class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
@@ -67,9 +42,33 @@
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+        <label class="text-12px text-left" for="subjects">Matière</label>
+        <select name="subjects" id="subjects" formControlName="subjects"
+                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
+                px-8 text-14px my-2 text-underflow_grey-50">
+          <option *ngFor="let subject of subjectslist;"
+                  value="{{subject.id}}">{{subject.title}}</option>
+        </select>
+        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
+      </div>
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+        <label class="text-12px text-left" for="classes">Niveau ciblé</label>
+        <select name="classes" id="classes" formControlName="classes"
+                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
+               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
+                px-8 text-14px my-2 text-underflow_grey-50">
+          <option *ngFor="let classe of classesList;"
+                  value="{{classe.id}}">{{classe.title}}</option>
+        </select>
+        <span *ngIf="error_classes" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  La classe saisie n'est pas valide</span>
+      </div>
+    </div>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
       <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
         <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-          <label class="text-12px text-left uppercase" for="description">description</label>
+          <label class="text-12px text-left uppercase" for="description">Description</label>
           <textarea name="description" id="description" cols="30"
                     rows="10" formControlName="description"
                     class="w-250px sm:w-500px h-200px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50 pt-10px"
@@ -78,11 +77,7 @@
         </div>
       </div>
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
-        <label class="text-12px" for="closed">Session terminée ?</label>
-        <!--        <input name="closed" formControlName="closed"-->
-        <!--               type="checkbox" id="closed"-->
-        <!--               class="h-30px bg-underflow_grey-800 border-underflow_blue-300-->
-        <!--               border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">-->
+        <label class="text-12px" for="closed">Session terminée ? ( la cloture du cours est définitive ! )</label>
         <!-- Rounded switch -->
         <div class="h-60px flex justify-center items-center my-2">
           <label class="switch">
@@ -92,25 +87,23 @@
             <span class="slider round"></span>
           </label>
         </div>
-
       </div>
     </div>
 
     <div class="form-buttons w-full flex justify-end mt-30px">
-      <button
-        class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-20px"
-        (click)="submit()">submit
+      <button (click)="submit()"
+              class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-14px">
+        Modifier
       </button>
     </div>
   </fieldset>
 </form>
-
 <section class="container mx-auto px-6 pb-6 pt-100px">
   <div class="grid grid-cols-2 justify-items-start">
     <div class="flex items-center">
       <img src="../../../../../assets/images/svg/ecureuil-right.svg" alt="Scratch"
            class="mr-30px h-35px w-35px" draggable="false">
-      <h2 class="text-36px">Utilisateur inscrits</h2>
+      <h2 class="text-36px">Utilisateurs inscrits</h2>
     </div>
     <div class="justify-self-end">
       <button (click)="display=!display">
@@ -129,7 +122,7 @@
           <th class="px-4 py-3">Prénom</th>
           <th class="px-4 py-3">Classe</th>
           <th class="px-4 py-3">Email</th>
-          <th class="px-4 py-3"></th>
+          <th class="px-4 py-3 text-right">Présence</th>
         </tr>
         </thead>
         <tbody class="bg-underflow_grey-700">
@@ -140,9 +133,11 @@
           <td class="px-4 py-3 text-ms">{{userRegistred.email}}</td>
           <td class="px-4 py-3 text-ms">
             <div class="flex justify-end space-x-10px items-center">
-              <!--              <button (click)="change(user)"><img src="../../../../../assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px"></button>-->
-              <button (click)="delete(userRegistred)"><img src="../../../../../assets/images/svg/delete.svg"
-                                                           alt="delete" class="h-20px w-20px" draggable="false"></button>
+              <label class="switch">
+                <input type="checkbox"
+                       [checked]="userRegistred.present" readonly>
+                <span class="slider round"></span>
+              </label>
             </div>
           </td>
         </tr>
