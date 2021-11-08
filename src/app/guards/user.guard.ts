@@ -22,29 +22,24 @@ export class UserGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // return true;
 
-
 // si c'est l'utilisateur qui a creer le cours de la route
-
     let id_course = route.params.id
-    console.log(id_course);
+
 
     return this.coursesService.requestCoursesCreated().toPromise().then(
       courses => {
-        console.log(courses)
         for (let course of courses) {
-
           if (id_course == course.id) {
             return true;
           }
         }
+        this.router.navigateByUrl("/404 Не Найдено");
         return false;
       },
       error => {
-
         this.toastService.newToast(error.error.error, true);
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/404 Не Найдено");
         return false;
-
       }
     );
 
