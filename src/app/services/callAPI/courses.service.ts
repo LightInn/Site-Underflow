@@ -49,7 +49,7 @@ export class CoursesService {
    * Get all courses
    */
   public requestAllCourses() {
-    return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
+    return this.http.get<Array<Courses>>(ApiUrl + '/course/').pipe(
     )
   }
 
@@ -66,18 +66,17 @@ export class CoursesService {
    * @param id
    */
   public requestCourseSpecific(id: number) {
-    return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
+    return this.http.get<Array<Courses>>(ApiUrl + '/course/').pipe(
       map(data => data.filter(courses => courses.id === id))
     )
   }
 
   /**
    * Update 1 specific course
-   * @param id
    * @param course
    */
-  public requestUpdateCourseSpecific(id: number, course: Courses) {
-    return this.http.patch<Courses>(ApiUrl + '/courses/' + id, course).pipe(
+  public requestUpdateCourseSpecific(course: Courses) {
+    return this.http.patch<Courses>(ApiUrl + '/course/', course).pipe(
     )
   }
 

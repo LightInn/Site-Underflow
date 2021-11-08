@@ -27,7 +27,10 @@ export class SuggestionsService {
     return this.cache$;
   }
 
-
+  /**
+   * Get all suggests ( call 'suggests()' to get this )
+   * @private
+   */
   private requestSuggests() {
     return this.http.get<Array<Suggest>>(ApiUrl + '/propositions/').pipe(
     )
@@ -42,6 +45,10 @@ export class SuggestionsService {
     )
   }
 
+  /**
+   * Delete suggest
+   * @param suggest
+   */
   public requestDeleteSuggest(suggest: Suggest) {
     return this.http.delete<Suggest>(ApiUrl + '/admin/delete_proposition/', {body: {id: suggest.id}}).pipe(
     )

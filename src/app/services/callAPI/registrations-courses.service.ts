@@ -28,6 +28,10 @@ export class RegistrationsCoursesService {
     return this.cache$;
   }
 
+  /**
+   * Get all subscription of the actual user ( call 'subscriptions' to get this )
+   * @private
+   */
   private requestSubscriptions() {
     return this.http.get<Array<CourseSubscription>>(ApiUrl + '/user/subscriptions/').pipe(
     )

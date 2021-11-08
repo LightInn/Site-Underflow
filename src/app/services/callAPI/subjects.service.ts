@@ -27,8 +27,12 @@ export class SubjectsService {
     return this.cache$;
   }
 
+  /**
+   * Get all subjects ( call 'subjects()' to get this )
+   * @private
+   */
   private requestSubjects() {
-    return this.http.get<Array<Subject>>(ApiUrl + '/subjects/').pipe(
+    return this.http.get<Array<Subject>>(ApiUrl + '/subject/').pipe(
     )
   }
 
@@ -46,16 +50,25 @@ export class SubjectsService {
    * @param id
    */
   public requestSubjectSpecific(id: number) {
-    return this.http.get<Array<Subject>>(ApiUrl + '/subjects/').pipe(
+    return this.http.get<Array<Subject>>(ApiUrl + '/subject/').pipe(
       map(data=>data.filter(subject=>subject.id === id))
     )
   }
 
+  /**
+   * Update specific subject
+   * @param id
+   * @param subject
+   */
   public requestUpdateSubjectSpecific(id: number, subject: Subject) {
     return this.http.patch<Subject>(ApiUrl + '/subject/' + id, subject).pipe(
     )
   }
 
+  /**
+   * Delete subject
+   * @param subject
+   */
   public requestDeleteSubject(subject: Subject) {
     return this.http.delete<Subject>(ApiUrl + '/admin/delete_subject/', {body: {id: subject.id}}).pipe(
     )

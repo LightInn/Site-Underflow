@@ -8,6 +8,10 @@ import {CoursesService} from 'src/app/services/callAPI/courses.service';
 import {RegistrationsCoursesService} from "../../../../services/callAPI/registrations-courses.service";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
 import {UserService} from "../../../../services/callAPI/user.service";
+import {registerLocaleData} from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'app-profile-inscriptions',

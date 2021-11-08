@@ -1,9 +1,9 @@
 <div class="relative block py-100px">
   <div class="w-full flex justify-start md:justify-center items-center z-20 flex-wrap">
-    <div class="h-80px border border-underflow_grey-700 flex justify-center items-center py-10px px-30px">
+    <div class="h-80px border border-underflow_grey-700 flex justify-center items-center py-10px px-30px bg-underflow_grey-900">
       <img class="w-25px h-25px" src="./assets/images/svg/book.svg" alt="book logo" draggable="false">
     </div>
-    <div class="h-80px flex justify-center items-center border border-underflow_grey-700 py-10px px-60px">
+    <div class="h-80px flex justify-center items-center border border-underflow_grey-700 py-10px px-60px bg-underflow_grey-900">
       <p class="text-center text-underflow_grey-200 font-chennai">
         Mes cours
       </p>
@@ -41,7 +41,7 @@
         <div class="w-1/3 flex justify-center items-end">
           <div class="flex flex-col font-chennai text-12px text-underflow_blue-50">
             <p>{{course?.date_start | date:'dd/MM'}}</p>
-            <p>{{course?.date_start | date:'hh:mm'}}</p>
+            <p>{{course?.date_start | date:'HH:mm':'+0000':'fr'}}</p>
           </div>
         </div>
         <div class="w-1/3 h-full flex justify-end items-end">

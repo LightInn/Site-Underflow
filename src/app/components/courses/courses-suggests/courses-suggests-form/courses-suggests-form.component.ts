@@ -142,19 +142,22 @@ export class CoursesSuggestsFormComponent implements OnInit {
       let subjectIndex = this.subjectslist?.findIndex(({title}) => title == this.form.value.subjects);
       var subjectElem: Subject = {};
       if (this.subjectslist?.length) {
-        subjectElem = (subjectIndex!= undefined && subjectIndex >= 0) ? this.subjectslist[subjectIndex] : {};
+        subjectElem = (subjectIndex != undefined && subjectIndex >= 0) ? this.subjectslist[subjectIndex] : {};
       }
+      console.log()
       if (!this.error_flag) {
         // if the subject is already created, then just create the new suggestion
         this.suggestionsService.addSuggestion({
           title: this.form.value.title,
-          subject: (!!subjectElem) ?
+          subject: (subjectElem
+            && Object.keys(subjectElem).length === 0
+            && Object.getPrototypeOf(subjectElem) === Object.prototype) ?
             {
-              id: subjectElem.id,
+              id: 0,
               title: this.form.value.subjects
             }
             : {
-              id: 0,
+              id: subjectElem.id,
               title: this.form.value.subjects
             },
           date_butoir: this.form.value.date_butoir,

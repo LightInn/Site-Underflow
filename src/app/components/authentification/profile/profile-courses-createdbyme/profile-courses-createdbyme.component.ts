@@ -4,6 +4,10 @@ import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
 import {CoursesService} from "../../../../services/callAPI/courses.service";
+import {registerLocaleData} from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'app-profile-courses-createdbyme',
