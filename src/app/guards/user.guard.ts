@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthentificationService} from "../services/authentification.service";
+import {CoursesService} from '../services/callAPI/courses.service';
+import {ToastService} from "../services/toast.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,10 @@ import {AuthentificationService} from "../services/authentification.service";
 export class UserGuard implements CanActivate {
 
 
-  constructor(private authService: AuthentificationService, private router: Router) {
+  constructor(private authService: AuthentificationService,
+              private router: Router,
+              private coursesService: CoursesService,
+              private toastService: ToastService) {
   }
 
   canActivate(
@@ -18,17 +23,31 @@ export class UserGuard implements CanActivate {
     // return true;
 
 
+// si c'est l'utilisateur qui a creer le cours de la route
+
+    let id_course = route.params.id
+    console.log(id_course);
+
+    return this.coursesService.requestCoursesCreated().toPromise().then(
+      courses => {
+        console.log(courses)
+        for (let course of courses) {
+
+          if (id_course == course.id) {
+            return true;
+          }
+        }
+        return false;
+      },
+      error => {
+
+        this.toastService.newToast(error.error.error, true);
+        this.router.navigateByUrl("/");
+        return false;
+
+      }
+    );
 
 
-
-
-
-
-    if (this.authService.isLoggedIn()) {
-      return true;
-    } else {
-      this.router.navigateByUrl("/login")
-      return false;
-    }
   }
 }
