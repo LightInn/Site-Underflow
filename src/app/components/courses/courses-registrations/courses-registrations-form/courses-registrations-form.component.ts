@@ -1,19 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Courses} from "../../../../interfaces/course";
 import {CourseSubscription} from "../../../../interfaces/courseSubscription";
 import {Classe} from "../../../../interfaces/classe";
 import {from} from "rxjs";
 import {filter} from "rxjs/operators";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat"
-import {AuthentificationService} from "../../../../services/authentification.service";
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
-import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {RegistrationsCoursesService} from "../../../../services/callAPI/registrations-courses.service";
 import {CoursesService} from "../../../../services/callAPI/courses.service";
 import {UserService} from "../../../../services/callAPI/user.service";
 import {User} from "../../../../interfaces/user";
+import {registerLocaleData} from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr, 'fr');
 
 @Component({
   selector: 'app-courses-registrations-form',
@@ -22,7 +24,7 @@ import {User} from "../../../../interfaces/user";
 })
 export class CoursesRegistrationsFormComponent implements OnInit {
   // *************** Declaration part ******************* //
-  coursesList?: Array<Courses>;
+  coursesList?: Array<Courses> = [];
   classesList?: Array<Classe>;
   courseInscription?: Array<CourseSubscription>;
   userInfos?: User;
@@ -45,6 +47,9 @@ export class CoursesRegistrationsFormComponent implements OnInit {
               private userService: UserService) {
   }
 
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
     // Init all dates & filters -> default values
     const date = new Date(Date.now());
@@ -56,26 +61,26 @@ export class CoursesRegistrationsFormComponent implements OnInit {
       classes => {
         this.classesList = classes;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
-    this.courseService.courses().subscribe(
+    this.courseService.courses(true).subscribe(
       courses => {
         this.coursesList = courses;
         // We init the default values
         this.coursesListFiltered = JSON.parse(JSON.stringify(this.coursesList));
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
-    this.subscriptionsService.subscriptions().subscribe(
+    this.subscriptionsService.subscriptions(true).subscribe(
       subscriptions => {
         this.courseInscription = subscriptions;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
-    this.userService.user().subscribe(
+    this.userService.user(true).subscribe(
       user => {
         this.userInfos = user;
         // When all informations from user are ok, we can init filters
@@ -86,11 +91,14 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         this.callFilter(this.filter_selectedDateEnd, "dateEnd");
         this.callFilter(this.filter_searchBarText, "BarText");
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
 
+  /**
+   * Check if empty, then display other message
+   */
   checkEmpty(): boolean {
     // @ts-ignore
     return this.coursesListFiltered.length === 0;
@@ -141,14 +149,16 @@ export class CoursesRegistrationsFormComponent implements OnInit {
    * function to filter via the classes selections -> use observable , filter from angular
    */
   filterClasse() {
-    // @ts-ignore
+    if (this.coursesList == undefined) {
+      this.coursesList = [];
+    }
     let courses$ = from(this.coursesList);
     // if the selected classe, we skip the filter part
     if (this.filter_selectedClasse === "") {
       this.coursesListFiltered_1 = JSON.parse(JSON.stringify(this.coursesList));
     } else {
       let filteredClasses$ = courses$
-        .pipe(filter(course => course["classe"]["title"] === this.filter_selectedClasse));
+        .pipe(filter(course => (course["classe"] != undefined) ? course["classe"]["title"] === this.filter_selectedClasse : false));
       filteredClasses$.subscribe(val => {
           // @ts-ignore
           this.coursesListFiltered_1.push(val);
@@ -185,7 +195,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         )
       );
     filteredClasses$.subscribe(val => {
-        console.log(val);
         // @ts-ignore
         this.coursesListFiltered_2.push(val);
       }
@@ -207,7 +216,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
           course.subject.title.toLowerCase().includes(search))
       );
     filteredClasses$.subscribe(val => {
-        console.log(val);
         // @ts-ignore
         this.coursesListFiltered.push(val);
       }
@@ -220,7 +228,6 @@ export class CoursesRegistrationsFormComponent implements OnInit {
    * @param fromFilter
    */
   callFilter(filterString: string, fromFilter: string) {
-    console.log("--- call filter ---")
     // We reset all lists
     this.coursesListFiltered = [];
     this.coursesListFiltered_1 = [];
@@ -249,13 +256,13 @@ export class CoursesRegistrationsFormComponent implements OnInit {
 
   /**
    * elem check function -> we test if the user is already registred on the course
-   * @param id
+   * @param id_course
    */
-  elemCheck(id?: number) {
+  elemCheck(id_course?: number) {
     // if id is defined we test it
-    if (!!id) {
+    if (!!id_course) {
       // @ts-ignore
-      return !!(this.courseInscription.find(({id_course}) => id_course === id));
+      return !!(this.courseInscription?.find(({id}) => id === id_course));
     }
     return false
   }
@@ -266,12 +273,12 @@ export class CoursesRegistrationsFormComponent implements OnInit {
    */
   clickEvent(id?: number) {
     if (!!id) {
-      this.subscriptionsService.requestUserSubscriptions(id).subscribe(
+      this.subscriptionsService.requestUserSubscriptions({id: id}).subscribe(
         elem => {
-          const message = elem ? "Tu es inscrit !" : "Tu es désinscrit !";
-          this.toastService.newToast(message, true);
+          let message = elem.subscribed ? "Tu es inscrit !" : "Tu es désinscrit !";
+          this.toastService.newToast(message, false);
         }, error => {
-          this.toastService.newToast(error.error.error, true);
+          this.toastService.newToast(error.error.status, true);
         }
       )
     }

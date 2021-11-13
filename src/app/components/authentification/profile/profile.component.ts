@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   public base: Base = {
     baseTitle: "Mon profil",
     baseLandingMode: false,
-    baseDescriptionFirstPart: "C'est ici que tu remplis ton profil !",
+    baseDescriptionFirstPart: "C'est ici que tu complètes ton profil !",
     baseDescriptionSecondPart: "",
     baseAdditionalCitation: false,
     baseAdditionalButton: false,
@@ -36,13 +36,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  /**
+   * Logout and redirect to login page
+   */
   logout(): void {
-
     this.authService.logout()
     this.router.navigateByUrl("/login")
-    this.toastService.newToast("Vous avez ete deconecter", false)
-
+    this.toastService.newToast("Vous avez été déconnecté", false)
   }
 
 }

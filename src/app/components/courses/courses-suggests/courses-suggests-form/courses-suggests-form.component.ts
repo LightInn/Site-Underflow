@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subject} from "../../../../interfaces/subject";
 import {Classe} from "../../../../interfaces/classe";
-import {AuthentificationService} from "../../../../services/authentification.service";
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat";
@@ -41,11 +40,11 @@ export class CoursesSuggestsFormComponent implements OnInit {
    * The constructor, take differents parameters, it's automatic in angular,
    * we use differents values with it
    * @param fb -> to create our form, and initialize Validators
-   * @param authService -> to use the auth service
    * @param toastService -> to display messages with popup service
    * @param router -> to swap on another page on submit
    * @param classeService
    * @param subjectService
+   * @param suggestionsService
    */
   constructor(private fb: FormBuilder,
               private toastService: ToastService,
@@ -69,19 +68,22 @@ export class CoursesSuggestsFormComponent implements OnInit {
     this.date_max = toFormDateLocaleString(date);
   }
 
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
-    this.classeService.classes().subscribe(
+    this.classeService.classes(true).subscribe(
       classes => {
         this.classesList = classes;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
-    this.subjectService.subjects().subscribe(
+    this.subjectService.subjects(true).subscribe(
       subjects => {
         this.subjectslist = subjects;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -91,6 +93,11 @@ export class CoursesSuggestsFormComponent implements OnInit {
    * we also test here all our fields to validate the form or display message errors
    */
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_title = false;
+    this.error_date = false;
+    this.error_subject = false;
+    this.error_classe = false;
     this.error_flag = false;
     // ******************* Validation part ******************** //
     for (const control in this.form.controls) {
@@ -98,84 +105,73 @@ export class CoursesSuggestsFormComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_title = false;
           }
 
           break;
         case 'date_butoir':
           if (!!this.form.controls[control].errors) {
             this.error_date = true;
-            this.error_flag = true;
-          } else {
-            this.error_date = false;
           }
           break;
         case 'subjects':
           if (!!this.form.controls[control].errors) {
             this.error_subject = true;
-            this.error_flag = true;
-          } else {
-            this.error_subject = false;
           }
           break;
         case 'classes':
           if (!!this.form.controls[control].errors) {
             this.error_classe = true;
-            this.error_flag = true;
-          } else {
-            this.error_classe = false;
           }
           break;
       }
     }
     // Send error message to the toast service
-    this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Suggestion envoyée...", false);
+    if (this.error_title ||
+      this.error_date ||
+      this.error_subject ||
+      this.error_classe) {
+      this.error_flag = true
+      this.toastService.newToast("Erreur...", true)
+    } else {
+      this.toastService.newToast("Suggestion envoyée...", false);
+      this.error_flag = false
+    }
 
     // Verify if the form is valid or not , and create suggestions / subjects
     if (this.form.status === "VALID") {
-      let subject = this.subjectslist?.find(({title}) => title === this.form.value.subject);
+      let subjectIndex = this.subjectslist?.findIndex(({title}) => title == this.form.value.subjects);
+      var subjectElem: Subject = {};
+      if (this.subjectslist?.length) {
+        subjectElem = (subjectIndex != undefined && subjectIndex >= 0) ? this.subjectslist[subjectIndex] : {};
+      }
+      console.log()
       if (!this.error_flag) {
-        if (!!subject) {
-          // if the subject is already created, then just create the new suggestion
-          this.suggestionsService.addSuggestion({
-            title: this.form.value.title,
-            subject: subject,
-            date_butoir: this.form.value.date_butoir,
-            classe: this.form.value.classe
-          }).subscribe(
-            response => {
-              this.toastService.newToast("Votre propositon à été créée", true);
-            }, error => {
-              this.toastService.newToast(error.error.error, true);
+        // if the subject is already created, then just create the new suggestion
+        this.suggestionsService.addSuggestion({
+          title: this.form.value.title,
+          subject: (subjectElem
+            && Object.keys(subjectElem).length === 0
+            && Object.getPrototypeOf(subjectElem) === Object.prototype) ?
+            {
+              id: 0,
+              title: this.form.value.subjects
             }
-          )
-        } else {
-          // else, we need to create both, suggestion & subject
-          this.subjectService.addSubject({
-            id: 0,
-            title: this.form.value.subject
-          }).subscribe(
-            subject_created => {
-              // when we have the response for the creation of subject, we create the suggestion
-              this.suggestionsService.addSuggestion({
-                title: this.form.value.title,
-                subject: subject_created,
-                date_butoir: this.form.value.date_butoir,
-                classe: this.form.value.classe
-              }).subscribe(
-                response => {
-                  this.toastService.newToast("Votre propositon à été créée", true);
-                }, error => {
-                  this.toastService.newToast(error.error.error, true);
-                }
-              )
-            }, error => {
-              this.toastService.newToast(error.error.error, true);
-            }
-          )
-        }
+            : {
+              id: subjectElem.id,
+              title: this.form.value.subjects
+            },
+          date_butoir: this.form.value.date_butoir,
+          classe: {
+            id: Number(this.form.value.classes)
+          }
+        }).subscribe(
+          response => {
+            this.router.navigate(['/les-cours']);
+            this.toastService.newToast("Votre propositon à été créée", false);
+          }, error => {
+            this.toastService.newToast(error.error.status, true);
+          }
+        )
       }
     }
   }

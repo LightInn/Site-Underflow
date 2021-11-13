@@ -20,7 +20,7 @@ export class ParticipantsService {
    * @param reset -> true if you want to force the cache reset
    */
   participants(idCourse: number, reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestParticipants(idCourse).pipe(
         shareReplay(1)
       );
@@ -28,8 +28,23 @@ export class ParticipantsService {
     return this.cache$;
   }
 
+  /**
+   * Get list of participant on a specific course ( call 'participants()' if you want this )
+   * @param idCourse
+   * @private
+   */
   private requestParticipants(idCourse: number) {
     return this.http.get<Array<User>>(ApiUrl + '/course/' + idCourse + '/participants/').pipe(
+    )
+  }
+
+  /**
+   * Toggle attendance of a specific people on a specific course
+   * @param idCourse
+   * @param email
+   */
+  public requestToggleUserAttendance(idCourse: number, email: string) {
+    return this.http.patch<{ "present"?: boolean }>(ApiUrl + '/course/' + idCourse + '/user_attendance/', {email: email}).pipe(
     )
   }
 }

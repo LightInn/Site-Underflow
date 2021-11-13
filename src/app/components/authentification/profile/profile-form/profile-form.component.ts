@@ -8,6 +8,7 @@ import {regexMailCreated} from "../../../../constants/authorized.mail"
 import {UserService} from "../../../../services/callAPI/user.service";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
 import {User} from "../../../../interfaces/user";
+import {regexName, regexPassword} from "../../../../constants/regexValidators";
 
 @Component({
   selector: 'app-profile-form',
@@ -57,19 +58,22 @@ export class ProfileFormComponent implements OnInit {
               private classesService: ClassesService) {
     // ************** Initialization ******************** //
     this.form = this.fb.group({
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+      firstname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(regexName)]],
+      lastname: ['', [Validators.required, Validators.minLength(3), Validators.pattern(regexName)]],
       classes: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(regexMailCreated)]]
     });
 
     this.formPassword = this.fb.group({
-      old_password: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      password_valid: ['', [Validators.required]],
+      old_password: ['', [Validators.required, Validators.minLength(7), Validators.pattern(regexPassword)]],
+      password: ['', [Validators.required, Validators.minLength(7), Validators.pattern(regexPassword)]],
+      password_valid: ['', [Validators.required, Validators.minLength(7), Validators.pattern(regexPassword)]],
     })
   }
 
+  /**
+   * Data initialization
+   */
   ngOnInit(): void {
     this.userInfoService.user().subscribe(
       user => {
@@ -79,7 +83,7 @@ export class ProfileFormComponent implements OnInit {
         this.form.controls['email'].setValue(user.email)
         this.form.controls['classes'].setValue(user.classe?.title)
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
 
@@ -87,12 +91,20 @@ export class ProfileFormComponent implements OnInit {
       classes => {
         this.classesList = classes;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
 
+  /**
+   * Trigger submit function, trigger validators and call api
+   */
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_firstname = false;
+    this.error_lastname = false;
+    this.error_classes = false;
+    this.error_email = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -100,59 +112,54 @@ export class ProfileFormComponent implements OnInit {
         case 'firstname':
           if (!!this.form.controls[control].errors) {
             this.error_firstname = true;
-            this.error_flag = true;
-          } else {
-            this.error_firstname = false;
           }
 
           break;
         case 'lastname':
           if (!!this.form.controls[control].errors) {
             this.error_lastname = true;
-            this.error_flag = true;
-          } else {
-            this.error_lastname = false;
           }
           break;
         case 'classes':
           if (!!this.form.controls[control].errors) {
             this.error_classes = true;
-            this.error_flag = true;
-          } else {
-            this.error_classes = false;
           }
           break;
         case 'email':
           if (!!this.form.controls[control].errors) {
             this.error_email = true;
-            this.error_flag = true;
-          } else {
-            this.error_email = false;
           }
           break;
       }
     }
 
     // Send error message to the toast service
-    if (this.error_flag) {
+    if (this.error_firstname ||
+      this.error_lastname ||
+      this.error_classes ||
+      this.error_email) {
+      this.error_flag = true
       this.toastService.newToast("Erreur...", true)
+    } else {
+      this.error_flag = false
     }
+
 
     if (this.form.status === "VALID") {
       if (!this.error_flag) {
-        let classe = this.classesList?.find(({title}) => title === this.form.value.classe);
+        let classe = this.classesList?.find(({title}) => title === this.form.value.classes);
         this.userInfoService.update(
           {
             email: this.form.value.email,
             last_name: this.form.value.lastname,
             first_name: this.form.value.firstname,
-            classe: classe,
+            class_id: Number(classe?.id),
           }
         ).subscribe(
           response => {
             this.toastService.newToast("Profil bien modifié", false);
           }, error => {
-            this.toastService.newToast(error.error.error, true);
+            this.toastService.newToast(error.error.status, true);
           }
         )
       }
@@ -167,25 +174,16 @@ export class ProfileFormComponent implements OnInit {
         case 'old_password':
           if (!!this.formPassword.controls[control].errors) {
             this.error_old_password = true;
-            this.error_flag_password = true;
-          } else {
-            this.error_old_password = false;
           }
           break;
         case 'password':
           if (!!this.formPassword.controls[control].errors) {
             this.error_password = true;
-            this.error_flag_password = true;
-          } else {
-            this.error_password = false;
           }
           break;
         case 'password_valid':
           if (!!this.formPassword.controls[control].errors) {
             this.error_password_valid = true;
-            this.error_flag_password = true;
-          } else {
-            this.error_password_valid = false;
           }
           break;
       }
@@ -199,9 +197,15 @@ export class ProfileFormComponent implements OnInit {
     }
 
     // Send error message to the toast service
-    if (this.error_flag_password) {
+    if (this.error_old_password ||
+      this.error_password ||
+      this.error_password_valid) {
+      this.error_flag_password = true
       this.toastService.newToast("Erreur...", true)
+    } else {
+      this.error_flag_password = false
     }
+
 
     if (this.formPassword.status === "VALID") {
       if (!this.error_flag_password) {
@@ -215,7 +219,7 @@ export class ProfileFormComponent implements OnInit {
           response => {
             this.toastService.newToast("Mot de passe bien modifié", false);
           }, error => {
-            this.toastService.newToast(error.error.error, true);
+            this.toastService.newToast(error.error.status, true);
           }
         )
       }

@@ -44,8 +44,20 @@ import {UpdateClasseComponent} from './components/administration/updates/update-
 import {UpdateCourseComponent} from './components/administration/updates/update-course/update-course.component';
 import {UpdateSubjectComponent} from './components/administration/updates/update-subject/update-subject.component';
 import {ClassesService} from "./services/callAPI/classes.service";
-import { HeaderAdminComponent } from './components/administration/header-admin/header-admin.component';
-import { AdminSuggestionsComponent } from './components/administration/views/admin-suggestions/admin-suggestions.component';
+import {AdminSuggestionsComponent} from './components/administration/views/admin-suggestions/admin-suggestions.component';
+import {ConfirmationComponent} from './components/authentification/confirmation/confirmation.component';
+import {ContributeComponent} from './components/contribute/contribute.component';
+import {HeaderAdminComponent} from "./components/administration/header-admin/header-admin.component";
+import {UserUpdateCourseComponent} from "./components/administration/updates/user-update-course/user-update-course.component";
+import {AddClasseComponent} from './components/administration/add/add-classe/add-classe.component';
+import {ProfileCoursesCreatedbymeComponent} from "./components/authentification/profile/profile-courses-createdbyme/profile-courses-createdbyme.component";
+import { AddSubjectComponent } from './components/administration/add/add-subject/add-subject.component';
+import { ForgotMailtoComponent } from './components/authentification/forgot-pass/forgot-mailto/forgot-mailto.component';
+import { ForgotChangePassComponent } from './components/authentification/forgot-pass/forgot-change-pass/forgot-change-pass.component';
+import { TokenConfirmComponent } from './components/authentification/confirmation/token-confirm/token-confirm.component';
+import { PreConfirmationComponent } from './components/authentification/confirmation/pre-confirmation/pre-confirmation.component';
+import { LegalMentionsComponent } from './components/legal-mentions/legal-mentions.component';
+import { RGPDComponent } from './components/rgpd/rgpd.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +102,18 @@ import { AdminSuggestionsComponent } from './components/administration/views/adm
     UpdateSubjectComponent,
     HeaderAdminComponent,
     AdminSuggestionsComponent,
-    // UpdateUserComponent
+    UserUpdateCourseComponent,
+    ConfirmationComponent,
+    ContributeComponent,
+    AddClasseComponent,
+    ProfileCoursesCreatedbymeComponent,
+    AddSubjectComponent,
+    ForgotMailtoComponent,
+    ForgotChangePassComponent,
+    TokenConfirmComponent,
+    PreConfirmationComponent,
+    LegalMentionsComponent,
+    RGPDComponent,
   ],
   imports: [
     BrowserModule,

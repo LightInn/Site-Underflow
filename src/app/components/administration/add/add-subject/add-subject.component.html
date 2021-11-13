@@ -1,0 +1,23 @@
+<app-header-admin></app-header-admin>
+<form [formGroup]="form"
+      class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap pt-50px">
+  <fieldset>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
+      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+        <label class="text-12px" for="title">Title</label>
+        <input name="title" formControlName="title"
+               type="text" id="title"
+               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300
+               border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+        <span *ngIf="error_title" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  L'intitulé saisi n'est pas valide</span>
+      </div>
+    </div>
+
+    <div class="form-buttons w-full flex justify-end mt-30px">
+      <button
+        class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-20px"
+        (click)="submit()">Submit
+      </button>
+    </div>
+  </fieldset>
+</form>

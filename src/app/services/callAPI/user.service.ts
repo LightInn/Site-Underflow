@@ -5,6 +5,7 @@ import {shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {User} from "../../interfaces/user";
 import {UserPassword} from "../../interfaces/userPassword";
+import {UserInfo} from "../../interfaces/userInfo";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class UserService {
    * @param reset -> true if you want to force the cache reset
    */
   user(reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestUser().pipe(
         shareReplay(1)
       );
@@ -28,16 +29,28 @@ export class UserService {
     return this.cache$;
   }
 
+  /**
+   * Get user informations ( call 'user()' to get this )
+   * @private
+   */
   private requestUser() {
     return this.http.get<User>(ApiUrl + '/user/profile/').pipe(
     )
   }
 
-  public update(user: User) {
-    return this.http.patch<User>(ApiUrl + '/user/profile/', user).pipe(
+  /**
+   * update user informations
+   * @param user
+   */
+  public update(user: UserInfo) {
+    return this.http.patch<UserInfo>(ApiUrl + '/user/profile/edit/', user).pipe(
     )
   }
 
+  /**
+   * Update password
+   * @param passwords
+   */
   public updatePassword(passwords: UserPassword) {
     return this.http.patch<UserPassword>(ApiUrl + '/user/profile/', passwords).pipe(
     )

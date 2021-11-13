@@ -36,14 +36,14 @@
         <div class="w-full h-1/6 flex justify-evenly">
           <div class="w-1/3 h-full flex justify-start items-end">
             <div class="flex flex-col text-12px">
-              <p>{{course?.salle}}</p>
+              <p>Salle : {{course?.room}}</p>
               <p>{{course?.classe?.title}}</p>
             </div>
           </div>
           <div class="w-1/3 flex justify-center items-end">
             <div class="flex flex-col font-chennai text-12px text-underflow_blue-50">
               <p>{{course?.date_start | date:'dd/MM'}}</p>
-              <p>{{course?.date_start | date:'hh:mm'}}</p>
+              <p>{{course?.date_start | date:'HH:mm':'+0000':'fr'}}</p>
             </div>
           </div>
           <div class="w-1/3 h-full flex justify-end items-end">

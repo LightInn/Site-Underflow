@@ -1,4 +1,4 @@
-<section class="container mx-auto p-6 ">
+<section class="container mx-auto p-6 relative">
   <div class="grid grid-cols-2 justify-items-start">
     <div class="flex items-center">
       <img src="../../../../../assets/images/svg/ecureuil-right.svg" alt="Scratch"
@@ -40,12 +40,29 @@
           <td class="md:px-4 py-3 text-ms">
             <div class="flex justify-end space-x-10px items-center">
               <button (click)="change(courses)"><img src="../../../../../assets/images/svg/pencil.svg" alt="edit" class="h-20px w-20px" draggable="false"></button>
-              <button (click)="delete(courses)"><img src="../../../../../assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px" draggable="false"></button>
+              <button (click)="clickDelete(courses)"><img src="../../../../../assets/images/svg/delete.svg" alt="delete" class="h-20px w-20px" draggable="false"></button>
             </div>
           </td>
         </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div (click)="validation = !validation" *ngIf="validation"
+       class="absolute top-0 left-0 h-full w-full flex justify-center items-center flex-col">
+    <div class="w-200px h-200px p-20px rounded-2xl bg-underflow_orange-900 flex flex-col justify-center items-center">
+      <p>Es-tu sûr de supprimer ce cours ? -> {{courseToDelete.title}}</p>
+      <div class="pt-20px">
+        <button (click)="delete()">
+          <img src="../../../../../assets/images/svg/validation.svg"
+               alt="delete validation"
+               class="h-30px w-30px" draggable="false"></button>
+        <button class="ml-10px" (click)="validation = !validation">
+          <img src="../../../../../assets/images/svg/back.svg"
+               alt="cancel"
+               class="h-30px w-30px" draggable="false">
+        </button>
+      </div>
     </div>
   </div>
 </section>

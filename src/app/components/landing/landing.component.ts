@@ -9,7 +9,7 @@ import {Base} from "../../interfaces/base";
 export class LandingComponent implements OnInit {
   // *************** Declaration part ******************* //
   public base: Base = {
-    baseTitle: "Tutorat Et Entraide",
+    baseTitle: "Tutorat et Entraide",
     baseLandingMode: true,
     baseDescriptionFirstPart: "",
     baseDescriptionSecondPart: "",

@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {shareReplay} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {Courses} from "../../interfaces/course";
-import {Classe} from "../../interfaces/classe";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,7 @@ export class CoursesService {
    * @param reset -> true if you want to force the cache reset
    */
   courses(reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestCourses().pipe(
         shareReplay(1)
       );
@@ -28,23 +27,74 @@ export class CoursesService {
     return this.cache$;
   }
 
+  /**
+   * Get all available courses ( all courses that aren't created by me ) - from the jwt token
+   * @private
+   */
   private requestCourses() {
-    return this.http.get<Array<Courses>>(ApiUrl + '/courses/').pipe(
+    return this.http.get<Array<Courses>>(ApiUrl + '/user/available_courses/').pipe(
     )
   }
 
+  /**
+   * Add course
+   * @param course
+   */
   public addCourse(course: Courses) {
-    return this.http.post<Courses>(ApiUrl + '/courses/', course).pipe(
+    return this.http.post<Courses>(ApiUrl + '/course/', course).pipe(
     )
   }
 
+  /**
+   * Get all courses
+   */
+  public requestAllCourses() {
+    return this.http.get<Array<Courses>>(ApiUrl + '/course/').pipe(
+    )
+  }
+
+  /**
+   * Request to get all 'my Created' courses, from the jwt token
+   */
+  public requestCoursesCreated() {
+    return this.http.get<Array<Courses>>(ApiUrl + '/user/courses/').pipe(
+    )
+  }
+
+  /**
+   * Get 1 specific course from the id
+   * @param id
+   */
   public requestCourseSpecific(id: number) {
-    return this.http.get<Courses>(ApiUrl + '/courses/' + id).pipe(
+    return this.http.get<Array<Courses>>(ApiUrl + '/course/').pipe(
+      map(data => data.filter(courses => courses.id === id))
     )
   }
 
-  public requestUpdateCourseSpecific(id: number, course: Courses) {
-    return this.http.patch<Courses>(ApiUrl + '/courses/' + id, course).pipe(
+  /**
+   * Update 1 specific course
+   * @param course
+   */
+  public requestUpdateCourseSpecific(course: Courses) {
+    return this.http.patch<Courses>(ApiUrl + '/course/', course).pipe(
+    )
+  }
+
+  /**
+   * Delete 1 course
+   * @param course
+   */
+  public requestDeleteCourse(course: Courses) {
+    return this.http.delete<Courses>(ApiUrl + '/admin/delete_course/', {body: {id: course.id}}).pipe(
+    )
+  }
+
+  /**
+   * Closing a course [end]
+   * @param course_id
+   */
+  public requestClotureCourse(course_id: number) {
+    return this.http.post<any>(ApiUrl + '/course/' + course_id + "/cloture/", null).pipe(
     )
   }
 }

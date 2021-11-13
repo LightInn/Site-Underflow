@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header-admin',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-admin.component.scss']
 })
 export class HeaderAdminComponent implements OnInit {
+  // *************** Declaration part ******************* //
+  @Input() returnEnable : boolean = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  /**
+   * redirect to the admin page
+   */
+  clickEventBack(){
+    this.router.navigateByUrl('/admin')
+  }
 }

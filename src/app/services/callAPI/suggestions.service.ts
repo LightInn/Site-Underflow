@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {shareReplay} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {ApiUrl} from "../../constants/api.url";
 import {Suggest} from "../../interfaces/suggest";
 
@@ -19,7 +19,7 @@ export class SuggestionsService {
    * @param reset -> true if you want to force the cache reset
    */
   suggests(reset: boolean = false) {
-    if (!this.cache$) {
+    if (!this.cache$ || reset) {
       this.cache$ = this.requestSuggests().pipe(
         shareReplay(1)
       );
@@ -27,6 +27,10 @@ export class SuggestionsService {
     return this.cache$;
   }
 
+  /**
+   * Get all suggests ( call 'suggests()' to get this )
+   * @private
+   */
   private requestSuggests() {
     return this.http.get<Array<Suggest>>(ApiUrl + '/propositions/').pipe(
     )
@@ -38,6 +42,15 @@ export class SuggestionsService {
    */
   public addSuggestion(suggest: Suggest) {
     return this.http.post<unknown>(ApiUrl + '/proposition/', suggest).pipe(
+    )
+  }
+
+  /**
+   * Delete suggest
+   * @param suggest
+   */
+  public requestDeleteSuggest(suggest: Suggest) {
+    return this.http.delete<Suggest>(ApiUrl + '/admin/delete_proposition/', {body: {id: suggest.id}}).pipe(
     )
   }
 }

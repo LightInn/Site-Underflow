@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Subject} from "../../../../interfaces/subject";
 import {Classe} from "../../../../interfaces/classe";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthentificationService} from "../../../../services/authentification.service";
 import {ToastService} from "../../../../services/toast.service";
 import {Router} from "@angular/router";
 import {toFormDateLocaleString} from "../../../../functions/dateFormat";
 import {ClassesService} from "../../../../services/callAPI/classes.service";
 import {SubjectsService} from "../../../../services/callAPI/subjects.service";
 import {CoursesService} from "../../../../services/callAPI/courses.service";
+import {Suggest} from "../../../../interfaces/suggest";
+import {SuggestionsService} from "../../../../services/callAPI/suggestions.service";
 
 @Component({
   selector: 'app-courses-creates-form',
@@ -18,8 +19,11 @@ import {CoursesService} from "../../../../services/callAPI/courses.service";
 export class CoursesCreatesFormComponent implements OnInit {
   // *************** Declaration part ******************* //
   subjectslist ?: Array<Subject>;
-  classesList ?: Array<Classe>
+  classesList ?: Array<Classe>;
+  suggestsList ?: Array<Suggest>;
   form: FormGroup;
+
+  suggestId: number = -1;
   /**
    * We limit here & in the constructor the field for date
    * -> 120 day after for the max
@@ -36,6 +40,7 @@ export class CoursesCreatesFormComponent implements OnInit {
   error_subject: boolean = false;
   error_classe: boolean = false;
   error_description: boolean = false;
+  error_room: boolean = false;
   error_flag: boolean = false;
 
   /**
@@ -53,14 +58,15 @@ export class CoursesCreatesFormComponent implements OnInit {
               private router: Router,
               private classeService: ClassesService,
               private subjectService: SubjectsService,
-              private courseService: CoursesService) {
+              private courseService: CoursesService,
+              private suggestService: SuggestionsService) {
     this.form = this.fb.group({
-      // todo validator personalized
       title: ['', [Validators.required]],
       date: ['', [Validators.required]],
       subjects: ['', [Validators.required]],
       classes: ['', [Validators.required]],
-      description: ['', [Validators.required]]
+      description: ['', [Validators.required]],
+      room: ['', []],
     });
 
     /**
@@ -74,21 +80,43 @@ export class CoursesCreatesFormComponent implements OnInit {
     this.date_max = toFormDateLocaleString(date);
   }
 
+  /**
+   * data initialization
+   */
   ngOnInit(): void {
-    this.classeService.classes().subscribe(
+    this.classeService.classes(true).subscribe(
       classes => {
         this.classesList = classes;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
-    this.subjectService.subjects().subscribe(
+    this.subjectService.subjects(true).subscribe(
       subjects => {
         this.subjectslist = subjects;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
+    this.suggestService.suggests(true).subscribe(
+      suggests => {
+        this.suggestsList = suggests
+      }, error => {
+        this.toastService.newToast(error.error.status, true);
+      }
+    )
+  }
+
+  /**
+   * Function to set data on the data form from the suggest component
+   * @param suggest
+   */
+  suggestPicked(suggest: any) {
+    this.suggestId = suggest.id;
+    this.form.controls['title'].setValue(suggest.title);
+    this.form.controls['date'].setValue(toFormDateLocaleString(new Date(Date.now())));
+    this.form.controls['classes'].setValue(suggest?.classe?.id);
+    this.form.controls['subjects'].setValue(suggest?.subject?.title);
   }
 
   /**
@@ -96,6 +124,14 @@ export class CoursesCreatesFormComponent implements OnInit {
    * we also test here all our fields to validate the form or display message errors
    */
   submit() {
+    // ********************* Reset Validators Flags ************************* //
+    this.error_flag = false;
+    this.error_title = false;
+    this.error_date = false;
+    this.error_subject = false;
+    this.error_classe = false;
+    this.error_description = false;
+    this.error_room = false;
     this.error_flag = false;
     // Check the form controls
     for (const control in this.form.controls) {
@@ -103,61 +139,84 @@ export class CoursesCreatesFormComponent implements OnInit {
         case 'title':
           if (!!this.form.controls[control].errors) {
             this.error_title = true;
-            this.error_flag = true;
-          } else {
-            this.error_title = false;
           }
           break;
         case 'date':
           if (!!this.form.controls[control].errors) {
             this.error_date = true;
-            this.error_flag = true;
-          } else {
-            this.error_date = false;
           }
           break;
         case 'subjects':
           if (!!this.form.controls[control].errors) {
             this.error_subject = true;
-            this.error_flag = true;
-          } else {
-            this.error_subject = false;
           }
           break;
         case 'classes':
           if (!!this.form.controls[control].errors) {
             this.error_classe = true;
-            this.error_flag = true;
-          } else {
-            this.error_classe = false;
           }
           break;
         case 'description':
           if (!!this.form.controls[control].errors) {
             this.error_description = true;
-            this.error_flag = true;
-          } else {
-            this.error_description = false;
+          }
+          break;
+        case 'room':
+          if (!!this.form.controls[control].errors) {
+            this.error_room = true;
           }
           break;
       }
     }
+
     // Send error message to the toast service
-    this.error_flag ? this.toastService.newToast("Erreur...", true) : this.toastService.newToast("Cours créé...", false);
+    if (this.error_title ||
+      this.error_date ||
+      this.error_subject ||
+      this.error_classe ||
+      this.error_description ||
+      this.error_room) {
+      this.error_flag = true
+      this.toastService.newToast("Erreur...", true)
+    } else {
+      this.error_flag = false
+    }
 
     // Verify if the form is valid or not , and create suggestions / subjects
     if (this.form.status === "VALID") {
       if (!this.error_flag) {
-        let subject = this.subjectslist?.find(({title}) => title === this.form.value.subject);
-        let classe = this.classesList?.find(({title}) => title === this.form.value.classe);
+        let subjectIndex = this.subjectslist?.findIndex(({title}) => title === this.form.value.subjects);
+        var subjectElem: Subject = {};
+        if (this.subjectslist?.length) {
+          subjectElem = (subjectIndex != undefined && subjectIndex >= 0) ? this.subjectslist[subjectIndex] : {};
+        }
         this.courseService.addCourse({
-          title:this.form.value.title,
-          subject:subject,
-          date_start:this.form.value.date_start,
-          classe:classe,
+          title: this.form.value.title,
+          subject: (!!subjectElem) ?
+            {
+              id: subjectElem.id,
+              title: this.form.value.subjects
+            }
+            : {
+              id: 0,
+              title: this.form.value.subjects
+            },
+          date_start: this.form.value.date,
+          classe: {
+            id: Number(this.form.value.classes)
+          },
           description: this.form.value.description,
-          ended:false
-        })
+          room: this.form.value.room,
+          proposition_id: this.suggestId
+        }).subscribe(
+          response => {
+            this.toastService.newToast("Votre cours à été créé", false);
+            console.log(response)
+            this.router.navigateByUrl('/profil#mes_cours');
+          }, error => {
+            this.toastService.newToast(error.error.status, true);
+          }
+        )
       }
     }
   }

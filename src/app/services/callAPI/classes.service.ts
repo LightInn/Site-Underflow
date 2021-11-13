@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ApiUrl} from "../../constants/api.url";
 import {HttpClient} from "@angular/common/http";
 import {Classe} from "../../interfaces/classe";
-import {shareReplay} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -27,18 +27,49 @@ export class ClassesService {
     return this.cache$;
   }
 
+  /**
+   * Get all classes (call 'classes' if you want to get this route)
+   * @private
+   */
   private requestClasses() {
     return this.http.get<Array<Classe>>(ApiUrl + '/classes/').pipe(
     )
   }
 
+  /**
+   * Get specific classe from the id
+   * @param id
+   */
   public requestClasseSpecific(id: number) {
-    return this.http.get<Classe>(ApiUrl + '/classes/' + id).pipe(
+    return this.http.get<Array<Classe>>(ApiUrl + '/classes/').pipe(
+      map(data => data.filter(classe => classe.id === id))
     )
   }
 
-  public requestUpdateClasseSpecific(id: number, classe: Classe) {
-    return this.http.patch<Classe>(ApiUrl + '/classes/' + id, classe).pipe(
+  /**
+   * Update classe
+   * @param classe
+   */
+  public requestUpdateClasseSpecific(classe: Classe) {
+    return this.http.patch<Classe>(ApiUrl + '/admin/update_classe/', classe).pipe(
+    )
+  }
+
+  /**
+   * Delete classe
+   * @param classe
+   */
+  public requestDeleteClasse(classe: Classe) {
+    return this.http.delete<Classe>(ApiUrl + '/admin/delete_classe/', {body: {id: classe.id}}).pipe(
+    )
+  }
+
+  /**
+   * Add classe
+   * @param classe
+   */
+  public requestAddClasse(classe: Classe) {
+    return this.http.post<Classe>(ApiUrl + '/admin/classe/', classe).pipe(
     )
   }
 }
