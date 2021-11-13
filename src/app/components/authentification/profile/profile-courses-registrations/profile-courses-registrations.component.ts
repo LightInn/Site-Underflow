@@ -41,14 +41,14 @@ export class ProfileCoursesRegistrationsComponent implements OnInit {
       courses => {
         this.coursesList = courses;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     );
     this.subscriptionsService.subscriptions(true).subscribe(
       subscriptions => {
         this.courseInscription = subscriptions;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -72,7 +72,7 @@ export class ProfileCoursesRegistrationsComponent implements OnInit {
           let message = elem.subscribed ? "Tu es inscrit !" : "Tu es désinscrit !";
           this.toastService.newToast(message, false);
         }, error => {
-          this.toastService.newToast(error.error.error, true);
+          this.toastService.newToast(error.error.status, true);
         }
       )
     }

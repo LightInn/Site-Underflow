@@ -69,7 +69,7 @@ export class AddSubjectComponent implements OnInit {
               this.router.navigate(['admin'])
               this.toastService.newToast("Sujet bien ajoutée", false);
             }, error => {
-              this.toastService.newToast(error.error.error, true);
+              this.toastService.newToast(error.error.status, true);
             }
           )
         }

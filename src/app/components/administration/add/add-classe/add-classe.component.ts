@@ -69,7 +69,7 @@ export class AddClasseComponent implements OnInit {
               this.router.navigate(['admin'])
               this.toastService.newToast("Classe bien ajoutée", false);
             }, error => {
-              this.toastService.newToast(error.error.error, true);
+              this.toastService.newToast(error.error.status, true);
             }
           )
         }

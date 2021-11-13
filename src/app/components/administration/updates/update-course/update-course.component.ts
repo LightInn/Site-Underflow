@@ -73,28 +73,28 @@ export class UpdateCourseComponent implements OnInit {
       response => {
         this.subjectslist = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.classesService.classes(true).subscribe(
       response => {
         this.classesList = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.usersService.users().subscribe(
       response => {
         this.usersList = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.usersRegistredOnCourse.participants(Number(this.courseId)).subscribe(
       response => {
         this.usersListRegistred = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
 
@@ -116,7 +116,7 @@ export class UpdateCourseComponent implements OnInit {
           this.router.navigate(['not-found'])
         }
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
         this.router.navigate(['not-found'])
       }
     )
@@ -219,7 +219,7 @@ export class UpdateCourseComponent implements OnInit {
             response => {
               this.toastService.newToast("Cours bien modifié", false);
             }, error => {
-              this.toastService.newToast(error.error.error, true);
+              this.toastService.newToast(error.error.status, true);
             }
           )
         } else {
@@ -228,7 +228,7 @@ export class UpdateCourseComponent implements OnInit {
               this.router.navigate(['profile'])
               this.toastService.newToast("Cours clos, merci !", false);
             }, error => {
-              this.toastService.newToast(error.error.error, true);
+              this.toastService.newToast(error.error.status, true);
             }
           )
         }

@@ -83,7 +83,7 @@ export class ProfileFormComponent implements OnInit {
         this.form.controls['email'].setValue(user.email)
         this.form.controls['classes'].setValue(user.classe?.title)
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
 
@@ -91,7 +91,7 @@ export class ProfileFormComponent implements OnInit {
       classes => {
         this.classesList = classes;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -159,7 +159,7 @@ export class ProfileFormComponent implements OnInit {
           response => {
             this.toastService.newToast("Profil bien modifié", false);
           }, error => {
-            this.toastService.newToast(error.error.error, true);
+            this.toastService.newToast(error.error.status, true);
           }
         )
       }
@@ -219,7 +219,7 @@ export class ProfileFormComponent implements OnInit {
           response => {
             this.toastService.newToast("Mot de passe bien modifié", false);
           }, error => {
-            this.toastService.newToast(error.error.error, true);
+            this.toastService.newToast(error.error.status, true);
           }
         )
       }

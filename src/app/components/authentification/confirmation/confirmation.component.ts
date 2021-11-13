@@ -34,7 +34,7 @@ export class ConfirmationComponent implements OnInit {
         this.toastService.newToast('Email envoyé avec succès', false)
         this.disableButton = true
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }

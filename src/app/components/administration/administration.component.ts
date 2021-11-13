@@ -44,42 +44,42 @@ export class AdministrationComponent implements OnInit {
       response => {
         this.classesList = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.subjectsService.subjects(true).subscribe(
       response => {
         this.subjectslist = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.userInfoService.user(true).subscribe(
       response => {
         this.actualUser = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.usersService.users(true).subscribe(
       response => {
         this.userslist = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.coursesService.requestAllCourses().subscribe(
       response => {
         this.coursesList = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.suggestionsService.suggests(true).subscribe(
       response => {
         this.suggestsList = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -90,7 +90,7 @@ export class AdministrationComponent implements OnInit {
       response => {
         this.classesList = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -100,14 +100,14 @@ export class AdministrationComponent implements OnInit {
       response => {
         this.subjectslist = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.userInfoService.user(true).subscribe(
       response => {
         this.actualUser = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -117,7 +117,7 @@ export class AdministrationComponent implements OnInit {
       response => {
         this.userslist = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -127,7 +127,7 @@ export class AdministrationComponent implements OnInit {
       response => {
         this.coursesList = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -137,7 +137,7 @@ export class AdministrationComponent implements OnInit {
       response => {
         this.suggestsList = response;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }

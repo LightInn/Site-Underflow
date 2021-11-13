@@ -61,7 +61,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
       classes => {
         this.classesList = classes;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.courseService.courses(true).subscribe(
@@ -70,14 +70,14 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         // We init the default values
         this.coursesListFiltered = JSON.parse(JSON.stringify(this.coursesList));
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.subscriptionsService.subscriptions(true).subscribe(
       subscriptions => {
         this.courseInscription = subscriptions;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.userService.user(true).subscribe(
@@ -91,7 +91,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
         this.callFilter(this.filter_selectedDateEnd, "dateEnd");
         this.callFilter(this.filter_searchBarText, "BarText");
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -278,7 +278,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
           let message = elem.subscribed ? "Tu es inscrit !" : "Tu es désinscrit !";
           this.toastService.newToast(message, false);
         }, error => {
-          this.toastService.newToast(error.error.error, true);
+          this.toastService.newToast(error.error.status, true);
         }
       )
     }

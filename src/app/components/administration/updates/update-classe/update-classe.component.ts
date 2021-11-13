@@ -44,7 +44,7 @@ export class UpdateClasseComponent implements OnInit {
           this.router.navigate(['not-found'])
         }
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
         this.router.navigate(['not-found'])
       }
     )
@@ -88,7 +88,7 @@ export class UpdateClasseComponent implements OnInit {
               this.router.navigate(['admin'])
               this.toastService.newToast("Classe bien modifié", false);
             }, error => {
-              this.toastService.newToast(error.error.error, true);
+              this.toastService.newToast(error.error.status, true);
             }
           )
         }

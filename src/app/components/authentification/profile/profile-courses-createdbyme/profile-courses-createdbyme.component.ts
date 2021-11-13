@@ -33,7 +33,7 @@ export class ProfileCoursesCreatedbymeComponent implements OnInit {
       courses => {
         this.coursesList = courses;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     );
   }

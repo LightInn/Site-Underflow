@@ -37,7 +37,7 @@ export class UserGuard implements CanActivate {
         return false;
       },
       error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
         this.router.navigateByUrl("/404 Не Найдено");
         return false;
       }

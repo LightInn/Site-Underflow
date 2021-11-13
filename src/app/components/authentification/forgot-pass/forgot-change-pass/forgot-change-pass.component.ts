@@ -98,7 +98,7 @@ export class ForgotChangePassComponent implements OnInit {
             this.toastService.newToast("Mot de passe bien modifié", false);
             this.router.navigateByUrl("/login")
           }, error => {
-            this.toastService.newToast(error.error.error, true);
+            this.toastService.newToast(error.error.status, true);
           }
         )
       }

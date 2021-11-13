@@ -66,7 +66,7 @@ export class ForgotMailtoComponent implements OnInit {
               this.disableButton = true;
               this.toastService.newToast("Email bien envoyé !", false);
             }, error => {
-              this.toastService.newToast(error.error.error, true);
+              this.toastService.newToast(error.error.status, true);
             }
           )
         }

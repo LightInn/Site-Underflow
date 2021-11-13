@@ -76,14 +76,14 @@ export class CoursesSuggestsFormComponent implements OnInit {
       classes => {
         this.classesList = classes;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
     this.subjectService.subjects(true).subscribe(
       subjects => {
         this.subjectslist = subjects;
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -169,7 +169,7 @@ export class CoursesSuggestsFormComponent implements OnInit {
             this.router.navigate(['/les-cours']);
             this.toastService.newToast("Votre propositon à été créée", false);
           }, error => {
-            this.toastService.newToast(error.error.error, true);
+            this.toastService.newToast(error.error.status, true);
           }
         )
       }

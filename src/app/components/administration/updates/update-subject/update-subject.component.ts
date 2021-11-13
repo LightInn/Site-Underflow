@@ -45,7 +45,7 @@ export class UpdateSubjectComponent implements OnInit {
           this.router.navigate(['not-found'])
         }
       }, error => {
-        this.toastService.newToast(error.error.error, true);
+        this.toastService.newToast(error.error.status, true);
       }
     )
   }
@@ -88,7 +88,7 @@ export class UpdateSubjectComponent implements OnInit {
             response => {
               this.toastService.newToast("Matière bien modifié", false);
             }, error => {
-              this.toastService.newToast(error.error.error, true);
+              this.toastService.newToast(error.error.status, true);
             }
           )
         }
