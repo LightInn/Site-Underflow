@@ -11,6 +11,7 @@
   <form [formGroup]="form"
         class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap">
     <fieldset>
+      <input type="hidden" formControlName="token" name="token" id="token">
       <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 mt-10px md:mt-30px">
         <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
           <label class="text-12px uppercase" for="password">Nouveau mot de passe</label>

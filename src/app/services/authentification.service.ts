@@ -23,7 +23,7 @@ export class AuthentificationService {
    * Get csrf token, (actualy disable)
    */
   getCSRF() {
-    return this.http.get<CSRFToken>(ApiUrl + '/csrf-token/')
+    return this.http.get<CSRFToken>(ApiUrl + '/csrf_token/')
   }
 
   /**
@@ -76,8 +76,8 @@ export class AuthentificationService {
    * Request to send confirmation link
    * @param mail
    */
-  public requestConfirmation(mail: {email:string}) {
-    return this.http.post<any>(ApiUrl + '/confirmation-mail/', mail).pipe(
+  public requestConfirmation(mail: { email: string }) {
+    return this.http.post<any>(ApiUrl + '/confirmation_mail/', mail).pipe(
     )
   }
 
@@ -86,7 +86,24 @@ export class AuthentificationService {
    * @param token
    */
   public requestTokenConfirmation(token: string) {
-    return this.http.get<any>(ApiUrl + '/confirmation-mail/' + token).pipe(
+    return this.http.get<any>(ApiUrl + '/confirmation_mail/' + token).pipe(
     )
+  }
+
+  /**
+   * Request send the mail to reset the password
+   * @param mail
+   */
+  public resetPasswordMailTo(mail: { email: string }) {
+    return this.http.post<any>(ApiUrl + '/reset_password/', mail).pipe()
+  }
+
+  /**
+   * Request with the token and new password, to change the password
+   * @param token
+   * @param passwords
+   */
+  public resetPassword(token: string, passwords: { confirm_password: string, password: string }) {
+    return this.http.post<any>(ApiUrl + '/reset_password/' + token, passwords).pipe()
   }
 }

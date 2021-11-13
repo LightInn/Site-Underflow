@@ -29,7 +29,7 @@ export class AuthentificationInterceptor implements HttpInterceptor {
 
       this.authService.logout();
       this.router.navigateByUrl(`/login`);
-      this.toastService.newToast("Vous avez été déconnecté", true)
+      this.toastService.newToast(err.error.status, true)
 
       // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.
       return of(err.message); // or EMPTY may be appropriate here

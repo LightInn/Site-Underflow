@@ -23,11 +23,20 @@
         </div>
       </div>
 
-      <div class="form-buttons w-full flex justify-end mt-30px">
-        <button
-          class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
-          (click)="submit()">envoyer l'email de reset
-        </button>
+      <div class="form-buttons w-full flex justify-start mt-30px md:space-x-30px">
+        <div class="w-auto flex justify-start">
+          <button
+            class="button button-primary border border-underflow_blue-300 w-50px h-60px lg:w-100px lg:h-60px rounded-lg text-underflow_blue-300 text-12px font-bold"
+            (click)="goLogin()">Retour
+          </button>
+        </div>
+        <div class="w-full flex justify-end">
+          <button
+            [ngClass]="disableButton ? 'opacity-25' : 'opacity-100'"
+            class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
+            (click)="submit()" [disabled]="disableButton">envoyer l'email de reset
+          </button>
+        </div>
       </div>
     </fieldset>
   </form>

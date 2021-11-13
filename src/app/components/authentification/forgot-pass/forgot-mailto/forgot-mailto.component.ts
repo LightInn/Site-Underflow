@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastService} from "../../../../services/toast.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {regexMailCreated} from "../../../../constants/authorized.mail";
+import {AuthentificationService} from "../../../../services/authentification.service";
 
 @Component({
   selector: 'app-forgot-mailto',
@@ -12,6 +13,7 @@ import {regexMailCreated} from "../../../../constants/authorized.mail";
 export class ForgotMailtoComponent implements OnInit {
   // *************** Declaration part ******************* //
   form: FormGroup;
+  disableButton: boolean = false;
 
   /**
    * We declare all flag for errors (for profile)
@@ -21,6 +23,7 @@ export class ForgotMailtoComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private toastService: ToastService,
+              private authService: AuthentificationService,
               private router: Router,
               private route: ActivatedRoute) {
     this.form = this.fb.group({
@@ -58,20 +61,23 @@ export class ForgotMailtoComponent implements OnInit {
 
       if (this.form.status === "VALID") {
         if (!this.error_flag) {
-          // this.classesService.requestAddClasse(
-          //   {
-          //     title: this.form.value.title
-          //   }
-          // ).subscribe(
-          //   response => {
-          //     this.router.navigate(['admin'])
-          //     this.toastService.newToast("Classe bien ajoutée", false);
-          //   }, error => {
-          //     this.toastService.newToast(error.error.error, true);
-          //   }
-          // )
+          this.authService.resetPasswordMailTo({email: this.form.value.email}).subscribe(
+            response => {
+              this.disableButton = true;
+              this.toastService.newToast("Email bien envoyé !", false);
+            }, error => {
+              this.toastService.newToast(error.error.error, true);
+            }
+          )
         }
       }
     }
+  }
+
+  /**
+   * Redirect on login page
+   */
+  goLogin() {
+    this.router.navigateByUrl("/login")
   }
 }

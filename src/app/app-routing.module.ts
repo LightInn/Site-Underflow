@@ -27,6 +27,8 @@ import {UserGuard} from "./guards/user.guard";
 import { NoneGuard } from './guards/none.guard';
 import { LegalMentionsComponent } from './components/legal-mentions/legal-mentions.component';
 import {RGPDComponent} from "./components/rgpd/rgpd.component";
+import {ForgotMailtoComponent} from "./components/authentification/forgot-pass/forgot-mailto/forgot-mailto.component";
+import {ForgotChangePassComponent} from "./components/authentification/forgot-pass/forgot-change-pass/forgot-change-pass.component";
 
 const routes: Routes = [
   {path: '', component: LandingComponent, canActivate: [SecurityGuard]},
@@ -49,8 +51,8 @@ const routes: Routes = [
   {path: 'admin/add_classe', component: AddClasseComponent, canActivate: [AdminGuard, SecurityGuard]},
   {path: 'admin/add_subject', component: AddSubjectComponent, canActivate: [AdminGuard, SecurityGuard]},
   {path: 'user/course/:id', component: UserUpdateCourseComponent, canActivate: [SecurityGuard, UserGuard]},
-  // {path: 'forgot/mailto', component: ForgotMailtoComponent},
-  // {path: 'forgot/password_change', component: ForgotChangePassComponent},
+  {path: 'reset-password', component: ForgotMailtoComponent},
+  {path: 'reset-password/:token', component: ForgotChangePassComponent},
   {path: 'contribute', component: ContributeComponent, canActivate: [SecurityGuard]},
   {path: 'mentions-legales', component: LegalMentionsComponent, canActivate: [SecurityGuard]},
   {path: 'rgpd', component: RGPDComponent, canActivate: [SecurityGuard]},

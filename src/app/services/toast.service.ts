@@ -20,7 +20,7 @@ export class ToastService {
   }
 
   /**
-   * Create a toast element
+   * Create a toast element ->
    * @param message
    * @param error
    */
