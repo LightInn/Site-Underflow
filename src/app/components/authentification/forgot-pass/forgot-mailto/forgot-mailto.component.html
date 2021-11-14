@@ -1,43 +1,34 @@
-<div class="flex w-full h-99vh justify-center align-center items-center flex-col">
+<div class="lg:h-99vh w-screen flex flex-col justify-center items-center align-center overflow-hidden">
 
-  <div class="flex flex-col-reverse lg:flex-row justify-center items-center">
+  <div class="flex flex-col-reverse lg:flex-row justify-center items-center mt-60px">
     <img class="h-10 w-auto lg:h-20" src="./assets/images/svg/ecureuil-right.svg"
          alt="Scratch Underflow - Entraide étudiante" draggable="false">
-  </div>
-  <div class="flex flex-col-reverse lg:flex-row justify-center items-center">
-    <h2 class="text-36px  lg:text-60px lg:p-10">Oubli de mot de passe</h2>
+
+    <h2 class="text-36px  lg:text-60px lg:p-10">Reset Password</h2>
   </div>
 
   <form [formGroup]="form"
-        class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap pt-50px">
+        class="text-underflow_blue-300 flex flex-col justify-center items-center lg:h-99vh w-screen mb-10">
     <fieldset>
-      <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
-        <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-          <label class="text-12px">EMAIL </label>
-          <input name="email" formControlName="email" placeholder="EMAIL@SCRATCHUNDERFLOW.FR"
-                 oninput="this.value = this.value.toLowerCase()"
-                 class="w-250px h-60px lg:w-400px lg:h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-2 lg:px-8 text-14px my-2">
-          <span *ngIf="error_email" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">
-          ●  l'email saisi n'est pas valide (ex : prenom.nom@ecole.fr)
-        </span>
-        </div>
-      </div>
-
-      <div class="form-buttons w-full flex justify-start mt-30px md:space-x-30px">
-        <div class="w-auto flex justify-start">
-          <button
-            class="button button-primary border border-underflow_blue-300 w-50px h-60px lg:w-100px lg:h-60px rounded-lg text-underflow_blue-300 text-12px font-bold"
-            (click)="goLogin()">Retour
-          </button>
-        </div>
-        <div class="w-full flex justify-end">
-          <button
-            [ngClass]="disableButton ? 'opacity-25' : 'opacity-100'"
-            class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
-            (click)="submit()" [disabled]="disableButton">envoyer l'email de reset
-          </button>
-        </div>
-      </div>
+      <div class="form-field flex flex-col my-8 relative">
+        <label class="text-12px">EMAIL</label>
+        <input name="email" formControlName="email" placeholder="email@scratchunderflow.fr"
+               oninput="this.value = this.value.toLowerCase()"
+               class="underflow-input">
+        <span *ngIf="error_email" class="underflow-error-message">
+          ●  l'email saisi n'est pas valide
+        </span></div>
     </fieldset>
+    <div class="form-buttons w-80 lg:w-500px flex justify-between flex flex-row-reverse">
+      <button
+        [ngClass]="disableButton ? 'opacity-25' : 'opacity-100'"
+        class="underflow-button-filled"
+        (click)="submit()" [disabled]="disableButton">Envoyer
+      </button>
+      <button
+        class="underflow-button-unfilled"
+        (click)="goLogin()">Retour
+      </button>
+    </div>
   </form>
 </div>

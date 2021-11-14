@@ -16,8 +16,6 @@ html {
   max-width: 100vw
 }
 
-
-
 body {
   // 1
   //background: linear-gradient(-45deg, #050100, #050102, #010304, #010404);
@@ -156,4 +154,20 @@ a:focus, a:hover, button:focus, button:hover {
     transition: opacity ease-in-out .2s;
     transition-delay: 0.5s
   }
+}
+
+// ***************************** Talwindcss @apply directives ********************************** //
+// Components @apply
+// Input
+.underflow-input{
+  @apply w-80 h-60px lg:w-500px lg:h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-2 px-8 text-14px my-2
+}
+.underflow-error-message{
+  @apply mt-5px text-red-400 text-9px md:text-12px absolute -bottom-15px left-0
+}
+.underflow-button-filled{
+  @apply bg-underflow_blue-300 w-1/3 h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_grey-800 text-10px md:text-12px
+}
+.underflow-button-unfilled{
+  @apply border border-underflow_blue-300 w-1/3 h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_blue-300 text-10px md:text-12px
 }

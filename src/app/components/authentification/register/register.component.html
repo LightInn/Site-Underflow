@@ -11,28 +11,28 @@
         class="text-underflow_blue-300 flex flex-col justify-center items-center lg:h-99vh w-screen mb-10">
     <fieldset>
       <div class="form-field flex flex-col my-8 relative">
-        <label class="text-12px">EMAIL </label>
-        <input name="email" formControlName="email" placeholder="EMAIL@SCRATCHUNDERFLOW.FR"
+        <label class="text-12px">EMAIL</label>
+        <input name="email" formControlName="email" placeholder="email@scratchunderflow.fr"
                oninput="this.value = this.value.toLowerCase()"
-               class="w-250px h-60px lg:w-500px lg:h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-2 lg:px-8 text-14px my-2">
-        <span *ngIf="error_email" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">
+               class="underflow-input">
+        <span *ngIf="error_email" class="underflow-error-message">
           ●  l'email saisi n'est pas valide
         </span></div>
       <div class="form-field  flex flex-col my-8 relative">
-        <label class="text-12px">PRENOM </label>
-        <input name="firstname" formControlName="firstname" placeholder="SCRATCH"
+        <label class="text-12px">PRÉNOM</label>
+        <input name="firstname" formControlName="firstname" placeholder="..."
                oninput="this.value = this.value[0].toUpperCase() + this.value.toLowerCase().substring(1);"
-               class="w-250px h-60px lg:w-500px lg:h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-2 lg:px-8 text-14px my-2">
-        <span *ngIf="error_firstname" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">
+               class="underflow-input">
+        <span *ngIf="error_firstname" class="underflow-error-message">
           ●  le prénom saisi n'est pas valide
         </span>
       </div>
       <div class="form-field  flex flex-col my-8 relative">
-        <label class="text-12px">NOM </label>
-        <input name="lastname" formControlName="lastname" placeholder="UNDERFLOW"
+        <label class="text-12px">NOM</label>
+        <input name="lastname" formControlName="lastname" placeholder="..."
                oninput="this.value = this.value[0].toUpperCase() + this.value.toLowerCase().substring(1);"
-               class="w-250px h-60px lg:w-500px lg:h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-2 lg:px-8 text-14px my-2">
-        <span *ngIf="error_lastname" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">
+               class="underflow-input">
+        <span *ngIf="error_lastname" class="underflow-error-message">
           ●  le nom saisi n'est pas valide
         </span>
       </div>
@@ -40,25 +40,20 @@
         <label class="text-12px">MOT DE PASSE</label>
         <input name="password" formControlName="password"
                type="password" placeholder="●●●●●●●●●●"
-               class="w-250px h-60px lg:w-500px lg:h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-2 lg:px-8 text-14px my-2">
-        <span *ngIf="error_password" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">
+               class="underflow-input">
+        <span *ngIf="error_password" class="mt-5px text-red-400 text-10px md:text-12px absolute -bottom-15px left-0">
           ●  Erreur (8 caractères, 1 majuscule, 1 nombre, au minimum)
         </span>
       </div>
     </fieldset>
-    <div class="form-buttons w-250px  lg:w-500px flex justify-between flex flex-row-reverse">
-
+    <div class="form-buttons w-80 lg:w-500px flex justify-between flex flex-row-reverse">
       <button
-        class="button button-primary ml-10px bg-underflow_blue-300 w-100px h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_grey-800 text-12px"
+        class="underflow-button-filled"
         (click)="register()">S'inscrire
       </button>
-
-
-      <button
-        class="button button-primary border border-underflow_blue-300 w-100px h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_blue-300 text-12px"
-        (click)="login()">Aller sur la page de connexion
+      <button class="underflow-button-unfilled"
+              (click)="login()">Se connecter
       </button>
-
     </div>
   </form>
 </div>

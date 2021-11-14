@@ -18,7 +18,7 @@
           <input name="password" formControlName="password" placeholder="●●●●●●●●●●"
                  type="password" id="password" [(ngModel)]="password"
                  class="w-250px sm:w-400px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-          <span *ngIf="error_password" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Les mots de passe ne sont pas valides</span>
+          <span *ngIf="error_password" class="underflow-error-message">●  Les mots de passe ne sont pas valides</span>
         </div>
 
       </div>
@@ -28,7 +28,7 @@
           <input name="password_valid" formControlName="password_valid" placeholder="●●●●●●●●●●"
                  type="password" id="password_valid"
                  class="w-250px sm:w-400px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
-          <span *ngIf="error_password_valid" class="mt-5px text-red-400 text-12px absolute -bottom-15px left-0">●  Les mots de passe ne sont pas valides</span>
+          <span *ngIf="error_password_valid" class="underflow-error-message">●  Les mots de passe ne sont pas valides</span>
         </div>
       </div>
 
