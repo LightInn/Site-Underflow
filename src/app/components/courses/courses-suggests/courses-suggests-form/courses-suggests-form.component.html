@@ -4,7 +4,7 @@
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
       <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
         <label class="text-12px" for="title">
-          INTITULÉ DU COURS SUGGÉRÉ
+          INTITULÉ DU COURS DEMANDÉ
         </label>
         <input name="title" formControlName="title" placeholder="Intitulé du cours"
                type="text" id="title"
@@ -26,7 +26,7 @@
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
       <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
         <label class="text-12px" for="subjects">
-          THÈME ABORDÉ SUGGÉRÉ
+          THÈME ABORDÉ DEMANDÉ
         </label>
         <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
                placeholder="écrire ici pour ajouter un thème / une matière" formControlName="subjects"
@@ -57,7 +57,7 @@
     <div class="form-buttons w-full flex justify-end mt-30px">
       <button
         class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
-        (click)="submit()">Envoyer la suggestion
+        (click)="submit()">Envoyer la demande
       </button>
     </div>
   </fieldset>

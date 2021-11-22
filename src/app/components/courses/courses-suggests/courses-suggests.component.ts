@@ -9,7 +9,7 @@ import {Base} from "../../../interfaces/base";
 export class CoursesSuggestsComponent implements OnInit {
   // *************** Declaration part ******************* //
   public base: Base = {
-    baseTitle: "Suggérer un cours",
+    baseTitle: "Demander un cours",
     baseLandingMode: false,
     baseDescriptionFirstPart: "Tu as besoin d'aide dans une matière ?",
     baseDescriptionSecondPart: "Fais ta demande ici !",
