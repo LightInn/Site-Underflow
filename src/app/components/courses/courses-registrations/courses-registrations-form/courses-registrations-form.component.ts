@@ -84,7 +84,7 @@ export class CoursesRegistrationsFormComponent implements OnInit {
       user => {
         this.userInfos = user;
         // When all informations from user are ok, we can init filters
-        this.filter_selectedClasse = !!(user.classe?.title) ? user.classe.title : '';
+        // this.filter_selectedClasse = !!(user.classe?.title) ? user.classe.title : '';
         // We init the filter
         this.callFilter(this.filter_selectedClasse, "classe");
         this.callFilter(this.filter_selectedDateStart, "dateStart");
