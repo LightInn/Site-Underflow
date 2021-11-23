@@ -1,18 +1,18 @@
 <div class="relative">
-  <div class="mx-10px lg:mx-100px px-4 lg:px-6">
+  <div class="px-4 mx-10px lg:mx-100px lg:px-6">
     <div class="flex justify-between items-center py-6 lg:justify-start lg:space-x-10">
-      <div class="flex justify-start lg:w-0 lg:flex-1 z-20">
+      <div class="flex z-40 justify-start lg:w-0 lg:flex-1">
         <a routerLink="/" draggable="false">
           <span class="sr-only">Scratch Underflow</span>
           <!--          Halloween alt -->
-          <!--          <img class="h-8 w-auto lg:h-10" src="./assets/images/specials/ecureuil-right_halloween.svg"-->
-          <img class="h-8 w-auto lg:h-10" src="./assets/images/svg/ecureuil-right.svg"
+          <!--          <img class="w-auto h-8 lg:h-10" src="./assets/images/specials/ecureuil-right_halloween.svg"-->
+          <img class="w-auto h-8 lg:h-10" src="./assets/images/svg/ecureuil-right.svg"
                alt="Scratch Underflow - Entraide étudiante" draggable="false">
         </a>
       </div>
-      <div class="-mr-2 -my-2 lg:hidden z-20">
+      <div class="z-40 -my-2 -mr-2 lg:hidden">
         <button type="button"
-                class="rounded-md p-2 inline-flex items-center justify-center text-gray-50"
+                class="inline-flex justify-center items-center p-2 text-gray-50 rounded-md"
                 aria-expanded="false">
           <span class="sr-only">Open menu</span>
           <svg id="burger-menu" (click)="clickEvent()"
@@ -38,24 +38,24 @@
       <nav id="nav" class="underflow-fadeInvisible flex flex-col justify-between items-center py-200px
       absolute top-0 left-0 z-10 h-screen w-screen bg-underflow_grey-800 lg:bg-transparent
       lg:flex-row lg:static lg:h-auto lg:w-auto lg:p-auto lg:py-0 lg:space-x-60px">
-        <a routerLink="/les-cours" class="text-underflow_grey-50 text-center">
+        <a routerLink="/les-cours" class="text-center text-underflow_grey-50">
           Les cours
         </a>
-        <a routerLink="/donner-un-cours" class="text-underflow_grey-50 text-center">
+        <a routerLink="/donner-un-cours" class="text-center text-underflow_grey-50">
           Donner un cours
         </a>
-        <a routerLink="/suggerer-un-cours" class="text-underflow_grey-50 text-center">
+        <a routerLink="/suggerer-un-cours" class="text-center text-underflow_grey-50">
           Suggérer un cours
         </a>
-        <!--        <a routerLink="/les-fiches" class="text-underflow_grey-50 text-center">-->
+        <!--        <a routerLink="/les-fiches" class="text-center text-underflow_grey-50">-->
         <!--          Les fiches-->
         <!--        </a>-->
-        <a routerLink="/profil" class="text-underflow_grey-50 text-center">
+        <a routerLink="/profil" class="text-center text-underflow_grey-50">
           Mon profil
         </a>
 
       </nav>
-      <div class="hidden lg:flex items-center justify-end lg:flex-1 lg:w-0">
+      <div class="hidden justify-end items-center lg:flex lg:flex-1 lg:w-0">
         <a routerLink="/contribute" draggable="false" class="mr-30px">
           <img class="w-30px h-30px" src="./assets/images/svg/github.svg"
                alt="Github - Contribuer" draggable="false">

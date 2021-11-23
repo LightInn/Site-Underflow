@@ -1,12 +1,12 @@
-<div *ngIf="message "
-     class="fixed w-full lg:w-auto  lg:bottom-0 lg:right-0 z-50  mt-10px lg:m-10px md:m-30px p-4 rounded-lg flex justify-between"
+<div *ngIf="message"
+     class="flex fixed z-50 justify-between p-4 w-full rounded-lg lg:w-auto lg:bottom-0 lg:right-0 mt-10px lg:m-10px md:m-30px"
      [class.bg-underflow_orange-300]="message.error == true"
      [class.bg-underflow_green-500]="message.error == false"
      [@openClose]="message.close ? 'closed' : 'open'">
   <div class="">
     {{message.content}}
   </div>
-  <button class="delete flex justify-center items-center" (click)="closeMessage()">
-    <img src="./assets/images/svg/cross.svg" alt="cross" class="ml-10px h-15px w-15px mb-2px invert">
+  <button class="flex justify-center items-center delete" (click)="closeMessage()">
+    <img src="./assets/images/svg/cross.svg" alt="cross" class="invert ml-10px h-15px w-15px mb-2px">
   </button>
 </div>

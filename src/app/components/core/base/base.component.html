@@ -1,13 +1,13 @@
 <app-header></app-header>
 
 <!-- base template -->
-<section class="flex justify-between items-center w-full px-10px lg:px-100px flex-wrap">
-  <div class="w-full lg:w-1/2 flex flex-col justify-center py-150px">
+<section class="flex flex-wrap justify-between items-center w-full px-10px lg:px-100px">
+  <div class="flex flex-col justify-center w-full lg:w-1/2 py-150px">
     <div class="absolute top-0 left-0 opacity-25 ml-30px w-200px md:static md:opacity-100">
       <img src="./assets/images/svg/dotDoubleLine.svg" alt="decoration double lignes de points" draggable="false">
     </div>
     <div>
-      <h1 class="text-48px lg:text-72px text-center">{{base.baseTitle}}</h1>
+      <h1 class="text-center text-48px lg:text-72px">{{base.baseTitle}}</h1>
     </div>
 
     <div *ngIf="base.baseLandingMode; then landingChoose else otherChoose"></div>
@@ -29,20 +29,20 @@
       ></app-base-under-title>
     </ng-template>
   </div>
-  <div class="hidden w-1/2 lg:flex justify-center items-center">
+  <div class="hidden justify-center items-center w-1/2 lg:flex">
 <!--    <img class="w-3/4" src="./assets/images/specials/underflowLandingIllustration_hallowenn.svg" alt="Illustration Scratch Underflow" draggable="false">-->
     <img class="w-3/4" src="./assets/images/svg/underflowLandingIllustration.svg" alt="Illustration Scratch Underflow" draggable="false">
   </div>
 <!--  citation bottom center of the page
       @input additionalCitation | boolean to display or not the following title -> corresponding to the citation on bottom center
       @input citation | string corresponding to the sentence to display -->
-  <h2 *ngIf="base.baseAdditionalCitation" class="pt-30px lg:p-0 underflow-citation w-full flex justify-center items-center">"{{base.baseCitation}}"</h2>
+  <h2 *ngIf="base.baseAdditionalCitation" class="flex justify-center items-center w-full pt-30px lg:p-0 underflow-citation">"{{base.baseCitation}}"</h2>
 <!--  additionnal button under the illustration
       @input additionalButton | boolean to display or not the following button
       @input additionnalSentence | string to description of the button
       @input path, assetPath, alt, content | string for all, to describe the button, and made it functional -->
-  <div *ngIf="base.baseAdditionalButton" class="w-full flex justify-end items-center flex-wrap md:flex-nowrap">
-    <p class="font-chennai font-thin pr-30px">
+  <div *ngIf="base.baseAdditionalButton" class="flex flex-wrap justify-end items-center w-full md:flex-nowrap">
+    <p class="font-thin font-chennai pr-30px mb-10px md:m-0 text-12px md:text-16px">
       {{base.baseAdditionnalSentence}}
     </p>
     <app-button-routeur

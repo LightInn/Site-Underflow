@@ -1,9 +1,9 @@
 <app-header-admin></app-header-admin>
 <form [formGroup]="form"
-      class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap pt-50px">
+      class="flex flex-wrap justify-center items-center w-full text-underflow_blue-300 px-30px lg:px-100px lg:flex-nowrap pt-50px">
   <fieldset>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+      <div class="flex relative flex-col justify-center items-center lg:items-start mt-10px lg:mt-0">
         <label class="text-12px" for="title">Title</label>
         <input name="title" formControlName="title"
                type="text" id="title"
@@ -13,9 +13,9 @@
       </div>
     </div>
 
-    <div class="form-buttons w-full flex justify-end mt-30px">
+    <div class="flex justify-end w-full form-buttons mt-30px">
       <button
-        class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-20px"
+        class="rounded-lg button button-primary bg-underflow_blue-300 w-200px h-60px text-underflow_grey-900 text-20px"
         (click)="submit()">Submit
       </button>
     </div>

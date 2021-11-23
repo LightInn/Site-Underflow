@@ -1,30 +1,31 @@
-<div class="relative w-full flex justify-start items-center py-100px" >
-  <div class="h-80px flex items-center z-20 bg-underflow_grey-900">
-    <div class="h-full border border-underflow_grey-700 flex justify-center items-center py-10px px-30px">
+<div class="flex relative z-20 justify-start items-center w-full py-100px">
+  <div class="flex items-center h-80px bg-underflow_grey-900">
+    <div class="flex justify-center items-center h-full border-t border-b border-underflow_grey-700 py-10px px-30px">
       <img class="w-25px h-25px" src="./assets/images/svg/idea.svg" alt="suggest logo" draggable="false">
     </div>
     <button (click)="clickEvent()" [ngClass]="status == true ? 'bg-underflow_grey-800' : 'bg-transparent'"
-            class="select-css-custom h-full flex justify-center
+            class="filter_select-css-custom h-full flex justify-center
             items-center border border-underflow_grey-700 py-10px px-60px focus:border-underflow_grey-800 focus:outline-none">
       <p class="text-center uppercase text-10px text-underflow_grey-200">
         Voir les suggestions
       </p>
     </button>
   </div>
-    <div id="suggestDropDown" class="absolute fadeInvisible mt-100px top-80px left-0 flex justify-center items-center bg-underflow_grey-800 h-500px w-full">
+  <div id="suggestDropDown"
+       class="flex absolute z-20 left-0 justify-center items-center w-full fadeInvisible mt-100px top-80px bg-underflow_grey-800 h-500px">
     <div class="w-full h-full p-30px">
-        <div class="w-full flex flex-wrap justify-center">
-          <div *ngFor="let suggest of suggestsList" class="p-10px">
-            <button (click)="clickSuggestEvent(suggest)" class="border w-250px md:w-auto border-underflow_grey-300
+      <div class="flex flex-wrap justify-center w-full">
+        <div *ngFor="let suggest of suggestsList" class="p-10px">
+          <button (click)="clickSuggestEvent(suggest)" class="border w-250px md:w-auto border-underflow_grey-300
             text-center p-10px px-30px rounded-2xl hover:border-underflow_blue-300 text-12px">
-              {{suggest | suggestTraited }}
-            </button>
-          </div>
-          <div *ngIf="empty" class="w-full h-full flex justify-center items-center">
-            <p class="text-center">Il n'y a pas de suggestions pour le moment 😥</p>
-          </div>
-
+            {{suggest | suggestTraited }}
+          </button>
         </div>
+        <div *ngIf="empty" class="flex justify-center items-center w-full h-full">
+          <p class="text-center">Il n'y a pas de suggestions pour le moment 😥</p>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

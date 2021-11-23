@@ -1,33 +1,31 @@
 <app-courses-creates-filter (onSuggestPicked)="suggestPicked($event)"></app-courses-creates-filter>
 <form [formGroup]="form"
       class="text-underflow_blue-300 flex justify-center
-      items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap"
+      items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap z-10"
       id="formCreate" name="formCreate">
   <fieldset>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
-        <label class="text-12px" for="title">Intitulé du cours</label>
+      <div class="flex relative flex-col justify-start items-start mt-0 md:justify-center mt-10px">
+        <label class="text-left text-12px" for="title">Intitulé du cours</label>
         <input name="title" formControlName="title" placeholder="Intitulé du cours"
                type="text" id="title"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="underflow-input">
         <span *ngIf="error_title" class="underflow-error-message">●  L'intitulé saisi n'est pas valide</span>
       </div>
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="date">Date du cours</label>
+      <div class="flex relative flex-col justify-center items-start mt-10px lg:mt-0">
+        <label class="text-left text-12px" for="date">Date du cours</label>
         <input name="date" formControlName="date" id="date"
                type="datetime-local" [min]="date_min" [max]="date_max"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="filter_date-css-custom underflow-input-date">
         <span *ngIf="error_date" class="underflow-error-message">●  La date saisie n'est pas valide</span>
       </div>
     </div>
-    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px mt-10px">
+      <div class="flex relative flex-col justify-center items-start mt-10px lg:mt-0">
         <label class="text-12px" for="subjects">Thème abordé</label>
         <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
                placeholder="Saisis ou sélectionnes une matière / un thème ici" formControlName="subjects"
-               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
+               class="select-css-custom underflow-input">
         <datalist id="subjects_datalist">
           <option *ngFor="let subject of subjectslist;"
                   value="{{subject.title}}">{{subject.title}}</option>
@@ -35,39 +33,37 @@
         <span *ngIf="error_subject" class="underflow-error-message">●  Le thème saisi n'est pas valide</span>
       </div>
 
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px text-left" for="classes">Niveau ciblé</label>
+      <div class="flex relative flex-col justify-center items-start mt-10px lg:mt-0">
+        <label class="text-left text-12px" for="classes">Niveau ciblé</label>
         <select name="classes" id="classes" formControlName="classes"
-                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
+                class="select-css-custom underflow-input-select">
           <option *ngFor="let classe of classesList;"
                   value="{{classe.id}}">{{classe.title}}</option>
         </select>
         <span *ngIf="error_classe" class="underflow-error-message">●  Le niveau saisi n'est pas valide</span>
       </div>
     </div>
-    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px text-left" for="description">Description</label>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px mt-10px">
+      <div class="flex relative flex-col justify-center items-start mt-10px lg:mt-0">
+        <label class="text-left text-12px" for="description">Description</label>
         <textarea name="description" id="description" cols="30"
                   rows="10" formControlName="description"
-                  class="w-250px sm:w-500px h-200px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50 pt-10px"
+                  class="underflow-input-text-area"
                   placeholder="Décris ton cours et ce que tu comptes faire durant celui-ci !"></textarea>
         <span *ngIf="error_description" class="underflow-error-message">●  La description saisie n'est pas valide</span>
       </div>
     </div>
-    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-0">
-        <label class="text-12px" for="room">Salle</label>
+    <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px mt-10px">
+      <div class="flex flex-col justify-center items-start mt-0">
+        <label class="text-left text-12px" for="room">Salle</label>
         <input name="room" formControlName="room" placeholder="Salle..."
                type="text" id="room"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="underflow-input">
         <span *ngIf="error_room" class="underflow-error-message">●  La salle saisie n'est pas valide</span>
       </div>
-      <div class="form-buttons w-full flex justify-end items-end mt-30px">
+      <div class="flex justify-end items-end w-full form-buttons mt-30px">
         <button
-          class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
+          class="rounded-lg button button-primary bg-underflow_blue-300 w-200px h-60px text-underflow_grey-900 text-12px"
           (click)="submit()">Proposer le cours
         </button>
       </div>
