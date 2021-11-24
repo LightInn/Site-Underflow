@@ -4,38 +4,35 @@
       id="formProfile" name="formProfile">
   <fieldset>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
-        <label class="text-12px uppercase" for="firstname">prénom</label>
+      <div class="flex flex-col justify-center items-start mt-0 relative">
+        <label class="text-12px" for="firstname">Prénom</label>
         <input name="firstname" formControlName="firstname" placeholder="Prénom..."
                type="text" id="firstname"
                oninput="this.value = this.value[0].toUpperCase() + this.value.toLowerCase().substring(1) ;"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="underflow-input">
         <span *ngIf="error_firstname" class="underflow-error-message">●  Le prénom saisi n'est pas valide</span>
       </div>
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px uppercase" for="lastname">nom</label>
+      <div class="flex flex-col justify-center items-start mt-10px lg:mt-0 relative">
+        <label class="text-12px" for="lastname">Nom</label>
         <input name="lastname" formControlName="lastname" placeholder="Nom..."
                type="text" id="lastname"
                oninput="this.value = this.value[0].toUpperCase() + this.value.toLowerCase().substring(1) ;"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="underflow-input">
         <span *ngIf="error_lastname" class="underflow-error-message">●  Le nom saisi n'est pas valide</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 md:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px uppercase" for="email">email</label>
+      <div class="flex flex-col justify-center items-start mt-10px lg:mt-0 relative">
+        <label class="text-12px" for="email">Email</label>
         <input name="email" formControlName="email" placeholder="nom.prenom@ecole.fr..."
                type="email" id="email" readonly
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8
-               text-14px my-2 text-underflow_grey-50 opacity-40">
+               class="underflow-input opacity-40">
         <span *ngIf="error_email" class="underflow-error-message">●  L'email saisi n'est pas valide</span>
       </div>
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
+      <div class="flex flex-col justify-center items-start mt-10px lg:mt-0 relative">
         <label class="text-12px text-left" for="classes">Classe</label>
         <select name="classes" id="classes" formControlName="classes"
-                class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
+                class="select-css-custom underflow-input-select">
           <option *ngFor="let classe of classesList;"
                   value="{{classe.title}}">{{classe.title}}</option>
         </select>
@@ -45,7 +42,7 @@
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
       <div class="form-buttons w-full flex justify-end items-end mt-30px">
         <button
-          class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
+          class="underflow-button-filled"
           (click)="submit()">Change tes informations personnelles
         </button>
       </div>
@@ -59,34 +56,34 @@
       id="formPassword" name="formPassword">
   <fieldset>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 mt-10px md:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
-        <label class="text-12px uppercase" for="old_password">Ancien mot de passe</label>
+      <div class="flex flex-col justify-center items-start mt-0 relative">
+        <label class="text-12px" for="old_password">Ancien mot de passe</label>
         <input name="old_password" formControlName="old_password" placeholder="●●●●●●●●●●"
                type="password" id="old_password"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="underflow-input">
         <span *ngIf="error_old_password" class="underflow-error-message">●  L'ancien mot de passe n'a pas été saisi</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 mt-10px md:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
-        <label class="text-12px uppercase" for="password">Nouveau mot de passe</label>
+      <div class="flex flex-col justify-center items-start mt-0 relative">
+        <label class="text-12px" for="password">Nouveau mot de passe</label>
         <input name="password" formControlName="password" placeholder="●●●●●●●●●●"
                type="password" id="password" [(ngModel)]="password"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="underflow-input">
         <span *ngIf="error_password" class="underflow-error-message">●  Les mots de passe ne sont pas valides</span>
       </div>
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px uppercase" for="password_valid">Validation du nouveau mot de passe</label>
+      <div class="flex flex-col justify-center items-start mt-10px lg:mt-0 relative">
+        <label class="text-12px" for="password_valid">Validation du nouveau mot de passe</label>
         <input name="password_valid" formControlName="password_valid" placeholder="●●●●●●●●●●"
                type="password" id="password_valid"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="underflow-input">
         <span *ngIf="error_password_valid" class="underflow-error-message">●  Les mots de passe ne sont pas valides</span>
       </div>
     </div>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
       <div class="form-buttons w-full flex justify-end items-end mt-30px">
         <button
-          class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
+          class="underflow-button-filled"
           (click)="submitPassword()">Change ton mot de passe
         </button>
       </div>

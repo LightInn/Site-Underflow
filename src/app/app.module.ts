@@ -58,6 +58,7 @@ import { TokenConfirmComponent } from './components/authentification/confirmatio
 import { PreConfirmationComponent } from './components/authentification/confirmation/pre-confirmation/pre-confirmation.component';
 import { LegalMentionsComponent } from './components/legal-mentions/legal-mentions.component';
 import { RGPDComponent } from './components/rgpd/rgpd.component';
+import { CardComponent } from './components/core/card/card.component';
 
 @NgModule({
   declarations: [
@@ -114,6 +115,7 @@ import { RGPDComponent } from './components/rgpd/rgpd.component';
     PreConfirmationComponent,
     LegalMentionsComponent,
     RGPDComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

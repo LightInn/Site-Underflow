@@ -15,12 +15,12 @@
 
   <div>
     <button
-      class="button button-primary  bg-underflow_blue-300 w-100px h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_grey-800 text-12px m-30px font-bold"
+      class="underflow-button-filled m-30px"
       (click)="goLogin()">Retour
     </button>
     <button
       [ngClass]="disableButton ? 'opacity-25' : 'opacity-100'"
-      class="transition-opacity button button-primary  bg-underflow_orange-300 w-100px h-60px lg:w-200px lg:h-60px rounded-lg text-underflow_grey-800 text-12px m-30px font-bold"
+      class="underflow-button-filled-alternative m-30px"
       (click)="reSendMail()" [disabled]="disableButton">Renvoyer le mail
     </button>
   </div>

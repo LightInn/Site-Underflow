@@ -9,13 +9,15 @@
       <p class="font-chennai text-underflow_grey-200">Filter By</p>
     </div>
     <select name="classes" id="classes" [ngModel]="filter_selectedClasse" (ngModelChange)="uploadEventClasse($event)"
-            class="filter_select-css-custom w-100px md:w-250px
+            class="filter_select-css-custom w-200px md:w-auto md:w-250px
             h-80px bg-underflow_grey-900 border-underflow_grey-700 border-b border-t border-r px-8 md:my-2">
       <option value=""></option>
       <option *ngFor="let classe of classesList;"
               [value]="classe.title">{{classe.title}}</option>
     </select>
-    <div class="flex relative justify-center items-center border h-80px border-underflow_grey-700">
+  </div>
+  <div class="flex z-20 flex-wrap justify-start items-center md:justify-end">
+    <div class="flex relative justify-center items-center border-r border-t border-b md:border h-80px border-underflow_grey-700 w-200px md:w-auto">
       <label
         class="absolute top-0 left-0 opacity-50 transform text-10px md:text-12px lg:-translate-y-20px lg:opacity-100 pl-5px pt-5px lg:p-0"
         for="date_start">date début</label>
@@ -26,9 +28,9 @@
             px-8 text-10px md:text-14px text-underflow_grey-50">
     </div>
   </div>
-  <div class="flex z-20 flex-wrap justify-end items-center w-full md:justify-start">
+  <div class="flex z-20 flex-wrap justify-start items-center md:justify-start">
     <div
-      class="flex relative justify-center items-center border-t border-b border-l md:border-t md:border-l md:border-b h-80px border-underflow_grey-700">
+      class="flex relative justify-center items-center border-t border-b border-r md:border-t md:border-l md:border-b h-80px border-underflow_grey-700 w-200px md:w-auto">
       <label
         class="absolute top-0 left-0 opacity-50 transform text-10px md:text-12px lg:-translate-y-20px lg:opacity-100 pl-5px pt-5px lg:p-0"
         for="date_end">date fin</label>
@@ -38,13 +40,15 @@
              class="w-full h-full filter_date-css-custom px-20px bg-underflow_grey-900 text-10px md:text-14px text-underflow_grey-50"
              [min]="filter_selectedDateStart">
     </div>
-    <div class="flex h-80px md:m-0">
+  </div>
+  <div class="flex z-20 flex-wrap justify-start items-center w-full md:justify-start">
+    <div class="flex h-80px  md:m-0">
       <div
-        class="hidden justify-center items-center border-t border-b border-l md:flex h-80px py-10px px-20px md:px-30px border-underflow_grey-700 bg-underflow_grey-900">
+        class="justify-center items-center border-t border-b flex h-80px py-10px px-20px md:px-30px border-underflow_grey-700 bg-underflow_grey-900">
         <img class="invert w-25px h-25px" src="./assets/images/svg/magnifier.svg" alt="filter logo" draggable="false">
       </div>
       <div
-        class="flex justify-center items-center border-t border-b border-l md:border-l-0 md:border-t md:border-r md:border-b h-80px border-underflow_grey-700 bg-underflow_grey-900 py-10px px-20px md:px-30px">
+        class="flex justify-center items-center border-t border-b border-r md:border-l-0 md:border-t md:border-r md:border-b h-80px border-underflow_grey-700 bg-underflow_grey-900 py-10px px-20px md:px-30px">
         <input class="text-10px md:text-12px font-chennai bg-underflow_grey-900
         w-150px md:w-300px h-full focus:outline-none focus:border-0" type="text"
                [ngModel]="filter_searchBarText" (ngModelChange)="uploadEventBarText($event)"

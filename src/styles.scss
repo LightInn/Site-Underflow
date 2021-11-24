@@ -162,7 +162,7 @@ a:focus, a:hover, button:focus, button:hover {
 // Components @apply
 // Input
 .underflow-input {
-  @apply px-8 my-2 w-80 rounded-lg border md:border-2 h-60px lg:w-500px bg-underflow_grey-800 border-underflow_blue-300 text-12px md:text-14px
+  @apply px-8 my-2 w-80 rounded-lg border md:border-2 h-60px lg:w-500px bg-underflow_grey-800 border-underflow_blue-300 text-12px md:text-14px text-underflow_grey-50
 }
 
 .underflow-input-date {
@@ -181,9 +181,17 @@ a:focus, a:hover, button:focus, button:hover {
 }
 
 .underflow-button-filled {
-  @apply w-1/3 rounded-lg bg-underflow_blue-300 h-60px lg:w-200px lg:h-60px text-underflow_grey-800 text-10px md:text-12px
+  @apply px-8 md:p-0 rounded-lg bg-underflow_blue-300 h-60px lg:w-200px lg:h-60px text-underflow_grey-800 text-10px md:text-12px
+}
+
+.underflow-button-filled-alternative {
+  @apply transition-opacity px-8 md:p-0 rounded-lg bg-underflow_orange-300 h-60px lg:w-200px lg:h-60px text-underflow_grey-800 text-10px md:text-12px
 }
 
 .underflow-button-unfilled {
-  @apply w-1/3 rounded-lg border border-underflow_blue-300 h-60px lg:w-200px lg:h-60px text-underflow_blue-300 text-10px md:text-12px
+  @apply px-8 md:p-0 rounded-lg border border-underflow_blue-300 h-60px lg:w-200px lg:h-60px text-underflow_blue-300 text-10px md:text-12px
+}
+
+.underflow-button-unfilled-alternative {
+  @apply px-8 md:p-0 rounded-lg border border-underflow_orange-300 h-60px lg:w-200px lg:h-60px text-underflow_orange-300 text-10px md:text-12px
 }

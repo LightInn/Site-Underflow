@@ -2,7 +2,7 @@
 :'inline-block w-220px bg-transparent text-underflow_blue-300 border border-underflow_blue-300 rounded'">
   <a routerLink={{path}}
      routerLinkActive="active">
-    <div class="flex flex-row justify-center text-14px font-bold">
+    <div class="flex flex-row justify-center text-12px">
       <img *ngIf="asset" class="w-30px my-10px" src={{assetPath}} alt={{alt}} draggable="false">
       <span [attr.class]="asset==true?'flex justify-start items-center pl-10px py-20px':'flex justify-center items-center py-20px'">{{content}}</span>
     </div>

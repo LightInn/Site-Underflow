@@ -2,37 +2,33 @@
       class="text-underflow_blue-300 flex justify-center items-center w-full px-30px lg:px-100px flex-wrap lg:flex-nowrap">
   <fieldset>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-0 relative">
-        <label class="text-12px" for="title">
-          INTITULÉ DU COURS SUGGÉRÉ
+      <div class="flex flex-col justify-center items-start mt-0 relative">
+        <label class="text-left text-12px" for="title">
+          Intitulé du cours suggéré
         </label>
         <input name="title" formControlName="title" placeholder="Intitulé du cours"
                type="text" id="title"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300
-               border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="underflow-input">
         <span *ngIf="error_title" class="underflow-error-message">●  L'intitulé saisi n'est pas valide</span>
       </div>
 
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="date_butoir">DATE BUTOIRE</label>
+      <div class="flex flex-col justify-center items-start mt-10px lg:mt-0 relative">
+        <label class="text-left text-12px" for="date_butoir">Date butoire</label>
         <input name="date_butoir" formControlName="date_butoir"
                type="datetime-local" id="date_butoir" [min]="date_min" [max]="date_max"
-               class="w-250px sm:w-500px h-60px bg-underflow_grey-800
-               border-underflow_blue-300 border-2 rounded-lg px-8 text-14px my-2 text-underflow_grey-50">
+               class="filter_date-css-custom underflow-input-date">
         <span *ngIf="error_date" class="underflow-error-message">●  La date saisie n'est pas valide</span>
       </div>
     </div>
 
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-10 lg:mt-30px">
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px" for="subjects">
-          THÈME ABORDÉ SUGGÉRÉ
+      <div class="flex flex-col justify-center items-start mt-10px lg:mt-0 relative">
+        <label class="text-left text-12px" for="subjects">
+          Thème abordé suggéré
         </label>
         <input list="subjects_datalist" name="subjects" id="subjects" autocomplete="off"
                placeholder="écrire ici pour ajouter un thème / une matière" formControlName="subjects"
-               class="select-css-custom w-250px sm:w-500px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
+               class="select-css-custom underflow-input">
         <datalist id="subjects_datalist">
           <option *ngFor="let subject of subjectslist;"
                   value="{{subject.title}}">{{subject.title}}</option>
@@ -40,12 +36,10 @@
         <span *ngIf="error_subject" class="underflow-error-message">●  Le thème saisi n'est pas valide</span>
       </div>
 
-      <div class="flex flex-col justify-center items-center lg:items-start mt-10px lg:mt-0 relative">
-        <label class="text-12px text-left" for="classes">NIVEAU CIBLÉ SUGGÉRÉ</label>
+      <div class="flex flex-col justify-center items-start mt-10px lg:mt-0 relative">
+        <label class="text-left text-12px text-left" for="classes">Niveau ciblé suggéré</label>
         <select name="classes" id="classes" formControlName="classes"
-               class="select-css-custom w-250px h-60px bg-underflow_grey-800 border-underflow_blue-300 border-2
-               rounded-lg hover:rounded-b-none focus:rounded-b-none hover:rounded-t-lg
-                px-8 text-14px my-2 text-underflow_grey-50">
+               class="select-css-custom underflow-input-select">
           <option *ngFor="let classe of classesList;"
                   value="{{classe.id}}">{{classe.title}}</option>
         </select>
@@ -56,7 +50,7 @@
 
     <div class="form-buttons w-full flex justify-end mt-30px">
       <button
-        class="button button-primary bg-underflow_blue-300 w-200px h-60px rounded-lg text-underflow_grey-900 text-12px"
+        class="underflow-button-filled"
         (click)="submit()">Envoyer la suggestion
       </button>
     </div>
